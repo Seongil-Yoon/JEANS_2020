@@ -32,7 +32,7 @@ public class UserController {
         String user_Weight=paraMap.get("user_weight");
         String user_Picture=paraMap.get("user_picture");
         String user_Email=paraMap.get("uwer_email");
-
+        //dsadasdasd
         userService.joinUser();
     }
 
