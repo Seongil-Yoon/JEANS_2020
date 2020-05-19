@@ -17,9 +17,4 @@ public class MainController {
     }
 
 
-
-    @RequestMapping("/writeForm")
-    public String writeForm()
-    { return "writeForm"; }
-
 }

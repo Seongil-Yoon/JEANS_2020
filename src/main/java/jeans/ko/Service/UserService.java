@@ -14,7 +14,7 @@ public class UserService {
     @Autowired
     private UserDto userDto;
 
-    public String joinUser(String id,String pw,String nick,String sex,String height,String weight,String picture,String email){
-        if(id)
-    }
+//   public String joinUser(String id,String pw,String nick,String sex,String height,String weight,String picture,String email){
+//        if(id)
+//    }
 }

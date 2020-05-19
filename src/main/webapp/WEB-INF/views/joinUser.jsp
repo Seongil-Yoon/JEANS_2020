@@ -20,8 +20,8 @@
         <input type="radio" name="sex" value="남자">남자
         <input type="radio" name="sex" value="여자">여자<br/><br/>
         <input type="text" placeholder="height" name="user_height"/><br/><br/>
-        <input type="password" placeholder="weight" name="user_weight"/><br/><br/>
-        <input type="password" placeholder="picture" name="user_picture"/><br/><br/>
+        <input type="text" placeholder="weight" name="user_weight"/><br/><br/>
+        <input type="text" placeholder="picture" name="user_picture"/><br/><br/>
         <input type="email" placeholder="email" name="user_email"/><br/><br/>
         <input type="submit" value="로그인"><br/><br/>
     </form>
