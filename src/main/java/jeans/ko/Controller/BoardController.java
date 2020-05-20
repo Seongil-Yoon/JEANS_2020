@@ -21,9 +21,11 @@ public class BoardController {
     { return "writeForm"; }
 
     @PostMapping("/boardWriteRequest")
-    public String boardWrite(@RequestParam Map<String,String> paramMap) {
-        boardService.insertBoard(paramMap);
-        return "/"; //게시판 리스트 나오게 수정해야함
+    public String boardWrite(BoardDto boardDto) {
+
+        boardService.insert(boardDto);
+
+        return "main"; //게시판 리스트 나오게 수정해야함
     }
 
 }

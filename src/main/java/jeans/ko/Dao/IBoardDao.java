@@ -3,15 +3,16 @@ package jeans.ko.Dao;
 
 import jeans.ko.Dto.BoardDto;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Map;
 
+
 @Mapper
-@Repository
 public interface IBoardDao {
 
-    public void insertBoard(Map<String,String> paramMap);
+    public void insert(BoardDto boardDto);
 
 }
