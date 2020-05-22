@@ -22,18 +22,5 @@ public class UserController {
     public String joinUser()
     { return "joinUser"; }
 
-//    @PostMapping("/joinRequest")
-//    public @ResponseBody String joinRequest(@RequestParam Map<String,String>paraMap){
-//        String userId=paraMap.get("user_id");
-//        String userPw=paraMap.get("user_pw");
-//        String user_Nickname=paraMap.get("user_nickname");
-//        String user_Sex=paraMap.get("sex");
-//        String user_Height=paraMap.get("user_height");
-//        String user_Weight=paraMap.get("user_weight");
-//        String user_Picture=paraMap.get("user_picture");
-//        String user_Email=paraMap.get("uwer_email");
-//
-////        userService.joinUser();
-//    }
 
 }

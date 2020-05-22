@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Service
-public class BoardService {
+public class BoardService implements IBoardService {
 
     @Autowired
     private IBoardDao boardDao;
-
 
     public void insert(BoardDto boardDto) {
 
@@ -22,10 +22,18 @@ public class BoardService {
         String look_date=  formatter.format(new Date());
 
         boardDto.setLook_date(look_date);
-        boardDto.setUserid("asd");
-        System.out.println("userid "+boardDto.getUserid());
-        boardDao.insert(boardDto);
+        boardDto.setUserid("asd"); //아이디 값넣기 수정해야함
+        boardDto.setLike(1); //좋아요 값넣기 수정해야함
+        boardDto.setCount(1); //조회수 수정해야함
+        boardDto.setComment_count(2);//댓글수 수정해야함
+        boardDto.setPicture("사진"); //사진 수정해야함
 
+        boardDao.insert(boardDto);
+    }
+
+    @Override
+    public void delete(int look_num) {
+        boardDao.delete(look_num);
     }
 
 }

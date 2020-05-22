@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jeans.ko.Dao.IBoardDao">
+
+    <insert id="insert">
+        insert into look
+        values
+        (
+        #{look_num},#{title},#{like},#{season},#{tag},#{look_public},#{userid}
+        ,#{memo},#{look_date},#{count},#{comment_count},#{picture}
+        )
+    </insert>
+
+    <select id="list" resultType="jeans.ko.Dto.BoardDto">
+        select * from look order by look_num desc
+    </select>
+
+    <delete id="delete">
+        delete from look where look_num= #{look_num}
+    </delete>
+
+</mapper>
+
