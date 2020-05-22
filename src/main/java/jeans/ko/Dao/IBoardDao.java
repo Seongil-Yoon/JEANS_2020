@@ -12,11 +12,15 @@ import java.util.Map;
 @Repository
 @Mapper
 public interface IBoardDao {
-
+    //전체 게시판 리스트
     public List<BoardDto> list();
-
+    //게시글 작성
     public void insert(BoardDto boardDto);
-
+    //게시글 상세보기
+    public BoardDto view(@Param("look_num") int look_num) ;
+    //게시글 삭제
     public void delete(@Param("look_num") int look_num) ;
+    //게시글 조회수 증가
+    public void countUpdate(@Param("look_num") int look_num) ;
 
 }

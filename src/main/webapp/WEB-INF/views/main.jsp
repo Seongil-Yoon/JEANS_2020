@@ -10,6 +10,14 @@
 <html>
 <head>
     <title>룩게시판</title>
+    <script>
+        //백오브 캐시 있으면 다시 새로고침
+        window.onpageshow = function(event) {
+            if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+                window.location.reload(); //새로고침 다시 불러오기
+            }
+        };
+    </script>
 </head>
 <body>
 

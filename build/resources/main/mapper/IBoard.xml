@@ -17,9 +17,17 @@
         select * from look order by look_num desc
     </select>
 
+    <select id="view" resultType="jeans.ko.Dto.BoardDto">
+        select * from look where look_num = #{look_num}
+    </select>
+
     <delete id="delete">
         delete from look where look_num= #{look_num}
     </delete>
+
+    <update id="countUpdate">
+        update look set count = count + 1 where look_num = #{look_num}
+    </update>
 
 </mapper>
 

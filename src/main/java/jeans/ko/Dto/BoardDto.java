@@ -30,7 +30,7 @@ public class BoardDto {
     @NotBlank(message = " 메모를 입력하세요")
     private String memo;   //null값 허용
     private String look_date;  //작성날짜
-    private Integer count;    //조회수
+    private int count;    //조회수
     private Integer comment_count; //댓글수
     private String picture;  //여기도 validator 사용하게 수정해야함
 

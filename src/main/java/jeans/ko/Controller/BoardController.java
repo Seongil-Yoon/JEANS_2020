@@ -1,9 +1,11 @@
 package jeans.ko.Controller;
 
+import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dto.BoardDto;
 import jeans.ko.Service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,11 +19,24 @@ public class BoardController {
 
     @Autowired
     BoardService boardService;
+    @Autowired
+    IBoardDao boardDao;
 
+    //게시판 작성페이지
     @RequestMapping("/writeForm")
     public String writeForm()
     { return "writeForm"; }
 
+    //게시판 상세보기
+    @RequestMapping("/view")
+    public String view(@RequestParam("look_num")int look_num ,Model model)
+    {
+        boardDao.countUpdate(look_num); //글상세보기 하면 조회수 증가 
+        model.addAttribute("view",boardDao.view(look_num));
+        return "boardInfo";
+    }
+
+    //삭제
     @RequestMapping("/delete")
     public String delete(@RequestParam("look_num")int look_num)
     {
@@ -29,6 +44,7 @@ public class BoardController {
         return "redirect:/main";
     }
 
+    //게시판 작성값 처리
     @PostMapping("/boardWriteRequest") //커멘드 객체로 값받아옴 BindingResult 는 오류값 출력
     public String boardWrite(@Valid BoardDto boardDto, BindingResult result) {
 
