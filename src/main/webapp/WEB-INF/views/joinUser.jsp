@@ -14,15 +14,19 @@
 <div>
     <h1>회원가입 화면</h1>
     <form action="/joinRequest" method="post">
-        <input type="text" placeholder="아이디" name="user_id"/><br/><br/>
-        <input type="password" placeholder="비밀번호" name="user_pw"/><br/><br/>
-        <input type="text" placeholder="닉네임" name="user_nickname"/><br/><br/>
-        <input type="radio" name="sex" value="남자">남자
-        <input type="radio" name="sex" value="여자">여자<br/><br/>
-        <input type="text" placeholder="height" name="user_height"/><br/><br/>
-        <input type="text" placeholder="weight" name="user_weight"/><br/><br/>
-        <input type="text" placeholder="picture" name="user_picture"/><br/><br/>
-        <input type="email" placeholder="email" name="user_email"/><br/><br/>
+
+        <input type="text" placeholder="아이디" name="userid" /><br/><br/>
+        <input type="password" placeholder="비밀번호" name="password"/><br/><br/>
+        <input type="text" placeholder="닉네임" name="nickname"/><br/><br/>
+
+        <input type="radio" name="sex" value=1 checked>남자
+        <input type="radio" name="sex" value=0>여자<br/><br/>
+
+        <input type="number"  placeholder="height" name="height"/><br/><br/>
+        <input type="number" placeholder="weight" name="weight"/><br/><br/>
+        <input type="text" placeholder="picture" name="picture"/><br/><br/>
+        <input type="email" placeholder="email" name="email"/><br/><br/>
+
         <input type="submit" value="로그인"><br/><br/>
     </form>
 </div>

@@ -1,6 +1,7 @@
 package jeans.ko.Dao;
 
 import jeans.ko.Dto.UserDto;
+import org.apache.catalina.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -14,6 +15,8 @@ import java.util.List;
 @Mapper
 @Repository
 public interface IUserDao {
+    public int insertUser(UserDto userDto);
+    public String userLogin(UserDto userDto);
 
-    public void insertUser();
+    public void list();
 }
