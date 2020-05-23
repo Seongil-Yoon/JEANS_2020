@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 1
@@ -14,7 +15,19 @@
 <div>
     <ul>
         <li>
+
+        <%if(session.getAttribute("userid")==null)
+                {
+             %>
             <a  href="loginUser">로그인</a>
+            <%}else{
+               String nick=(String)session.getAttribute("usernickname");
+                System.out.println("nick = " + session.getAttribute("usernickname"));
+                System.out.println("nick = " + session.getAttribute("userid"));
+            %>
+            <h1></h1>
+            <a href="logout">로그아웃</a>
+            <%}%>
         </li>
         <li>
             <a  href="joinUser">회원가입</a>

@@ -1,7 +1,10 @@
 package jeans.ko;
 
+import jeans.ko.Dao.IUserDao;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.awt.*;
 
 @SpringBootApplication
 public class KoApplication {
