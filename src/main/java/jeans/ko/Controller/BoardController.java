@@ -31,7 +31,7 @@ public class BoardController {
     @RequestMapping("/view")
     public String view(@RequestParam("look_num")int look_num ,Model model)
     {
-        boardDao.countUpdate(look_num); //글상세보기 하면 조회수 증가 
+        boardDao.countUpdate(look_num); //글상세보기 하면 조회수 증가
         model.addAttribute("view",boardDao.view(look_num));
         return "boardInfo";
     }
