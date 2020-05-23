@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="jeans@localhost" uuid="ae046566-8567-4885-a6ec-980c08409257">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/jeans</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="jeans@localhost [2]" uuid="42dc9e35-dc9f-4850-a7e6-783078bdd8d6">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/jeans</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="jeans@localhost [3]" uuid="7db4cabe-876c-4ba1-aa19-44d634eada5a">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/jeans</jdbc-url>
+    </data-source>
+  </component>
+</project>
