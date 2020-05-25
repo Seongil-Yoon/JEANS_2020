@@ -66,7 +66,7 @@ public class UserController {
             if(result.getFieldError("email")!=null){
                 System.out.println("Error! = " + result.getFieldError("email").getDefaultMessage());
             }
-           return "main";
+           return "redirect:/main";
         }
 
         int check=userService.joinUser(userDto);
@@ -79,12 +79,14 @@ public class UserController {
 
     @PostMapping("/loginRequest")
     public String loginRequest(@Valid UserDto userDto,BindingResult result) {
+
+
         String page= userService.userLogin(userDto);
         if(page.equals("success")){
             System.out.println("userDto.getNickname() = " + userDto.getNickname());
             httpSession.setAttribute("userid",userDto.getUserid());
             httpSession.setAttribute("usernickname",userDto.getNickname());
-            return "main";
+            return "redirect:/main"; //메인 화면 가지않고 게시판 블러오기 위해 main 재요청
         }else{
             return "loginUser";
         }
@@ -94,6 +96,6 @@ public class UserController {
     @RequestMapping("/logout")
     public String logout(){
         httpSession.invalidate();
-        return "main";
+        return "redirect:/main";
     }
 }

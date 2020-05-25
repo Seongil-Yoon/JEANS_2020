@@ -42,7 +42,11 @@
             <a  href="joinUser">회원가입</a>
         </li>
         <li>
-            <a  href="writeForm">게시판 작성</a>
+            <c:set var="userid" value="${sessionScope.userid}"/>
+            <c:if test="${userid != null}">
+                <a  href="writeForm">게시판 작성</a>
+                <h4>로그인한 아이디:<c:out value="${sessionScope.userid}"></c:out></h4>
+            </c:if>
         </li>
     </ul>
 </div>
@@ -60,7 +64,7 @@
     <c:forEach items="${list}" var="dto">
         <tr>
             <td>${dto.look_num}</td>
-            <td>${dto.userid}</td>
+            <td>${dto.fk_userid_user_userid}</td>
             <td>${dto.look_date}</td>
             <td>${dto.title}</td>
             <td>${dto.count}</td>

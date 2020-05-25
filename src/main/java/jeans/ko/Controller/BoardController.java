@@ -3,6 +3,7 @@ package jeans.ko.Controller;
 import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dto.BoardDto;
 import jeans.ko.Service.BoardService;
+import jeans.ko.Service.IBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +19,7 @@ import java.util.Map;
 public class BoardController {
 
     @Autowired
-    BoardService boardService;
+    IBoardService boardService;
     @Autowired
     IBoardDao boardDao;
 

@@ -25,7 +25,7 @@ public class UserService {
 
     public int joinUser(UserDto userDto){
         userDto.setRole(1);
-        System.out.println("\nuserService에서");
+        System.out.println("nuserService에서");
         System.out.println("userDto.getUserid() = " + userDto.getUserid());
         System.out.println("userDto.getEmail() = " + userDto.getEmail());
         System.out.println("userDto.getNickname = " + userDto.getNickname());
@@ -44,7 +44,7 @@ public class UserService {
     }
 
     public String userLogin(UserDto userDto){
-
+        
         String id=userDto.getUserid();
         String password=userDto.getPassword();
         String nickname=userDto.getNickname();

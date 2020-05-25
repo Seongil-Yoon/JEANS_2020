@@ -26,7 +26,7 @@ public class BoardDto {
     private String tag;
     @Min(value = 1,message = " 공개 비공개를 선택하세요")
     private int look_public; //공개설정 1공개 2비공개
-    private String userid;  //회원 id
+    private String fk_userid_user_userid;  //회원 id
     @NotBlank(message = " 메모를 입력하세요")
     private String memo;   //null값 허용
     private String look_date;  //작성날짜

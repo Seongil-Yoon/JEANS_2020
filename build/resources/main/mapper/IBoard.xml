@@ -8,7 +8,7 @@
         insert into look
         values
         (
-        #{look_num},#{title},#{like},#{season},#{tag},#{look_public},#{userid}
+        #{look_num},#{title},#{like},#{season},#{tag},#{look_public},#{fk_userid_user_userid}
         ,#{memo},#{look_date},#{count},#{comment_count},#{picture}
         )
     </insert>
