@@ -15,16 +15,12 @@ import java.util.Date;
 
 @Controller
 public class MainController {
-
+ 
     @Autowired
     IBoardDao boardDao;
 
     @RequestMapping("main")
-    public String main(Model model, HttpServletResponse response){
-        response.setHeader("Expires", "Sat, 6 May 1995 12:00:00 GMT");
-        response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
-        response.addHeader("Cache-Control", "post-check=0, pre-check=0");
-        response.setHeader("Pragma", "no-cache");
+    public String main(Model model){
         //value객체를 name이름으로 추가한다 ,메인 화면에 리스트 호출
         model.addAttribute("list",boardDao.list());
         return "/main";
@@ -39,7 +35,6 @@ public class MainController {
 
     @RequestMapping("/loginUser")
     public String loginUser() {
-
         return "loginUser";
     }
 

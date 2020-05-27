@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>룩게시판 글쓰기</h1>
-<%--@elvariable id="boardDto" type="jeans"--%>
+<%--@elvariable id="boardDto" type="jeans"--%><%--modelAttribute jsp주석을적음 --%>
 <form:form modelAttribute="boardDto" action="/boardWriteRequest" method="post">
     <input type="text" placeholder="글제목" name="title" path="title"><form:errors path="title" /><br/><br/>
     <input type="checkbox" name="season" value="봄">봄
