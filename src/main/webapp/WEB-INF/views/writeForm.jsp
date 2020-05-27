@@ -10,6 +10,7 @@
 <%--@elvariable id="boardDto" type="jeans"--%><%--modelAttribute jsp주석을적음 --%>
 <form:form modelAttribute="boardDto" action="/boardWriteRequest" method="post">
     <input type="text" placeholder="글제목" name="title" path="title"><form:errors path="title" /><br/><br/>
+    <%--form:errors path="title" BindingResult에러가 발생했을 때 여기서 경고문을 띄어주겠다--%>
     <input type="checkbox" name="season" value="봄">봄
     <input type="checkbox" name="season" value="여름">여름
     <input type="checkbox" name="season" value="가을">가을

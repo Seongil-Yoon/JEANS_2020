@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserService implements IUserService {
 
     @Autowired
     private IUserDao userDao;
@@ -47,18 +47,24 @@ public class UserService {
         
         String id=userDto.getUserid();
         String password=userDto.getPassword();
-        String nickname=userDto.getNickname();
+        String nickname=null;
 
        String sqlPassword=userDao.userLogin(userDto);
-        System.out.println("id password" + id+ password);
+       System.out.println("id password" + id+ password);
+
        if(sqlPassword.equals(password)){
            System.out.println("로그인성공");
-           return "success";
+            //여기서 닉네임 받아오면 되지 ㅏㅇㄶ을까
+            //String nick=userDao.getNickname(id);
+            //로그인 성공시 id 값을 보내고 닉네임을 받아온다.
+          nickname=userDao.getNickname(id);
+           return nickname;
        }else{
            System.out.println("로그인실패");
-           return "false";
+           return nickname;
        }
     }
+
 
 
 }

@@ -9,6 +9,9 @@
     <select id="userLogin" resultType="String">
         select password from user where userid= (#{userid})
     </select>
+    <select id="getNickname" resultType="String">
+        select nickname from user where userid=(#{id});
+    </select>
 </mapper>
 
         <!-- resultType="jeans.ko.Dto.UserDto"-->
