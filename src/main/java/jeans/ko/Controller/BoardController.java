@@ -43,6 +43,7 @@ public class BoardController {
     {
         boardService.delete(look_num);
         return "redirect:/main";
+
     }
 
     //게시판 작성값 처리

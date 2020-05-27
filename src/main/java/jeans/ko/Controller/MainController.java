@@ -15,7 +15,7 @@ import java.util.Date;
 
 @Controller
 public class MainController {
-
+ 
     @Autowired
     IBoardDao boardDao;
 

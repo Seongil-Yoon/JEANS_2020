@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>룩게시판 글쓰기</h1>
-<%--@elvariable id="boardDto" type="jeans"--%>
+<%--@elvariable id="boardDto" type="jeans"--%><%--modelAttribute jsp주석을적음 --%>
 <form:form modelAttribute="boardDto" action="/boardWriteRequest" method="post">
     <input type="text" placeholder="글제목" name="title" path="title"><form:errors path="title" /><br/><br/>
     <%--form:errors path="title" BindingResult에러가 발생했을 때 여기서 경고문을 띄어주겠다--%>
