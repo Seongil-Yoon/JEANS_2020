@@ -14,7 +14,6 @@
 <div>
     <h1>회원가입 화면</h1>
     <form action="/joinRequest" method="post">
-
         <input type="text" placeholder="아이디" name="userid" /><br/><br/>
         <input type="password" placeholder="비밀번호" name="password"/><br/><br/>
         <input type="text" placeholder="닉네임" name="nickname"/><br/><br/>
