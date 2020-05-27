@@ -9,7 +9,6 @@
 <body>
 <div>
     <h1>회원가입 화면</h1>
-    
     <%--@elvariable id="userDto" type="jeans"--%>
     <form:form modelAttribute="userDto" action="/joinRequest" method="post">
 
