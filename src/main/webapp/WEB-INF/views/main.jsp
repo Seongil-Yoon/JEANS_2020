@@ -54,7 +54,7 @@
 <table width="700" cellpadding="0" border="1">
     <tr>
         <td>룩넘버</td>
-        <td>아이디</td>
+        <td>닉네임</td>
         <td>작성시간</td>
         <td>제목</td>
         <td>조회수</td>
