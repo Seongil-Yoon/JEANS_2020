@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import javax.validation.constraints.*;
 import java.util.Date;
 
-
 @Data
 @Component
 public class BoardDto {
