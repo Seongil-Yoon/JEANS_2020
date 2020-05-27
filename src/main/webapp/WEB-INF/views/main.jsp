@@ -31,8 +31,8 @@
             <a  href="loginUser">로그인</a>
             <%}else{
                String nick=(String)session.getAttribute("usernickname");
-                System.out.println("nick = " + session.getAttribute("usernickname"));
-                System.out.println("nick = " + session.getAttribute("userid"));
+                System.out.println("main.jsp에서 닉네임 = " + session.getAttribute("usernickname"));
+                System.out.println("main.jsp에서 아이디 = " + session.getAttribute("userid"));
             %>
             <h1></h1>
             <a href="logout">로그아웃</a>
@@ -45,7 +45,7 @@
             <c:set var="userid" value="${sessionScope.userid}"/>
             <c:if test="${userid != null}">
                 <a  href="writeForm">게시판 작성</a>
-                <h4>로그인한 아이디:<c:out value="${sessionScope.userid}"></c:out></h4>
+                <h4>로그인한 아이디:<c:out value="${sessionScope.usernickname}"></c:out></h4>
             </c:if>
         </li>
     </ul>

@@ -15,8 +15,11 @@ import java.util.List;
 @Mapper
 @Repository
 public interface IUserDao {
+    //회원가입을 위해 유저정보 기입
     public int insertUser(UserDto userDto);
+    //유저 로그인
     public String userLogin(UserDto userDto);
-
+    //유저 닉네임
+    public String getNickname(String userid);
     public void list();
 }
