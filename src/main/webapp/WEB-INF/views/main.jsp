@@ -64,7 +64,7 @@
     <c:forEach items="${list}" var="dto">
         <tr>
             <td>${dto.look_num}</td>
-            <td>${dto.fk_userid_user_userid}</td>
+            <td>${dto.nickname}</td>
             <td>${dto.look_date}</td>
             <td>${dto.title}</td>
             <td>${dto.count}</td>

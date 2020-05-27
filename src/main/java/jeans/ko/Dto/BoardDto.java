@@ -33,5 +33,5 @@ public class BoardDto {
     private int count;    //조회수
     private Integer comment_count; //댓글수
     private String picture;  //여기도 validator 사용하게 수정해야함
-
+    private String nickname;
 }

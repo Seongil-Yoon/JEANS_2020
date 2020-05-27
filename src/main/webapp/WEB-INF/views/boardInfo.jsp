@@ -25,7 +25,7 @@
                 <td>삭제</td>
             </tr>
             <tr>
-                <td>${view.fk_userid_user_userid}</td>
+                <td>${view.nickname}</td>
                 <td>${view.title}</td>
                 <td>${view.memo}</td>
                 <td>${view.count}</td>
