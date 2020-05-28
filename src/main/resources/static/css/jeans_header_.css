@@ -1,0 +1,39 @@
+.jeans_root{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  width: auto;
+}
+
+.jeans_header{
+  margin: 0px auto;
+  width: 1200px;
+  height: 60px;
+  background-color: #92CEF4;
+  color : white;
+  display: grid;
+  grid-template-columns: 2% 3% 19% 23.5% 8% 23%  15% 1% 4% 1.5% ;
+  align-items: center;
+}
+.search_logo{
+  margin-top: 5px;
+}
+
+.my_info{
+  text-align: right;
+  margin-top: 5px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.user_id{
+  line-height: 40px;
+}
+
+.search_text{
+  border:none;
+  width: 200px;
+  height: 20px;
+}

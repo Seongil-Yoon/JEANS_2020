@@ -26,6 +26,12 @@ public class MainController {
         return "/main";
     }
 
+    @RequestMapping("test")
+    public String test(Model model){
+        return "/look_info";
+    }
+
+
     //처음 들어오면 메인 화면
     @RequestMapping("/")
     public String index(Model model){

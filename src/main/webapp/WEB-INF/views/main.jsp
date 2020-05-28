@@ -44,8 +44,8 @@
         <li>
             <c:set var="userid" value="${sessionScope.userid}"/>
             <c:if test="${userid != null}">
-                <a  href="writeForm">게시판 작성</a>
-                <h4>로그인한 아이디:<c:out value="${sessionScope.usernickname}"></c:out></h4>
+                <a  href="look_write">게시판 작성</a>
+                <h4>로그인한 닉네임:<c:out value="${sessionScope.usernickname}"></c:out></h4>
             </c:if>
         </li>
     </ul>
