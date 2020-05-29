@@ -6,7 +6,6 @@
     font-size: 16px;
   }
 
-/* 지랄 정신병자 새끼가 name 2개 이지랄로 해야 인식함*/
 .name{
   margin-top: 10px;
   margin-left: -20px;
@@ -25,7 +24,43 @@ form{
   margin-top: 10px;
   margin-left: -20px;
 }
-  
+
+.look_header_ul{
+  border-style: none;
+  margin-top: 0px;
+  position: relative;
+  float: left;
+  margin-left: -40px;
+  width: 500px;
+  height: 40px;
+}
+
+.look_header_li{
+  border-style: none;
+  position: relative;
+  float: left;
+  margin-left: 0px;
+  width: 40px;
+  height: 40px;
+}
+
+.look_footer_ul{
+  margin-top: 0px;
+  position: relative;
+  float: left;
+  margin-left: 0px;
+  width: 590px;
+  height: 40px;
+}
+
+.look_footer_li{
+  position: relative;
+  float: left;
+  margin-left: 0px;
+  width: 40px;
+  height: 40px;
+}
+
 
   .infinite-scroll-component__outerdiv{
     width: 600px;
@@ -98,27 +133,51 @@ form{
     border: none;
   }
 
-  .like{
-    margin-left: 20px;
+  .like_img_box{
+    position: relative;
+    float: left;
+    width: 30px;
+    margin-left: 2px;
+  }
+  
+  .count_img_box{
+    position: relative;
+    float: left;
+    width: 30px;
+    margin-left: 2px;
   }
 
-  .heart_img{
+  .like_img{
+    margin-top: 10px;
+    height :30px;
+    width: 30px;
+  }
+
+  .count_img{
     margin-top: 10px;
     height :30px;
     width: 30px;
   }
   
   .like_number{
+    position: relative;
+    float: left;
     margin-top: 10px;
     line-height: 30px;
+    margin-left: 1px;
+  }
+  .count_number{
+    position: relative;
+    float: left;
+    margin-top: 10px;
+    line-height: 30px;
+    margin-left: 1px;
   }
 
-  .count{
-    margin-top: 10px;
-    line-height: 30px;
-  }
 
   .look_tag{
+    position: relative;
+    float: left;
     line-height: 30px;
     margin-top: 10px;
     text-align: right;
