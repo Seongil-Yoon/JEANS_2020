@@ -9,6 +9,7 @@
   <head>
     <meta charset="UTF-8"/>
     <title>look_list</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="static/css/look_list.css"/>
     <link rel="stylesheet" href="static/css/look_list_Look.css"/>
     <link rel="stylesheet" href="static/css/jeans_header_.css"/>
@@ -19,7 +20,317 @@
                   window.location.reload(); //새로고침 다시 불러오기
               }
           };
+
+
+          $(document).ready(function() {
+
+              $(window).scroll(function () {
+
+                  // 현재 위치의 높이
+
+                  //var curHeight = $(window).height() + $(window).scrollTop();
+
+                  var curHeight = $(window).scrollTop();
+
+                  // 문서의 높이
+
+                  var docHeight = $(document).height();
+
+                  // 어느 정도 조건이 만족하면 내용 생성
+
+                  if (curHeight > docHeight - 800) {
+                      // $('<div class="main"></div>').appendTo('body');
+                      $('' +
+                          '<div class="main">\n' +
+                          '\n' +
+                          '              <div claas="main_container">\n' +
+                          '            <!--<ul id="js-look_item" class="main_look_item">\n' +
+                          '              </ul> -->\n' +
+                          '\n' +
+                          '                <ul class="main_look_item">\n' +
+                          '                  <li id=1>\n' +
+                          '                    <div class="is_body" >\n' +
+                          '                      <!-- 헤더-->\n' +
+                          '                      <div class="my_img">\n' +
+                          '                          <img src="static/images/mypicture.png" alt="search" height="50" width="60" />\n' +
+                          '                        </div>\n' +
+                          '                      <div class="name">\n' +
+                          '                        <ul class="look_header_ul">\n' +
+                          '                          <li class="look_header_li">\n' +
+                          '                              <span class="user_name">찬영</span>\n' +
+                          '                          </li>\n' +
+                          '                          <li class="look_header_li" style="width: auto; "></li>\n' +
+                          '                          <li class="look_header_li" style="width: fit-content; text-align: right; float: right; font-size: 10px;">\n' +
+                          '                               <span id="look_date">2020년 5월 29일 22시 56분 22초</span>\n' +
+                          '                          </li>\n' +
+                          '                        </ul>\n' +
+                          '\n' +
+                          '                      </div>\n' +
+                          '                      <div class="title" >제목</div>\n' +
+                          '\n' +
+                          '                      <!-- 본문-->\n' +
+                          '                      <div class="look_img">\n' +
+                          '                          <div class="look_img_in">\n' +
+                          '                            <img src="static/images/1.JPG" alt="look_image" class= "look_img_file"/>\n' +
+                          '                          </div>\n' +
+                          '                        </div>\n' +
+                          '\n' +
+                          '                        <div class="look_textarea_space">\n' +
+                          '                          <form class="textarea_form">\n' +
+                          '                            <textarea class = "look_textarea"></textarea>\n' +
+                          '                          </form>\n' +
+                          '                        </div>\n' +
+                          '\n' +
+                          '                        <!-- 푸터-->\n' +
+                          '                        <ul class="look_footer_ul">\n' +
+                          '                          <li class="look_footer_li">\n' +
+                          '                            <div class ="like_img_box">\n' +
+                          '                              <img src="static/images/heart.svg" alt="heart_image" class="like_img" />\n' +
+                          '                            </div>\n' +
+                          '                          </li>\n' +
+                          '                          <li class="look_footer_li">\n' +
+                          '                            <div class = "like_number">\n' +
+                          '                              <span>10.5K</span>\n' +
+                          '                            </div>\n' +
+                          '                          </li>\n' +
+                          '                          <li class="look_footer_li" style="width: 25px;"></li>\n' +
+                          '                          <li class="look_footer_li">\n' +
+                          '                            <div class= "count_img_box">\n' +
+                          '                              <img src="static/images/board_view_icon.svg" alt="board_view_icon" class="count_img"/>\n' +
+                          '                            </div>\n' +
+                          '                          </li>\n' +
+                          '                          <li class="look_footer_li">\n' +
+                          '                            <div class = "count_number">\n' +
+                          '                              <span>1024</span>\n' +
+                          '                            </div>\n' +
+                          '                          </li>\n' +
+                          '                          <li class="look_footer_li" style="width: 140px;"></li>\n' +
+                          '                          <li class="look_footer_li" style="width: 240px;">\n' +
+                          '                            <div class ="look_tag"> #박보검 #김유정 #태그</div>\n' +
+                          '                          </li>\n' +
+                          '                        </ul>\n' +
+                          '\n' +
+                          '                       <div class="space_end"></div>\n' +
+                          '                    </div>\n' +
+                          '                  </li>\n' +
+                          '                  <li id=2>\n' +
+                          '                    <div class="is_body" >\n' +
+                          '                      <!-- 헤더-->\n' +
+                          '                      <div class="my_img">\n' +
+                          '                          <img src="static/images/mypicture.png" alt="search" height="50" width="60" />    \n' +
+                          '                        </div>\n' +
+                          '                      <div class="name">\n' +
+                          '                        <ul class="look_header_ul">\n' +
+                          '                          <li class="look_header_li">\n' +
+                          '                              <span class="user_name">찬영</span>\n' +
+                          '                          </li>\n' +
+                          '                          <li class="look_header_li" style="width: auto; "></li>\n' +
+                          '                          <li class="look_header_li" style="width: fit-content; text-align: right; float: right; font-size: 10px;">\n' +
+                          '                               <span>2020년 5월 29일 22시 56분 22초</span>\n' +
+                          '                          </li>\n' +
+                          '                        </ul>\n' +
+                          '\n' +
+                          '                      </div>\n' +
+                          '                      <div class="title" >제목</div>\n' +
+                          '              \n' +
+                          '                      <!-- 본문-->\n' +
+                          '                      <div class="look_img">\n' +
+                          '                          <div class="look_img_in">\n' +
+                          '                            <img src="static/images/1.JPG" alt="look_image" class= "look_img_file"/>\n' +
+                          '                          </div>\n' +
+                          '                        </div>\n' +
+                          '              \n' +
+                          '                        <div class="look_textarea_space">\n' +
+                          '                          <form class="textarea_form">\n' +
+                          '                            <textarea class = "look_textarea"></textarea>\n' +
+                          '                          </form>\n' +
+                          '                        </div>\n' +
+                          '                        \n' +
+                          '                        <!-- 푸터-->\n' +
+                          '                        <ul class="look_footer_ul">\n' +
+                          '                          <li class="look_footer_li">\n' +
+                          '                            <div class ="like_img_box">\n' +
+                          '                              <img src="static/images/heart.svg" alt="heart_image" class="like_img" />\n' +
+                          '                            </div>\n' +
+                          '                          </li>\n' +
+                          '                          <li class="look_footer_li">\n' +
+                          '                            <div class = "like_number">\n' +
+                          '                              <span>10.5K</span>\n' +
+                          '                            </div>\n' +
+                          '                          </li>\n' +
+                          '                          <li class="look_footer_li" style="width: 25px;"></li>\n' +
+                          '                          <li class="look_footer_li">\n' +
+                          '                            <div class= "count_img_box">\n' +
+                          '                              <img src="static/images/board_view_icon.svg" alt="board_view_icon" class="count_img"/>\n' +
+                          '                            </div>\n' +
+                          '                          </li>\n' +
+                          '                          <li class="look_footer_li">\n' +
+                          '                            <div class = "count_number">\n' +
+                          '                              <span>1024</span>\n' +
+                          '                            </div>\n' +
+                          '                          </li>\n' +
+                          '                          <li class="look_footer_li" style="width: 140px;"></li>\n' +
+                          '                          <li class="look_footer_li" style="width: 240px;">\n' +
+                          '                            <div class ="look_tag"> #박보검 #김유정 #태그</div>\n' +
+                          '                          </li>\n' +
+                          '                        </ul>          \n' +
+                          '                      \n' +
+                          '                       <div class="space_end"></div>\n' +
+                          '                    </div>\n' +
+                          '                  </li>\n' +
+                          '                  <li id=3>\n' +
+                          '                    <div class="is_body" >\n' +
+                          '                      <!-- 헤더-->\n' +
+                          '                      <div class="my_img">\n' +
+                          '                          <img src="static/images/mypicture.png" alt="search" height="50" width="60" />\n' +
+                          '                        </div>\n' +
+                          '                      <div class="name">\n' +
+                          '                        <ul class="look_header_ul">\n' +
+                          '                          <li class="look_header_li">\n' +
+                          '                              <span class="user_name">찬영</span>\n' +
+                          '                          </li>\n' +
+                          '                          <li class="look_header_li" style="width: auto; "></li>\n' +
+                          '                          <li class="look_header_li" style="width: fit-content; text-align: right; float: right; font-size: 10px;">\n' +
+                          '                               <span>2020년 5월 29일 22시 56분 22초</span>\n' +
+                          '                          </li>\n' +
+                          '                        </ul>\n' +
+                          '\n' +
+                          '                      </div>\n' +
+                          '                      <div class="title" >제목</div>\n' +
+                          '\n' +
+                          '                      <!-- 본문-->\n' +
+                          '                      <div class="look_img">\n' +
+                          '                          <div class="look_img_in">\n' +
+                          '                            <img src="static/images/1.JPG" alt="look_image" class= "look_img_file"/>\n' +
+                          '                          </div>\n' +
+                          '                        </div>\n' +
+                          '\n' +
+                          '                        <div class="look_textarea_space">\n' +
+                          '                          <form class="textarea_form">\n' +
+                          '                            <textarea class = "look_textarea"></textarea>\n' +
+                          '                          </form>\n' +
+                          '                        </div>\n' +
+                          '\n' +
+                          '                        <!-- 푸터-->\n' +
+                          '                        <ul class="look_footer_ul">\n' +
+                          '                          <li class="look_footer_li">\n' +
+                          '                            <div class ="like_img_box">\n' +
+                          '                              <img src="static/images/heart.svg" alt="heart_image" class="like_img" />\n' +
+                          '                            </div>\n' +
+                          '                          </li>\n' +
+                          '                          <li class="look_footer_li">\n' +
+                          '                            <div class = "like_number">\n' +
+                          '                              <span>10.5K</span>\n' +
+                          '                            </div>\n' +
+                          '                          </li>\n' +
+                          '                          <li class="look_footer_li" style="width: 25px;"></li>\n' +
+                          '                          <li class="look_footer_li">\n' +
+                          '                            <div class= "count_img_box">\n' +
+                          '                              <img src="static/images/board_view_icon.svg" alt="board_view_icon" class="count_img"/>\n' +
+                          '                            </div>\n' +
+                          '                          </li>\n' +
+                          '                          <li class="look_footer_li">\n' +
+                          '                            <div class = "count_number">\n' +
+                          '                              <span>1024</span>\n' +
+                          '                            </div>\n' +
+                          '                          </li>\n' +
+                          '                          <li class="look_footer_li" style="width: 140px;"></li>\n' +
+                          '                          <li class="look_footer_li" style="width: 240px;">\n' +
+                          '                            <div class ="look_tag"> #박보검 #김유정 #태그</div>\n' +
+                          '                          </li>\n' +
+                          '                        </ul>\n' +
+                          '\n' +
+                          '                       <div class="space_end"></div>\n' +
+                          '                    </div>\n' +
+                          '                  </li>\n' +
+                          '                  <li id=4>\n' +
+                          '                    <div class="is_body" >\n' +
+                          '                      <!-- 헤더-->\n' +
+                          '                      <div class="my_img">\n' +
+                          '                          <img src="static/images/mypicture.png" alt="search" height="50" width="60" />\n' +
+                          '                        </div>\n' +
+                          '                      <div class="name">\n' +
+                          '                        <ul class="look_header_ul">\n' +
+                          '                          <li class="look_header_li">\n' +
+                          '                              <span class="user_name">찬영</span>\n' +
+                          '                          </li>\n' +
+                          '                          <li class="look_header_li" style="width: auto; "></li>\n' +
+                          '                          <li class="look_header_li" style="width: fit-content; text-align: right; float: right; font-size: 10px;">\n' +
+                          '                               <span >2020년 5월 29일 22시 56분 22초</span>\n' +
+                          '                          </li>\n' +
+                          '                        </ul>\n' +
+                          '\n' +
+                          '                      </div>\n' +
+                          '                      <div class="title" >제목</div>\n' +
+                          '\n' +
+                          '                      <!-- 본문-->\n' +
+                          '                      <div class="look_img">\n' +
+                          '                          <div class="look_img_in">\n' +
+                          '                            <img src="static/images/1.JPG" alt="look_image" class= "look_img_file"/>\n' +
+                          '                          </div>\n' +
+                          '                        </div>\n' +
+                          '\n' +
+                          '                        <div class="look_textarea_space">\n' +
+                          '                          <form class="textarea_form">\n' +
+                          '                            <textarea class = "look_textarea"></textarea>\n' +
+                          '                          </form>\n' +
+                          '                        </div>\n' +
+                          '\n' +
+                          '                        <!-- 푸터-->\n' +
+                          '                        <ul class="look_footer_ul">\n' +
+                          '                          <li class="look_footer_li">\n' +
+                          '                            <div class ="like_img_box">\n' +
+                          '                              <img src="static/images/heart.svg" alt="heart_image" class="like_img" />\n' +
+                          '                            </div>\n' +
+                          '                          </li>\n' +
+                          '                          <li class="look_footer_li">\n' +
+                          '                            <div class = "like_number">\n' +
+                          '                              <span>10.5K</span>\n' +
+                          '                            </div>\n' +
+                          '                          </li>\n' +
+                          '                          <li class="look_footer_li" style="width: 25px;"></li>\n' +
+                          '                          <li class="look_footer_li">\n' +
+                          '                            <div class= "count_img_box">\n' +
+                          '                              <img src="static/images/board_view_icon.svg" alt="board_view_icon" class="count_img"/>\n' +
+                          '                            </div>\n' +
+                          '                          </li>\n' +
+                          '                          <li class="look_footer_li">\n' +
+                          '                            <div class = "count_number">\n' +
+                          '                              <span>1024</span>\n' +
+                          '                            </div>\n' +
+                          '                          </li>\n' +
+                          '                          <li class="look_footer_li" style="width: 140px;"></li>\n' +
+                          '                          <li class="look_footer_li" style="width: 240px;">\n' +
+                          '                            <div class ="look_tag"> #박보검 #김유정 #태그</div>\n' +
+                          '                          </li>\n' +
+                          '                        </ul>\n' +
+                          '\n' +
+                          '                       <div class="space_end"></div>\n' +
+                          '                    </div>\n' +
+                          '                  </li>\n' +
+                          '                </ul>\n' +
+                          '\n' +
+                          '                <!-- 1페이지에 8개의 룩 정적인 목록으로 띄워줌-->\n' +
+                          '\n' +
+                          '\n' +
+                          '            </div>\n' +
+                          '\n' +
+                          '          </div>\n' +
+                          '\n' +
+                          '\n' +
+                          '\n' +
+                          '        </div> '
+
+                          +
+                          ' ').appendTo('body');
+                  }
+
+              });
+
+          });
+
       </script>
+
   </head>
   <body>
     <div class="webview">
@@ -86,7 +397,7 @@
                     <div class="is_body" >
                       <!-- 헤더-->
                       <div class="my_img">
-                          <img src="static/images/mypicture.png" alt="search" height="50" width="60" />    
+                          <img src="static/images/mypicture.png" alt="search" height="50" width="60" />
                         </div>
                       <div class="name">
                         <ul class="look_header_ul">
@@ -101,20 +412,20 @@
 
                       </div>
                       <div class="title" >제목</div>
-              
+
                       <!-- 본문-->
                       <div class="look_img">
                           <div class="look_img_in">
                             <img src="static/images/1.JPG" alt="look_image" class= "look_img_file"/>
                           </div>
                         </div>
-              
+
                         <div class="look_textarea_space">
                           <form class="textarea_form">
                             <textarea class = "look_textarea"></textarea>
                           </form>
                         </div>
-                        
+
                         <!-- 푸터-->
                         <ul class="look_footer_ul">
                           <li class="look_footer_li">
@@ -142,8 +453,8 @@
                           <li class="look_footer_li" style="width: 240px;">
                             <div class ="look_tag"> #박보검 #김유정 #태그</div>
                           </li>
-                        </ul>          
-                      
+                        </ul>
+
                        <div class="space_end"></div>
                     </div>
                   </li>
@@ -216,7 +527,7 @@
                     <div class="is_body" >
                       <!-- 헤더-->
                       <div class="my_img">
-                          <img src="static/images/mypicture.png" alt="search" height="50" width="60" />    
+                          <img src="static/images/mypicture.png" alt="search" height="50" width="60" />
                         </div>
                       <div class="name">
                         <ul class="look_header_ul">
@@ -231,20 +542,20 @@
 
                       </div>
                       <div class="title" >제목</div>
-              
+
                       <!-- 본문-->
                       <div class="look_img">
                           <div class="look_img_in">
                             <img src="static/images/1.JPG" alt="look_image" class= "look_img_file"/>
                           </div>
                         </div>
-              
+
                         <div class="look_textarea_space">
                           <form class="textarea_form">
                             <textarea class = "look_textarea"></textarea>
                           </form>
                         </div>
-                        
+
                         <!-- 푸터-->
                         <ul class="look_footer_ul">
                           <li class="look_footer_li">
@@ -272,8 +583,8 @@
                           <li class="look_footer_li" style="width: 240px;">
                             <div class ="look_tag"> #박보검 #김유정 #태그</div>
                           </li>
-                        </ul>          
-                      
+                        </ul>
+
                        <div class="space_end"></div>
                     </div>
                   </li>
@@ -281,7 +592,7 @@
                     <div class="is_body" >
                       <!-- 헤더-->
                       <div class="my_img">
-                          <img src="static/images/mypicture.png" alt="search" height="50" width="60" />    
+                          <img src="static/images/mypicture.png" alt="search" height="50" width="60" />
                         </div>
                       <div class="name">
                         <ul class="look_header_ul">
@@ -296,20 +607,20 @@
 
                       </div>
                       <div class="title" >제목</div>
-              
+
                       <!-- 본문-->
                       <div class="look_img">
                           <div class="look_img_in">
                             <img src="static/images/1.JPG" alt="look_image" class= "look_img_file"/>
                           </div>
                         </div>
-              
+
                         <div class="look_textarea_space">
                           <form class="textarea_form">
                             <textarea class = "look_textarea"></textarea>
                           </form>
                         </div>
-                        
+
                         <!-- 푸터-->
                         <ul class="look_footer_ul">
                           <li class="look_footer_li">
@@ -337,8 +648,8 @@
                           <li class="look_footer_li" style="width: 240px;">
                             <div class ="look_tag"> #박보검 #김유정 #태그</div>
                           </li>
-                        </ul>          
-                      
+                        </ul>
+
                        <div class="space_end"></div>
                     </div>
                   </li>
@@ -348,9 +659,13 @@
 
 
             </div>
-            
-          </div> 
+
+          </div>
+
+
+
         </div>
-    <script src="look_list.js"></script>
+
+
   </body>
 </html>
