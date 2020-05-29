@@ -38,7 +38,7 @@ public class LookController {
     {
         boardDao.countUpdate(look_num); //글상세보기 하면 조회수 증가
         model.addAttribute("view",boardDao.view(look_num));
-        return "boardInfo";
+        return "look_info";
     }
 
     //삭제

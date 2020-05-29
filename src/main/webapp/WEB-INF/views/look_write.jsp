@@ -39,8 +39,7 @@
         </div>
 
         <div class="logout_left"></div>
-
-        <div class="logout"> logout</div>
+        <a href="logout"><div class="logout">logout</div></a>
         <div class="logout_right"></div>
     </div>
 </div>
@@ -141,9 +140,7 @@
 
 
                 <div class="memo">
-
-                        <textarea name= "memo"  class = "input_memo"/></textarea>
-
+                        <textarea   name= "memo"  class = "input_memo" /></textarea>
                 </div>
 
 

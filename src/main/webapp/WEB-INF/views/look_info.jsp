@@ -26,8 +26,7 @@
                     </div>
                     <div class="logo_left"></div>
                     <div class="logo" >
-                        <img src="static/images/logo.png" alt="logo" height="30" width="71" />
-
+                        <a href="main"><img src="static/images/logo.png" alt="logo" height="30" width="71" /></a>
                     </div>
                     <div class="logo_right"></div>
 
@@ -42,7 +41,7 @@
                     <div class="logout_left"></div>
 
 
-                    <div class="logout"> logout</div>
+                    <a href="logout"><div class="logout">logout</div></a>
                     <div class="logout_right"></div>
                 </div>
             </div>
@@ -58,8 +57,8 @@
            <img src="static/images/mypicture.png" alt="search" height="50" width="60" />
           </div>
 
-          <div class="name">찬영</div>
-          <div class="title">제목</div>
+          <div class="name">${view.nickname}</div>
+          <div class="title">${view.title}</div>
 
           <div class="look_img">
             <div class="look_img_in">
@@ -68,14 +67,13 @@
           </div>
 
           <div class="look_textarea_space">
-            <form class="textarea_form">
-              <textarea class = "look_textarea"></textarea>
+            <form class="textarea_form"  >
+              <textarea  style="background-color:#F6F6F6 " disabled class = "look_textarea" placeholder="${view.memo}"></textarea>
             </form>
           </div>
 
           <div class ="like">
             <img src="static/images/heart.png" alt="heart_image" class="heart_img" />
-
 
           </div>
 
@@ -83,7 +81,7 @@
             10.5K
           </div>
 
-          <div class ="look_tag"> #박보검 #김유정 #태그</div>
+          <div class ="look_tag"> ${view.tag}</div>
 
         </div>
 
@@ -96,9 +94,9 @@
 
           <div class="comment_textarea_space">
               <form>
-                  <textarea class="comment_textarea">
-
-                  </textarea>
+                     <textarea  style="background-color:#F6F6F6 "
+                                disabled class = "comment_textarea" placeholder="${view.memo}"></textarea>
+                                        <%--댓글나오게 수정해야됨--%>
               </form>
           </div>
 

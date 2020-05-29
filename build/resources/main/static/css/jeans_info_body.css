@@ -1,3 +1,6 @@
+/*구글웹폰트 가져다쓰기*/
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
 .body_root{
   font-size: 16px;
 }
@@ -58,7 +61,6 @@
   grid-row: 4/5;
   grid-column: 1/4;
 }
-
 
 .look_textarea{
   width: 1000px;
@@ -138,4 +140,10 @@
   margin-top: 10px;
   grid-column: 1/4;
   text-align: right;
+}
+
+/*textarea 기본출력내용 폰트변경*/
+textarea::placeholder{
+  font-family: 'Hanna', sans-serif;
+  font-size:large ;
 }
