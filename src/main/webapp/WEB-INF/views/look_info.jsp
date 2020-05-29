@@ -70,6 +70,7 @@
           </div>
 
           <div class="name">${view.nickname}</div>
+            <div class = "write_date">${view.look_date}</div>
           <div class="title">${view.title}</div>
 
           <div class="look_img">
@@ -84,16 +85,21 @@
             </form>
           </div>
 
-          <div class ="like">
-            <img src="static/images/heart.png" alt="heart_image" class="heart_img" />
 
+            <div class ="like">
+                <img src="static/images/heart.png" alt="heart_image" class="heart_img" />
+                <div class = "like_number">
+                    10.5K
+                </div>
+
+            </div>
+
+            <div class = "views">조회수:${view.count}</div>
+
+
+          <div class ="look_tag">
+             ${view.tag}
           </div>
-
-          <div class = "like_number">
-            10.5K
-          </div>
-
-          <div class ="look_tag"> ${view.tag}</div>
 
         </div>
 

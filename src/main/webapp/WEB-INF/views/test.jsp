@@ -104,7 +104,7 @@
                     </div>
 
                     <div class ="look_tag"> #박보검 #김유정 #태그</div>
-          
+
                     <div class="space_end"></div>
                 </div>
               </li>
