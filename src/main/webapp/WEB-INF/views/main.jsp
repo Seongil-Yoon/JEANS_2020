@@ -18,7 +18,10 @@
             }
         };
     </script>
+    <link rel="stylesheet" href="/static/css/jeans_header_.css">
+
 </head>
+
 <body>
 
 <div>
