@@ -28,7 +28,7 @@ public class MainController {
 
     @RequestMapping("test")
     public String test(Model model){
-        return "/look_info";
+        return "/test";
     }
 
 

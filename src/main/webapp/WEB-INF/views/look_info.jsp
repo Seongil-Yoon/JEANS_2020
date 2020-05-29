@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-00
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
@@ -19,9 +19,7 @@
                     </div>
                     <div class="search_input" >
                         <form>
-                            <input type="text"
-                                 class = "search_text"
-                            />
+                            <input type="text" class = "search_text"/>
                         </form>
                     </div>
                     <div class="logo_left"></div>
@@ -104,7 +102,9 @@
               1초전
           </div>
         </div>
-      </div>
+
+
+    </div>
 
 
   </body>
