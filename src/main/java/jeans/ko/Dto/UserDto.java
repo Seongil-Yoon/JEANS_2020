@@ -16,7 +16,7 @@ public class UserDto {
     @Pattern(regexp="^[0-9a-z]$" , message="사용자 아이디는 영어소문자,숫자 조합만 가능 합니다.")
     String userid;
 
-    @Pattern(regexp="^[0-9a-z가-힣]{4,12}$",message="사용자 닉네임은 영어소문자,숫자,한글 조합만 가능합니다.")
+    @Pattern(regexp="^[0-9a-z가-힣]{4,8}$",message="사용자 닉네임은 영어소문자,숫자,한글 조합만 가능합니다.")
     String nickname;
 
 

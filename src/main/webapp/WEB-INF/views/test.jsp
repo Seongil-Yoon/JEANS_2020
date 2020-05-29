@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="static/css/look_list.css"/>
     <link rel="stylesheet" href="static/css/look_list_Look.css"/>
     <link rel="stylesheet" href="static/css/jeans_header_.css"/>
+      <script>
+          //백오브 캐시 있으면 다시 새로고침
+          window.onpageshow = function(event) {
+              if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+                  window.location.reload(); //새로고침 다시 불러오기
+              }
+          };
+      </script>
   </head>
   <body>
   <div class="jeans_root">
@@ -27,20 +35,35 @@
           <div class="logo" >
               <a href="main"><img src="static/images/logo.png" alt="logo" height="30" width="71" /></a>
           </div>
-          <div class="logo_right"></div>
+
+          <c:set var="userid" value="${sessionScope.userid}"/>
+          <c:if test="${userid != null}">
+              <a href="look_write"><div class="logo_right"> <span class="look_write">Look Write</span></div></a>
+          </c:if>
 
           <div class="my_info">
               <div>
-                  <img src="static/images/mypicture.png" alt="pitcture" height="35" width="40" />
+                  <c:set var="userid" value="${sessionScope.userid}"/>
+                  <c:if test="${userid != null}">
+                      <img src="static/images/mypicture.png" alt="pitcture" height="35" width="40" />
+                  </c:if>
               </div>
-
               <span class="user_id"><c:out value="${sessionScope.usernickname}"></c:out></span>
           </div>
 
           <div class="logout_left"></div>
 
+          <c:set var="userid" value="${sessionScope.userid}"/>
+          <c:choose>
+              <c:when test="${userid != null}">
+                  <a href="logout"><div class="logout">logout</div></a>
+              </c:when>
 
-          <a href="logout"><div class="logout">logout</div></a>
+              <c:otherwise>
+                  <a href="loginUser"><div class="login">login</div></a>
+              </c:otherwise>
+          </c:choose>
+
           <div class="logout_right"></div>
       </div>
   </div>
@@ -79,7 +102,7 @@
                     <div class = "like_number">
                       10.5K
                     </div>
-          
+
                     <div class ="look_tag"> #박보검 #김유정 #태그</div>
           
                     <div class="space_end"></div>

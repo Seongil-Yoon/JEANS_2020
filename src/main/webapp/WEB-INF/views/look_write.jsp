@@ -20,26 +20,44 @@
         <div class="search_logo">
             <img src="static/images/search.jpg" alt="search" height="30" width="30" />
         </div>
-
         <div class="search_input" >
+            <form>
                 <input type="text" class = "search_text"/>
+            </form>
         </div>
         <div class="logo_left"></div>
         <div class="logo" >
-          <a href="main"><img src="static/images/logo.png" alt="logo" height="30" width="71" /></a>
+            <a href="main"><img src="static/images/logo.png" alt="logo" height="30" width="71" /></a>
         </div>
-        <div class="logo_right"></div>
+
+        <c:set var="userid" value="${sessionScope.userid}"/>
+        <c:if test="${userid != null}">
+            <a href="look_write"><div class="logo_right"> <span class="look_write">Look Write</span></div></a>
+        </c:if>
 
         <div class="my_info">
             <div>
-                <img src="static/images/mypicture.png" alt="pitcture" height="35" width="40" />
+                <c:set var="userid" value="${sessionScope.userid}"/>
+                <c:if test="${userid != null}">
+                    <img src="static/images/mypicture.png" alt="pitcture" height="35" width="40" />
+                </c:if>
             </div>
-
             <span class="user_id"><c:out value="${sessionScope.usernickname}"></c:out></span>
         </div>
 
         <div class="logout_left"></div>
-        <a href="logout"><div class="logout">logout</div></a>
+
+        <c:set var="userid" value="${sessionScope.userid}"/>
+        <c:choose>
+            <c:when test="${userid != null}">
+                <a href="logout"><div class="logout">logout</div></a>
+            </c:when>
+
+            <c:otherwise>
+                <a href="loginUser"><div class="login">login</div></a>
+            </c:otherwise>
+        </c:choose>
+
         <div class="logout_right"></div>
     </div>
 </div>
