@@ -26,13 +26,11 @@ public class MainController {
         return "/main";
     }
 
-    @RequestMapping("test")
-    public String test(Model model){
-        return "/test";
-    }
 
-    @RequestMapping("test2")
-    public String test2(Model model){
+    @RequestMapping("test")
+    public String look_list(Model model){
+        //value객체를 name이름으로 추가하여 리턴하는곳에 전달
+        model.addAttribute("list",boardDao.list());
         return "/look_list";
     }
 
