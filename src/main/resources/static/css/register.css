@@ -1,0 +1,654 @@
+.webview{
+  overflow: hidden;
+  position: relative;
+  width: 1200px;
+  height: 1033px;
+  margin: 0 auto;
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+input{
+  padding: 6px 12px;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-sizing: border-box;
+  resize: none;
+  font-size: 14px;
+}
+
+.container{
+  overflow: hidden;
+  position: relative;
+  width: 1200px;
+  height: 1033px;
+  margin: 0 auto;
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+.main{
+  position: absolute;
+  top: 92px;
+  left: 34px;
+  width: 1132px;
+  height: 878px;
+  background-color: rgb(224, 224, 224);
+  user-select: auto;
+}
+
+
+.main_title{
+  position: absolute;
+  top: 101px;
+  left: 51px;
+  width: 120px;
+  height: 28px;
+  user-select: auto;
+  font-size: 20px;
+}
+
+.main_nicknameTitle{
+  position: absolute;
+  top: 183px;
+  left: 65px;
+  width: 51px;
+  height: 20px;
+  user-select: auto;
+}
+
+.register_idError{
+  position: absolute;
+  top: 150px;
+  left:500px;
+  width: 600px;
+  height: 50px;
+  user-select: auto;
+}
+
+.register_id{
+  position: absolute;
+  top: 153px;
+  left:65px;
+  width: 71px;
+  height: 20px;
+  user-select: auto;
+}
+
+.register_pw{
+  position: absolute;
+  top: 203px;
+  left: 65px;
+  width: 71px;
+  height: 20px;
+  user-select: auto;
+}
+
+.register_pwError{
+  position: absolute;
+  top: 193px;
+  left:500px;
+  width: 600px;
+  height: 50px;
+  user-select: auto;
+}
+
+.register_nick{
+  position: absolute;
+  top: 253px;
+  left:65px;
+  width: 71px;
+  height: 20px;
+  user-select: auto;
+}
+
+.register_nickError{
+  position: absolute;
+  top: 253px;
+  left:500px;
+  width: 600px;
+  height: 50px;
+  user-select: auto;
+}
+
+.main_inputNickname{
+  position: absolute;
+  top: 173px;
+  left: 155px;
+  width: 302px;
+  height: 40px;
+  color: rgb(94, 94, 94);
+  user-select: auto;
+}
+
+.register_idInput{
+  position: absolute;
+  top: 143px;
+  left: 155px;
+  width: 302px;
+  height: 40px;
+  color: rgb(94, 94, 94);
+  user-select: auto;
+}
+
+.register_pwInput{
+  position: absolute;
+  top: 193px;
+  left: 155px;
+  width: 302px;
+  height: 40px;
+  color: rgb(94, 94, 94);
+  user-select: auto;
+}
+
+.register_nickInput{
+  position: absolute;
+  top: 243px;
+  left: 155px;
+  width: 302px;
+  height: 40px;
+  color: rgb(94, 94, 94);
+  user-select: auto;
+}
+
+.main_duplicate{
+  position: absolute;
+  top: 177.5px;
+  left: 464px;
+  width: 80px;
+  height: 31px;
+  user-select: auto;
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  line-height: 1.0em;
+  border-radius: 4px;
+  background-color: rgb(52, 152, 219);
+  user-select: auto;
+  border-color: #fff;
+}
+
+.main_duplicateResult{
+  position: absolute;
+  top: 213px;
+  left: 350px;
+  width: 91px;
+  height: 21px;
+  font-size: 13px;
+  user-select: auto;
+  color: rgb(52, 152, 219);
+}
+
+.main_profTitle{
+  position: absolute;
+  top: 240px;
+  left: 65px;
+  width: 100px;
+  height: 20px;
+  user-select: auto;
+  font-size: 16px;
+}
+
+.register_pictureTitle{
+  position: absolute;
+  top: 300px;
+  left: 65px;
+  width: 100px;
+  height: 20px;
+  user-select: auto;
+  font-size: 16px;
+}
+
+.register_pictureFile{
+  position: absolute;
+  top: 300px;
+  left: 155px;
+  width: 302px;
+  height: 40px;
+  user-select: auto;
+
+}
+
+.main_profAttachTitle{
+  position: absolute;
+  top: 265px;
+  left: 173px;
+  width: 80px;
+  height: 20px;
+  user-select: auto;
+  font-size: 16px;
+
+}
+
+.register_pictureAttach{
+  position: absolute;
+  top: 300px;
+  left: 173px;
+  width: 160px;
+  height: 20px;
+  user-select: auto;
+  font-size: 16px;
+}
+
+.register_pictureFile{
+
+}
+
+.main_profAttachWhat{
+  position: absolute;
+  top: 267px;
+  left: 260px;
+  width: 200px;
+  height: 21px;
+  user-select: auto;
+  font-size: 14px;
+}
+
+.main_profAttachImg{
+  position: absolute;
+  top: 292px;
+  left: 145px;
+  width: 300px;
+  height: 300px;
+  background-color: rgb(255, 255, 255);
+  user-select: auto;
+}
+
+.main_bodyTitle{
+  position: absolute;
+  top: 611px;
+  left: 65px;
+  width: 35px;
+  height: 20px;
+  font-size: 16px;
+  user-select: auto;
+}
+
+.register_bodyType{
+  position: absolute;
+  top: 360px;
+  left: 65px;
+  width: 100px;
+  height: 20px;
+  font-size: 16px;
+  user-select: auto;
+}
+
+.main_bodyChk1{
+  position: absolute;
+  top: 611px;
+  left: 129.5px;
+  width: 20px;
+  height: 20px;
+  user-select: auto;
+}
+
+.register_lock{
+  position: absolute;
+  top: 360px;
+  left: 229.5px;
+  width: 40px;
+  height: 20px;
+  user-select: auto;
+}
+
+.main_bodyChk11{
+  position: absolute;
+  top: 611px;
+  left: 160px;
+  width: 32px;
+  height: 23px;
+  font-size: 16px;
+  user-select: auto;
+}
+
+.register_lockButton{
+  position: absolute;
+  top: 360px;
+  left: 280px;
+  width: 20px;
+  height: 20px;
+  user-select: auto;
+}
+
+.main_bodyChk2{
+  position: absolute;
+  top: 611px;
+  left: 260px;
+  width: 20px;
+  height: 20px;
+  user-select: auto;
+}
+
+.register_unlock{
+  position: absolute;
+  top: 360px;
+  left: 380px;
+  width: 60px;
+  height: 20px;
+  user-select: auto;
+}
+
+.register_unlockButton{
+  position: absolute;
+  top: 360px;
+  left: 440px;
+  width: 20px;
+  height: 20px;
+  user-select: auto;
+}
+
+.main_bodyChk22{
+  position: absolute;
+  top: 611px;
+  left: 290px;
+  width: 55px;
+  height: 23px;
+  font-size: 16px;
+  user-select: auto;
+}
+
+.main_bodyHeightTitle{
+  position: absolute;
+  top: 648px;
+  left: 80.5px;
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
+  user-select: auto;
+}
+
+.register_heightTitle{
+  position: absolute;
+  top: 420px;
+  left:65px;
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
+  user-select: auto;
+}
+
+.main_bodyHeight{
+  position: absolute;
+  top: 640px;
+  left: 131px;
+  width: 97px;
+  height: 40px;
+  color: rgb(94, 94, 94);
+  user-select: auto;
+}
+
+.register_heightInt{
+  position: absolute;
+  top: 420px;
+  left: 90px;
+  width: 97px;
+  height: 40px;
+  color: rgb(94, 94, 94);
+  user-select: auto;
+}
+
+.main_bodyCm{
+  position: absolute;
+  top: 655px;
+  left: 239px;
+  width: 32px;
+  height: 25px;
+  font-size: 16px;
+  user-select: auto;
+}
+
+.register_heightCm{
+  position: absolute;
+  top: 435px;
+  left: 200px;
+  width: 32px;
+  height: 25px;
+  font-size: 16px;
+  user-select: auto;
+}
+
+.main_bodyWeightTitle{
+  position: absolute;
+  top: 649px;
+  left: 308.5px;
+  width: 49px;
+  height: 21px;
+  font-size: 16px;
+  user-select: auto;
+}
+
+.register_weightTitle{
+  position: absolute;
+  top: 420px;
+  left:300px;
+  width: 60px;
+  height: 20px;
+  font-size: 16px;
+  user-select: auto;
+}
+
+.main_bodyWeight{
+  position: absolute;
+  top: 638px;
+  left: 365px;
+  width: 97px;
+  height: 40px;
+  user-select: auto;
+  color: rgb(94, 94, 94);
+}
+
+.register_weightInt{
+  position: absolute;
+  top: 420px;
+  left:365px;
+  width: 97px;
+  height: 40px;
+  font-size: 16px;
+  user-select: auto;
+}
+
+.main_bodyKg{
+  position: absolute;
+  top: 653px;
+  left: 476px;
+  width: 32px;
+  height: 25px;
+  user-select: auto;
+  font-size: 16px;
+}
+
+.register_weightKg{
+  position: absolute;
+  top: 435px;
+  left: 467px;
+  width: 32px;
+  height: 25px;
+  user-select: auto;
+  font-size: 16px;
+}
+
+.main_genderTitle{
+  position: absolute;
+  top: 702px;
+  left: 65px;
+  width: 35px;
+  height: 20px;
+  font-size: 16px;
+  user-select: auto;
+}
+
+.register_genderTitle{
+  position: absolute;
+  top: 485px;
+  left:65px;
+  width: 40px;
+  height: 20px;
+  user-select: auto;
+  font-size: 16px;
+}
+
+.main_genderChkMale{
+  position: absolute;
+  top: 706px;
+  left: 129.5px;
+  width: 20px;
+  height: 20px;
+  user-select: auto;
+}
+
+.register_genderMale{
+  position: absolute;
+  top: 485px;
+  left:135px;
+  width: 20px;
+  height: 20px;
+  user-select: auto;
+  font-size: 16px;
+}
+
+.main_genderChkMale1{
+  position: absolute;
+  top: 706px;
+  left: 160px;
+  width: 32px;
+  height: 23px;
+  font-size: 16px;
+  user-select: auto;
+}
+
+.register_genderMaleRadio{
+  position: absolute;
+  top: 485px;
+  left:155px;
+  width: 20px;
+  height: 20px;
+  user-select: auto;
+  font-size: 16px;
+}
+
+.main_bodyChkFemale{
+  position: absolute;
+  top: 706px;
+  left: 260px;
+  width: 20px;
+  height: 20px;
+  user-select: auto;
+}
+
+.register_genderFemale{
+  position: absolute;
+  top: 485px;
+  left:205px;
+  width: 20px;
+  height: 20px;
+  user-select: auto;
+  font-size: 16px;
+}
+
+.main_genderChkMale2{
+  position: absolute;
+  top: 706px;
+  left: 290px;
+  width: 55px;
+  height: 23px;
+  font-size: 16px;
+  user-select: auto;
+}
+
+.register_genderFemaleRadio{
+  position: absolute;
+  top: 485px;
+  left:225px;
+  width: 20px;
+  height: 20px;
+  user-select: auto;
+  font-size: 16px;
+}
+
+.main_memoTitle{
+  position: absolute;
+  top: 757px;
+  left: 65px;
+  width: 34px;
+  height: 20px;
+  font-size: 16px;
+  user-select: auto;
+}
+
+.register_emailTitle{
+  position: absolute;
+  top: 535px;
+  left:60px;
+  width: 80px;
+  height: 20px;
+  user-select: auto;
+  font-size: 16px;
+}
+
+.main_memo{
+  position: absolute;
+  top: 757px;
+  left: 131px;
+  width: 640px;
+  height: 92px;
+  color: rgb(94, 94, 94);
+  user-select: auto;
+}
+
+.register_email{
+  position: absolute;
+  top: 535px;
+  left:140px;
+  width: 300px;
+  height: 20px;
+  user-select: auto;
+  font-size: 16px;
+}
+
+.register_emailError{
+  position: absolute;
+  top: 535px;
+  left:500px;
+  width: 300px;
+  height: 20px;
+  user-select: auto;
+  font-size: 16px;
+}
+
+.main_Save{
+  position: absolute;
+  top: 887px;
+  left: 61.5px;
+  width: 82.5px;
+  height: 37px;
+  font-size: 15px;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  line-height: 2.5em;
+  border-radius: 4px;
+  background-color: rgb(52, 152, 219);
+  user-select: auto;
+  border-color: #fff;
+}
+
+.register_save{
+  position: absolute;
+  top: 575px;
+  left:60px;
+  width: 82.5px;
+  height: 40px;
+  font-size: 15px;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  line-height: 2.5em;
+  border-radius: 4px;
+  background-color: rgb(52, 152, 219);
+  user-select: auto;
+  border-color: #fff;
+}
+  

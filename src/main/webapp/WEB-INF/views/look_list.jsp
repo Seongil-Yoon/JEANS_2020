@@ -34,7 +34,7 @@
                       // 문서의 높이
                       var docHeight = $(document).height();
                       // 어느 정도 조건이 만족하면 내용 생성
-                      if (curHeight > docHeight - 800) {
+                      if (curHeight > docHeight - 1200) {
                           // $('<div class="main"></div>').appendTo('body');
 
                             $('  <c:forEach items="${list}" var="dto" begin="4" end="11" step="1">\n' +

@@ -23,7 +23,6 @@
 }
 
 .my_info{
-
   text-align: right;
   margin-top: 5px;
   display: flex;
@@ -55,11 +54,4 @@
 .header_a{
   text-decoration:none ; color:white;
 }
-
-
-
-
-
-
-
 
