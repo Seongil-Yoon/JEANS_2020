@@ -81,14 +81,7 @@
     <input type="password" name="password" class="register_pwInput" placeholder="비밀번호를 입력하세요">
     <div class="register_pwError"><form:errors path="password" /></div>
 
-<<<<<<< HEAD
-        <input type="text" placeholder="아이디" name="userid" ><form:errors path="userid" /><br/><br/>
-        <input type="password" placeholder="비밀번호" name="password"><form:errors path="password" /><br/><br/>
-        <input type="text" placeholder="닉네임" name="nickname"><form:errors path="nickname"/><br/><br/>
-        
-        <input type="radio" name="sex" value=1 checked>남자
-        <input type="radio" name="sex" value=0>여자<br/><br/>
-=======
+
     <div class="register_nick">닉네임</div>
     <input type="text" name="nickname" class="register_nickInput" placeholder="닉네임을 입력하세요">
     <div class="register_nickError"><form:errors path="nickname"/></div>
@@ -143,9 +136,9 @@
     <div class="register_emailError"><form:errors path="email"/></div>
 
 
-    <button class="register_save" type="submit" onclick="y" value="회원가입">Save</button><
+    <button class="register_save" type="submit" onclick="y" value="회원가입">Save</button>
 
->>>>>>> master
+
 
 
     </form:form>
