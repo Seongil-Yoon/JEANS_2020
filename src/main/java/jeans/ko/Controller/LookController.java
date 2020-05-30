@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
-public class BoardController {
+public class LookController {
+
+    @Autowired
+    HttpSession session;
 
     @Autowired
     IBoardService boardService;
@@ -24,9 +28,9 @@ public class BoardController {
     IBoardDao boardDao;
 
     //게시판 작성페이지
-    @RequestMapping("/writeForm")
+    @RequestMapping("/look_write")
     public String writeForm()
-    { return "writeForm"; }
+    { return "look_write"; }
 
     //게시판 상세보기
     @RequestMapping("/view")
@@ -34,7 +38,7 @@ public class BoardController {
     {
         boardDao.countUpdate(look_num); //글상세보기 하면 조회수 증가
         model.addAttribute("view",boardDao.view(look_num));
-        return "boardInfo";
+        return "look_info";
     }
 
     //삭제
@@ -52,21 +56,24 @@ public class BoardController {
 
         if(result.hasErrors()) {
             if(result.getFieldError("title")!=null)
-                result.getFieldError("title").getDefaultMessage();
+                System.out.println(result.getFieldError("title").getDefaultMessage());
 
             if(result.getFieldError("season")!=null)
-                result.getFieldError("season").getDefaultMessage();
+                System.out.println(result.getFieldError("season").getDefaultMessage());
 
             if(result.getFieldError("look_public")!=null) {
-                result.getFieldError("look_public").getDefaultMessage();
+                System.out.println(result.getFieldError("look_public").getDefaultMessage());
             }
             if(result.getFieldError("memo")!=null)
-                result.getFieldError("memo").getDefaultMessage();
+                System.out.println(result.getFieldError("memo").getDefaultMessage());
 
             if(result.getFieldError("tag")!=null)
-                result.getFieldError("tag").getDefaultMessage();
+                System.out.println(result.getFieldError("tag").getDefaultMessage());
 
-            return "writeForm";  //다시작성하기
+            //입력안된오류전달
+            session.setAttribute("error","입력안된사항이 있습니다");
+
+            return "look_write";  //다시작성하기
         }
 
         boardService.insert(boardDto);

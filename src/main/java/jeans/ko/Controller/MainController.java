@@ -23,14 +23,15 @@ public class MainController {
     public String main(Model model){
         //value객체를 name이름으로 추가한다 ,메인 화면에 리스트 호출
         model.addAttribute("list",boardDao.list());
-        return "/main";
+        return "/look_list";
     }
+
 
     //처음 들어오면 메인 화면
     @RequestMapping("/")
     public String index(Model model){
         model.addAttribute("list",boardDao.list());
-        return "/main";
+        return "/look_list";
     }
 
     @RequestMapping("/loginUser")
