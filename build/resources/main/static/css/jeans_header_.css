@@ -52,12 +52,14 @@
   margin-top: 15px;
 }
 
+.header_a{
+  text-decoration:none ; color:white;
+}
 
 
-/*a태그 링크 밑줄없애기 css*/
-a:link { color: white; text-decoration: none;}
-a:visited { color: white; text-decoration: none;}
-a:hover { color: darkblue; text-decoration: none;}
+
+
+
 
 
 

@@ -39,7 +39,8 @@
 
                             $('  <c:forEach items="${list}" var="dto" begin="4" end="11" step="1">\n' +
                                 '            <%-- item list 받을때 사용  --%>\n' +
-                                '          <div class="main">\n' +
+                                '      <a class="look_view_a"  href="view?look_num=${dto.look_num}">\n' +
+                                '        <div class="main">\n' +
                                 '\n' +
                                 '              <div claas="main_container">\n' +
                                 '\n' +
@@ -73,7 +74,7 @@
                                 '\n' +
                                 '                        <div class="look_textarea_space">\n' +
                                 '                          <form class="textarea_form" >\n' +
-                                '                            <textarea class = "look_textarea" placeholder="${dto.tag}"></textarea>\n' +
+                                '                            <textarea style="background-color: #F6F6F6" class = "look_textarea" placeholder="${dto.tag}"></textarea>\n' +
                                 '                          </form>\n' +
                                 '                        </div>\n' +
                                 '\n' +
@@ -113,8 +114,9 @@
                                 '            </div>\n' +
                                 '\n' +
                                 '          </div>\n' +
+                                '        </a>\n' +
+                                '  </div>\n' +
                                 '\n' +
-                                '        </div>\n' +
                                 '    </c:forEach>').appendTo('body');
 
                       }
@@ -124,64 +126,66 @@
   </head>
   <body>
 
-
-  <div class="webview">
-      <div class="jeans_root">
-          <div class="jeans_header">
-              <div class="search_left"></div>
-              <div class="search_logo">
-                  <img src="static/images/search.jpg" alt="search" height="30" width="30" />
-              </div>
-              <div class="search_input" >
-                  <form>
-                      <input type="text" class = "search_text"/>
-                  </form>
-              </div>
-              <div class="logo_left"></div>
-              <div class="logo" >
-                  <a href="main"><img src="static/images/logo.png" alt="logo" height="30" width="71" /></a>
-              </div>
-
-              <c:set var="userid" value="${sessionScope.userid}"/>
-              <c:if test="${userid != null}">
-                  <a href="look_write">
-                    <div class="logo_right">
-                      <span class="look_write">Look Write</span>
-                    </div>
-                  </a>
-              </c:if>
-
-              <div class="my_info">
-                  <div>
-                      <c:set var="userid" value="${sessionScope.userid}"/>
-                      <c:if test="${userid != null}">
-                          <img src="static/images/mypicture.png" alt="pitcture" height="35" width="40" />
-                      </c:if>
-                  </div>
-                  <span class="user_id"><c:out value="${sessionScope.usernickname}"></c:out></span>
-              </div>
-
-              <div class="logout_left"></div>
-
-              <c:set var="userid" value="${sessionScope.userid}"/>
-              <c:choose>
-                  <c:when test="${userid != null}">
-                      <a href="logout"><div class="logout">logout</div></a>
-                  </c:when>
-
-                  <c:otherwise>
-                      <a href="loginUser"><div class="login">login</div></a>
-                  </c:otherwise>
-              </c:choose>
-
-              <div class="logout_right"></div>
+  <!--/*여기는 맨 위에 있는 바 부분*/ -->
+  <div class="jeans_root">
+      <div class="jeans_header">
+          <div class="search_left"></div>
+          <div class="search_logo">
+              <img src="static/images/search.jpg" alt="search" height="30" width="30" />
           </div>
+          <div class="search_input" >
+              <form>
+                  <input type="text" class = "search_text"/>
+              </form>
+          </div>
+          <div class="logo_left"></div>
+          <div class="logo" >
+              <a class="header_a" href="main"><img src="static/images/logo.png" alt="logo" height="30" width="71" /></a>
+          </div>
+
+          <c:set var="userid" value="${sessionScope.userid}"/>
+          <c:choose>
+          <c:when test="${userid != null}">
+              <a class="header_a" href="look_write"><div class="logo_right"> <span class="look_write">Look Write</span></div></a>
+          </c:when>
+              <c:otherwise>
+                  <a class="header_a" href="joinUser"><div class="logo_right"><span class="look_write">회원가입</span></div></a>
+              </c:otherwise>
+          </c:choose>
+
+          <div class="my_info">
+              <div>
+                  <c:set var="userid" value="${sessionScope.userid}"/>
+                  <c:if test="${userid != null}">
+                      <img src="static/images/mypicture.png" alt="pitcture" height="35" width="40" />
+                  </c:if>
+              </div>
+              <span class="user_id"><c:out value="${sessionScope.usernickname}"></c:out></span>
+          </div>
+
+          <div class="logout_left"></div>
+
+          <c:set var="userid" value="${sessionScope.userid}"/>
+          <c:choose>
+              <c:when test="${userid != null}">
+                  <a class="header_a" href="logout"><div class="logout">logout</div></a>
+              </c:when>
+
+              <c:otherwise>
+                  <a class="header_a" href="loginUser"><div class="login">login</div></a>
+              </c:otherwise>
+          </c:choose>
+
+          <div class="logout_right"></div>
       </div>
-        <!--End of Head-->
+  </div>
+  <!-- /*여기부터가 본문*/  -->
+
 
         <c:forEach items="${list}" var="dto" begin="0" end="3" step="1">
             <%-- item list 받을때 사용  --%>
-          <div class="main">
+      <a class="look_view_a"  href="view?look_num=${dto.look_num}">
+        <div class="main">
 
               <div claas="main_container">
 
@@ -215,7 +219,7 @@
 
                         <div class="look_textarea_space">
                           <form class="textarea_form" >
-                            <textarea class = "look_textarea" placeholder="${dto.tag}"></textarea>
+                            <textarea style="background-color: #F6F6F6" class = "look_textarea" placeholder="${dto.tag}"></textarea>
                           </form>
                         </div>
 
@@ -255,8 +259,9 @@
             </div>
 
           </div>
+        </a>
+  </div>
 
-        </div>
     </c:forEach>
 
   </body>

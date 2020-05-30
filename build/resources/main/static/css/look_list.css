@@ -68,6 +68,10 @@ li{
 
 }
 
+.look_view_a{
+text-decoration:none ; color:#000000
+}
+
 .paging_wrapper{
     margin-left: 0;
     width: 768px;

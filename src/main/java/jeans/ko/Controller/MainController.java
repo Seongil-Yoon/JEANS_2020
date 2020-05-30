@@ -23,14 +23,6 @@ public class MainController {
     public String main(Model model){
         //value객체를 name이름으로 추가한다 ,메인 화면에 리스트 호출
         model.addAttribute("list",boardDao.list());
-        return "/main";
-    }
-
-
-    @RequestMapping("test")
-    public String look_list(Model model){
-        //value객체를 name이름으로 추가하여 리턴하는곳에 전달
-        model.addAttribute("list",boardDao.list());
         return "/look_list";
     }
 
@@ -39,7 +31,7 @@ public class MainController {
     @RequestMapping("/")
     public String index(Model model){
         model.addAttribute("list",boardDao.list());
-        return "/main";
+        return "/look_list";
     }
 
     @RequestMapping("/loginUser")

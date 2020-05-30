@@ -14,6 +14,7 @@
 
 <!--/*여기는 맨 위에 있는 바 부분*/ -->
 
+<!--/*여기는 맨 위에 있는 바 부분*/ -->
 <div class="jeans_root">
     <div class="jeans_header">
         <div class="search_left"></div>
@@ -27,12 +28,12 @@
         </div>
         <div class="logo_left"></div>
         <div class="logo" >
-            <a href="main"><img src="static/images/logo.png" alt="logo" height="30" width="71" /></a>
+            <a class="header_a" href="main"><img src="static/images/logo.png" alt="logo" height="30" width="71" /></a>
         </div>
 
         <c:set var="userid" value="${sessionScope.userid}"/>
         <c:if test="${userid != null}">
-            <a href="look_write"><div class="logo_right"> <span class="look_write">Look Write</span></div></a>
+            <a class="header_a" href="look_write"><div class="logo_right"> <span class="look_write">Look Write</span></div></a>
         </c:if>
 
         <div class="my_info">
@@ -50,17 +51,18 @@
         <c:set var="userid" value="${sessionScope.userid}"/>
         <c:choose>
             <c:when test="${userid != null}">
-                <a href="logout"><div class="logout">logout</div></a>
+                <a class="header_a" href="logout"><div class="logout">logout</div></a>
             </c:when>
 
             <c:otherwise>
-                <a href="loginUser"><div class="login">login</div></a>
+                <a class="header_a" href="loginUser"><div class="login">login</div></a>
             </c:otherwise>
         </c:choose>
 
         <div class="logout_right"></div>
     </div>
 </div>
+<!-- /*여기부터가 본문*/  -->
 
 <!--/*여기부터가 본문*/ -->
     <div class="body_root"> <!--/* 전체 바탕 아무 것도 안함*/ -->
