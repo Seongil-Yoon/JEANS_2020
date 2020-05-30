@@ -136,14 +136,14 @@ input{
 }
 
 .register_pwInput{
-   position: absolute;
-   top: 193px;
-   left: 155px;
-   width: 302px;
-   height: 40px;
-   color: rgb(94, 94, 94);
-   user-select: auto;
- }
+  position: absolute;
+  top: 193px;
+  left: 155px;
+  width: 302px;
+  height: 40px;
+  color: rgb(94, 94, 94);
+  user-select: auto;
+}
 
 .register_nickInput{
   position: absolute;
@@ -203,6 +203,16 @@ input{
   font-size: 16px;
 }
 
+.register_pictureFile{
+  position: absolute;
+  top: 300px;
+  left: 155px;
+  width: 302px;
+  height: 40px;
+  user-select: auto;
+
+}
+
 .main_profAttachTitle{
   position: absolute;
   top: 265px;
@@ -222,6 +232,10 @@ input{
   height: 20px;
   user-select: auto;
   font-size: 16px;
+}
+
+.register_pictureFile{
+
 }
 
 .main_profAttachWhat{

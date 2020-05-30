@@ -45,7 +45,7 @@
             <button class="main_loginBtn" type="submit" onClick="y" value="LOGIN">LOGIN</button>
         </div>
         <div class="main_joinBtnbox">
-            <button class="main_joinBtn" type="submit" onClick="y" value="JOIN">JOIN</button>
+            <button class="main_joinBtn" type="submit" onClick="y" formaction="joinUser" value="JOIN">JOIN</button>
         </div>
         <div class="main_bar">
             <hr></hr>

@@ -58,8 +58,9 @@
 
 
     <div class="register_pictureTitle">프로필 사진</div>
-    <div class="register_pictureAttach">사진첨부버튼같은거 넣자.</div>
-
+    <div class="register_pictureFile">
+        <input name="BOARD_FILE" id="BOARD_FILE" required="required" type="file"/>
+    </div>
 
    <div class="register_bodyType">공개/비공개</div>
    <div class="register_lock">공개</div>
