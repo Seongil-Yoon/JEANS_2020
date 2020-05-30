@@ -53,7 +53,6 @@
                     <a class="header_a" href="loginUser"><div class="login">login</div></a>
                 </c:otherwise>
             </c:choose>
-
             <div class="logout_right"></div>
         </div>
     </div>
