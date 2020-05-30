@@ -15,8 +15,7 @@
         <input type="text" placeholder="아이디" name="userid" ><form:errors path="userid" /><br/><br/>
         <input type="password" placeholder="비밀번호" name="password"><form:errors path="password" /><br/><br/>
         <input type="text" placeholder="닉네임" name="nickname"><form:errors path="nickname"/><br/><br/>
-
-
+        
         <input type="radio" name="sex" value=1 checked>남자
         <input type="radio" name="sex" value=0>여자<br/><br/>
 
