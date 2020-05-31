@@ -37,7 +37,7 @@
                       if (curHeight > docHeight - 1200) {
                           // $('<div class="main"></div>').appendTo('body');
 
-                            $('  <c:forEach items="${list}" var="dto" begin="4" end="11" step="1">\n' +
+                            $('<c:forEach items="${list}" var="dto" begin="4" end="12" step="1">\n' +
                                 '            <%-- item list 받을때 사용  --%>\n' +
                                 '      <a class="look_view_a"  href="view?look_num=${dto.look_num}">\n' +
                                 '        <div class="main">\n' +
@@ -53,11 +53,12 @@
                                 '                        </div>\n' +
                                 '                      <div class="name">\n' +
                                 '                        <ul class="look_header_ul">\n' +
-                                '                          <li class="look_header_li">\n' +
-                                '                              <span class="user_name">${dto.nickname}</span>\n' +
+                                '                          <li class="look_header_li" style="width: auto">\n' +
+                                '                              <span class="user_name" style="width: auto">${dto.nickname}</span>\n' +
                                 '                          </li>\n' +
                                 '                          <li class="look_header_li" style="width: auto; "></li>\n' +
-                                '                          <li class="look_header_li" style="width: fit-content; text-align: right; float: right; font-size: 10px;">\n' +
+                                '                          <li class="look_header_li"\n' +
+                                '                              style="width: fit-content; text-align: right; float: right; font-size: 15px; font-weight: bold">\n' +
                                 '                               <span id="look_date">${dto.look_date}</span>\n' +
                                 '                          </li>\n' +
                                 '                        </ul>\n' +

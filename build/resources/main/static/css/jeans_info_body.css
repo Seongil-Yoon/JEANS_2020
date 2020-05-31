@@ -126,6 +126,7 @@ input{
 }
 
 .look_tag{
+  font-weight: bold;   /*룩상세보기 태그 폰트 굵게함추가 <오경택>*/
   margin-top: 10px;
   text-align: right;
   margin-right: 10px;

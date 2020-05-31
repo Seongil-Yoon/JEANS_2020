@@ -46,11 +46,14 @@ public class LookController {
     @RequestMapping("/delete")
     public String delete(HttpServletRequest request)
     {
-        String look_num = request.getParameter("look_num");
-        String look_viewUserId = request.getParameter("look_viewUserId");
-        int num = Integer.parseInt(look_num); //String -> Int
+        String lookNum = request.getParameter("lookNum");
+        String lookUserId = request.getParameter("lookUserId");
 
-        boardService.delete(num,look_viewUserId);
+
+       int num = Integer.parseInt(lookNum); //String -> Int
+
+       boardService.delete(num,lookUserId);
+
 
         return "redirect:/main";
 

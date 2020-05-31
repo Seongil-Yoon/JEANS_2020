@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="static/css/jeans_header_.css">
     <link rel="stylesheet" href="static/css/jeans_info_body.css">
       <script type="text/javascript" src="/static/js/lookDelete.js"></script>
-<%--      <script type="text/javascript" src="/static/js/test.js"></script>--%>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+      <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+
   </head>
   <body>
     <!--/*여기는 맨 위에 있는 바 부분*/ -->
@@ -76,21 +78,12 @@
 
           <div class="title">${view.title}</div>
 
+            <c:set var="viewId" value="${view.fk_userid_user_userid}"/>
 
                 <div class = "delete">
-                    <a><img src="static/images/delete.png" alt="search"
-                             height="25" width="25" onclick="lookDelete(${view.look_num},${view.fk_userid_user_userid})" /></a>
+                    <a href="#"><img src="static/images/delete.png" alt="search"
+                             height="25" width="25" onclick="lookDelete(${view.look_num},'${viewId}')" /></a>
                 </div>
-
-<%--                            <div class = "delete" id="deleteButton">--%>
-<%--                               <input type="button" id="button" value="삭제" onclick="javascript:lookDelete(${view.look_num},${view.fk_userid_user_userid});">--%>
-<%--                            </div>--%>
-
-<%--            <div class = "delete" id="deleteButton">--%>
-<%--                <input type="button" id="button2" value="삭제" onclick="javascript:test();">--%>
-<%--            </div>--%>
-
-
 
 
           <div class="look_img">
@@ -116,7 +109,7 @@
 
             <div class = "views">
                 <img src="static/images/board_view_icon.svg" alt="search" height="25" width="25" class="view_icon"/>
-                10만
+                ${view.count}
             </div>
 
           <div class ="look_tag">
