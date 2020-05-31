@@ -7,6 +7,8 @@
     <title></title>
     <link rel="stylesheet" href="static/css/jeans_header_.css">
     <link rel="stylesheet" href="static/css/jeans_info_body.css">
+      <script type="text/javascript" src="/static/js/lookDelete.js"></script>
+<%--      <script type="text/javascript" src="/static/js/test.js"></script>--%>
   </head>
   <body>
     <!--/*여기는 맨 위에 있는 바 부분*/ -->
@@ -16,7 +18,7 @@
             <div class="search_logo">
                 <img src="static/images/search.jpg" alt="search" height="30" width="30" />
             </div>
-            <div class="search_input" >
+            <div class="search_input" style="margin-top: 20px">
                 <form>
                     <input type="text" class = "search_text"/>
                 </form>
@@ -68,9 +70,28 @@
            <img src="static/images/mypicture.png" alt="search" height="50" width="60" />
           </div>
 
-          <div class="name">${view.nickname}</div>
+                    <div class="name">${view.nickname}</div>
+
             <div class = "write_date">${view.look_date}</div>
+
           <div class="title">${view.title}</div>
+
+
+                <div class = "delete">
+                    <a><img src="static/images/delete.png" alt="search"
+                             height="25" width="25" onclick="lookDelete(${view.look_num},${view.fk_userid_user_userid})" /></a>
+                </div>
+
+<%--                            <div class = "delete" id="deleteButton">--%>
+<%--                               <input type="button" id="button" value="삭제" onclick="javascript:lookDelete(${view.look_num},${view.fk_userid_user_userid});">--%>
+<%--                            </div>--%>
+
+<%--            <div class = "delete" id="deleteButton">--%>
+<%--                <input type="button" id="button2" value="삭제" onclick="javascript:test();">--%>
+<%--            </div>--%>
+
+
+
 
           <div class="look_img">
             <div class="look_img_in">
@@ -93,8 +114,10 @@
 
             </div>
 
-            <div class = "views">조회수:${view.count}</div>
-
+            <div class = "views">
+                <img src="static/images/board_view_icon.svg" alt="search" height="25" width="25" class="view_icon"/>
+                10만
+            </div>
 
           <div class ="look_tag">
              ${view.tag}

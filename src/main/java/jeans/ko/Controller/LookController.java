@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Map;
@@ -43,9 +44,14 @@ public class LookController {
 
     //삭제
     @RequestMapping("/delete")
-    public String delete(@RequestParam("look_num")int look_num)
+    public String delete(HttpServletRequest request)
     {
-        boardService.delete(look_num);
+        String look_num = request.getParameter("look_num");
+        String look_viewUserId = request.getParameter("look_viewUserId");
+        int num = Integer.parseInt(look_num); //String -> Int
+
+        boardService.delete(num,look_viewUserId);
+
         return "redirect:/main";
 
     }
