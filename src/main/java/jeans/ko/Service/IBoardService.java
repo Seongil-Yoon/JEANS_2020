@@ -10,6 +10,6 @@ public interface IBoardService {
 
     public void insert(BoardDto boardDto) ;
 
-    public void delete(int look_num ,String look_viewUserId) ;
+    public int delete(int look_num ,String look_viewUserId) ;
 
 }
