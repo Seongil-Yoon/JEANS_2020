@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="static/css/jeans_header_.css">
     <link rel="stylesheet" href="static/css/jeans_write_body.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/static/js/ex1.js"></script>
 </head>
 <body>
 
@@ -21,7 +22,7 @@
         <div class="search_logo">
             <img src="static/images/search.jpg" alt="search" height="30" width="30" />
         </div>
-        <div class="search_input" >
+        <div class="search_input" style="margin-top: 20px">
             <form>
                 <input type="text" class = "search_text"/>
             </form>
@@ -67,7 +68,7 @@
 <!--/*여기부터가 본문*/ -->
     <div class="body_root"> <!--/* 전체 바탕 아무 것도 안함*/ -->
         <%--@elvariable id="boardDto" type="jeans"--%>
-        <form:form modelAttribute="boardDto" action="/boardWriteRequest" method="post">
+        <form:form id="form1" runat="server" modelAttribute="boardDto" action="/boardWriteRequest" method="post">
 
             <c:set var="error" value="${sessionScope.error}"/>
             <c:if test="${error != null}">
@@ -101,16 +102,12 @@
 
             <div class="upload">
                 사진첨부ㅤ
-
-                    <input type="file" />
-
+                <input type="file" name="profile_pt" id="profile_pt" onchange="previewImage(this,'View_area')">
             </div>
 
             <div class="space"> </div>
 
-            <div class="img_space">
-                이미지
-            </div>
+            <div id='View_area'  class="img_space"></div>
 
             <!--{/* 오른쪽 부분들 */} -->
             <div class = "upload_right">
@@ -178,6 +175,9 @@
         </div>
         </div>
 
+<script src="ex1.js">
+
+</script>
     </body>
 </html>
 

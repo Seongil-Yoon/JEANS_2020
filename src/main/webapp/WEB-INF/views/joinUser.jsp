@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,13 +13,14 @@
 <body>
 
 <!--/*여기는 맨 위에 있는 바 부분*/ -->
+<div class="webview">
 <div class="jeans_root">
     <div class="jeans_header">
         <div class="search_left"></div>
         <div class="search_logo">
             <img src="static/images/search.jpg" alt="search" height="30" width="30" />
         </div>
-        <div class="search_input" >
+        <div class="search_input" style="margin-top: 20px" >
             <form>
                 <input type="text" class = "search_text"/>
             </form>
@@ -30,9 +31,14 @@
         </div>
 
         <c:set var="userid" value="${sessionScope.userid}"/>
-        <c:if test="${userid != null}">
-            <a class="header_a" href="look_write"><div class="logo_right"> <span class="look_write">Look Write</span></div></a>
-        </c:if>
+        <c:choose>
+            <c:when test="${userid != null}">
+                <a class="header_a" href="look_write"><div class="logo_right"> <span class="look_write">Look Write</span></div></a>
+            </c:when>
+            <c:otherwise>
+                <a class="header_a" href="joinUser"><div class="logo_right"><span class="look_write">회원가입</span></div></a>
+            </c:otherwise>
+        </c:choose>
 
         <div class="my_info">
             <div>
@@ -56,11 +62,10 @@
                 <a class="header_a" href="loginUser"><div class="login">login</div></a>
             </c:otherwise>
         </c:choose>
+
         <div class="logout_right"></div>
     </div>
 </div>
-    <!--End of Header -->
-
 
 <div>
 
@@ -87,10 +92,10 @@
     <div class="register_nickError"><form:errors path="nickname"/></div>
 
 
-    <div class="register_pictureTitle">프로필 사진</div>
-    <div class="register_pictureFile">
-        <input name="BOARD_FILE" id="BOARD_FILE" required="required" type="file"/>
-    </div>
+<%--    <div class="register_pictureTitle">프로필 사진</div>--%>
+<%--    <div class="register_pictureFile">--%>
+<%--        <input name="BOARD_FILE" id="BOARD_FILE" required="required" type="file"/>--%>
+<%--    </div>--%>
 
    <div class="register_bodyType">공개/비공개</div>
    <div class="register_lock">공개</div>
@@ -137,10 +142,10 @@
 
 
     <button class="register_save" type="submit" onclick="y" value="회원가입">Save</button>
-
-
-
-
     </form:form>
+
+    </div>
+</div>
+
 </body>
 </html>

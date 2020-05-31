@@ -1,10 +1,23 @@
 /*구글웹폰트 가져다쓰기*/
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
+body{
+  margin: 0px;
+}
+
+
+
 .jeans_root{
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   background-color: white;
-  width: auto;
+  z-index: 5;
+}
+
+.header_space{
+  height: 80px;
 }
 
 .jeans_header{
@@ -48,7 +61,7 @@
 }
 
 .search_input{
-  margin-top: 15px;
+  margin-top: 0px;
 }
 
 .header_a{

@@ -2,9 +2,8 @@
 
 }
 
-.header_space{
-  height: 20px;
-}
+
+
 .body_lookupload{
 
   width: 1100px;
@@ -39,8 +38,7 @@
 
 .img_space{
   width: 550px;
-  height: 360px;
-  background-color: rgb(197, 197, 197);
+  height: 400px;
   margin-left: 20px;
 }
 
@@ -62,19 +60,20 @@
   color :  #92CEF4;
 }
 
+
 .input_name{
   border:none;
   width: 200px;
   height: 20px;
 }
 
-.input_basic{
-  border:none;
-  width: 300px;
-  height: 30px;
-}
+ .input_basic {
+   border: none;
+   width: 300px;
+   height: 30px;
+ }
 
-.input_tag{
+ .input_tag{
   border:none;
   width: 300px;
   height: 70px;

@@ -12,13 +12,14 @@
 </head>
 <body>
 <!--/*여기는 맨 위에 있는 바 부분*/ -->
+<div class="webview">
 <div class="jeans_root">
     <div class="jeans_header">
         <div class="search_left"></div>
         <div class="search_logo">
             <img src="static/images/search.jpg" alt="search" height="30" width="30" />
         </div>
-        <div class="search_input" >
+        <div class="search_input"  style="margin-top: 20px">
             <form>
                 <input type="text" class = "search_text"/>
             </form>
@@ -84,6 +85,7 @@
         </div>
     </div>
     </form>
+</div>
 </div>
 </div>
 </body>

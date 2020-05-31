@@ -20,12 +20,26 @@ form{
 }
 
 .title{
+   font-weight: bold;   /*룩리스트 타이틀 폰트 굵게함추가 <오경택>*/
    font-size: 20px;
    margin-left: -20px;
 }
 .name{
   margin-top: 10px;
   margin-left: -20px;
+}
+input{
+  padding: 6px 12px;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-sizing: border-box;
+  resize: none;
+  font-size: 14px;
+
 }
 
 .look_header_ul{
