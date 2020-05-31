@@ -7,6 +7,8 @@
     <title></title>
     <link rel="stylesheet" href="static/css/jeans_header_.css">
     <link rel="stylesheet" href="static/css/jeans_info_body.css">
+      <script type="text/javascript" src="/static/js/lookDelete.js"></script>
+<%--      <script type="text/javascript" src="/static/js/test.js"></script>--%>
   </head>
   <body>
     <!--/*여기는 맨 위에 있는 바 부분*/ -->
@@ -74,9 +76,22 @@
 
           <div class="title">${view.title}</div>
 
-            <div class = "delete">
-                <img src="static/images/delete.png" alt="search" height="25" width="25" />
-            </div>
+
+                <div class = "delete">
+                    <a><img src="static/images/delete.png" alt="search"
+                             height="25" width="25" onclick="lookDelete(${view.look_num},${view.fk_userid_user_userid})" /></a>
+                </div>
+
+<%--                            <div class = "delete" id="deleteButton">--%>
+<%--                               <input type="button" id="button" value="삭제" onclick="javascript:lookDelete(${view.look_num},${view.fk_userid_user_userid});">--%>
+<%--                            </div>--%>
+
+<%--            <div class = "delete" id="deleteButton">--%>
+<%--                <input type="button" id="button2" value="삭제" onclick="javascript:test();">--%>
+<%--            </div>--%>
+
+
+
 
           <div class="look_img">
             <div class="look_img_in">
