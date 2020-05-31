@@ -86,11 +86,44 @@
                 </div>
 
 
-          <div class="look_img">
-            <div class="look_img_in">
-              <img src="static/images/1.jpg" alt="look_image" class= "look_img_file"/>
+            <!-- 슬라이드 쇼-->
+
+            <div class="look_img_container">
+                <div  class="look_img_viewport">
+                    <div class="look_flick_camera">
+
+                        <div class="flick_panel s1" style="left: 0px;">
+                            <img src="static/images/100.jpg" alt="look_image" class= "look_img_file"/>
+                        </div>
+                        <div class="flick_panel s2" style="left: 305px;">
+                            <img src="static/images/101.jpg" alt="look_image" class= "look_img_file"/>
+                        </div>
+                        <div class="flick_panel s3" style="left: 610px;">
+                            <img src="static/images/102.jpg" alt="look_image" class= "look_img_file"/>
+                        </div>
+                        <div class="flick_panel s4" style="left: 915px;">
+                            <img src="static/images/201.jpg" alt="look_image" class= "look_img_file"/>
+                        </div>
+                        <div class="flick_panel s5" style="left: 1220px;">
+                            <img src="static/images/202.jpg" alt="look_image" class= "look_img_file"/>
+                        </div>
+                        <div class="flick_panel s6" style="left: 1525px;">
+                            <img src="static/images/203.jpg" alt="look_image" class= "look_img_file"/>
+                        </div>
+                        <div class="flick_panel s7" style="left: 1830px;">
+                            <img src="static/images/4.jpg" alt="look_image" class= "look_img_file"/>
+                        </div>
+                    </div>
+
+                    <button type="button" class="look_slide_button"  id="look_slide_button_left" style="left: 0;">
+                        <img src="static/images/look_slide_icon_left.png" class="look_slide_button_icon">
+                    </button>
+                    <button type="button" class="look_slide_button" id="look_slide_button_right" style="right: 0;">
+                        <img src="static/images/look_slide_icon_right.png" class="look_slide_button_icon">
+                    </button>
+                </div>
+
             </div>
-          </div>
 
           <div class="look_textarea_space">
             <form class="textarea_form"  >
@@ -141,6 +174,6 @@
 
     </div>
 
-
+    <script src="/static/js/look_info.js"></script>
   </body>
 </html>

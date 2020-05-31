@@ -1,5 +1,4 @@
 
-
 function lookDelete(lookNum,lookUserId){
 
     var lookNum=lookNum;
@@ -11,7 +10,6 @@ function lookDelete(lookNum,lookUserId){
 }
 
  function confirm(msg, title,lookNum,lookUserId) {
-   
     swal({
         title : title,
         text : msg,
@@ -27,7 +25,7 @@ function lookDelete(lookNum,lookUserId){
             swal('', '게시글을 삭제하였습니다.', "success");
             location.href="/delete?lookNum="+lookNum+"&lookUserId="+lookUserId;
         }else{
-            swal('', '취소하였습니다.', "failed");
+            swal('', '취소하였습니다.', "success");
             location.href="main";
         }
 
