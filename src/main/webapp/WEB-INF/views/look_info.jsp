@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="static/css/jeans_header_.css">
     <link rel="stylesheet" href="static/css/jeans_info_body.css">
       <script type="text/javascript" src="/static/js/lookDelete.js"></script>
-<%--      <script type="text/javascript" src="/static/js/test.js"></script>--%>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+      <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+
   </head>
   <body>
     <!--/*여기는 맨 위에 있는 바 부분*/ -->
@@ -76,28 +78,52 @@
 
           <div class="title">${view.title}</div>
 
+            <c:set var="viewId" value="${view.fk_userid_user_userid}"/>
 
                 <div class = "delete">
-                    <a><img src="static/images/delete.png" alt="search"
-                             height="25" width="25" onclick="lookDelete(${view.look_num},${view.fk_userid_user_userid})" /></a>
+                    <a href="#"><img src="static/images/delete.png" alt="search"
+                             height="25" width="25" onclick="lookDelete(${view.look_num},'${viewId}')" /></a>
                 </div>
 
-<%--                            <div class = "delete" id="deleteButton">--%>
-<%--                               <input type="button" id="button" value="삭제" onclick="javascript:lookDelete(${view.look_num},${view.fk_userid_user_userid});">--%>
-<%--                            </div>--%>
 
-<%--            <div class = "delete" id="deleteButton">--%>
-<%--                <input type="button" id="button2" value="삭제" onclick="javascript:test();">--%>
-<%--            </div>--%>
+            <!-- 슬라이드 쇼-->
 
+            <div class="look_img_container">
+                <div  class="look_img_viewport">
+                    <div class="look_flick_camera">
 
+                        <div class="flick_panel s1" style="left: 0px;">
+                            <img src="static/images/100.jpg" alt="look_image" class= "look_img_file"/>
+                        </div>
+                        <div class="flick_panel s2" style="left: 305px;">
+                            <img src="static/images/101.jpg" alt="look_image" class= "look_img_file"/>
+                        </div>
+                        <div class="flick_panel s3" style="left: 610px;">
+                            <img src="static/images/102.jpg" alt="look_image" class= "look_img_file"/>
+                        </div>
+                        <div class="flick_panel s4" style="left: 915px;">
+                            <img src="static/images/201.jpg" alt="look_image" class= "look_img_file"/>
+                        </div>
+                        <div class="flick_panel s5" style="left: 1220px;">
+                            <img src="static/images/202.jpg" alt="look_image" class= "look_img_file"/>
+                        </div>
+                        <div class="flick_panel s6" style="left: 1525px;">
+                            <img src="static/images/203.jpg" alt="look_image" class= "look_img_file"/>
+                        </div>
+                        <div class="flick_panel s7" style="left: 1830px;">
+                            <img src="static/images/4.jpg" alt="look_image" class= "look_img_file"/>
+                        </div>
+                    </div>
 
+                    <button type="button" class="look_slide_button"  id="look_slide_button_left" style="left: 0;">
+                        <img src="static/images/look_slide_icon_left.png" class="look_slide_button_icon">
+                    </button>
+                    <button type="button" class="look_slide_button" id="look_slide_button_right" style="right: 0;">
+                        <img src="static/images/look_slide_icon_right.png" class="look_slide_button_icon">
+                    </button>
+                </div>
 
-          <div class="look_img">
-            <div class="look_img_in">
-              <img src="static/images/1.jpg" alt="look_image" class= "look_img_file"/>
             </div>
-          </div>
 
           <div class="look_textarea_space">
             <form class="textarea_form"  >
@@ -116,7 +142,7 @@
 
             <div class = "views">
                 <img src="static/images/board_view_icon.svg" alt="search" height="25" width="25" class="view_icon"/>
-                10만
+                ${view.count}
             </div>
 
           <div class ="look_tag">
@@ -148,6 +174,6 @@
 
     </div>
 
-
+    <script src="/static/js/look_info.js"></script>
   </body>
 </html>
