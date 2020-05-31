@@ -1,1 +1,4 @@
-alert("test성공");
+
+function test(){
+    alert("test성공");
+}

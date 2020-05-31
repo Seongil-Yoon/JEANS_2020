@@ -159,8 +159,7 @@
                 <div class="memo">
                         <textarea   name= "memo"  class = "input_memo" /></textarea>
                 </div>
-
-
+                
             </div>
 
             <div class="space"> </div>
