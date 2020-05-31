@@ -16,7 +16,6 @@
         <link rel="stylesheet" href="static/css/jeans_header_.css"/>
 
       <script>
-
               //백오브 캐시 있으면 다시 새로고침
               window.onpageshow = function(event) {
                   if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
