@@ -24,6 +24,19 @@ li{
     list-style: none;
 }
 
+input{
+    padding: 6px 12px;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-sizing: border-box;
+    resize: none;
+    font-size: 14px;
+
+}
 
 .webview{
     min-width: 1200px;
@@ -69,7 +82,7 @@ li{
 }
 
 .look_view_a{
-text-decoration:none ; color:#000000
+    text-decoration:none ; color:#000000
 }
 
 .paging_wrapper{

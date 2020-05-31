@@ -125,7 +125,7 @@
           </script>
   </head>
   <body>
-
+  <div class="webview">
   <!--/*여기는 맨 위에 있는 바 부분*/ -->
   <div class="jeans_root">
       <div class="jeans_header">
@@ -133,7 +133,7 @@
           <div class="search_logo">
               <img src="static/images/search.jpg" alt="search" height="30" width="30" />
           </div>
-          <div class="search_input" >
+          <div class="search_input"  style="margin-top: 20px">
               <form>
                   <input type="text" class = "search_text"/>
               </form>
@@ -181,6 +181,7 @@
   </div>
   <!-- /*여기부터가 본문*/  -->
 
+  <div class="header_space" style="width: 60px"></div>
 
         <c:forEach items="${list}" var="dto" begin="0" end="3" step="1">
             <%-- item list 받을때 사용  --%>
@@ -198,11 +199,12 @@
                         </div>
                       <div class="name">
                         <ul class="look_header_ul">
-                          <li class="look_header_li">
-                              <span class="user_name">${dto.nickname}</span>
+                          <li class="look_header_li" style="width: auto">
+                              <span class="user_name" style="width: auto">${dto.nickname}</span>
                           </li>
                           <li class="look_header_li" style="width: auto; "></li>
-                          <li class="look_header_li" style="width: fit-content; text-align: right; float: right; font-size: 10px;">
+                          <li class="look_header_li"
+                              style="width: fit-content; text-align: right; float: right; font-size: 15px; font-weight: bold">
                                <span id="look_date">${dto.look_date}</span>
                           </li>
                         </ul>
@@ -263,6 +265,6 @@
   </div>
 
     </c:forEach>
-
+  </div>
   </body>
 </html>
