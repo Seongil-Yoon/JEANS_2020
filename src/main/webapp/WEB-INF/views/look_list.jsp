@@ -14,10 +14,11 @@
         <link rel="stylesheet" href="static/css/look_list.css"/>
         <link rel="stylesheet" href="static/css/look_list_Look.css"/>
         <link rel="stylesheet" href="static/css/jeans_header_.css"/>
+<%--      <script type="text/javascript" src="/static/js/mainScroll.js"></script>--%>
 
       <script>
 
-              //백오브 캐시 있으면 다시 새로고침
+              //백오브 캐시 있으면 다시 새로고침 이거 새로고침 안하고 조회수 부분만 바꾸도록 수정해야됨
               window.onpageshow = function(event) {
                   if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
                       window.location.reload(); //새로고침 다시 불러오기
@@ -37,88 +38,7 @@
                       if (curHeight > docHeight - 1200) {
                           // $('<div class="main"></div>').appendTo('body');
 
-                            $('<c:forEach items="${list}" var="dto" begin="4" end="12" step="1">\n' +
-                                '            <%-- item list 받을때 사용  --%>\n' +
-                                '      <a class="look_view_a"  href="view?look_num=${dto.look_num}">\n' +
-                                '        <div class="main">\n' +
-                                '\n' +
-                                '              <div claas="main_container">\n' +
-                                '\n' +
-                                '                <ul class="main_look_item">\n' +
-                                '                  <li id=1>\n' +
-                                '                    <div class="is_body" >\n' +
-                                '                      <!-- 헤더-->\n' +
-                                '                      <div class="my_img">\n' +
-                                '                          <img src="static/images/mypicture.png" alt="search" height="50" width="60" />\n' +
-                                '                        </div>\n' +
-                                '                      <div class="name">\n' +
-                                '                        <ul class="look_header_ul">\n' +
-                                '                          <li class="look_header_li" style="width: auto">\n' +
-                                '                              <span class="user_name" style="width: auto">${dto.nickname}</span>\n' +
-                                '                          </li>\n' +
-                                '                          <li class="look_header_li" style="width: auto; "></li>\n' +
-                                '                          <li class="look_header_li"\n' +
-                                '                              style="width: fit-content; text-align: right; float: right; font-size: 15px; font-weight: bold">\n' +
-                                '                               <span id="look_date">${dto.look_date}</span>\n' +
-                                '                          </li>\n' +
-                                '                        </ul>\n' +
-                                '\n' +
-                                '                      </div>\n' +
-                                '                      <div class="title" >${dto.title}</div>\n' +
-                                '\n' +
-                                '                      <!-- 본문-->\n' +
-                                '                      <div class="look_img">\n' +
-                                '                          <div class="look_img_in">\n' +
-                                '                            <img src="static/images/1.JPG" alt="look_image" class= "look_img_file"/>\n' +
-                                '                          </div>\n' +
-                                '                        </div>\n' +
-                                '\n' +
-                                '                        <div class="look_textarea_space">\n' +
-                                '                          <form class="textarea_form" >\n' +
-                                '                            <textarea style="background-color: #F6F6F6" class = "look_textarea" placeholder="${dto.tag}"></textarea>\n' +
-                                '                          </form>\n' +
-                                '                        </div>\n' +
-                                '\n' +
-                                '                        <!-- 푸터-->\n' +
-                                '                        <ul class="look_footer_ul">\n' +
-                                '                          <li class="look_footer_li">\n' +
-                                '                            <div class ="like_img_box">\n' +
-                                '                              <img src="static/images/heart.svg" alt="heart_image" class="like_img" />\n' +
-                                '                            </div>\n' +
-                                '                          </li>\n' +
-                                '                          <li class="look_footer_li">\n' +
-                                '                            <div class = "like_number">\n' +
-                                '                              <span>10.5K</span>\n' +
-                                '                            <%--  좋아요 개발해야됨 --%>\n' +
-                                '                            </div>\n' +
-                                '                          </li>\n' +
-                                '                          <li class="look_footer_li" style="width: 25px;"></li>\n' +
-                                '                          <li class="look_footer_li">\n' +
-                                '                            <div class= "count_img_box">\n' +
-                                '                              <img src="static/images/board_view_icon.svg" alt="board_view_icon" class="count_img"/>\n' +
-                                '                            </div>\n' +
-                                '                          </li>\n' +
-                                '                          <li class="look_footer_li">\n' +
-                                '                            <div class = "count_number">\n' +
-                                '                              <span>${dto.count}</span>\n' +
-                                '                            </div>\n' +
-                                '\n' +
-                                '                        </ul>\n' +
-                                '                       <div class="space_end"></div>\n' +
-                                '                    </div>\n' +
-                                '                  </li>\n' +
-                                '                </ul>\n' +
-                                '\n' +
-                                '                <!-- 1페이지에 8개의 룩 정적인 목록으로 띄워줌-->\n' +
-                                '\n' +
-                                '\n' +
-                                '            </div>\n' +
-                                '\n' +
-                                '          </div>\n' +
-                                '        </a>\n' +
-                                '  </div>\n' +
-                                '\n' +
-                                '    </c:forEach>').appendTo('body');
+                            $('<h1>추가 <h1>').appendTo('body');
 
                       }
                   });

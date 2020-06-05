@@ -11,11 +11,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.Map;
+
+import static com.sun.tools.attach.VirtualMachine.list;
 
 @Controller
 public class LookController {
@@ -27,6 +31,21 @@ public class LookController {
     IBoardService boardService;
     @Autowired
     IBoardDao boardDao;
+
+
+
+    @ResponseBody
+    @RequestMapping("/test2")
+    public HashMap<String, Object> test2(){
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("boardList",boardDao.list());
+        return map;
+    }
+
+    @RequestMapping("/test")
+    public String test()
+    { return "test"; }
+
 
     //게시판 작성페이지
     @RequestMapping("/look_write")

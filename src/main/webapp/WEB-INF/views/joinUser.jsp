@@ -117,16 +117,15 @@
             <input type="number" class="register_weightInt" placeholder="168"></input>
             <div class="register_weightKg">Kg</div>
 
-
             <div class="register_genderTitle">성별</div>
             <div class="register_genderMale">남</div>
             <div class="register_genderMaleRadio">
-                <input type="radio" name="sex" value="male"/>
+                <input type="radio" type="number" name="sex" value="1"/>
             </div>
 
             <div class="register_genderFemale">여</div>
             <div class="register_genderFemaleRadio">
-                <input type="radio" name="sex" value="female"/>
+                <input type="radio" type="number" name="sex" value="0"/>
             </div>
 
             <!--
