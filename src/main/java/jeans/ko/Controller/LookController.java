@@ -33,19 +33,13 @@ public class LookController {
     IBoardDao boardDao;
 
 
-
     @ResponseBody
-    @RequestMapping("/test2")
-    public HashMap<String, Object> test2(){
+    @RequestMapping("/lookScroll")
+    public HashMap<String, Object> lookScroll(){
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("boardList",boardDao.list());
         return map;
     }
-
-    @RequestMapping("/test")
-    public String test()
-    { return "test"; }
-
 
     //게시판 작성페이지
     @RequestMapping("/look_write")
