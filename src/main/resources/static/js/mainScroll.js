@@ -103,7 +103,7 @@ function start() {
                     "                                  </li>\n" +
                     "                                  <li class=\"look_footer_li\">\n" +
                     "                                      <div class = \"count_number\">\n" +
-                    "                                          <span>${dto.count}</span>\n" +
+                    "                                          <span>" + result.boardList[i].count + "</span>\n" +
                     "                                      </div>\n" +
                     "\n" +
                     "                              </ul>\n" +

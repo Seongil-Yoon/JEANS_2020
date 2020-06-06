@@ -1,0 +1,22 @@
+.section  {
+    color: white;
+}
+
+.s0 h3{
+    display: none;
+}
+
+.s1 h3{
+    display: none;
+}
+
+.s2 h3{
+    display: none;
+}
+
+
+#fp-nav ul li a span {
+    background-color: white;
+}
+
+

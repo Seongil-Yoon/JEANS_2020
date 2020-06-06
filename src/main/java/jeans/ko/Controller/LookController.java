@@ -32,7 +32,6 @@ public class LookController {
     @Autowired
     IBoardDao boardDao;
 
-
     @ResponseBody
     @RequestMapping("/lookScroll")
     public HashMap<String, Object> lookScroll(){

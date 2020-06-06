@@ -19,13 +19,17 @@ public class MainController {
     @Autowired
     IBoardDao boardDao;
 
+    @RequestMapping("intro")
+    public String index(){
+        return "/intro";
+    }
+
     @RequestMapping("main")
     public String main(Model model){
         //value객체를 name이름으로 추가한다 ,메인 화면에 리스트 호출
         model.addAttribute("list",boardDao.list());
         return "/look_list";
     }
-
 
     //처음 들어오면 메인 화면
     @RequestMapping("/")
