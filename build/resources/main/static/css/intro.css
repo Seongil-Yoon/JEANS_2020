@@ -1,16 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
 .section  {
     color: white;
+    text-align: center;
 }
 
-.s0 h3{
-    display: none;
+img{
+    width: 150px;
+    height: 150px;
 }
 
-.s1 h3{
-    display: none;
-}
-
-.s2 h3{
+h1{
+    font-family: 'Anton', sans-serif;
     display: none;
 }
 
