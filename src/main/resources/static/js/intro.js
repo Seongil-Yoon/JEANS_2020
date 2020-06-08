@@ -5,9 +5,8 @@ function introStart() {
     new fullpage("#full-page",{
         sectionsColor: ['#FFCC66','#FF9966','#33CCFF','#FFFF66'],
         navigation:true, //옆에 화면 움직으는  . . . . 모양 생성
-        navigationTooltips: ['Back end','Web Front end','App','Jeans'],
+        navigationTooltips: ['Back-end','Web Front-end','App','Jeans'],
         scrollingSpeed: 1000, // 스크롤 속도1초
-
 
         //스크롤이 시작할때 실행
         // origin 원래 있었던 섹션정보 destination 이동한곳 섹션정보
@@ -32,8 +31,8 @@ function introStart() {
                 }, 1000,"swing");
             }
             if(origin.index==3){
-                $('.s3 h1').hide();
-                $('.s3 image').hide();
+                $(".s3 h2").fadeOut(1000);
+                $(".s3 h3").fadeOut(1000);
             }
         },
         //스크롤이 끝날때 실행
@@ -57,8 +56,8 @@ function introStart() {
                 }, 1000,"swing"); //1000은 1초 swing 처음은 느린데 점점빨리
             }
             if(destination.index==3){
-                $('.s3 h1').show();
-                $('.s3 image').show();
+                $(".s3 h2").fadeIn(1000);
+                $(".s3 h3").fadeIn(3000);
             }
         },
     });

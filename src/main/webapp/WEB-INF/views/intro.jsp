@@ -58,11 +58,10 @@
         </div>
 
         <div class="section s3" style="background-size: cover; background-image: url('static/images/JeansModel.jpg')" >
-            <p class="intro logo" style="margin-right: 50%">Jeans<p>
-            <div style="padding: 35px"></div>
-            <p class="intro word" style="margin-right: 38% ">당신만의 스타일을 공유하세요</p>
+            <h2  style="margin-right: 50%" >J e a n s</h2>
+            <h3  style="margin-right: 40% ">Share your style</h3>
             <div style="padding: 150px"></div>
-        </div>
+        </p>
     </div>
 
     <script>
