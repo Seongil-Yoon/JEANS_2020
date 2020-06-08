@@ -20,7 +20,7 @@
 
     <div id="full-page">
         <div class="section s0" >
-            <h1>Back end skills</h1>
+            <h1>Back-end skills</h1>
             <div>
                 <img src="static/images/springboot.png"  class= "springboot"/>
                 <img src="static/images/jsp.png"  class= "jsp"/>
@@ -34,15 +34,34 @@
         </div>
 
         <div class="section s1">
-            <h1>Web Front end skills</h1>
+            <h1>Web Front-end skills</h1>
+            <div>
+                <img src="static/images/html.png"  class= "html"/>
+                <img src="static/images/jquary.png"  class= "jquary"/>
+                <img src="static/images/ajax.png"  class= "ajax"/>
+            </div>
+            <div style="padding: 25px"></div>
+            <h1>Developer</h1>
+            <h1>윤성일 , 김희진</h1>
         </div>
 
         <div class="section s2">
             <h1>App skills</h1>
+            <div>
+                <img src="static/images/Android.png"  class= "Android"/>
+                <spnn style="padding: 15px"></spnn>
+                <img src="static/images/Kotlin.png"  class= "Kotlin"/>
+            </div>
+            <div style="padding: 25px"></div>
+            <h1>Developer</h1>
+            <h1>박찬영 , 최찬호</h1>
         </div>
 
         <div class="section s3" style="background-size: cover; background-image: url('static/images/JeansModel.jpg')" >
-            <h1>Jeans</h1>
+            <p class="intro logo" style="margin-right: 50%">Jeans<p>
+            <div style="padding: 35px"></div>
+            <p class="intro word" style="margin-right: 38% ">당신만의 스타일을 공유하세요</p>
+            <div style="padding: 150px"></div>
         </div>
     </div>
 
