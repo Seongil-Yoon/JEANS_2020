@@ -19,10 +19,6 @@ public class MainController {
     @Autowired
     IBoardDao boardDao;
 
-    @RequestMapping("intro")
-    public String index(){
-        return "/intro";
-    }
 
     @RequestMapping("main")
     public String main(Model model){
@@ -34,8 +30,7 @@ public class MainController {
     //처음 들어오면 메인 화면
     @RequestMapping("/")
     public String index(Model model){
-        model.addAttribute("list",boardDao.list());
-        return "/look_list";
+        return "/intro";
     }
 
     @RequestMapping("/loginUser")
