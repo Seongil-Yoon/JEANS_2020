@@ -10,7 +10,7 @@ $(document).ready(function(){
         let documentHeight = $(document).height();//문서 전체높이
         let windowHeight= window.innerHeight; //윈도우 높이
         //윈도우 높이에 스크롤값을 계속더해서 문서 전체 길이에서 30 px 앞에 스크롤이 왔을때 데이터 불러옴
-        if((windowHeight + scroll) >= documentHeight-30){
+        if((windowHeight + scroll) >= documentHeight-50){
             start();
         }
     })
