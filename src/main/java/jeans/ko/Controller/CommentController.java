@@ -25,13 +25,8 @@ public class CommentController {
 
     @RequestMapping("/commentWrite")
     public String writeForm(CommentDto commentDto){
-
-
-        System.out.println("작성내용  "+commentDto.getComment_content());
-        System.out.println("작성자아이디 "+commentDto.getComment_sender_id());
-
+        
         commentService.insert(commentDto);
-
 
         return "look_write";
     }
