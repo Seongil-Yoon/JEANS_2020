@@ -13,5 +13,8 @@
         )
     </insert>
 
+    <select id="list" resultType="jeans.ko.Dto.CommentDto">
+        select * from comment where fk_look_num_Look_look_num = #{look_num} order by comment_id desc;
+    </select>
 
 </mapper>

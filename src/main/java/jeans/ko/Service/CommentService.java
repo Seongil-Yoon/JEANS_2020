@@ -1,9 +1,12 @@
 package jeans.ko.Service;
 
 import jeans.ko.Dao.ICommentDao;
+import jeans.ko.Dto.BoardDto;
 import jeans.ko.Dto.CommentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CommentService implements ICommentService {
@@ -17,6 +20,11 @@ public class CommentService implements ICommentService {
          commentDto.setDate("작성날짜"); //이것도 수정해야됨
 
         commentDao.insert(commentDto);
+    }
+
+    @Override
+    public List<CommentDto> list(int look_num) {
+        return commentDao.list(look_num);
     }
 
 }

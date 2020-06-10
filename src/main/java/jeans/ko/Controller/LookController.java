@@ -3,6 +3,7 @@ package jeans.ko.Controller;
 import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dto.BoardDto;
 import jeans.ko.Service.BoardService;
+import jeans.ko.Service.CommentService;
 import jeans.ko.Service.IBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,8 @@ public class LookController {
 
     @Autowired
     HttpSession session;
-
+    @Autowired
+    CommentService commentService;
     @Autowired
     IBoardService boardService;
     @Autowired
@@ -50,7 +52,8 @@ public class LookController {
     public String view(@RequestParam("look_num")int look_num ,Model model)
     {
         boardDao.countUpdate(look_num); //글상세보기 하면 조회수 증가
-        model.addAttribute("view",boardDao.view(look_num));
+        model.addAttribute("view",boardDao.view(look_num)); //게시글정보가져오기
+        model.addAttribute("comment",commentService.list(look_num)); //게시글에 댓글정보가져오기
         return "look_info";
     }
 

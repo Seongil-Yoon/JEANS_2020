@@ -14,15 +14,12 @@
     <link rel="stylesheet" href="static/css/look_list.css"/>
     <link rel="stylesheet" href="static/css/look_list_Look.css"/>
     <link rel="stylesheet" href="static/css/jeans_header_.css"/>
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+            crossorigin="anonymous"></script>
     <script src="/static/js/mainScroll.js" charset="utf-8"></script>
-    <script>
-        //백오브 캐시 있으면 다시 새로고침 이거 새로고침 안하고 조회수 부분만 바꾸도록 수정해야됨
-        window.onpageshow = function (event) {
-            if (event.persisted || (window.performance && window.performance.navigation.type == 2)) {
-                window.location.reload(); //새로고침 다시 불러오기
-            }
-        };
-    </script>
+    <script src="/static/js/backCashDelete.js"></script>
 </head>
 <body>
 <div class="webview">
