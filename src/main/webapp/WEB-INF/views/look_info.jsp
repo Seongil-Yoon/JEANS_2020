@@ -7,15 +7,7 @@
     <title></title>
     <link rel="stylesheet" href="static/css/jeans_header_.css">
     <link rel="stylesheet" href="static/css/jeans_info_body.css">
-    <script type="text/javascript" src="/static/js/lookDelete.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-    <script type="text/javascript" src="/static/js/comment.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
-    <script
-            src="https://code.jquery.com/jquery-3.5.1.min.js"
-            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-            crossorigin="anonymous"></script>
-
 </head>
 <body>
 
@@ -165,6 +157,7 @@
 
     </div>
 
+    <%--댓글입력부분--%>
     <form name="commentForm">
         <c:if test="${sessionScope.userid != null}"> <%--로그인 해야 작성가능--%>
             <div class="look_comment">
@@ -192,33 +185,31 @@
 
     <%--처음에 최신 댓글내용 두개출력--%>
     <c:forEach items="${comment}" var="dto" begin="0" end="1" step="1">
-    <div class="look_comment">
-        <div class="other_people_img">
-            <img src="static/images/mypicture.png" alt="other_people_imgage" height="50" width="60"/>
+        <div class="look_comment">
+            <div class="other_people_img">
+                <img src="static/images/mypicture.png" alt="other_people_imgage" height="50" width="60"/>
+            </div>
+            <div class="other_people_name">${dto.comment_sender_name}</div>
+            <div class="comment_textarea_space">
+                <textarea style="background-color:#F6F6F6 "disabled class="comment_textarea" placeholder="${dto.comment_content}"></textarea>
+            </div>
+            <div class="comment_date">
+                    ${dto.date}
+            </div>
         </div>
-
-        <div class="other_people_name">${dto.comment_sender_name}</div>
-
-        <div class="comment_textarea_space">
-            <form>
-                             <textarea style="background-color:#F6F6F6 "
-                                       disabled class="comment_textarea" placeholder="${dto.comment_content}"></textarea>
-                <%--댓글나오게 수정해야됨--%>
-            </form>
-        </div>
-
-        <div class="comment_date">
-                ${dto.date}
-        </div>
-    </div>
     </c:forEach>
-
-
-
 
 </div>
 
+<script type="text/javascript" src="/static/js/lookDelete.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="/static/js/look_info.js"></script>
+<script
+        src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="/static/js/comment.js"></script>
+<script>commentReady(${view.look_num})</script>
 
 </body>
 </html>

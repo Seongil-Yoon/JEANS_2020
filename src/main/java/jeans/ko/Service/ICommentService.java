@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ICommentService {
 
-    public void insert(CommentDto commentDto);
+    public int insert(CommentDto commentDto);
 
     public List<CommentDto> list(int look_num);
 

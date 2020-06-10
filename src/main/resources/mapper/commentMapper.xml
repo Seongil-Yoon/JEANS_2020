@@ -4,7 +4,7 @@
 
 <mapper namespace="jeans.ko.Dao.ICommentDao">
 
-    <insert id="insert">
+    <insert id="insert" >
         insert into comment
         values
         (

@@ -15,11 +15,11 @@ public class CommentService implements ICommentService {
     ICommentDao commentDao;
 
     @Override
-    public void insert(CommentDto commentDto) {
+    public int insert(CommentDto commentDto) {
          commentDto.setParent_comment_id(2); //대댓글 만들때 수정해야됨
          commentDto.setDate("작성날짜"); //이것도 수정해야됨
 
-        commentDao.insert(commentDto);
+       return commentDao.insert(commentDto);
     }
 
     @Override

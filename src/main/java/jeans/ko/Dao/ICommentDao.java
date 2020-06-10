@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface ICommentDao {
     //댓글작성
-    public void insert(CommentDto commentDto);
+    public int insert(CommentDto commentDto);
 
     public List<CommentDto> list(int look_num);
 
