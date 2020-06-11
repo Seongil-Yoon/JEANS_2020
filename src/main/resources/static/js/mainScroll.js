@@ -1,7 +1,7 @@
 
 let isEnd = false; //더이상 가져올값이 없으면 중지하기 위한변수
 let num=0; //4개씩 나오기 위한변수
-
+let mainScrollTime = true;
 
 $(document).ready(function(){
     $(window).scroll(function(){   //스크롤 감지 이벤트
@@ -11,13 +11,16 @@ $(document).ready(function(){
         let windowHeight= window.innerHeight; //윈도우 높이
         //윈도우 높이에 스크롤값을 계속더해서 문서 전체 길이에서 30 px 앞에 스크롤이 왔을때 데이터 불러옴
         if((windowHeight + scroll) >= documentHeight-50){
-            start();
+            if(mainScrollTime==true){
+                start();
+            }
         }
     })
 
 });
 
 function start() {
+    mainScrollTime = false;
     $.ajax({
         url: "/lookScroll", //요청url
         dataType: "json", //json 으로 받기
@@ -121,7 +124,7 @@ function start() {
                     "      </div>"
                 $("body").append(html);
             }
-
+            setTimeout(function(){ mainScrollTime = true;},1000);//스크롤이벤트 1초뒤실행 중복방지위해
         },
         error: function(errorThrown) {
             alert("fail");

@@ -1,6 +1,6 @@
 let isEnd=false; //더이상 가져올값이 없으면 중지하기위한 변수
 let num=2; //댓글 세개씩 나오기 위한변수 2로 시작이유는 초반에 2개가 기본으로 나와서
-
+let scrollTime = true;
 
 function commentReady(lookNum){
     var lookNum=lookNum;
@@ -11,7 +11,9 @@ function commentReady(lookNum){
             let windowHeight= window.innerHeight; //윈도우 높이
             //윈도우 높이에 스크롤값을 계속더해서 문서 전체 길이에서 30 px 앞에 스크롤이 왔을때 데이터 불러옴
             if((windowHeight + scroll) >= documentHeight-20){
-                commentList(lookNum);
+                if(scrollTime==true){
+                    commentList(lookNum);
+                }
             }
         })
 
@@ -42,7 +44,7 @@ function commentConfirm(msg, title,Data) {
         confirmButtonText : "예",
         cancelButtonText : "아니오",
         closeOnConfirm : false,
-        closeOnCancel : true
+        closeOnCancel : false
     }, function(isConfirm) {
         if (isConfirm) {
             $.ajax({
@@ -70,7 +72,7 @@ function commentConfirm(msg, title,Data) {
                     a+='<div class=\"comment_date\">'+result.commentList[0].date+'</div>';
                     a+='</div>';
 
-                    $("form[name=commentForm]").after(a); //form태그 name이commentForm 인거 바로밑에 추가하기 
+                    $("form[name=commentForm]").after(a); //form태그 name이commentForm 인거 바로밑에 추가하기
 
                 },
                 error: function() {
@@ -78,7 +80,7 @@ function commentConfirm(msg, title,Data) {
                 }
             })
         }else{
-            swal('', '취소하였습니다.', "success");
+            swal("","댓글 작성을 취소하였습니다");
         }
 
     });
@@ -86,7 +88,7 @@ function commentConfirm(msg, title,Data) {
 
 function commentList(lookNum) {
     let look_num =lookNum;
-
+    scrollTime=false//스크롤이벤트 중복실행방지
     $.ajax({
         url: "/commentList", //요청url
         type: "get",//데이터 전달방식
@@ -124,6 +126,7 @@ function commentList(lookNum) {
                 $(".body_root").append(html); //body 마지막에 추가
             }
             num+=3; //다음3개 가져오기 위해 3더함
+            setTimeout(function(){scrollTime = true;},1000);//스크롤이벤트 1초뒤실행 중복방지위해
         },
         error: function(errorThrown) {
             alert("fail");
