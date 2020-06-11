@@ -32,8 +32,14 @@ public class CommentController {
 
     @ResponseBody //이거없으면 스프링은 반환형태를 뷰로 판단함
     @RequestMapping("/commentWrite")
-    public int commentWrite(CommentDto commentDto) {
-        return  commentService.insert(commentDto);
+    public HashMap<String,Object> commentWrite(CommentDto commentDto) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        if(commentService.insert(commentDto)==1) {
+            //댓글등록성공하면 새로고침안하고 등록한댓글 추가하기위해 댓글리스트 새로들고옴
+            map.put("commentList",commentService.list(commentDto.getFk_look_num_Look_look_num()));
+        }
+
+        return map;
     }
 
     //@ResponseBody가 붙은 메서드에서 Map을 반환하면 자동으로 Map 정보가 JSON 객체로 변환되어 전송.
@@ -42,11 +48,7 @@ public class CommentController {
     public HashMap<String, Object> commentList(@RequestParam("look_num") int look_num) {
         HashMap<String, Object> map = new HashMap<String, Object>();
 
-        try {
             map.put("commentList",commentDao.list(look_num));
-        }catch (Exception e){
-            System.out.println("배열범위 넘어감");
-        }
 
         return map;
     }

@@ -86,8 +86,8 @@
         <c:set var="viewId" value="${view.fk_userid_user_userid}"/>
 
         <div class="delete">
-            <a href="#"><img src="static/images/delete.png" alt="search"
-                             height="25" width="25" onclick="lookDelete(${view.look_num},'${viewId}')"/></a>
+            <img src="static/images/delete.png" alt="search"
+                             height="25" width="25" onclick="lookDelete(${view.look_num},'${viewId}')"/>
         </div>
 
 
@@ -177,7 +177,7 @@
                               class="comment_textarea" placeholder="댓글 내용을 입력하세요" name="comment_content"></textarea>
                 </div>
                 <div class="comment_date">
-                    <button type="button" onclick="comment()">댓글등록</button>
+                    <button class="comment_button" type="button" onclick="comment()">댓글</button>
                 </div>
             </div>
         </c:if>
@@ -190,6 +190,11 @@
                 <img src="static/images/mypicture.png" alt="other_people_imgage" height="50" width="60"/>
             </div>
             <div class="other_people_name">${dto.comment_sender_name}</div>
+            <div class="right_etc">
+                <img src="static/images/pen.png" alt="modify_img" height="25" width="25" class="right_pen"/>
+                <img src="static/images/delete.png" alt="delete_img" height="25" width="25" class="right_delete"/>
+                <img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>
+            </div>
             <div class="comment_textarea_space">
                 <textarea style="background-color:#F6F6F6 "disabled class="comment_textarea" placeholder="${dto.comment_content}"></textarea>
             </div>
@@ -198,6 +203,7 @@
             </div>
         </div>
     </c:forEach>
+
 
 </div>
 

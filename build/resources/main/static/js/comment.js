@@ -23,7 +23,7 @@ function comment() {
     if(comment_content){ //자바스크립트는 null값을 false 로 인식함
         //form태그 name인  commentForm 에 내용을 한번에 가져옴 serialize 는 form태그 내용 한번에 가져옴
         var Data = $('[name=commentForm]').serialize();
-        commentInsert(Data);
+        commentConfirm('', '댓글을 등록할까요?',Data);
     }else {
         //false null 값이니 경고문 나오기
         swal("댓글내용 입력안됨!!", "댓글내용을 입력하세요", "error")
@@ -31,19 +31,57 @@ function comment() {
 
 }
 
-function commentInsert(Data) {
-    $.ajax({
-        url:"/commentWrite",
-        type:"get", //데이터 전달방식
-        data : Data, //전송객체
-        dataType: "text",
-        success:function (result) {
 
-        },
-        error: function() {
+function commentConfirm(msg, title,Data) {
+    swal({
+        title : title,
+        text : msg,
+        type : "warning",
+        showCancelButton : true,
+        confirmButtonClass : "btn-danger",
+        confirmButtonText : "예",
+        cancelButtonText : "아니오",
+        closeOnConfirm : false,
+        closeOnCancel : true
+    }, function(isConfirm) {
+        if (isConfirm) {
+            $.ajax({
+                url:"/commentWrite",
+                type:"get", //데이터 전달방식
+                data : Data, //전송객체
+                dataType: "json",
+                success:function (result) {
+                    swal('', '댓글을 등록하였습니다.', "success");
+                    let a="";
 
+                    a+='<div class=\"look_comment\">';
+                    a+='<div class=\"other_people_img\">';
+                    a+='<img src=\"static/images/mypicture.png\" alt=\"other_people_imgage\" height=\"50\" width=\"60\"/>';
+                    a+='</div>';
+                    a+='<div class=\"other_people_name\">'+result.commentList[0].comment_sender_name+'</div>';
+                    a+='<div class="right_etc">';
+                    a+='<img src="static/images/pen.png" alt="modify_img" height="25" width="25" class="right_pen"/>';
+                    a+='<img src="static/images/delete.png" alt="delete_img" height="25" width="25" class="right_delete"/>';
+                    a+='<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
+                    a+='</div>';
+                    a+='<div class=\"comment_textarea_space\">';
+                    a+='<textarea style=\"background-color:#F6F6F6 \"disabled class=\"comment_textarea\" placeholder=\" '+result.commentList[0].comment_content+' \"></textarea>';
+                    a+='</div>';
+                    a+='<div class=\"comment_date\">'+result.commentList[0].date+'</div>';
+                    a+='</div>';
+
+                    $("form[name=commentForm]").after(a);
+
+                },
+                error: function() {
+
+                }
+            })
+        }else{
+            swal('', '취소하였습니다.', "success");
         }
-    })
+
+    });
 }
 
 function commentList(lookNum) {
@@ -72,6 +110,11 @@ function commentList(lookNum) {
                 html+='<img src=\"static/images/mypicture.png\" alt=\"other_people_imgage\" height=\"50\" width=\"60\"/>';
                 html+='</div>';
                 html+='<div class=\"other_people_name\">'+result.commentList[i].comment_sender_name+'</div>';
+                html+='<div class="right_etc">';
+                html+='<img src="static/images/pen.png" alt="modify_img" height="25" width="25" class="right_pen"/>';
+                html+='<img src="static/images/delete.png" alt="delete_img" height="25" width="25" class="right_delete"/>';
+                html+='<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
+                html+='</div>';
                 html+='<div class=\"comment_textarea_space\">';
                 html+='<textarea style=\"background-color:#F6F6F6 \"disabled class=\"comment_textarea\" placeholder=\" '+result.commentList[i].comment_content+' \"></textarea>';
                 html+='</div>';
