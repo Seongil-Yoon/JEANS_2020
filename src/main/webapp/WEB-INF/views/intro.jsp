@@ -25,7 +25,6 @@
             <h1>Back-end skills</h1>
             <div>
                 <img src="static/images/springboot.png"  class= "springboot"/>
-                <img src="static/images/jsp.png"  class= "jsp"/>
                 <img src="static/images/mybatis.png"  class= "mybatis"/>
                 <img src="static/images/mysql.png"  class= "mysql"/>
                 <img src="static/images/gradle.png"  class= "gradle"/>

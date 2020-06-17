@@ -19,7 +19,6 @@ public class MainController {
     @Autowired
     IBoardDao boardDao;
 
-
     @RequestMapping("main")
     public String main(Model model){
         //value객체를 name이름으로 추가한다 ,메인 화면에 리스트 호출

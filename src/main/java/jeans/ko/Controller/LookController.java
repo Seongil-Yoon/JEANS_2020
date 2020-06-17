@@ -64,7 +64,6 @@ public class LookController {
         String lookNum = request.getParameter("lookNum");
         String lookUserId = request.getParameter("lookUserId");
 
-
        int num = Integer.parseInt(lookNum); //String -> Int
 
        boardService.delete(num,lookUserId);

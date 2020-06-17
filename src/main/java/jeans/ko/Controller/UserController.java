@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.Map;
 
 //로그인이
@@ -61,21 +62,21 @@ public class UserController {
         //userService 가 정상적으로 작동하면 loginU
     }
 
-    @PostMapping("/loginRequest")
-    public String loginRequest(@Valid UserDto userDto,BindingResult result) {
+    @ResponseBody
+    @PostMapping("/session")
+    public HashMap<String, Object> loginRequest(UserDto userDto) {
 
+        HashMap<String, Object> map = new HashMap<String, Object>();
         String nickname= userService.userLogin(userDto);//닉네임 값을 받아오도록
 
+        httpSession.setAttribute("userid",userDto.getUserid());
+        httpSession.setAttribute("usernickname",nickname);
 
-        if(nickname!=null){//닉네임 값이 널이 아니면 여기로
-            httpSession.setAttribute("userid",userDto.getUserid());
-            httpSession.setAttribute("usernickname",nickname);
-            return "redirect:/main"; //메인 화면 가지않고 게시판 블러오기 위해 main 재요청
-        }else{
-            return "loginUser";
-        }
+        map.put("userid",httpSession.getAttribute("userid"));
+        map.put("usernickname",httpSession.getAttribute("usernickname"));
+
+        return map; //session 아이디 닉네임 넘겨주기
     }
-
 
     @RequestMapping("/logout")
     public String logout(){

@@ -23,7 +23,7 @@ function comment() {
     //name 은중복을 허용해서 사용할때 0을 꼭붙여야함
     var comment_content=document.getElementsByName("comment_content")[0].value
     if(comment_content){ //자바스크립트는 null값을 false 로 인식함
-        //form태그 name인  commentForm 에 내용을 한번에 가져옴 serialize 는 form태그 내용 한번에 가져옴
+        //form태그 name인 commentForm 에 내용을 한번에 가져옴 serialize 는 form태그 내용 한번에 가져옴
         var Data = $('[name=commentForm]').serialize();
         commentConfirm('', '댓글을 등록할까요?',Data);
     }else {
