@@ -4,6 +4,7 @@ let num=0; //4개씩 나오기 위한변수
 let mainScrollTime = true;
 
 $(document).ready(function(){
+    start(); //처음 4개 출력
     $(window).scroll(function(){   //스크롤 감지 이벤트
 
         let scroll = $(document).scrollTop(); //현재 스크롤 값
@@ -22,29 +23,25 @@ $(document).ready(function(){
 function start() {
     mainScrollTime = false;
     $.ajax({
-        url: "/lookScroll", //요청url
+        url: "/look", //요청url
+        type:"GET",
         dataType: "json", //json 으로 받기
         success: function(result) { //성공 하면 데이터를 result로 받아옴
+
             if(isEnd == true){
                 return;
             }
-            // $.each(result.boardList, function(index, vo){
-            //     alert(vo.look_num);
-            // })
 
-            num+=4;//처음화면에 에 0~3 까지 출력하기 때문에 4부터 출력함
-            
-            //4개씩 출력  4~7 8~11 12~15
+            //4개씩 출력 0~3  4~7 8~11 12~15
             for(var i=num; i<num+4; i++){
 
-                if( result.boardList[i].look_num  ==null ){
+                if( result[i].look_num  == null ){
                     isEnd = true; //더이상 가져올값이 없으면 true로 바꿔 더이상 값을 못가져오게함
                 }
 
                 let html="\n" +
-                    "<div class=\"header_space\" style=\"width: 60px\"></div>\n" +
                     "\n" +
-                    "      <a class=\"look_view_a\"  href=\"view?look_num=" + result.boardList[i].look_num + "\">\n" +
+                    "      <a class=\"look_view_a\"  href=\"view?look_num=" + result[i].look_num + "\">\n" +
                     "          <div class=\"main\">\n" +
                     "\n" +
                     "              <div claas=\"main_container\">\n" +
@@ -59,17 +56,17 @@ function start() {
                     "                              <div class=\"name\">\n" +
                     "                                  <ul class=\"look_header_ul\">\n" +
                     "                                      <li class=\"look_header_li\" style=\"width: auto\">\n" +
-                    "                                          <span class=\"user_name\" style=\"width: auto\">" + result.boardList[i].nickname + "</span>\n" +
+                    "                                          <span class=\"user_name\" style=\"width: auto\">" + result[i].nickname + "</span>\n" +
                     "                                      </li>\n" +
                     "                                      <li class=\"look_header_li\" style=\"width: auto; \"></li>\n" +
                     "                                      <li class=\"look_header_li\"\n" +
                     "                                          style=\"width: fit-content; text-align: right; float: right; font-size: 15px; font-weight: bold\">\n" +
-                    "                                          <span id=\"look_date\">" + result.boardList[i].look_date + "</span>\n" +
+                    "                                          <span id=\"look_date\">" + result[i].look_date + "</span>\n" +
                     "                                      </li>\n" +
                     "                                  </ul>\n" +
                     "\n" +
                     "                              </div>\n" +
-                    "                              <div class=\"title\" >" + result.boardList[i].title + "</div>\n" +
+                    "                              <div class=\"title\" >" + result[i].title + "</div>\n" +
                     "\n" +
                     "                              <!-- 본문-->\n" +
                     "                              <div class=\"look_img\">\n" +
@@ -80,7 +77,7 @@ function start() {
                     "\n" +
                     "                              <div class=\"look_textarea_space\">\n" +
                     "                                  <form class=\"textarea_form\" >\n" +
-                    "                                      <textarea style=\"background-color: #F6F6F6\" class = \"look_textarea\" placeholder=\"" + result.boardList[i].tag + "\"></textarea>\n" +
+                    "                                      <textarea style=\"background-color: #F6F6F6\" class = \"look_textarea\" placeholder=\"" + result[i].tag + "\"></textarea>\n" +
                     "                                  </form>\n" +
                     "                              </div>\n" +
                     "\n" +
@@ -105,7 +102,7 @@ function start() {
                     "                                  </li>\n" +
                     "                                  <li class=\"look_footer_li\">\n" +
                     "                                      <div class = \"count_number\">\n" +
-                    "                                          <span>" + result.boardList[i].count + "</span>\n" +
+                    "                                          <span>" + result[i].count + "</span>\n" +
                     "                                      </div>\n" +
                     "\n" +
                     "                              </ul>\n" +
@@ -125,6 +122,7 @@ function start() {
                 $("body").append(html);
             }
             setTimeout(function(){ mainScrollTime = true;},1000);//스크롤이벤트 1초뒤실행 중복방지위해
+            num+=4; //4개씩 차례대로 출력하게 4더함
         },
         error: function(errorThrown) {
             alert("fail");

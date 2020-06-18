@@ -78,10 +78,10 @@ public class UserController {
         return map; //session 아이디 닉네임 넘겨주기
     }
 
-    @ResponseBody
     @DeleteMapping("/session")
     public void logout(){
         //session 아이디  삭제
         httpSession.invalidate();
     }
+
 }
