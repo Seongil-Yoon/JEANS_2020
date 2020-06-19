@@ -124,8 +124,7 @@
                 <input type="email" placeholder="email" name="email" />
             </div>
             <div class="register_emailError"><form:errors path="email"/></div>
-
-
+            
             <button class="register_save" type="submit" onclick="y" value="회원가입">Save</button>
         </form:form>
 
