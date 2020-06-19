@@ -42,7 +42,8 @@ body{
   justify-content: flex-end;
 }
 
-.user_id{
+/*2020 06 18 오경택 user_id -> user_nickname 으로 바꿈*/
+.user_nickname{
   line-height: 40px;
 }
 

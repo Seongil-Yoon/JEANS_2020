@@ -15,9 +15,7 @@ import java.awt.*;
 
 @SpringBootApplication
 public class KoApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(KoApplication.class, args);
 	}
-
 }
