@@ -3,30 +3,40 @@ package jeans.ko.Controller;
 import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dto.BoardDto;
 import jeans.ko.Service.BoardService;
+import jeans.ko.Service.CommentService;
 import jeans.ko.Service.IBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+
 
 @Controller
 public class LookController {
 
     @Autowired
     HttpSession session;
-
+    @Autowired
+    CommentService commentService;
     @Autowired
     IBoardService boardService;
     @Autowired
     IBoardDao boardDao;
+
+    @ResponseBody
+    @GetMapping("/look")
+    public List<BoardDto> lookScroll(){
+        return boardDao.list();
+    }
 
     //게시판 작성페이지
     @RequestMapping("/look_write")
@@ -38,7 +48,8 @@ public class LookController {
     public String view(@RequestParam("look_num")int look_num ,Model model)
     {
         boardDao.countUpdate(look_num); //글상세보기 하면 조회수 증가
-        model.addAttribute("view",boardDao.view(look_num));
+        model.addAttribute("view",boardDao.view(look_num)); //게시글정보가져오기
+        model.addAttribute("comment",commentService.list(look_num)); //게시글에 댓글정보가져오기
         return "look_info";
     }
 
@@ -48,7 +59,6 @@ public class LookController {
     {
         String lookNum = request.getParameter("lookNum");
         String lookUserId = request.getParameter("lookUserId");
-
 
        int num = Integer.parseInt(lookNum); //String -> Int
 

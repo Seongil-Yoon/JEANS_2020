@@ -12,6 +12,7 @@
 </head>
 <body>
 
+
 <!--/*여기는 맨 위에 있는 바 부분*/ -->
 <div class="webview">
     <div class="jeans_root">
@@ -30,42 +31,27 @@
                 <a class="header_a" href="main"><img src="static/images/logo.png" alt="logo" height="30" width="71" /></a>
             </div>
 
-            <c:set var="userid" value="${sessionScope.userid}"/>
-            <c:choose>
-                <c:when test="${userid != null}">
-                    <a class="header_a" href="look_write"><div class="logo_right"> <span class="look_write">Look Write</span></div></a>
-                </c:when>
-                <c:otherwise>
-                    <a class="header_a" href="joinUser"><div class="logo_right"><span class="look_write">회원가입</span></div></a>
-                </c:otherwise>
-            </c:choose>
+            <a class="header_a" href="javascript:logo_right_click();">
+                <div class="logo_right"><span class="look_write"></span></div>
+            </a>
 
             <div class="my_info">
-                <div>
-                    <c:set var="userid" value="${sessionScope.userid}"/>
-                    <c:if test="${userid != null}">
-                        <img src="static/images/mypicture.png" alt="pitcture" height="35" width="40" />
-                    </c:if>
-                </div>
-                <span class="user_id"><c:out value="${sessionScope.usernickname}"></c:out></span>
+                <div class="my_picture"></div>
+                <span class="user_nickname"></span>
             </div>
 
             <div class="logout_left"></div>
 
-            <c:set var="userid" value="${sessionScope.userid}"/>
-            <c:choose>
-                <c:when test="${userid != null}">
-                    <a class="header_a" href="logout"><div class="logout">logout</div></a>
-                </c:when>
 
-                <c:otherwise>
-                    <a class="header_a" href="loginUser"><div class="login">login</div></a>
-                </c:otherwise>
-            </c:choose>
+            <a class="header_a" href="javascript:logout_login_click();">
+                <div class="logout_login"></div>
+            </a>
 
             <div class="logout_right"></div>
         </div>
     </div>
+    <!-- /*여기부터가 본문*/  -->
+
 
     <div>
 
@@ -117,16 +103,15 @@
             <input type="number" class="register_weightInt" placeholder="168"></input>
             <div class="register_weightKg">Kg</div>
 
-
             <div class="register_genderTitle">성별</div>
             <div class="register_genderMale">남</div>
             <div class="register_genderMaleRadio">
-                <input type="radio" name="sex" value="male"/>
+                <input type="radio" type="number" name="sex" value="1"/>
             </div>
 
             <div class="register_genderFemale">여</div>
             <div class="register_genderFemaleRadio">
-                <input type="radio" name="sex" value="female"/>
+                <input type="radio" type="number" name="sex" value="0"/>
             </div>
 
             <!--
@@ -147,5 +132,12 @@
     </div>
 </div>
 
+<script
+        src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+        crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script src="/static/js/id_nickname_session.js"></script>
 </body>
 </html>

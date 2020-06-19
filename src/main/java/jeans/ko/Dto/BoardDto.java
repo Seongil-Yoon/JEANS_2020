@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import javax.validation.constraints.*;
 import java.util.Date;
 
+
 @Data
 @Component
 public class BoardDto {
@@ -23,7 +24,7 @@ public class BoardDto {
     private String season;
     @NotBlank(message = " 태그를 입력하세요")
     private String tag;
-    @Min(value = 1,message = " 공개 비공개를 선택하세요")
+    @Min(value = 1, message = " 공개 비공개를 선택하세요")
     private int look_public; //공개설정 1공개 2비공개
     private String fk_userid_user_userid;  //회원 id
     @NotBlank(message = " 메모를 입력하세요")
@@ -33,4 +34,5 @@ public class BoardDto {
     private Integer comment_count; //댓글수
     private String picture;  //여기도 validator 사용하게 수정해야함
     private String nickname;
+
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jeans.ko.Dao.ICommentDao">
+
+    <insert id="insert" >
+        insert into comment
+        values
+        (
+        #{comment_id},#{fk_look_num_Look_look_num},#{parent_comment_id},#{comment_content}
+        ,#{comment_sender_name},#{comment_sender_id},CURDATE()
+        )
+    </insert>
+
+    <select id="list" resultType="jeans.ko.Dto.CommentDto">
+        select * from comment where fk_look_num_Look_look_num = #{look_num} order by comment_id desc;
+    </select>
+
+</mapper>

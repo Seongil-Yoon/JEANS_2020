@@ -2,6 +2,7 @@ package jeans.ko.Service;
 
 import jeans.ko.Dao.IUserDao;
 import jeans.ko.Dto.UserDto;
+import org.apache.jasper.compiler.JspUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -44,13 +45,16 @@ public class UserService implements IUserService {
     }
 
     public String userLogin(UserDto userDto){
-        
+        String sqlPassword=null;
         String id=userDto.getUserid();
         String password=userDto.getPassword();
         String nickname=null;
 
-       String sqlPassword=userDao.userLogin(userDto);
-       System.out.println("id password" + id+ password);
+        sqlPassword=userDao.userLogin(userDto);
+
+        if(sqlPassword==null) {
+            return null;   //회원가입된 아이디가 없으므로 null 값줌
+        }
 
        if(sqlPassword.equals(password)){
            System.out.println("로그인성공");
