@@ -27,6 +27,7 @@ function start() {
         type:"GET",
         dataType: "json", //json 으로 받기
         success: function(result) { //성공 하면 데이터를 result로 받아옴
+            
 
             if(isEnd == true){
                 return;
