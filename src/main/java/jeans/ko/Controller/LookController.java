@@ -32,25 +32,37 @@ public class LookController {
     @Autowired
     IBoardDao boardDao;
 
-    @ResponseBody
-    @GetMapping("/look")
-    public List<BoardDto> lookScroll(){
-        return boardDao.list();
-    }
-
-    //게시판 작성페이지
+    //게시판 작성페이지 이동
     @RequestMapping("/look_write")
-    public String writeForm()
+    public String look_write()
     { return "look_write"; }
 
-    //게시판 상세보기
-    @RequestMapping("/view")
+    //게시판 상세보기 model and view 웹용
+    @RequestMapping("/look")
     public String view(@RequestParam("look_num")int look_num ,Model model)
     {
         boardDao.countUpdate(look_num); //글상세보기 하면 조회수 증가
         model.addAttribute("view",boardDao.view(look_num)); //게시글정보가져오기
         model.addAttribute("comment",commentService.list(look_num)); //게시글에 댓글정보가져오기
         return "look_info";
+    }
+
+    @ResponseBody
+    @GetMapping("/looks")  //룩 전체 리스트
+    public List<BoardDto> searchAllLook(){
+        return boardDao.list();
+    }
+
+    @ResponseBody
+    @GetMapping("/looks/{id}") //안드로이드에 값주게 json 데이터만 넘기는용
+    public  HashMap<String,Object> searchLook(@PathVariable int id)
+    {   //looks/1   looks/3  -->String으로 오는데 int id 해서 int 로 변환해서 받음
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        boardDao.countUpdate(id); //글상세보기 하면 조회수 증가
+        map.put("look", boardDao.view(id)); //게시글 가져오기
+        map.put("lookCommentList", commentService.list(id)); //댓글정보 가져오기
+
+        return map;
     }
 
     //삭제
