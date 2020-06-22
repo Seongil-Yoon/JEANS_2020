@@ -93,27 +93,27 @@ public class LookController {
     @PostMapping("/boardWriteRequest") //커멘드 객체로 값받아옴 BindingResult 는 오류값 출력
     public String boardWrite(@Valid BoardDto boardDto, BindingResult result) {
 
-        if(result.hasErrors()) {
-            if(result.getFieldError("title")!=null)
-                System.out.println(result.getFieldError("title").getDefaultMessage());
-
-            if(result.getFieldError("season")!=null)
-                System.out.println(result.getFieldError("season").getDefaultMessage());
-
-            if(result.getFieldError("look_public")!=null) {
-                System.out.println(result.getFieldError("look_public").getDefaultMessage());
-            }
-            if(result.getFieldError("memo")!=null)
-                System.out.println(result.getFieldError("memo").getDefaultMessage());
-
-            if(result.getFieldError("tag")!=null)
-                System.out.println(result.getFieldError("tag").getDefaultMessage());
-
-            //입력안된오류전달
-            session.setAttribute("error","입력안된사항이 있습니다");
-
-            return "look_write";  //다시작성하기
-        }
+//        if(result.hasErrors()) {
+//            if(result.getFieldError("title")!=null)
+//                System.out.println(result.getFieldError("title").getDefaultMessage());
+//
+//            if(result.getFieldError("season")!=null)
+//                System.out.println(result.getFieldError("season").getDefaultMessage());
+//
+//            if(result.getFieldError("look_public")!=null) {
+//                System.out.println(result.getFieldError("look_public").getDefaultMessage());
+//            }
+//            if(result.getFieldError("memo")!=null)
+//                System.out.println(result.getFieldError("memo").getDefaultMessage());
+//
+//            if(result.getFieldError("tag")!=null)
+//                System.out.println(result.getFieldError("tag").getDefaultMessage());
+//
+//            //입력안된오류전달
+//            session.setAttribute("error","입력안된사항이 있습니다");
+//
+//            return "look_write";  //다시작성하기
+//        }
 
         boardService.insert(boardDto);
 
