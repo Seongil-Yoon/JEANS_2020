@@ -19,7 +19,7 @@ public interface IBoardDao {
     //게시글 상세보기
     public BoardDto view(@Param("look_num") int look_num) ;
     //게시글 삭제
-    public void delete(@Param("look_num") int look_num) ;
+    public int delete(@Param("look_num") int look_num) ;
     //게시글 조회수 증가
     public void countUpdate(@Param("look_num") int look_num) ;
 

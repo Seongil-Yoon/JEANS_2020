@@ -11,7 +11,6 @@ $(document).ready(function(){
         let documentHeight = $(document).height();//문서 전체높이
         let windowHeight= window.innerHeight; //윈도우 높이
         //윈도우 높이에 스크롤값을 계속더해서 문서 전체 길이에서 100 px 앞에 스크롤이 왔을때 데이터 불러옴
-        console.log("window height"+windowHeight);
         if((windowHeight + scroll) >= documentHeight-100){
             if(mainScrollTime==true){
                 start();
@@ -23,12 +22,12 @@ $(document).ready(function(){
 
 function start() {
     mainScrollTime = false;
+
     $.ajax({
         url: "/looks", //요청url
         type:"GET",
         dataType: "json", //json 으로 받기
         success: function(result) { //성공 하면 데이터를 result로 받아옴
-
 
             if(isEnd == true){
                 return;
@@ -123,7 +122,7 @@ function start() {
                     "      </div>"
                 $("body").append(html);
             }
-            setTimeout(function(){ mainScrollTime = true;},500);//스크롤이벤트 0.5초뒤실행 중복방지위해
+            setTimeout(function(){ mainScrollTime = true;},200);//스크롤이벤트 0.2초뒤실행 중복방지위해
             num+=4; //4개씩 차례대로 출력하게 4더함
         },
         error: function(errorThrown) {
