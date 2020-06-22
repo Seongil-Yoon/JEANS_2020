@@ -203,6 +203,12 @@
 <script src="/static/js/look_info.js"></script>
 <script type="text/javascript" src="/static/js/comment.js"></script>
 <script>commentReady(${view.look_num})</script>
-
+<%--서버세션이 종료되어 자바스크립트 session 종료--%>
+<c:set var="userid" value="${sessionScope.userid}"/>
+<c:if test="${userid == null}">
+    <script>sessionRemove()</script>
+</c:if>
+<%--header 부분 초기화--%>
+<script>headerReset()</script>
 </body>
 </html>
