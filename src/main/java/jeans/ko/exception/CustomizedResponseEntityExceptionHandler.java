@@ -21,20 +21,20 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 //ResponseEntityExceptionHandler @ExceptionHandler내부  예외를 처리 하는 메소드를 제공
 
     //모든오류가 발생되면 얘가 실행. 얘는 모든 일반적인 오류를 담당
-    //서버오류 status 보내줌
+    //서버오류 status 보내줌   500 번에러 보내줌
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> handelAllExceptions(Exception ex, WebRequest request) {
         ExceptionResponse exceptionResponse=new ExceptionResponse(new Date(),ex.getMessage(),request.getDescription(false));
         return new ResponseEntity(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-    //LookNotFoundException 오류 처리하는곳
+    //LookNotFoundException 오류 처리하는곳 404 에러 보내줌
     @ExceptionHandler(NotFoundException.class)
     public final ResponseEntity<Object>handleNotFoundException(Exception ex,WebRequest request){
         ExceptionResponse exceptionResponse=new ExceptionResponse(new Date(),ex.getMessage(),request.getDescription(false));
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 
-    //UnauthorizedException 오류 처리하는곳
+    //UnauthorizedException 오류 처리하는곳  401 에러 보내줌
     @ExceptionHandler(UnauthorizedException.class)
     public final ResponseEntity<Object>UnauthorizedException(Exception ex,WebRequest request){
         ExceptionResponse exceptionResponse=new ExceptionResponse(new Date(),ex.getMessage(),request.getDescription(false));

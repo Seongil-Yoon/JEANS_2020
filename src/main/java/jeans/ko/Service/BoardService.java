@@ -18,7 +18,7 @@ public class BoardService implements IBoardService {
     @Autowired
     HttpSession httpSession;
 
-    public void insert(BoardDto boardDto) {
+    public int insert(BoardDto boardDto) {
 
         //시간을 내가 원하는 형식으로 출력
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일");
@@ -31,7 +31,7 @@ public class BoardService implements IBoardService {
         boardDto.setComment_count(2);//댓글수 수정해야함
         boardDto.setPicture("사진"); //사진 수정해야함
 
-        boardDao.insert(boardDto);
+      return   boardDao.insert(boardDto);
     }
 
     @Override

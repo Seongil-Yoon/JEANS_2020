@@ -51,7 +51,7 @@
         </div>
     </div>
     <!-- /*여기부터가 본문*/  -->
-    <form name="writeFrom">
+    <form name="writeForm">
         <div class="body_root"> <!--/* 전체 바탕 아무 것도 안함*/ -->
             <%--@elvariable id="boardDto" type="jeans"--%>
 
@@ -159,9 +159,8 @@
         crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script src="/static/js/ex1.js"></script>
 <script src="/static/js/id_nickname_session.js"></script>
-<script src="ex1.js"></script>
+
 <%--서버세션이 종료되어 자바스크립트 session 종료--%>
 <c:set var="userid" value="${sessionScope.userid}"/>
 <c:if test="${userid == null}">
