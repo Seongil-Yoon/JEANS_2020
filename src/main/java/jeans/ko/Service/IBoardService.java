@@ -8,8 +8,8 @@ import jeans.ko.Dto.BoardDto;
 
 public interface IBoardService {
 
-    public void insert(BoardDto boardDto) ;
+    public int insert(BoardDto boardDto) ;
 
-    public int delete(int look_num ,String look_viewUserId) ;
+    public int delete(int look_num) ;
 
 }

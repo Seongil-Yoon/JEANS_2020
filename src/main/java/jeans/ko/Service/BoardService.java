@@ -18,7 +18,7 @@ public class BoardService implements IBoardService {
     @Autowired
     HttpSession httpSession;
 
-    public void insert(BoardDto boardDto) {
+    public int insert(BoardDto boardDto) {
 
         //시간을 내가 원하는 형식으로 출력
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일");
@@ -31,22 +31,12 @@ public class BoardService implements IBoardService {
         boardDto.setComment_count(2);//댓글수 수정해야함
         boardDto.setPicture("사진"); //사진 수정해야함
 
-        boardDao.insert(boardDto);
+      return   boardDao.insert(boardDto);
     }
 
     @Override
-    public int delete(int look_num,String look_viewUserId) {
-         //url 접근하여 권한없는데 삭제하는거 방지용 로그인한 아이디와 작성자 아이디가 같아야 삭제가능
-        if(httpSession.getAttribute("userid")==null){
-            return 0; //로그인 하지 않음
-        }
-        if(httpSession.getAttribute("userid").equals(look_viewUserId)){
-            //로그인 아이디랑 작성자 아이디가 같아서 삭제성공
-            boardDao.delete(look_num);
-            return 1;
-        }
-
-        return 2;//유저 아이디랑 작성자 아이디 다름 삭제 실패
+    public int delete(int look_num) {
+       return    boardDao.delete(look_num);
     }
 
 }

@@ -24,6 +24,7 @@
         <div class="section s0" >
             <h1>Back-end skills</h1>
             <div>
+                <img src="static/images/jsp.png"  class= "html"/>
                 <img src="static/images/springboot.png"  class= "springboot"/>
                 <img src="static/images/mybatis.png"  class= "mybatis"/>
                 <img src="static/images/mysql.png"  class= "mysql"/>
@@ -62,7 +63,7 @@
             <h2  style="margin-right: 50%" >J e a n s</h2>
             <h3  style="margin-right: 40% ">Share your style</h3>
             <div style="padding: 150px"></div>
-        </p>
+        </div>
     </div>
 
     <script>

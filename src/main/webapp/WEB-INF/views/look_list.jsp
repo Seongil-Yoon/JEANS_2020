@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="static/css/jeans_header_.css"/>
 </head>
 <body>
+
 <div class="webview">
     <!--/*여기는 맨 위에 있는 바 부분*/ -->
     <div class="jeans_root">
@@ -65,6 +66,14 @@
 <script src="/static/js/backCashDelete.js"></script>
 <script src="/static/js/mainScroll.js" charset="utf-8"></script>
 <script src="/static/js/id_nickname_session.js"></script>
+<%--서버세션이 종료되어 자바스크립트 session 종료--%>
+<c:set var="userid" value="${sessionScope.userid}"/>
+<c:if test="${userid == null}">
+    <script>sessionRemove()</script>
+</c:if>
+<%--header 부분 초기화--%>
+<script>headerReset()</script>
+
 </body>
 
 </html>

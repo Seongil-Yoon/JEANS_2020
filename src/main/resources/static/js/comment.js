@@ -9,8 +9,8 @@ function commentReady(lookNum){
             let scroll = $(document).scrollTop(); //현재 스크롤 값
             let documentHeight = $(document).height();//문서 전체높이
             let windowHeight= window.innerHeight; //윈도우 높이
-            //윈도우 높이에 스크롤값을 계속더해서 문서 전체 길이에서 30 px 앞에 스크롤이 왔을때 데이터 불러옴
-            if((windowHeight + scroll) >= documentHeight-20){
+            //윈도우 높이에 스크롤값을 계속더해서 문서 전체 길이에서 100 px 앞에 스크롤이 왔을때 데이터 불러옴
+            if((windowHeight + scroll) >= documentHeight-100){
                 if(scrollTime==true){
                     commentList(lookNum);
                 }
@@ -126,7 +126,7 @@ function commentList(lookNum) {
                 $(".body_root").append(html); //body 마지막에 추가
             }
             num+=3; //다음3개 가져오기 위해 3더함
-            setTimeout(function(){scrollTime = true;},1000);//스크롤이벤트 1초뒤실행 중복방지위해
+            setTimeout(function(){scrollTime = true;},200);//스크롤이벤트 0.2초뒤실행 중복방지위해
         },
         error: function(errorThrown) {
             alert("fail");

@@ -22,12 +22,12 @@ $(document).ready(function(){
 
 function start() {
     mainScrollTime = false;
+
     $.ajax({
-        url: "/look", //요청url
+        url: "/looks", //요청url
         type:"GET",
         dataType: "json", //json 으로 받기
         success: function(result) { //성공 하면 데이터를 result로 받아옴
-
 
             if(isEnd == true){
                 return;
@@ -42,7 +42,7 @@ function start() {
 
                 let html="\n" +
                     "\n" +
-                    "      <a class=\"look_view_a\"  href=\"view?look_num=" + result[i].look_num + "\">\n" +
+                    "      <a class=\"look_view_a\"  href=\"look?look_num="+result[i].look_num + "\">\n" +
                     "          <div class=\"main\">\n" +
                     "\n" +
                     "              <div claas=\"main_container\">\n" +
@@ -122,7 +122,7 @@ function start() {
                     "      </div>"
                 $("body").append(html);
             }
-            setTimeout(function(){ mainScrollTime = true;},1000);//스크롤이벤트 1초뒤실행 중복방지위해
+            setTimeout(function(){ mainScrollTime = true;},200);//스크롤이벤트 0.2초뒤실행 중복방지위해
             num+=4; //4개씩 차례대로 출력하게 4더함
         },
         error: function(errorThrown) {
