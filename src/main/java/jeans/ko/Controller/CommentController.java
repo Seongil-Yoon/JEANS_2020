@@ -3,23 +3,30 @@ package jeans.ko.Controller;
 
 import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dao.ICommentDao;
+import jeans.ko.Dto.BoardDto;
 import jeans.ko.Dto.CommentDto;
 import jeans.ko.Service.IBoardService;
 import jeans.ko.Service.ICommentService;
+import jeans.ko.exception.NotFoundException;
+import jeans.ko.exception.UnauthorizedException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 @Controller
 public class CommentController {
+    @Autowired
+    HttpSession session;
 
+    @Autowired
+    IBoardDao boardDao;
 
     @Autowired
     ICommentService commentService;
@@ -30,28 +37,48 @@ public class CommentController {
     @Autowired
     ICommentDao commentDao;
 
+    @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody //이거없으면 스프링은 반환형태를 뷰로 판단함
-    @RequestMapping("/commentWrite")
-    public HashMap<String,Object> commentWrite(CommentDto commentDto) {
-        HashMap<String, Object> map = new HashMap<String, Object>();
-        if(commentService.insert(commentDto)==1) {
-            //댓글등록성공하면 새로고침안하고 등록한댓글 추가하기위해 댓글리스트 새로들고옴
-            map.put("commentList",commentService.list(commentDto.getFk_look_num_Look_look_num()));
+    @PostMapping("/look_comment")
+    public CommentDto commentWrite(CommentDto commentDto) {
+
+        //로그인 해야 댓글 작성가능
+        if(session.getAttribute("userid")!=null){
+            commentService.insert(commentDto);
+            //selectKey 해서 새로 등록한 댓글 기본키 값으로 새로등록된 댓글 가져오기
+            return commentService.comment(commentDto.getComment_id());
+        }else {
+            //권한없음 오류
+            throw new UnauthorizedException(String.format("unauthorized you"));
         }
 
-        return map;
     }
 
-    //@ResponseBody가 붙은 메서드에서 Map을 반환하면 자동으로 Map 정보가 JSON 객체로 변환되어 전송.
     @ResponseBody
-    @RequestMapping("/commentList")
-    public HashMap<String, Object> commentList(@RequestParam("look_num") int look_num) {
-        HashMap<String, Object> map = new HashMap<String, Object>();
+    @GetMapping ("/look_comment/{comment_id}")
+    public CommentDto comment(@PathVariable int comment_id) {
 
-            map.put("commentList",commentDao.list(look_num));
+        CommentDto commentDto=commentService.comment(comment_id);
 
-        return map;
+        if(commentDto==null){
+            //찾는 댓글이 없으면 not found 404 에러
+            throw new NotFoundException(String.format("ID[%s] not found",comment_id));
+        }else {
+            return commentDto;
+        }
+
     }
 
+    @ResponseBody
+    @GetMapping("/look_comment_All/{look_num}")
+    public List<CommentDto> commentList(@PathVariable int look_num) {
+
+        if(boardDao.view(look_num)==null){
+            //게시글이 없으면 not found 에러
+            throw new NotFoundException(String.format("ID[%s] not found",look_num));
+        }
+        //게시판에 댓글 리스트를 전달
+       return commentDao.list(look_num);
+    }
 
 }

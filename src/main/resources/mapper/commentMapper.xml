@@ -11,10 +11,18 @@
         #{comment_id},#{fk_look_num_Look_look_num},#{parent_comment_id},#{comment_content}
         ,#{comment_sender_name},#{comment_sender_id},CURDATE()
         )
+        <selectKey resultType="java.lang.Integer" keyProperty="comment_id" order="AFTER">
+            <!--return 값은 dto 객체로 넘어간다 get메소드로 값을 갖고와야됨 -->
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
     <select id="list" resultType="jeans.ko.Dto.CommentDto">
         select * from comment where fk_look_num_Look_look_num = #{look_num} order by comment_id desc;
+    </select>
+
+    <select id="comment" resultType="jeans.ko.Dto.CommentDto">
+        select * from comment where comment_id=#{comment_id};
     </select>
 
 </mapper>

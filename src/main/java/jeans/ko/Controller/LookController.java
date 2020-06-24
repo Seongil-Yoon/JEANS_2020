@@ -99,7 +99,7 @@ public class LookController {
     //룩게시판 작성
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/looks") //커멘드 객체로 값받아옴 BindingResult 는 오류값 출력
+    @PostMapping("/looks")
     public BoardDto boardWrite(BoardDto boardDto) {
         if(session.getAttribute("userid")==null){
             //서버로 바로접근하는 경우 아이디값 없으면 클라이언트 권한없음 오류보냄
