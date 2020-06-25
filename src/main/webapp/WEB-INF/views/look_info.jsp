@@ -69,9 +69,9 @@
 
         <c:set var="viewId" value="${view.fk_userid_user_userid}"/>
 
-        <div class="delete">
-            <img src="static/images/delete.png" alt="search"
-                 height="25" width="25" onclick="lookDelete(${view.look_num},'${viewId}')"/>
+        <div class = "delete">
+            <img src="static/images/pen.png" alt="search" height="25" width="25" />
+            <img src="static/images/delete.png" alt="search" height="25" width="25" onclick="lookDelete(${view.look_num},'${viewId}')"/>
         </div>
 
 

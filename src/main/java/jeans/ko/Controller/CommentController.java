@@ -70,7 +70,7 @@ public class CommentController {
     }
 
     @ResponseBody
-    @GetMapping("/look_comment_All/{look_num}")
+    @GetMapping("/look_comment_all/{look_num}")
     public List<CommentDto> commentList(@PathVariable int look_num) {
 
         if(boardDao.view(look_num)==null){
@@ -79,6 +79,25 @@ public class CommentController {
         }
         //게시판에 댓글 리스트를 전달
        return commentDao.list(look_num);
+    }
+
+    @ResponseBody
+    @DeleteMapping("look_comment/{comment_id}")
+    public void deleteLookComment(@PathVariable int comment_id){
+        //삭제할 댓글이 있는지 확인
+        CommentDto commentDto=commentService.comment(comment_id);
+
+        if(commentDto==null){
+            //찾는 댓글이 없으면 not found 404 에러
+            throw new NotFoundException(String.format("ID[%s] not found",comment_id));
+        }
+        if(commentDto.getComment_sender_id().equals(session.getAttribute("userid"))){
+            commentService.delete(comment_id);
+        }else {
+            //댓글 작성자 아이디와 로그인한 아이디가 다를 경우 권한없음오류
+            throw new UnauthorizedException("unauthorized you");
+        }
+
     }
 
 }

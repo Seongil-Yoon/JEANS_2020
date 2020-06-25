@@ -57,12 +57,14 @@ function commentConfirm(msg, title,Data) {
                     if(jqxHR.status==201){
                         swal('', '댓글을 등록하였습니다.', "success");
                         let a="";
+
                         a+='<div class=\"look_comment\">';
                         a+='<div class=\"other_people_img\">';
                         a+='<img src=\"static/images/mypicture.png\" alt=\"other_people_imgage\" height=\"50\" width=\"60\"/>';
                         a+='</div>';
                         a+='<div class=\"other_people_name\">'+result.comment_sender_name+'</div>';
                         a+='<div class="right_etc">';
+                        a+='<input class=\"comment_id\" value="'+result.comment_id+'" type="hidden" />';
                         a+='<img src="static/images/pen.png" alt="modify_img" height="25" width="25" class="right_pen"/>';
                         a+='<img src="static/images/delete.png" alt="delete_img" height="25" width="25" class="right_delete"/>';
                         a+='<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
@@ -70,6 +72,7 @@ function commentConfirm(msg, title,Data) {
                         a+='<div class=\"comment_textarea_space\">';
                         a+='<textarea style=\"background-color:#F6F6F6 \"disabled class=\"comment_textarea\" placeholder=\" '+result.comment_content+' \"></textarea>';
                         a+='</div>';
+                        a+='<div class="re_comment"> 답글 </div>';
                         a+='<div class=\"comment_date\">'+result.date+'</div>';
                         a+='</div>';
 
@@ -99,7 +102,7 @@ function commentList(lookNum) {
     let look_num =lookNum;
     scrollTime=false//스크롤이벤트 중복실행방지
     $.ajax({
-        url: "/look_comment_All/"+look_num, //요청url
+        url: "/look_comment_all/"+look_num, //요청url
         type: "get",//데이터 전달방식
         dataType: "json", //json 으로 받기
         success:function (result) {
@@ -110,21 +113,24 @@ function commentList(lookNum) {
                    //더이상 가져올 값이 없으므로 true 로 바꿔줌
                     isEnd=true;
                 }
-                html+='<div class=\"look_comment\">';
+                html+='<div class=\"look_comment\" >';
                 html+='<div class=\"other_people_img\">';
                 html+='<img src=\"static/images/mypicture.png\" alt=\"other_people_imgage\" height=\"50\" width=\"60\"/>';
                 html+='</div>';
                 html+='<div class=\"other_people_name\">'+result[i].comment_sender_name+'</div>';
                 html+='<div class="right_etc">';
+                html+='<input class=\"comment_id\" value="'+result[i].comment_id+'" type="hidden"/>';
                 html+='<img src="static/images/pen.png" alt="modify_img" height="25" width="25" class="right_pen"/>';
-                html+='<img src="static/images/delete.png" alt="delete_img" height="25" width="25" class="right_delete"/>';
+                html+='<img src="static/images/delete.png" alt="delete_img" height="25" width="25" class="right_delete" />';
                 html+='<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
                 html+='</div>';
                 html+='<div class=\"comment_textarea_space\">';
                 html+='<textarea style=\"background-color:#F6F6F6 \"disabled class=\"comment_textarea\" placeholder=\" '+result[i].comment_content+' \"></textarea>';
                 html+='</div>';
+                html+='<div class="re_comment"> 답글 </div>';
                 html+='<div class=\"comment_date\">'+result[i].date+'</div>';
                 html+='</div>';
+
 
                 $(".body_root").append(html); //body 마지막에 추가
             }
@@ -138,6 +144,55 @@ function commentList(lookNum) {
         }
     })
 }
+
+$(document).on("click",".right_delete",function(event) {
+    // 가져온 이벤트 객체에 부모태그 .right_etc 에 자식객체 input에 value 값 comment_id 가져오기
+    let comment_id =$(event.target).parents(".right_etc").children('.comment_id').val();
+
+    if(sessionStorage.getItem("userid")==null){
+        //로그인 안할경우 로그인 해라
+        swal('로그인 먼저하세요','','error');
+    }else{
+        swal({
+            title : "댓글을 삭제할까요?",
+            text : "",
+            type : "warning",
+            showCancelButton : true,
+            confirmButtonClass : "btn-danger",
+            confirmButtonText : "예",
+            cancelButtonText : "아니오",
+            closeOnConfirm : false,
+            closeOnCancel : false
+        }, function(isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url:"/look_comment/"+comment_id,
+                    type:"DELETE", //데이터 전달방식
+                    success:function () {
+                        //삭제 이미지 부모객체 look_comment 화면에서 지우기
+                        $(event.target).parents(".look_comment").remove();
+                        swal('', '댓글을 삭제하였습니다.', "success");
+                    },
+                    error: function(error) {
+                        //서버오류 500  권한없음 401  찾는내용없음 400
+                        if(error.status==401){
+                            swal('접근 권한이 없습니다','' ,'error');
+                        }else if(error.status==500){
+                            swal('서버 오류 관리자에게 문의 하세요','' ,'error');
+                        }else if(error.status==400){
+                            swal('삭제할 댓글이 없습니다','' ,'error');
+                        }
+                    }
+                })
+            }else{
+                swal("","댓글 작성을 취소하였습니다");
+            }
+
+        });
+    }
+
+});
+
 
 
 

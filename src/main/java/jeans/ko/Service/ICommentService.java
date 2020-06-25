@@ -13,4 +13,6 @@ public interface ICommentService {
 
     public List<CommentDto> list(int look_num);
 
+    public int delete (int comment_id);
+
 }

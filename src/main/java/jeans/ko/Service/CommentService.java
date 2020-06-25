@@ -32,4 +32,9 @@ public class CommentService implements ICommentService {
         return commentDao.list(look_num);
     }
 
+    @Override
+    public int delete(int comment_id) {
+        return commentDao.delete(comment_id);
+    }
+
 }
