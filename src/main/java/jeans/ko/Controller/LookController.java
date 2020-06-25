@@ -105,7 +105,7 @@ public class LookController {
             //서버로 바로접근하는 경우 아이디값 없으면 클라이언트 권한없음 오류보냄
             throw new UnauthorizedException(String.format("unauthorized you"));
         }
-        //게시글등록
+        //게 시글등록
         boardService.insert(boardDto);
         //selectKey로 등록된 게시글 가져온 기본키로 등록된 게시글 정보보내줌 새롭게 추가되 댓글이없으므로 게시글만넘김
         return boardDao.view(boardDto.getLook_num());
