@@ -2,6 +2,28 @@ let isEnd=false; //더이상 가져올값이 없으면 중지하기위한 변수
 let num=0; //댓글 세개씩 나오기 위한변수
 let scrollTime = true;
 
+//html 에 화면에 뿌릴때사용
+function commentHTML(result,html) {
+
+    html+='<div class=\"other_people_img\">';
+    html+='<img src=\"static/images/mypicture.png\" alt=\"other_people_imgage\" height=\"50\" width=\"60\"/>';
+    html+='</div>';
+    html+='<div class=\"other_people_name\">'+result.comment_sender_name+'</div>';
+    html+='<div class="right_etc">';
+    html+='<input class=\"comment_id\" value="'+result.comment_id+'" type="hidden" />';
+    html+='<img src="static/images/pen.png" alt="modify_img" height="25" width="25" class="right_pen"/>';
+    html+='<img src="static/images/delete.png" alt="delete_img" height="25" width="25" class="right_delete"/>';
+    html+='<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
+    html+='</div>';
+    html+='<div class=\"comment_textarea_space\">';
+    html+='<textarea style=\"background-color:#F6F6F6 \"disabled class=\"comment_textarea\" placeholder=\"'+result.comment_content+'\"></textarea>';
+    html+='</div>';
+    html+='<div class="re_comment"> 답글 </div>';
+    html+='<div class=\"comment_date\">'+result.date+'</div>';
+
+    return html;
+}
+
 function commentReady(lookNum){
     var lookNum=lookNum;
         commentList(lookNum); //스크롤 전 처음에 3개 댓글 출력
@@ -33,7 +55,7 @@ function comment() {
 
 }
 
-
+//댓글 등록후 댓글 바로위에 등록함수
 function commentConfirm(msg, title,Data) {
     swal({
         title : title,
@@ -56,27 +78,14 @@ function commentConfirm(msg, title,Data) {
                    //result 리턴값 textStatus
                     if(jqxHR.status==201){
                         swal('', '댓글을 등록하였습니다.', "success");
-                        let a="";
+                        let html="";
+                        //여기서 애만 look_comment 추가하는이유는 수정은 look_comment 부모밑에 붙여서 이태그를 안붙이지만
+                        //여기는 form태그 밑에 붙여서 look_comment 를 html 에 붙여야함
+                        html+='<div class=\"look_comment\">';
+                        html=commentHTML(result,html);
+                        html+='</div>';
 
-                        a+='<div class=\"look_comment\">';
-                        a+='<div class=\"other_people_img\">';
-                        a+='<img src=\"static/images/mypicture.png\" alt=\"other_people_imgage\" height=\"50\" width=\"60\"/>';
-                        a+='</div>';
-                        a+='<div class=\"other_people_name\">'+result.comment_sender_name+'</div>';
-                        a+='<div class="right_etc">';
-                        a+='<input class=\"comment_id\" value="'+result.comment_id+'" type="hidden" />';
-                        a+='<img src="static/images/pen.png" alt="modify_img" height="25" width="25" class="right_pen"/>';
-                        a+='<img src="static/images/delete.png" alt="delete_img" height="25" width="25" class="right_delete"/>';
-                        a+='<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
-                        a+='</div>';
-                        a+='<div class=\"comment_textarea_space\">';
-                        a+='<textarea style=\"background-color:#F6F6F6 \"disabled class=\"comment_textarea\" placeholder=\" '+result.comment_content+' \"></textarea>';
-                        a+='</div>';
-                        a+='<div class="re_comment"> 답글 </div>';
-                        a+='<div class=\"comment_date\">'+result.date+'</div>';
-                        a+='</div>';
-
-                        $("form[name=commentForm]").after(a); //form태그 name이commentForm 인거 바로밑에 추가하기
+                        $("form[name=commentForm]").after(html); //form태그 name이commentForm 인거 바로밑에 추가하기
                     }
                 },
                 error: function(error) {
@@ -94,7 +103,7 @@ function commentConfirm(msg, title,Data) {
 
     });
 }
-
+//게시글에 댓글목록 출력 함수
 function commentList(lookNum) {
     if(isEnd == true) { //가져올값으 없으므로 리턴
         return;
@@ -113,6 +122,7 @@ function commentList(lookNum) {
                    //더이상 가져올 값이 없으므로 true 로 바꿔줌
                     isEnd=true;
                 }
+
                 html+='<div class=\"look_comment\" >';
                 html+='<div class=\"other_people_img\">';
                 html+='<img src=\"static/images/mypicture.png\" alt=\"other_people_imgage\" height=\"50\" width=\"60\"/>';
@@ -125,12 +135,11 @@ function commentList(lookNum) {
                 html+='<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
                 html+='</div>';
                 html+='<div class=\"comment_textarea_space\">';
-                html+='<textarea style=\"background-color:#F6F6F6 \"disabled class=\"comment_textarea\" placeholder=\" '+result[i].comment_content+' \"></textarea>';
+                html+='<textarea style=\"background-color:#F6F6F6 \"disabled class=\"comment_textarea\" placeholder=\"'+result[i].comment_content+'\"></textarea>';
                 html+='</div>';
                 html+='<div class="re_comment"> 답글 </div>';
                 html+='<div class=\"comment_date\">'+result[i].date+'</div>';
                 html+='</div>';
-
 
                 $(".body_root").append(html); //body 마지막에 추가
             }
@@ -144,7 +153,7 @@ function commentList(lookNum) {
         }
     })
 }
-
+//댓글 삭제 이벤트
 $(document).on("click",".right_delete",function(event) {
     // 가져온 이벤트 객체에 부모태그 .right_etc 에 자식객체 input에 value 값 comment_id 가져오기
     let comment_id =$(event.target).parents(".right_etc").children('.comment_id').val();
@@ -176,23 +185,110 @@ $(document).on("click",".right_delete",function(event) {
                     error: function(error) {
                         //서버오류 500  권한없음 401  찾는내용없음 400
                         if(error.status==401){
-                            swal('접근 권한이 없습니다','' ,'error');
+                            swal('삭제 권한이 없습니다','' ,'error');
                         }else if(error.status==500){
                             swal('서버 오류 관리자에게 문의 하세요','' ,'error');
-                        }else if(error.status==400){
+                        }else if(error.status==404){
                             swal('삭제할 댓글이 없습니다','' ,'error');
                         }
                     }
                 })
             }else{
-                swal("","댓글 작성을 취소하였습니다");
+                swal("","댓글 삭제를 취소하였습니다");
             }
 
         });
     }
 
 });
+//댓글 수정이벤트
+$(document).on("click",".right_pen",function(event) {
+    if(sessionStorage.getItem("userid")==null){
+        //로그인 안한 사람 차단
+        swal("로그인 먼저 하세요","","error");
+        return
+    }
+    //댓글 기본키값 가져오기
+    let comment_id =$(event.target).parents(".right_etc").children('.comment_id').val();
+    //닉네임 가져오기
+    let nickName =$(event.target).parents(".look_comment").children('.other_people_name').text();
+    //이벤트 부모태그 가져오기
+    let look_commentTag=$(event.target).parents(".look_comment");
+    //look_comment 밑에 태그 들 다지우기 수정화면으로 바꾸기 위해
+    $(event.target).parents(".look_comment").children().remove();
+    //댓글 수정할수있게 화면변경 코드
+    let html="";
+    html+='<input class="comment_id" value="'+comment_id+'" type="hidden"/>';
+    html+='<div class="other_people_img">';
+    html+='<img src="static/images/mypicture.png" alt="other_people_imgage" height="50" width="60"/>';
+    html+='</div>';
+    html+='<div class="other_people_name">'+nickName+'</div>';
+    html+='<div class="comment_textarea_space">';
+    html+='<textarea style="background-color:#F6F6F6 " class="comment_textarea" placeholder="수정할 내용을 입력하세요" name="comment_content"></textarea>';
+    html+='</div>';
+    html+='<div class="comment_date">';
+    html+='<button class="comment_change_button" value="2" type="button" >취소</button>';
+    html+='<button class="comment_change_button" value="1" type="button" >저장</button>';
+    html+='</div>';
 
+    look_commentTag.append(html); //look_comment 아래에 추가
+
+});
+//수정 다하고 저장 버튼 이나 취소 버튼 누를 경우 이벤트
+$(document).on("click",".comment_change_button",function(event) {
+    //이벤트 부모태그인 look_comment 값 가져오기
+    let look_commentTag = $(event.target).parents(".look_comment");
+    //댓글 기본키값 가져오기
+    let comment_id = look_commentTag.children('.comment_id').val();
+    //수정내용 가져오기
+    let content = look_commentTag.find(".comment_textarea").val();
+
+
+    //저장 버튼누르면 1  취소는 2
+    if($(event.target).val()==1) {
+        $.ajax({
+            url:"/look_comment/"+comment_id,
+            type:"PATCH", //데이터 전달방식
+            data:{'comment_content':content}, //전송객체
+            success:function (result,textStatus,jqxHR) {
+                look_commentTag.children().remove();
+                let html='';
+                //수정하여 수정된 html 화면으로 돌려주기
+                look_commentTag.append(commentHTML(result,html));
+            },
+            error: function(error) {
+                //서버오류 500  권한없음 401  찾는내용없음 400
+                if(error.status==404){
+                    swal('수정할 댓글이 없습니다','' ,'error');
+                }else if(error.status==500){
+                    swal('서버 오류 관리자에게 문의 하세요','' ,'error');
+                }else if(error.status==401){
+                    swal('수정할 권한이 없습니다','' ,'error');
+                }
+            }
+        })
+    }else  {
+        $.ajax({
+            url:"/look_comment/"+comment_id,
+            type:"GET", //데이터 전달방식
+            success:function (result) {
+                look_commentTag.children().remove();
+                let html='';
+                //수정취소를 하여 원래 html 화면으로 돌려주기
+                look_commentTag.append(commentHTML(result,html));
+            },
+            error: function(error) {
+                //서버오류 500  권한없음 401  찾는내용없음 400
+                if(error.status==404){
+                    swal('찾는 댓글이 없습니다','' ,'error');
+                }else if(error.status==500){
+                    swal('서버 오류 관리자에게 문의 하세요','' ,'error');
+                }
+            }
+        })
+
+    }
+});
 
 
 

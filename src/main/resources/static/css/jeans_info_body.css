@@ -1,6 +1,6 @@
 @charset "UTF-8";
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
-
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@700&display=swap');
 .body_root {
     font-size: 16px
 }
@@ -403,17 +403,28 @@ input {
     color: #000
 }
 
+/*2020 06 26 댓글 수정버튼 오경택만듬*/
+.comment_change_button {
+    margin-right: 10px;
+    font-size: 100%;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background-color: transparent;
+    color: #000
+}
+
+
 textarea::-moz-placeholder {
-    font-family: 'Hanna', sans-serif;
+    font-family: 'Gothic A1', sans-serif;
     font-size: large
 }
 
 textarea:-ms-input-placeholder, textarea::-ms-input-placeholder {
-    font-family: 'Hanna', sans-serif;
+    font-family: 'Gothic A1', sans-serif;
     font-size: large
 }
 
 textarea::placeholder {
-    font-family: 'Hanna', sans-serif;
+    font-family: 'Gothic A1', sans-serif;
     font-size: large
 }

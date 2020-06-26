@@ -29,4 +29,8 @@
          delete from comment where comment_id=#{comment_id};
     </delete>
 
+    <update id="update">
+        update comment set comment_content = #{comment_content} where comment_id = #{comment_id}
+    </update>
+
 </mapper>

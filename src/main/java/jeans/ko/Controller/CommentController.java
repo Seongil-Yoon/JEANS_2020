@@ -100,4 +100,24 @@ public class CommentController {
 
     }
 
+    //Patch 는 부분 수정할떄 사용 put 은 전체 수정할떄 사용
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    @PatchMapping("look_comment/{comment_id}")
+    public CommentDto updateLookComment(@PathVariable int comment_id,CommentDto commentDto){
+        CommentDto dto=commentService.comment(comment_id);
+        if(dto==null){
+            //수정할 댓글이 없으면 not found 404 에러
+            throw new NotFoundException(String.format("ID[%s] not found",comment_id));
+        }
+        if(dto.getComment_sender_id().equals(session.getAttribute("userid"))){
+            //작성자 아이디와 세션 아이디가 같아야 수정할수있음
+            commentService.update(comment_id,commentDto.getComment_content());
+        }else {
+            //댓글 작성자 아이디와 세션 아이디가 다를 경우 권한없음오류
+            throw new UnauthorizedException("unauthorized you");
+        }
+        //수정된 댓글정보 넘겨주기
+        return commentService.comment(comment_id);
+    }
 }

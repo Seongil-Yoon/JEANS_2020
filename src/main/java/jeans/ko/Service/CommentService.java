@@ -37,4 +37,9 @@ public class CommentService implements ICommentService {
         return commentDao.delete(comment_id);
     }
 
+    @Override
+    public int update(int comment_id, String comment_content) {
+        return commentDao.update(comment_id,comment_content);
+    }
+
 }

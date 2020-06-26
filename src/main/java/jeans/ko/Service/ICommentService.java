@@ -15,4 +15,5 @@ public interface ICommentService {
 
     public int delete (int comment_id);
 
+    public int update(int comment_id,String comment_content);
 }
