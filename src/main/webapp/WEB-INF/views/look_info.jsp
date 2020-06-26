@@ -69,9 +69,9 @@
 
         <c:set var="viewId" value="${view.fk_userid_user_userid}"/>
 
-        <div class="delete">
-            <img src="static/images/delete.png" alt="search"
-                 height="25" width="25" onclick="lookDelete(${view.look_num},'${viewId}')"/>
+        <div class = "delete">
+            <img src="static/images/pen.png" alt="search" height="25" width="25" />
+            <img src="static/images/delete.png" alt="search" height="25" width="25" onclick="lookDelete(${view.look_num},'${viewId}')"/>
         </div>
 
 
@@ -166,28 +166,6 @@
             </div>
         </c:if>
     </form>
-
-    <%--처음에 최신 댓글내용 두개출력--%>
-    <c:forEach items="${comment}" var="dto" begin="0" end="1" step="1">
-        <div class="look_comment">
-            <div class="other_people_img">
-                <img src="static/images/mypicture.png" alt="other_people_imgage" height="50" width="60"/>
-            </div>
-            <div class="other_people_name">${dto.comment_sender_name}</div>
-            <div class="right_etc">
-                <img src="static/images/pen.png" alt="modify_img" height="25" width="25" class="right_pen"/>
-                <img src="static/images/delete.png" alt="delete_img" height="25" width="25" class="right_delete"/>
-                <img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>
-            </div>
-            <div class="comment_textarea_space">
-                <textarea style="background-color:#F6F6F6 " disabled class="comment_textarea"
-                          placeholder="${dto.comment_content}"></textarea>
-            </div>
-            <div class="comment_date">
-                    ${dto.date}
-            </div>
-        </div>
-    </c:forEach>
 
 
 </div>

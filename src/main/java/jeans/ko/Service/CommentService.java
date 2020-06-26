@@ -23,8 +23,23 @@ public class CommentService implements ICommentService {
     }
 
     @Override
+    public CommentDto comment(int comment_id) {
+        return commentDao.comment(comment_id);
+    }
+
+    @Override
     public List<CommentDto> list(int look_num) {
         return commentDao.list(look_num);
+    }
+
+    @Override
+    public int delete(int comment_id) {
+        return commentDao.delete(comment_id);
+    }
+
+    @Override
+    public int update(int comment_id, String comment_content) {
+        return commentDao.update(comment_id,comment_content);
     }
 
 }

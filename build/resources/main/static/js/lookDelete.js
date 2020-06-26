@@ -42,8 +42,8 @@ function lookDelete(lookNum,lookUserId){
                     if(error.status==404){
                         swal('찾는 자료가 없습니다','' ,'error');
                     }else if(error.status==401){
-                        swal('접근 권한이 없습니다','' ,'error');
-                    }else if(error.status==401){
+                        swal('삭제 권한이 없습니다','' ,'error');
+                    }else if(error.status==500){
                         swal('서버 오류 관리자에게 문의 하세요','' ,'error');
                     }
                 }

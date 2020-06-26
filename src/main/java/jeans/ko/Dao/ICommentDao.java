@@ -13,6 +13,12 @@ public interface ICommentDao {
     //댓글작성
     public int insert(CommentDto commentDto);
 
+    public CommentDto comment(int comment_id);
+
     public List<CommentDto> list(int look_num);
+
+    public int delete (int comment_id);
+
+    public int update(int comment_id,String comment_content);
 
 }
