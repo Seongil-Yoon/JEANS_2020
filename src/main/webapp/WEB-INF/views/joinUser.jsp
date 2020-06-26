@@ -77,6 +77,14 @@
             <div class="register_nickError" id="nick_check"></div>
 
 
+
+            <div class="select_profile">
+                <input type="file" id="input_profile"  accept=".jpg,.jpeg,.png,.bmp" />
+            </div>
+            <div class="upload_image">
+                <img id="img"/>
+            </div>
+
             <%--    <div class="register_pictureTitle">프로필 사진</div>--%>
             <%--    <div class="register_pictureFile">--%>
             <%--        <input name="BOARD_FILE" id="BOARD_FILE" required="required" type="file"/>--%>
@@ -91,8 +99,6 @@
             <div class="register_unlockButton">
                 <input type="radio" name="privacy" value="bodyClose"/>
             </div>
-
-
 
             <div class="register_heightTitle">키</div>
             <input type="number" id="height" name="height" class="register_heightInt" ></input>

@@ -5,6 +5,7 @@ var nickreg = /^[0-9a-z가-힣]{4,8}$/;//닉네임정규식 숫자0~9,소문자a
 var heightweightreg = /^[0-9]{2,3}$/;//몸무게 및 키 2~3숫자
 var emailreg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
 //이메일 정규식
+var sel_file;
 
 //정규식을 통해 아이디 값 확인
 $('#id').blur(function () {
@@ -83,6 +84,76 @@ $("input:radio[name=sex]").click(function () {
     //그렇기때문에 한번 눌린 이후로는 경고문을 띄울필요가없다.
     $('#gender_check').text('');//값이 true라면 경고문을 지운다.
 });
+
+//프로필사진업로드
+$('#input_profile').on("change", handleImgFileSelect);
+
+//파일형식을 통해 파일을 선택한후 선택된 이미지가 보이도록하는 기능.
+function handleImgFileSelect(e) {
+    var files = e.target.files;
+    var filesArr = Array.prototype.slice.call(files);
+    var name = files[0].name;
+    var size = files[0].size;
+    var MaxSize = 10 * 1024 * 1024;//최대 10MB
+    var RegExtFilter = /\.(jpg|jpeg|png)$/i;
+    var ex = name.lastIndexOf(".");//마지막 .위치 즉 확장자를 찾는다.
+    var ext = name.substr(ex, name.length);
+
+    if (size > MaxSize) {
+        swal("용량이 너무 커요!", "10MB보다 큼\n", "error");
+        if($.browser.msie){
+            $("#input_profile").replaceWith($("#input_profile").clone(true));
+        }else{
+            $("#input_profile").val("");
+        }
+        return;
+    }
+
+    if (RegExtFilter.test(ext)) {
+    } else {
+        if($.browser.msie){
+          $("#input_profile").replaceWith($("#input_profile").clone(true));
+        }else{
+            $("#input_profile").val("");
+        }
+        swal("이미지파일만 넣어주세요", "jpg,jpeg,png확장자만 허용됩니다.", "error");
+        return;
+    }
+
+    filesArr.forEach(function (f) {
+        if (!f.type.match("image.*")) {
+
+            return;
+        }
+
+        sel_file = f;
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $("#img").attr("src", e.target.result);
+        }
+        reader.readAsDataURL(f);
+    });
+}
+
+function CheckuploadFileSize(objFile) {
+    var MaxSize = 10 * 1024 * 1024;//10MB
+    var FileSize = objFile.files[0].size;
+    if (FileSize > MaxSize) {
+        swal("용량이 너무 커요!", "10MB보다 큼\n", "error");
+        objFile.outerHTML = objFile.outerHTML;
+    }
+}
+
+function CheckuploadFileExt(objFile) {
+    var strFilePath = objFile.value;
+    var RegExtFilter = /\.(jpg|jpeg|png)$/i;
+    if (RegExtFilter.test(strFilePath)) {
+
+    } else {
+        swal("이미지파일만 넣어주세요", "jpg,jpeg,png확장자만 허용됩니다.", "error");
+        objFile.outerHTML = objFile.outerHTML;
+    }
+}
 
 //회원가입 버튼 누를 시 발생
 function joinUser() {
@@ -177,7 +248,7 @@ function joinUser() {
         data: JSON.stringify(UserDto),
         contentType: "application/json; charset=UTF-8",
         success: function () {
-            alert(JSON.stringify(UserDto));
+            alert(JSON.stringify(UserDto));//성공 시 url 출력 나중에 지울것!
             location.href = "/loginUser";
         },
         error: function (request, status, error) {
@@ -185,3 +256,13 @@ function joinUser() {
         }
     });
 }
+
+jQuery.browser = {};
+(function () {
+    jQuery.browser.msie = false;
+    jQuery.browser.version = 0;
+    if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+        jQuery.browser.msie = true;
+        jQuery.browser.version = RegExp.$1;
+    }
+})();

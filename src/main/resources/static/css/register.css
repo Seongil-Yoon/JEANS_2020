@@ -197,6 +197,24 @@ input{
   font-size: 16px;
 }
 
+.select_profile{
+  position: absolute;
+  top: 300px;
+  left: 65px;
+}
+
+.upload_image{
+  position: absolute;
+  top: 340px;
+  left: 65px;
+  width: 280px;
+  height: 280px;
+}
+
+.upload_image img{
+  max-width:100%;
+}
+
 .register_pictureTitle{
   position: absolute;
   top: 300px;
