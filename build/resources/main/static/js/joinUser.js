@@ -85,17 +85,18 @@ $("input:radio[name=sex]").click(function () {
     $('#gender_check').text('');//값이 true라면 경고문을 지운다.
 });
 
-//프로필사진업로드
+//프로필사진업로드 시 발생 handleImageFileSelect 기능을 불러온다
 $('#input_profile').on("change", handleImgFileSelect);
 
 //파일형식을 통해 파일을 선택한후 선택된 이미지가 보이도록하는 기능.
+//파일의 크기가 10MB가 넘거나 확장자가 jpg,jpeg,png가 아닐 시 경고
 function handleImgFileSelect(e) {
     var files = e.target.files;
     var filesArr = Array.prototype.slice.call(files);
     var name = files[0].name;
     var size = files[0].size;
     var MaxSize = 10 * 1024 * 1024;//최대 10MB
-    var RegExtFilter = /\.(jpg|jpeg|png)$/i;
+    var RegExtFilter = /\.(jpg|jpeg|png|bmp)$/i;
     var ex = name.lastIndexOf(".");//마지막 .위치 즉 확장자를 찾는다.
     var ext = name.substr(ex, name.length);
 
@@ -133,26 +134,6 @@ function handleImgFileSelect(e) {
         }
         reader.readAsDataURL(f);
     });
-}
-
-function CheckuploadFileSize(objFile) {
-    var MaxSize = 10 * 1024 * 1024;//10MB
-    var FileSize = objFile.files[0].size;
-    if (FileSize > MaxSize) {
-        swal("용량이 너무 커요!", "10MB보다 큼\n", "error");
-        objFile.outerHTML = objFile.outerHTML;
-    }
-}
-
-function CheckuploadFileExt(objFile) {
-    var strFilePath = objFile.value;
-    var RegExtFilter = /\.(jpg|jpeg|png)$/i;
-    if (RegExtFilter.test(strFilePath)) {
-
-    } else {
-        swal("이미지파일만 넣어주세요", "jpg,jpeg,png확장자만 허용됩니다.", "error");
-        objFile.outerHTML = objFile.outerHTML;
-    }
 }
 
 //회원가입 버튼 누를 시 발생

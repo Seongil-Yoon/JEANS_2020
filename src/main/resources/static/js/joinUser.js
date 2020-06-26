@@ -96,7 +96,7 @@ function handleImgFileSelect(e) {
     var name = files[0].name;
     var size = files[0].size;
     var MaxSize = 10 * 1024 * 1024;//최대 10MB
-    var RegExtFilter = /\.(jpg|jpeg|png)$/i;
+    var RegExtFilter = /\.(jpg|jpeg|png|bmp)$/i;
     var ex = name.lastIndexOf(".");//마지막 .위치 즉 확장자를 찾는다.
     var ext = name.substr(ex, name.length);
 
@@ -134,26 +134,6 @@ function handleImgFileSelect(e) {
         }
         reader.readAsDataURL(f);
     });
-}
-
-function CheckuploadFileSize(objFile) {
-    var MaxSize = 10 * 1024 * 1024;//10MB
-    var FileSize = objFile.files[0].size;
-    if (FileSize > MaxSize) {
-        swal("용량이 너무 커요!", "10MB보다 큼\n", "error");
-        objFile.outerHTML = objFile.outerHTML;
-    }
-}
-
-function CheckuploadFileExt(objFile) {
-    var strFilePath = objFile.value;
-    var RegExtFilter = /\.(jpg|jpeg|png|bmp)$/i;
-    if (RegExtFilter.test(strFilePath)) {
-
-    } else {
-        swal("이미지파일만 넣어주세요", "jpg,jpeg,png확장자만 허용됩니다.", "error");
-        objFile.outerHTML = objFile.outerHTML;
-    }
 }
 
 //회원가입 버튼 누를 시 발생
