@@ -100,6 +100,7 @@ function handleImgFileSelect(e) {
     var ex = name.lastIndexOf(".");//마지막 .위치 즉 확장자를 찾는다.
     var ext = name.substr(ex, name.length);
 
+
     if (size > MaxSize) {
         swal("용량이 너무 커요!", "10MB보다 큼\n", "error");
         if($.browser.msie){
@@ -138,9 +139,9 @@ function handleImgFileSelect(e) {
 
 //회원가입 버튼 누를 시 발생
 function joinUser() {
-    //꼭 들어가야하는 값들이 들어가있는지 확인하기 위한 배열. 기본은 false값으로 맞춰져있다.
+    //꼭 들어가야하는 값들이 들어가있는지 확인하기 위한 배열. 기본은 false값으로 맞춰져있다. 정규식을 통과하면 true로 변한다.
     var Arr = new Array(5).fill(false);
-    var msg = '';//경고메시지
+    var msg = '';//경고메시지. false로 나온 값들을 하나씩 추가해서 swal라이브러리에서 경고문을 띄어준다.
     var userid = document.getElementsByName("userid")[0].value;//유저아이디값
     var password = document.getElementsByName("password")[0].value;//비밀번호
     var nickname = document.getElementsByName("nickname")[0].value;//닉네임
@@ -149,6 +150,9 @@ function joinUser() {
     var sex = $("input:radio[name='sex']:checked").val();//성별
     //라디오버튼(sex라는 이름)에서 체크된 값을 뽑는 JQuery. 아무것도 입력되지 않았으면 undefined다.
     var email = document.getElementsByName("email")[0].value;//이메일값
+
+    var file=$("input[name=picture]")[0].files[0];//joinUser.jsp에서 이미지 파일을 들고온다.
+    console.log(file);
 
     //스크립트문에서 확인한 후 통과 되야지 백엔드로 넘긴다
     //위에서 만든 정규식 메소드는 오류를 출력해줄수는 있지만 백엔드로 넘기는 걸 제어할수는 없다.
@@ -223,13 +227,34 @@ function joinUser() {
         email: email
     };
 
+    //FormData를 이용하여 업로드를 처리한다.
+    //FormData 객체를 생성하여 업로드할 파일과 파일정보를 함께 보낸다.
+    //JSON 데이터가 있는 다중 요청의 형태인데 혼합 멀티파트라고 한다.
+    var formData=new FormData();
+    formData.append("UserDto",JSON.stringify(UserDto));
+
+    if(file==undefined) {
+       alert("이힝 이파일은 없지롱");
+   }else{
+        formData.append("file",file);
+
+    }
+
+
+    //JQuery 옵션
+    //data : 서버로 보낼 데이터
+    //dataType : 서버에서 반환되는 데이터 형식을 지정
+    //processData : 데이터를 querystring형태로 보내지 않고 DOMDocument 또는 다른 형태로 보내려면 false로 설정
+    //contentType : 서버에 데이터를 보낼 때 사용 content-type 헤더의 값.
     $.ajax({
         url: "/user",
         type: "post",
-        data: JSON.stringify(UserDto),
-        contentType: "application/json; charset=UTF-8",
+        data: formData,
+        dataType: "text",
+        processData: false,
+        contentType:false,
         success: function () {
-            alert(JSON.stringify(UserDto));//성공 시 url 출력 나중에 지울것!
+            alert(JSON.stringify(formData));//성공 시 출력 나중에 지울것!
             location.href = "/loginUser";
         },
         error: function (request, status, error) {
@@ -248,3 +273,4 @@ jQuery.browser = {};
         jQuery.browser.version = RegExp.$1;
     }
 })();
+

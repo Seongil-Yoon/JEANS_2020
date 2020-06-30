@@ -79,7 +79,7 @@
 
 
             <div class="select_profile">
-                <input type="file" id="input_profile"  accept=".jpg,.jpeg,.png,.bmp" />
+                <input type="file" id="input_profile" name="picture" accept=".jpg,.jpeg,.png,.bmp" />
             </div>
             <div class="upload_image">
                 <img id="img"/>

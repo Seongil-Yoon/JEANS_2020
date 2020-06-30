@@ -38,6 +38,9 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 //	testImplementation 'org.springframework.security:spring-security-test'
 
+	// https://mvnrepository.com/artifact/commons-io/commons-io
+	compile group: 'commons-io', name: 'commons-io', version: '2.6'
+
 	compile('org.apache.tomcat.embed:tomcat-embed-jasper')//jsp 사용
 	compile('javax.servlet:jstl')//jsp 사용
 }
