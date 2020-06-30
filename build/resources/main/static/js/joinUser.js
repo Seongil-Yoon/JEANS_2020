@@ -238,6 +238,7 @@ function joinUser() {
     });
 }
 
+//익스플로러 판별
 jQuery.browser = {};
 (function () {
     jQuery.browser.msie = false;

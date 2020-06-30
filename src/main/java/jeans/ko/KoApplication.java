@@ -1,8 +1,6 @@
 package jeans.ko;
 
 
-
-
 import jeans.ko.Dao.IUserDao;
 
 import org.springframework.boot.SpringApplication;
