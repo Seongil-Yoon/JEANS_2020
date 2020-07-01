@@ -235,32 +235,52 @@ function joinUser() {
 
     if(file==undefined) {
        alert("이힝 이파일은 없지롱");
+
+        //JQuery 옵션
+        //data : 서버로 보낼 데이터
+        //dataType : 서버에서 반환되는 데이터 형식을 지정
+        //processData : 데이터를 querystring형태로 보내지 않고 DOMDocument 또는 다른 형태로 보내려면 false로 설정
+        //contentType : 서버에 데이터를 보낼 때 사용 content-type 헤더의 값.
+        $.ajax({
+            url: "/user",
+            type: "post",
+            data: formData,
+            dataType: "text",
+            processData: false,
+            contentType:false,
+            success: function () {
+                alert(JSON.stringify(formData));//성공 시 출력 나중에 지울것!
+                location.href = "/loginUser";
+            },
+            error: function (request, status, error) {
+                alert("code :" + request.status + "\n" + "message : " + request.responseText + "\n" + "error : " + error);
+            }
+        });
    }else{
         formData.append("file",file);
 
+        //JQuery 옵션
+        //data : 서버로 보낼 데이터
+        //dataType : 서버에서 반환되는 데이터 형식을 지정
+        //processData : 데이터를 querystring형태로 보내지 않고 DOMDocument 또는 다른 형태로 보내려면 false로 설정
+        //contentType : 서버에 데이터를 보낼 때 사용 content-type 헤더의 값.
+        $.ajax({
+            url: "/userfile",
+            type: "post",
+            data: formData,
+            dataType: "text",
+            processData: false,
+            contentType:false,
+            success: function () {
+                alert(JSON.stringify(formData));//성공 시 출력 나중에 지울것!
+                location.href = "/loginUser";
+            },
+            error: function (request, status, error) {
+                alert("code :" + request.status + "\n" + "message : " + request.responseText + "\n" + "error : " + error);
+            }
+        });
+
     }
-
-
-    //JQuery 옵션
-    //data : 서버로 보낼 데이터
-    //dataType : 서버에서 반환되는 데이터 형식을 지정
-    //processData : 데이터를 querystring형태로 보내지 않고 DOMDocument 또는 다른 형태로 보내려면 false로 설정
-    //contentType : 서버에 데이터를 보낼 때 사용 content-type 헤더의 값.
-    $.ajax({
-        url: "/user",
-        type: "post",
-        data: formData,
-        dataType: "text",
-        processData: false,
-        contentType:false,
-        success: function () {
-            alert(JSON.stringify(formData));//성공 시 출력 나중에 지울것!
-            location.href = "/loginUser";
-        },
-        error: function (request, status, error) {
-            alert("code :" + request.status + "\n" + "message : " + request.responseText + "\n" + "error : " + error);
-        }
-    });
 }
 
 //익스플로러 판별
