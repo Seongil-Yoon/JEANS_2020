@@ -6,13 +6,16 @@ import jeans.ko.Dto.UserDto;
 import jeans.ko.Service.IFileService;
 import jeans.ko.Service.IUserService;
 import lombok.extern.flogger.Flogger;
+import org.apache.commons.io.IOUtils;
 import org.apache.ibatis.io.ResolverUtil;
 import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +26,10 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.naming.Binding;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.awt.*;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -144,6 +150,8 @@ public class UserController {
         //회원가입 이벤트
         int check = userService.joinUser(user);
         boolean test=fileService.uploadProfile(uploadPath,user.getUserid(),picture.getOriginalFilename(),picture.getBytes());
+        logger.info("문제시작?");
+        fileService.makeThumbnail("profile.jpg",uploadPath,user.getUserid());
 
         //성공적으로 회원가입 시 1반환
         if (check > 0)
@@ -177,4 +185,23 @@ public class UserController {
         httpSession.invalidate();
     }
 
+    @GetMapping("/display")
+    public  ResponseEntity<byte[]> display() throws IOException {
+        InputStream in=null;
+        ResponseEntity<byte[]>entity=null;
+        Object f= httpSession.getAttribute("userid");
+        String d=(String)f;
+     logger.info(d);
+     HttpHeaders headers=new HttpHeaders();
+     try {
+         in = new FileInputStream(uploadPath + "\\" + d + "\\" + "profile" + "\\profile.jpg");
+         headers.setContentType(MediaType.IMAGE_JPEG);
+         entity=new ResponseEntity<byte[]>(IOUtils.toByteArray(in),headers,HttpStatus.OK);
+     }catch(Exception e){
+        entity=new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+     }finally{
+         in.close();
+     }
+        return entity;
+    }
 }

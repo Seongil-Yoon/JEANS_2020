@@ -13,7 +13,8 @@ function headerReset() {
     if(sessionStorage.getItem("userid")!=null) {
         $(".look_write").html('look_write');
         $(".logout_login").html('logout');
-        $(".my_picture").html(' <img src="static/images/mypicture.png" alt="pitcture" height="35" width="40"/>');
+        $(".my_picture").html('<img src="/display"/>')
+      //  $(".my_picture").html(' <img src="static/images/mypicture.png" alt="pitcture" height="35" width="40"/>');
         $(".user_nickname").html(nickname);
     }else {
         $(".look_write").html('회원가입');

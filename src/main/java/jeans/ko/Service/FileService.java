@@ -1,12 +1,17 @@
 package jeans.ko.Service;
 
 import jeans.ko.Controller.UserController;
+import org.imgscalr.Scalr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
 
 @Service
@@ -24,6 +29,7 @@ public class FileService implements IFileService {
 
         File target=new File(profilePath,originalName);
         FileCopyUtils.copy(fileData, target);
+
         return true;
     }
 
@@ -49,6 +55,31 @@ public class FileService implements IFileService {
         }
         logger.info("폴더를 새로 만들었습니다 : "+uploadPath);
         return uploadPath;
+    }
+
+    @Override
+    public void makeThumbnail(String filename,String uploadPath,String... paths) throws Exception {
+
+        for(String path:paths){
+            uploadPath+="\\"+path;
+        }
+        uploadPath+="\\profile";
+
+        //이미지를 읽기 위한 버퍼
+        logger.info("읽냐?");
+        logger.info(uploadPath);
+        File f=new File(uploadPath,filename);
+        System.out.println("f.canRead() = " + f.canRead());
+        BufferedImage sourceImg=ImageIO.read(f);
+        logger.info("마냐?");
+        Graphics2D g2= (Graphics2D) sourceImg.getGraphics();
+        g2.setClip(new Ellipse2D.Float(0,0,sourceImg.getWidth(),sourceImg.getWidth()));
+        BufferedImage destImg= Scalr.resize(sourceImg,Scalr.Method.AUTOMATIC,Scalr.Mode.FIT_TO_WIDTH,40);
+        String formatName=filename.substring(filename.lastIndexOf(".")+1);
+        File newFile=new File(uploadPath+"\\"+filename);
+        ImageIO.write(destImg,formatName.toUpperCase(),newFile);
+
+        return;
     }
 
 }

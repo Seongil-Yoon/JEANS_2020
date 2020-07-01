@@ -13,4 +13,5 @@ public interface IFileService {
     //String.... paths  하위경로 파일들
     public String makeDir(String uploadPath,String... paths);
 
+    public  void makeThumbnail(String filename,String uploadPath,String... paths) throws Exception;
 }
