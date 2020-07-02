@@ -21,5 +21,7 @@ public interface IUserDao {
     public String userLogin(UserDto userDto);
     //유저 닉네임
     public String getNickname(String userid);
+    //유저 아이디로 프로필사진유무확인
+    public String getPicture(String userid);
     public void list();
 }

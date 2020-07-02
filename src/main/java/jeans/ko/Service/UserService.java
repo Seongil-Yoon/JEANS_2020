@@ -22,8 +22,6 @@ public class UserService implements IUserService {
     private UserDto userDto;
 
 
-
-
     public int joinUser(UserDto userDto){
         userDto.setRole(1);
         System.out.println("nuserService에서");
@@ -69,6 +67,10 @@ public class UserService implements IUserService {
        }
     }
 
+    public String getPicture(String userid){
+        String picture=userDao.getPicture(userid);
+        return picture;
+    }
 
 
 }

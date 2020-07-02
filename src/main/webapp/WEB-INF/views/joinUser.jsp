@@ -56,7 +56,7 @@
     <div>
 
         <%--@elvariable id="userDto" type="jeans"--%>
-        <form:form modelAttribute="userDto" action="/joinRequest" method="post">
+        <form:form modelAttribute="userDto" >
             <div class="main"></div>
             <div class="main_title">회원가입</div>
 
@@ -79,7 +79,7 @@
 
 
             <div class="select_profile">
-                <input type="file" id="input_profile"  accept=".jpg,.jpeg,.png,.bmp" />
+                <input type="file" id="input_profile" name="picture" accept=".jpg,.jpeg,.png,.bmp" />
             </div>
             <div class="upload_image">
                 <img id="img"/>
