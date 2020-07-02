@@ -19,7 +19,7 @@ public class FileService implements IFileService {
     private Logger logger = LoggerFactory.getLogger(FileService.class);
 
     @Override
-    public boolean uploadProfile(String uploadPath,String id,String originalName, byte[] fileData) throws Exception {
+    public void uploadProfile(String uploadPath,String id,String originalName, byte[] fileData) throws Exception {
         String profilePath=makeDir(uploadPath,id,"profile");
 
         originalName="profile.jpg";
@@ -30,14 +30,15 @@ public class FileService implements IFileService {
         File target=new File(profilePath,originalName);
         FileCopyUtils.copy(fileData, target);
 
-        return true;
-    }
+   }
 
+    //profile 폴더를 만든후 profile.jpg
     @Override
     public String makeDir(String uploadPath,String... paths){
 
         logger.info("사진 업로드를 위한 폴더를 만듭니다.");
-       //이거 작동안하네????
+
+        //이거 작동안하네????... 나중에 해결하자....
         if(new File(paths[paths.length-1]).exists()){
             logger.info("사진이 업로드 될 폴더가 이미 만들어져있습니다.");
             for(String path:paths){
@@ -57,27 +58,28 @@ public class FileService implements IFileService {
         return uploadPath;
     }
 
+    
+    //프로피일용 썸네일을 만드는 메소드
     @Override
-    public void makeThumbnail(String filename,String uploadPath,String... paths) throws Exception {
+    public void makeprofileThumbnail(String filename,String uploadPath,String... paths) throws Exception {
 
         for(String path:paths){
             uploadPath+="\\"+path;
         }
-        uploadPath+="\\profile";
 
         //이미지를 읽기 위한 버퍼
-        logger.info("읽냐?");
-        logger.info(uploadPath);
+        logger.info("썸네일 이미지 생성중");
+        logger.info(""+uploadPath);
         File f=new File(uploadPath,filename);
-        System.out.println("f.canRead() = " + f.canRead());
+
         BufferedImage sourceImg=ImageIO.read(f);
-        logger.info("마냐?");
-        Graphics2D g2= (Graphics2D) sourceImg.getGraphics();
-        g2.setClip(new Ellipse2D.Float(0,0,sourceImg.getWidth(),sourceImg.getWidth()));
-        BufferedImage destImg= Scalr.resize(sourceImg,Scalr.Method.AUTOMATIC,Scalr.Mode.FIT_TO_WIDTH,40);
+        BufferedImage smallImg= Scalr.resize(sourceImg,Scalr.Method.AUTOMATIC,Scalr.Mode.FIT_TO_WIDTH,40);
+        BufferedImage middleImg=Scalr.resize(sourceImg,Scalr.Method.AUTOMATIC,Scalr.Mode.FIT_TO_WIDTH,1000);
         String formatName=filename.substring(filename.lastIndexOf(".")+1);
-        File newFile=new File(uploadPath+"\\"+filename);
-        ImageIO.write(destImg,formatName.toUpperCase(),newFile);
+        File smallThumbnail=new File(uploadPath+"\\"+"s_"+filename);
+        File middleThumbnail=new File(uploadPath+"\\"+"m_"+filename);
+        ImageIO.write(smallImg,formatName.toUpperCase(),smallThumbnail);
+        ImageIO.write(middleImg,formatName.toUpperCase(),middleThumbnail);
 
         return;
     }

@@ -67,6 +67,10 @@ public class UserService implements IUserService {
        }
     }
 
+    public String getPicture(String userid){
+        String picture=userDao.getPicture(userid);
+        return picture;
+    }
 
 
 }

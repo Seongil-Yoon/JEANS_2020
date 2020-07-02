@@ -27,6 +27,7 @@ import javax.naming.Binding;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.awt.*;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -59,14 +60,15 @@ public class UserController {
     }
 
 
+    //회원가입 시 프로필사진이 없다
     @ResponseBody
     @PostMapping(value = "/user")
-    public ResponseEntity<Void> join(@RequestPart("UserDto")String userString,BindingResult result) throws IOException {
+    public ResponseEntity<Void> join(@RequestPart("UserDto") String userString, BindingResult result) throws IOException {
         logger.info("join() 프로필사진이 없다!");
 
         @Valid
         UserDto user = new ObjectMapper().readValue(userString, UserDto.class);
-
+        user.setPicture("");
         logger.info(userString);
 
 
@@ -87,7 +89,7 @@ public class UserController {
         if (result.getFieldError("email") != null) {
             System.out.println("Error! = " + result.getFieldError("email").getDefaultMessage());
         }
-        if(result.getErrorCount()>0){
+        if (result.getErrorCount() > 0) {
             System.out.println("이제 자바스크립트로 에러를 보낸다.");
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -104,24 +106,26 @@ public class UserController {
     }
 
 
+    //회원가입 시 프로필사진이 있다.
     //REST 형식의 회원가입
     @ResponseBody
-    @PostMapping( value ="/userfile" )
+    @PostMapping(value = "/userfile")
     public ResponseEntity<Void> join(@RequestPart("UserDto") String userString, @RequestPart("file") MultipartFile picture, BindingResult result) throws Exception {
         logger.info("join() 프로필사진이 있다.");
-        logger.info("파일이름 : "+picture.getOriginalFilename());
-        logger.info("파일크기 : "+picture.getSize());
-        logger.info("파일컨텐트타입 : "+picture.getContentType());
+        logger.info("파일이름 : " + picture.getOriginalFilename());
+        logger.info("파일크기 : " + picture.getSize());
+        logger.info("파일컨텐트타입 : " + picture.getContentType());
 
         @Valid
-        UserDto user=new ObjectMapper().readValue(userString,UserDto.class);
+        UserDto user = new ObjectMapper().readValue(userString, UserDto.class);
 
         user.setPicture("profile.jpg");
-        //우리의 현재 전략은 프로파일 사진은 한사용자당 하나다.
+        //우리의 현재 전략은 프로파일 사진은 한 사용자당 하나다.
         //사용자가 어떤 이름으로든 프로파일사진을 올리던 우리는 profile.jpg로 저장한다.
         //만약 사용자가 올린 사진명대로 해야된다면 이를 지우고 밑에 주석 된걸 해제해주자.
         //user.setPicture(picture.getOriginalFilename());
         //파일업로드를 담당하는 FileService 부분에도 profile.jpg로 이름을 자동으로 바꿔준다.
+        //!!헷갈리지 말자 이건 DB에 picture값을 profile.jpg로 해주는거지, 업로드될 사진의 이름을 profile.jpg로 해주는게 아니다.
 
         logger.info(userString);
 
@@ -142,16 +146,23 @@ public class UserController {
         if (result.getFieldError("email") != null) {
             System.out.println("Error! = " + result.getFieldError("email").getDefaultMessage());
         }
-        if(result.getErrorCount()>0){
+        if (result.getErrorCount() > 0) {
             System.out.println("이제 자바스크립트로 에러를 보낸다.");
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         //회원가입 이벤트
         int check = userService.joinUser(user);
-        boolean test=fileService.uploadProfile(uploadPath,user.getUserid(),picture.getOriginalFilename(),picture.getBytes());
-        logger.info("문제시작?");
-        fileService.makeThumbnail("profile.jpg",uploadPath,user.getUserid());
+
+        //프로필사진 업로드 이벤트
+        //uploadPath 경로 밑에 유저명의 폴더를 만든 후 getBytes()를 통해 받은 사진을 profile.jpg라는 명으로 저장시킨다.
+        fileService.uploadProfile(uploadPath, user.getUserid(), user.getPicture(), picture.getBytes());
+
+        //업로드된 폴더를 통해 썸네일 이미지 제작 이벤트
+        //uploadPath : 업로드 될 모든 파일들의 기본 부모
+        //user.getUserid : 해당유저의 파일
+        //profile : 그중에서도 개인 프로파일용사진 폴더.
+        fileService.makeprofileThumbnail("profile.jpg", uploadPath, user.getUserid(), "profile");
 
         //성공적으로 회원가입 시 1반환
         if (check > 0)
@@ -159,7 +170,6 @@ public class UserController {
         else
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
-
 
 
     @ResponseBody
@@ -185,23 +195,34 @@ public class UserController {
         httpSession.invalidate();
     }
 
-    @GetMapping("/display")
-    public  ResponseEntity<byte[]> display() throws IOException {
-        InputStream in=null;
-        ResponseEntity<byte[]>entity=null;
-        Object f= httpSession.getAttribute("userid");
-        String d=(String)f;
-     logger.info(d);
-     HttpHeaders headers=new HttpHeaders();
-     try {
-         in = new FileInputStream(uploadPath + "\\" + d + "\\" + "profile" + "\\profile.jpg");
-         headers.setContentType(MediaType.IMAGE_JPEG);
-         entity=new ResponseEntity<byte[]>(IOUtils.toByteArray(in),headers,HttpStatus.OK);
-     }catch(Exception e){
-        entity=new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
-     }finally{
-         in.close();
-     }
+    //sthumbnail 즉 작은 이미지를 들고오는것이다.
+    @GetMapping("/displaySthumbnail")
+    public ResponseEntity<byte[]> display() throws IOException {
+        InputStream in = null;
+        ResponseEntity<byte[]> entity = null;
+        Object f = httpSession.getAttribute("userid");
+        String userid = (String) f;
+        String picture = userService.getPicture(userid);
+        logger.info("displaySthumbnail 에서 해당 유저의 picture 값을 가져온다. : " + picture);
+        HttpHeaders headers = new HttpHeaders();
+        try {
+            if (picture.equals("profile.jpg")) {
+                logger.info("사진이 있다");
+                in = new FileInputStream(uploadPath + "\\" + userid + "\\" + "profile" + "\\s_profile.jpg");
+            } else {
+                logger.info("사진이 없다.");
+
+                in = new FileInputStream(uploadPath + "\\" + "defaultimagefiles" + "\\s_profile.jpg");
+                logger.info(in.toString());
+
+            }
+            headers.setContentType(MediaType.IMAGE_JPEG);//어차피 profile.jpg로 저장되기때문에 Type이 IMAGE_JPEG여도 괜찮다
+            entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+        } finally {
+            in.close();
+        }
         return entity;
     }
 }

@@ -12,6 +12,9 @@
     <select id="getNickname" resultType="String">
         select nickname from user where userid=(#{id});
     </select>
+    <select id="getPicture" resultType="String">
+        select picture from user where userid=(#{userid});
+    </select>
 </mapper>
 
         <!-- resultType="jeans.ko.Dto.UserDto"-->
