@@ -25,7 +25,7 @@
         </div>
         <div class="logo_left"></div>
         <div class="logo">
-            <a class="header_a" href="main"><img src="static/images/logo.png" alt="logo" height="30"
+            <a class="header_a" href="main"><img src="static/images/logo.PNG" alt="logo" height="30"
                                                  width="71"/></a>
         </div>
 
