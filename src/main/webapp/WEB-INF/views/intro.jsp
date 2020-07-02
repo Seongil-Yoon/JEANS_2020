@@ -46,7 +46,7 @@
             <div>
                 <img src="static/images/Android.png"  class= "Android"/>
                 <spnn style="padding: 15px"></spnn>
-                <img src="static/images/ko.jpg"  class= "Kotlin"/>
+                <img src="static/images/ko1.jpg"  class= "Kotlin"/>
             </div>
             <div style="padding: 25px"></div>
             <h1>Developer</h1>
