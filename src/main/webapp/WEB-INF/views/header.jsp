@@ -33,10 +33,12 @@
                 <div class="logo_right"><span class="look_write"></span></div>
             </a>
 
-            <div class="my_info">
-                <div class="my_picture"></div>
-                <span class="user_nickname"></span>
-            </div>
+            <a class="header_a" href="javascript:myInfo_click();">
+                <div class="my_info">
+                    <div class="my_picture"></div>
+                    <span class="user_nickname"></span>
+                </div>
+            </a>
 
             <div class="logout_left"></div>
 
@@ -57,7 +59,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="/static/js/backCashDelete.js"></script>
-<script src="/static/js/mainScroll.js" charset="utf-8"></script>
 <script src="/static/js/id_nickname_session.js"></script>
 <%--서버세션이 종료되어 자바스크립트 session 종료--%>
 <c:set var="userid" value="${sessionScope.userid}"/>

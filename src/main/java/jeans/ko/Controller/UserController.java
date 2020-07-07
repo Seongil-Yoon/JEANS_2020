@@ -59,6 +59,15 @@ public class UserController {
         return "joinUser";
     }
 
+    //마이페이지 이동
+    @RequestMapping("/mypageUser")
+    public String mypageUser()
+    { return "mypageUser"; }
+
+    //회원정보수정 페이지 이동
+    @RequestMapping("/changeUser")
+    public String changeUser()
+    { return "changeUser"; }
 
     //회원가입 시 프로필사진이 없다
     @ResponseBody
