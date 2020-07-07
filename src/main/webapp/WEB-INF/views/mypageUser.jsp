@@ -7,52 +7,13 @@
 <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="static/css/jeans_header_.css">
     <link rel="stylesheet" href="static/css/mypageUser_top.css">
     <link rel="stylesheet" href="static/css/mypageUser_bottom.css">
 </head>
 <body>
 <!--/*여기는 맨 위에 있는 바 부분*/ -->
 <div class="webview">
-    <div class="jeans_root">
-        <div class="jeans_header">
-            <div class="search_left"></div>
-            <div class="search_logo">
-                <img src="static/images/search.jpg" alt="search" height="30" width="30"/>
-            </div>
-            <div class="search_input" style="margin-top: 0px">
-                <form>
-                    <input type="text" class="search_text"/>
-                </form>
-            </div>
-            <div class="logo_left"></div>
-            <div class="logo">
-                <a class="header_a" href="main"><img src="static/images/logo.png" alt="logo" height="30"
-                                                    width="71"/></a>
-            </div>
-
-            <a class="header_a" href="javascript:logo_right_click();">
-                <div class="logo_right"><span class="look_write"></span></div>
-            </a>
-
-            <a class="header_a" href="javascript:myInfo_click();">
-                <div class="my_info">
-                    <div class="my_picture"></div>
-                    <span class="user_nickname"></span>
-                </div>
-            </a>
-
-            <div class="logout_left"></div>
-
-
-            <a class="header_a" href="javascript:logout_login_click();">
-                <div class="logout_login"></div>
-            </a>
-
-
-            <div class="logout_right"></div>
-        </div>
-    </div>
+    <jsp:include page="header.jsp" flush="false"/>
 
 <!-- /*여기부터가 본문*/  -->
 

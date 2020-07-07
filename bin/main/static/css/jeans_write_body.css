@@ -1,0 +1,104 @@
+.body_root{
+
+}
+
+
+
+.body_lookupload{
+
+  width: 1100px;
+  height: 550px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 16px;
+  display: grid;
+  grid-template-columns : 620px  440px;
+  grid-template-rows:  10px 40px 35px 35px 370px;
+  font-size: 16px;
+  row-gap: 2px;
+  background-color: rgb(224, 224, 224);
+}
+
+.title{
+  font-size: 20px;
+  margin-left: 20px;
+}
+
+.name{
+  margin-left: 20px;
+  display: flex;
+}
+
+.upload{
+  margin-left: 20px;
+  display: flex;
+}
+
+
+
+.img_space{
+  width: 550px;
+  height: 400px;
+  margin-left: 20px;
+}
+
+.upload_right{
+  width: 440px;
+  height: 350px;
+  display: grid;
+  grid-template-columns : 80px 310px 50px;
+  grid-template-rows: 40px 40px 40px 40px 75px 75px;
+  row-gap: 10px;
+  line-height: 40px;
+}
+
+.tag{
+  line-height: 30px;
+}
+
+.Jeans_bule{
+  color :  #92CEF4;
+}
+
+
+.input_name{
+  border:none;
+  width: 200px;
+  height: 20px;
+}
+
+ .input_basic {
+   border: none;
+   width: 300px;
+   height: 30px;
+ }
+
+ .input_tag{
+  border:none;
+  width: 300px;
+  height: 70px;
+  resize: none;
+}
+
+.input_memo{
+  border:none;
+  width: 300px;
+  height: 150px;
+  resize: none;
+}
+
+.save{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.save_button{
+  background-color: #92CEF4;
+  color: white;
+  font-size: 15px;
+  border-radius: 5%;
+  border: 1px #92CEF4;
+  width: 80px;
+  height: 40px;
+  margin-right: 20px;
+}
