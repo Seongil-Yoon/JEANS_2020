@@ -8,7 +8,6 @@
     <meta charset="UTF-8"/>
     <title>login</title>
     <link rel="stylesheet" href="static/css/login.css"/>
-    <link rel="stylesheet" href="static/css/jeans_header_.css"/>
 </head>
 <body>
 

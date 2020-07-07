@@ -5,7 +5,6 @@
 <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="static/css/jeans_header_.css">
     <link rel="stylesheet" href="static/css/jeans_info_body.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 </head>

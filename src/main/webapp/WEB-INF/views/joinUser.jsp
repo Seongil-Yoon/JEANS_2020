@@ -8,7 +8,6 @@
     <meta charset="UTF-8"/>
     <title>register</title>
     <link rel="stylesheet" href="static/css/register.css"/>
-    <link rel="stylesheet" href="static/css/jeans_header_.css"/>
 </head>
 <body>
 

@@ -7,8 +7,6 @@
     <meta charset="utf-8" />
     <title></title>
     <link rel="stylesheet" href="static/css/changeUser.css" />
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="static/js/ex2.js"></script>
 </head>
 <body>
 <!-- <div class="leftTop"></div>
@@ -159,6 +157,9 @@
 </c:if>
 <%--header 부분 초기화--%>
 <script>headerReset()</script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="static/js/ex2.js"></script>
 
 </body>
 </html>
