@@ -85,11 +85,6 @@
                 <img id="img"/>
             </div>
 
-            <%--    <div class="register_pictureTitle">프로필 사진</div>--%>
-            <%--    <div class="register_pictureFile">--%>
-            <%--        <input name="BOARD_FILE" id="BOARD_FILE" required="required" type="file"/>--%>
-            <%--    </div>--%>
-
             <div class="register_bodyType">공개/비공개</div>
             <div class="register_lock">공개</div>
             <div class="register_lockButton">

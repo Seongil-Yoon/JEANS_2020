@@ -127,7 +127,6 @@ function handleImgFileSelect(e) {
 
             return;
         }
-
         sel_file = f;
         var reader = new FileReader();
         reader.onload = function (e) {
