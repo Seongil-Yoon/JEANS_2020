@@ -1,4 +1,4 @@
-function lookWrite() {
+function lookWrite(purpose) {
 
     if(sessionStorage.getItem("userid")==null){
         swal('','로그인을 먼저하세요' ,'');
@@ -23,28 +23,37 @@ function lookWrite() {
     }
     if(empty==''){
         var data = $('[name=writeForm]').serialize();
-        $.ajax({
-            url:"/looks",
-            type:"POST", //데이터 전달방식
-            data : data, //전송객체
-            success:function (result,textStatus,jqxHR) {
-                if(jqxHR.status==201){
-                    swal('','게시글 등록을 하였습니다' ,'success');
-                    //등록 성공하면 내가등록한 게시글화면으로 이동
-                    setTimeout(function(){  location.href="/look?look_num="+result.look_num;},2000);
+
+        if(purpose=='write'){
+            //글작성 하기
+            $.ajax({
+                url:"/looks",
+                type:"POST", //데이터 전달방식
+                data : data, //전송객체
+                success:function (result,textStatus,jqxHR) {
+                    if(jqxHR.status==201){
+                        swal('','게시글 등록을 하였습니다' ,'success');
+                        //등록 성공하면 내가등록한 게시글화면으로 이동
+                        setTimeout(function(){  location.href="/look?look_num="+result.look_num;},2000);
+                    }
+                },
+                error: function(error) {
+                    //서버오류 500  찾는 자료없음 404  권한없음  401
+                    if(error.status==404){
+                        swal('찾는 자료가 없습니다','' ,'error');
+                    }else if(error.status==401){
+                        swal('접근 권한이 없습니다','' ,'error');
+                    }else if(error.status==500){
+                        swal('서버 오류 관리자에게 문의 하세요','' ,'error');
+                    }
                 }
-            },
-            error: function(error) {
-                //서버오류 500  찾는 자료없음 404  권한없음  401
-                if(error.status==404){
-                    swal('찾는 자료가 없습니다','' ,'error');
-                }else if(error.status==401){
-                    swal('접근 권한이 없습니다','' ,'error');
-                }else if(error.status==500){
-                    swal('서버 오류 관리자에게 문의 하세요','' ,'error');
-                }
-            }
-        })
+            })
+        }else {
+            //글수정하기
+            alert("modify 이다");
+            return;
+        }
+
     }else{
         //입력안한 부분있으면 다시작성하게함
         swal('', empty+' 을 다시 입력하세요' ,'');

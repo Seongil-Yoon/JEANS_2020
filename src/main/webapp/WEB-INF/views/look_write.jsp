@@ -143,7 +143,8 @@
                 <div class="space"></div>
                 <div>
                     <div class="save">
-                        <button type="button" class="save_button" onclick="lookWrite()">Save</button>
+                                                    <%--lookWrite에 write 넣은이유 looKWrite에서 수정 기능도 있어 구분위해서--%>
+                        <button type="button" class="save_button" onclick="lookWrite('write')">Save</button>
                     </div>
                 </div>
 

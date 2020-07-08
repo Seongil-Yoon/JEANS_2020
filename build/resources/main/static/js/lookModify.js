@@ -4,9 +4,10 @@ function seasonLook_publicResult(season,look_public) {
     let seasonString=season.split(',');
     for(let i=0; i<seasonString.length; i++){
         //자른 계절 문자열 차례대로 반복해서 같은 값이있으면 check로 바꾸기
-        for(let y=0; y<4; y++)
-        if(seasonString[i]==document.getElementsByName("season")[y].value){
-            document.getElementsByName("season")[y].checked=true;
+        for(let y=0; y<4; y++) {
+            if (seasonString[i] == document.getElementsByName("season")[y].value) {
+                document.getElementsByName("season")[y].checked = true;
+            }
         }
     }
     if(look_public==1){  //1공개 2비공개
@@ -16,6 +17,7 @@ function seasonLook_publicResult(season,look_public) {
     }
 }
 
+//게시글에서 수정 pen 버튼 누를경우 이벤트
 function lookModify(lookNum,lookUserId){
 
     var lookNum=lookNum;

@@ -108,7 +108,7 @@ public class LookController {
     //룩게시판 작성
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/looks")
+    @PatchMapping("/looks")
     public BoardDto boardWrite(BoardDto boardDto) {
         if(session.getAttribute("userid")==null){
             //서버로 바로접근하는 경우 아이디값 없으면 클라이언트 권한없음 오류보냄
@@ -118,6 +118,22 @@ public class LookController {
         boardService.insert(boardDto);
         //selectKey로 등록된 게시글 가져온 기본키로 등록된 게시글 정보보내줌 새롭게 추가되 댓글이없으므로 게시글만넘김
         return boardDao.view(boardDto.getLook_num());
+    }
+
+    //룩게시판 수정
+    @ResponseBody
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping ("/looks")
+    public BoardDto boardModify(BoardDto boardDto) {
+        if(session.getAttribute("userid").equals(boardDto.getFk_userid_user_userid())){
+            //게시글 수정
+            boardService.update(boardDto);
+            //selectKey로 look_num 가져와서 수정된 게시글 정보넘김
+            return boardDao.view(boardDto.getLook_num());
+        }else {
+            //작성자 아디이와 로그인한 아이디가 다르면 권한없음 오류 보냄
+            throw new UnauthorizedException(String.format("unauthorized you"));
+        }
     }
 
 }

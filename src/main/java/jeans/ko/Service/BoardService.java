@@ -39,4 +39,9 @@ public class BoardService implements IBoardService {
        return    boardDao.delete(look_num);
     }
 
+    @Override
+    public int update(BoardDto boardDto) {
+     return  boardDao.update(boardDto);
+    }
+
 }

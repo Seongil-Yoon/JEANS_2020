@@ -12,4 +12,6 @@ public interface IBoardService {
 
     public int delete(int look_num) ;
 
+    public int update(BoardDto boardDto);
+
 }

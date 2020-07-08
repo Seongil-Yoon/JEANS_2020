@@ -22,4 +22,6 @@ public interface IBoardDao {
     public int delete(@Param("look_num") int look_num) ;
     //게시글 조회수 증가
     public void countUpdate(@Param("look_num") int look_num) ;
+    //게시글 수정
+    public int update(BoardDto boardDto);
 }

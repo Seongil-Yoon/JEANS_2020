@@ -34,5 +34,15 @@
         update look set count = count + 1 where look_num = #{look_num}
     </update>
 
+    <update id="update">
+        update look set title,season,tag,look_public,memo,picture
+         = #{title},#{season},#{tag},#{look_public}
+        ,#{memo},#{picture} where look_num = #{look_num}
+        <selectKey resultType="java.lang.Integer" keyProperty="look_num" order="AFTER">
+            <!--return 값은 dto 객체로 넘어간다 get메소드로 값을 갖고와야됨-->
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </update>
+
 </mapper>
 

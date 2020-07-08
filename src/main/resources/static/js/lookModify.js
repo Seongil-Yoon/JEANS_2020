@@ -17,6 +17,7 @@ function seasonLook_publicResult(season,look_public) {
     }
 }
 
+//게시글에서 수정 pen 버튼 누를경우 이벤트
 function lookModify(lookNum,lookUserId){
 
     var lookNum=lookNum;
