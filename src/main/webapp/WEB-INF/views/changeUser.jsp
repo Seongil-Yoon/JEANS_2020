@@ -126,7 +126,7 @@
             <form class="changePict_1" action="/loginRequest" method="post">
                 <div class="changePict_1_1"> <!-- changeEmail의 손자 태그-->
                     <div class="changePict_1_1_1">프로필 사진 수정</div>
-                    <div class="changePict_1_1_2" id='View_area'></div>
+                    <div class="changePict_1_1_2" id="View_area"></div>
                     <div class="changePict_1_1_3">
                         사진첨부ㅤ
                         <input type="file" name="profile_pt" id="profile_pt" onchange="previewImage(this,'View_area')">

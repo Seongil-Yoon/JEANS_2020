@@ -32,7 +32,7 @@
 
             <!--<button type="button" class = "main_duplicate">중복확인</button>
             <div class="main_duplicateResult">사용가능</div>-->
-F
+
             <div class="register_pw">비밀번호</div>
             <input type="password" id="pw" name="password" class="register_pwInput" placeholder="비밀번호를 입력하세요">
             <div class="register_pwError" id="pass_check"></div>
@@ -44,16 +44,11 @@ F
 
 
             <div class="select_profile">
-                <input type="file" id="input_profile" name="picture" accept=".jpg,.jpeg,.png,.bmp" />
+                <input type="file" id="input_profile" name="picture" accept=".jpg,.jpeg,.png,.bmp" onchange="previewImage(this,'View_area')"/>
             </div>
             <div class="upload_image" id="View_area">
-                <img id="img"/>
+                <!-- JS로 img태그 생성 -->
             </div>
-
-            <%--    <div class="register_pictureTitle">프로필 사진</div>--%>
-            <%--    <div class="register_pictureFile">--%>
-            <%--        <input name="BOARD_FILE" id="BOARD_FILE" required="required" type="file" onchange="previewImage(this,'img')"/>--%>
-            <%--    </div>--%>
 
             <div class="register_bodyType">공개/비공개</div>
             <div class="register_lock">공개</div>
