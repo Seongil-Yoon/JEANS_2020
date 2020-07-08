@@ -27,6 +27,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         ExceptionResponse exceptionResponse=new ExceptionResponse(new Date(),ex.getMessage(),request.getDescription(false));
         return new ResponseEntity(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
     //LookNotFoundException 오류 처리하는곳 404 에러 보내줌
     @ExceptionHandler(NotFoundException.class)
     public final ResponseEntity<Object>handleNotFoundException(Exception ex,WebRequest request){
@@ -40,6 +41,5 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         ExceptionResponse exceptionResponse=new ExceptionResponse(new Date(),ex.getMessage(),request.getDescription(false));
         return new ResponseEntity<>(exceptionResponse, HttpStatus.UNAUTHORIZED);
     }
-
 
 }

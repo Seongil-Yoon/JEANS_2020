@@ -49,6 +49,15 @@ public class LookController {
         return "look_info";
     }
 
+    //게시판 수정 페이지 이동
+    @RequestMapping("/lookModify")
+    public String lookModify(@RequestParam("look_num")int look_num,Model model)
+    {
+        BoardDto boardDto=boardDao.view(look_num);
+        model.addAttribute("view",boardDto); //게시글정보 가져오기
+        return "lookModify";
+    }
+
     @ResponseBody
     @GetMapping("/looks")  //룩 전체 리스트
     public List<BoardDto> searchAllLook(){

@@ -70,10 +70,9 @@
         <c:set var="viewId" value="${view.fk_userid_user_userid}"/>
 
         <div class = "delete">
-            <img src="static/images/pen.png" alt="search" height="25" width="25" />
+            <img src="static/images/pen.png" alt="search" height="25" width="25" onclick="lookModify(${view.look_num},'${viewId}')"/>
             <img src="static/images/delete.png" alt="search" height="25" width="25" onclick="lookDelete(${view.look_num},'${viewId}')"/>
         </div>
-
 
         <!-- 슬라이드 쇼-->
 
@@ -177,6 +176,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="/static/js/id_nickname_session.js"></script>
+<script type="text/javascript" src="/static/js/lookModify.js"></script>
 <script type="text/javascript" src="/static/js/lookDelete.js"></script>
 <script src="/static/js/look_info.js"></script>
 <script type="text/javascript" src="/static/js/comment.js"></script>
