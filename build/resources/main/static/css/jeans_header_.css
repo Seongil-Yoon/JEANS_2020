@@ -5,7 +5,11 @@ body{
   margin: 0px;
 }
 
-
+form{
+  display: block;
+  margin-top: 0em;
+  margin-block-end: 1em;
+}
 
 .jeans_root{
   position: fixed;
