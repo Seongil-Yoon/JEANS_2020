@@ -159,7 +159,7 @@
 <script>headerReset()</script>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="static/js/ex2.js"></script>
+<script src="static/js/ex2.js"></script>
 
 </body>
 </html>
