@@ -58,7 +58,10 @@
     <div class="body_look">
 
         <div class="my_img">
-            <img src="static/images/mypicture.png" alt="search" height="50" width="60"/>
+            <%--
+                        <img src="static/images/mypicture.png" alt="search" height="50" width="60"/>
+            --%>
+            <img src="displayMthumbnail?id=${view.fk_userid_user_userid}">
         </div>
 
         <div class="name">${view.nickname}</div>
@@ -69,9 +72,10 @@
 
         <c:set var="viewId" value="${view.fk_userid_user_userid}"/>
 
-        <div class = "delete">
-            <img src="static/images/pen.png" alt="search" height="25" width="25" />
-            <img src="static/images/delete.png" alt="search" height="25" width="25" onclick="lookDelete(${view.look_num},'${viewId}')"/>
+        <div class="delete">
+            <img src="static/images/pen.png" alt="search" height="25" width="25"/>
+            <img src="static/images/delete.png" alt="search" height="25" width="25"
+                 onclick="lookDelete(${view.look_num},'${viewId}')"/>
         </div>
 
 
@@ -146,7 +150,10 @@
         <c:if test="${sessionScope.userid != null}"> <%--로그인 해야 작성가능--%>
             <div class="look_comment">
                 <div class="other_people_img">
-                    <img src="static/images/mypicture.png" alt="other_people_imgage" height="50" width="60"/>
+                        <%--
+                                            <img src="static/images/mypicture.png" alt="other_people_imgage" height="50" width="60"/>
+                        --%>
+                    <img src="/displayMthumbnail?id=${sessionScope.userid}">
                 </div>
 
                 <div class="other_people_name">${sessionScope.usernickname}</div>
