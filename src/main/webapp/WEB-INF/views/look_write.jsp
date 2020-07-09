@@ -49,7 +49,9 @@
 
                 <div class="space"></div>
 
-                <div id='View_area' class="img_space"></div>
+                <div id='View_area' class="img_space">
+
+                </div>
 
                 <!--{/* 오른쪽 부분들 */} -->
                 <div class="upload_right">
@@ -130,6 +132,7 @@
 </c:if>
 <%--header 부분 초기화--%>
 <script>headerReset()</script>
+<script src="static/js/ex1.js"></script>
 
 </body>
 </html>
