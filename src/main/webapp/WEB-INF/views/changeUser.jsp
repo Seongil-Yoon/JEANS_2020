@@ -49,19 +49,8 @@
                     <div class="changeEmail_1_1_1">인증 이메일 변경</div>
                     <div class="changeEmail_1_1_2">변경할 인증 이메일</div>
                     <div class="changeEmail_1_1_3">
-                        <input type="email" placeholder="email" name="email" />
+                        <input type="email" id="emailbox" name="email" placeholder="이메일을 입력하세요"/>
                     </div>
-                    <div class="changeEmail_1_1_4">@</div>
-                    <select class="changeEmail_1_1_5" id="register_emailDomain" name="register_emailDomain" >
-                        <option value="gmail.com" selected>gmail.com</option>
-                        <option value="naver.com">naver.com</option>
-                        <option value="hanmail.net">hanmail.net</option>
-                        <option value="nate.com">nate.com</option>
-                        <option value="hotmail.com">hotmail.com</option>
-                        <option value="lycos.co.kr">lycos.co.kr</option>
-                        <option value="empal.com">empal.com</option>
-                        <option value="korea.com">korea.com</option>
-                    </select>
                     <div class="changeEmail_1_1_6">
                         <button class="register_save" type="button" onclick="y" value="인증메일 전송">인증메일 전송</button>
                     </div>
