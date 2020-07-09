@@ -68,13 +68,13 @@
             <!-- /* class 이 space 인건 layout 을 위해 넣은 빈공간임*/-->
             <div><span class="title">내 룩 등록</span></div>
             <div class="space"></div>
-
-
+            <%--로그인한 아이디와 작성자 아이디 비교위해 작성자 아이디 넘겨줌 --%>
+            <input type="hidden"  name="fk_userid_user_userid" value="${view.fk_userid_user_userid}"/>
+            <%--게시글키 가져오기--%>
+            <input type="hidden"  name="look_num" value="${view.look_num}"/>
             <div class="name">
-
                 <span class="Jeans_bule">*글제목</span>ㅤ
-                <input type="title" class="input_name" name="title" placeholder="${view.title}"/>&nbsp;
-
+                <input type="title" class="input_name" name="title" value="${view.title}"/>
             </div>
 
             <div class="space"></div>
@@ -120,7 +120,7 @@
 
                 <div>
 
-                    <textarea name="tag" class="input_tag" placeholder="${view.tag}"></textarea>
+                    <textarea name="tag" class="input_tag">${view.tag}</textarea>
 
                 </div>
 
@@ -136,7 +136,7 @@
 
 
                 <div class="memo">
-                    <textarea name="memo" class="input_memo" placeholder="${view.memo}" /></textarea>
+                    <textarea name="memo" class="input_memo">${view.memo}</textarea>
                 </div>
             </div>
 

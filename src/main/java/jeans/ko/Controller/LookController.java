@@ -1,5 +1,6 @@
 package jeans.ko.Controller;
 
+import com.sun.scenario.effect.impl.sw.java.JSWBlend_SRC_OUTPeer;
 import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dto.BoardDto;
 import jeans.ko.Service.CommentService;
@@ -108,7 +109,7 @@ public class LookController {
     //룩게시판 작성
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
-    @PatchMapping("/looks")
+    @PostMapping ("/looks")
     public BoardDto boardWrite(BoardDto boardDto) {
         if(session.getAttribute("userid")==null){
             //서버로 바로접근하는 경우 아이디값 없으면 클라이언트 권한없음 오류보냄
@@ -125,11 +126,17 @@ public class LookController {
     @ResponseStatus(HttpStatus.CREATED)
     @PutMapping ("/looks")
     public BoardDto boardModify(BoardDto boardDto) {
+        int lookNum=boardDto.getLook_num();
+        //로그인 아이디와 작성자 아이디가 같은지 확인한다
         if(session.getAttribute("userid").equals(boardDto.getFk_userid_user_userid())){
+            //찾는 값이 없으면 404 에러 보냄
+            if(boardDao.view(lookNum)==null){
+                throw new NotFoundException(String.format("lookNum[%s] not found",lookNum));
+            }
             //게시글 수정
             boardService.update(boardDto);
-            //selectKey로 look_num 가져와서 수정된 게시글 정보넘김
-            return boardDao.view(boardDto.getLook_num());
+            //수정된 게시글 정보 넘겨주기
+            return boardDao.view(lookNum);
         }else {
             //작성자 아디이와 로그인한 아이디가 다르면 권한없음 오류 보냄
             throw new UnauthorizedException(String.format("unauthorized you"));

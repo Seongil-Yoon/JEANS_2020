@@ -41,7 +41,9 @@ public class BoardService implements IBoardService {
 
     @Override
     public int update(BoardDto boardDto) {
-     return  boardDao.update(boardDto);
+        boardDto.setPicture("사진"); //사진수정 수정해야함
+        return  boardDao.update(boardDto);
+
     }
 
 }
