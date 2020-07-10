@@ -245,9 +245,9 @@ function joinUser() {
             url: "/user",
             type: "post",
             data: formData,
-            dataType: "text",
+            dataType : 'json',
             processData: false,
-            contentType:false,
+            contentType:'application/json; charset=UTF-8',
             success: function () {
                 alert(JSON.stringify(formData));//성공 시 출력 나중에 지울것!
                 location.href = "/loginUser";
@@ -256,6 +256,21 @@ function joinUser() {
                 alert("code :" + request.status + "\n" + "message : " + request.responseText + "\n" + "error : " + error);
             }
         });
+        // $.ajax({
+        //     url: "/user",
+        //     type: "post",
+        //     data: formData,
+        //     dataType: "text",
+        //     processData: false,
+        //     contentType:false,
+        //     success: function () {
+        //         alert(JSON.stringify(formData));//성공 시 출력 나중에 지울것!
+        //         location.href = "/loginUser";
+        //     },
+        //     error: function (request, status, error) {
+        //         alert("code :" + request.status + "\n" + "message : " + request.responseText + "\n" + "error : " + error);
+        //     }
+        // });
    }else{
         formData.append("file",file);
 

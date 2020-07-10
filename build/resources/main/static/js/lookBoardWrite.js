@@ -75,3 +75,12 @@ function look_public_check(look_public) {
     }
     return result;
 }
+
+function init(){
+    lookWrite();
+    season_check(season);
+    look_public_check(look_public);
+
+}
+
+init();

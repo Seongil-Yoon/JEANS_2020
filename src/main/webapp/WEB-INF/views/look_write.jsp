@@ -49,8 +49,24 @@
 
                 <div class="space"></div>
 
-                <div id='View_area' class="img_space">
-
+                <div  class="img_space">
+                    <div class="look_img_container">
+                        <div class="look_img_viewport">
+                            <div class="look_flick_camera">
+                                <div id="View_area" class="flick_panel s1" style="left: 0px;">
+                                    <!-- JS영역 -->
+                                </div>
+                            </div>
+            
+                            <button type="button" class="look_slide_button" id="look_slide_button_left" style="left: 0;">
+                                <img src="static/images/look_slide_icon_left.png" class="look_slide_button_icon">
+                            </button>
+                            <button type="button" class="look_slide_button" id="look_slide_button_right" style="right: 0;">
+                                <img src="static/images/look_slide_icon_right.png" class="look_slide_button_icon">
+                            </button>
+                        </div>
+            
+                    </div>
                 </div>
 
                 <!--{/* 오른쪽 부분들 */} -->
@@ -132,7 +148,10 @@
 </c:if>
 <%--header 부분 초기화--%>
 <script>headerReset()</script>
-<script src="static/js/ex1.js"></script>
+<!-- <script src="static/js/ex1.js"></script> -->
+<!-- <script src="/static/js/look_info.js"></script> -->
+<script src="/static/js/uploadFileSlide.js"></script>
+
 
 </body>
 </html>
