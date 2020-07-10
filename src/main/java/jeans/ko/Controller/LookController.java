@@ -88,20 +88,21 @@ public class LookController {
     @ResponseBody
     @DeleteMapping("/looks/{id}")
     public void deleteLook (@PathVariable int id)  {
-     //먼저 게시글이 있는지 확인
-     BoardDto boardDto;
-     boardDto=boardDao.view(id);
-
-         if(session.getAttribute("userid").equals(boardDto.getFk_userid_user_userid())){
-             if(boardDto!=null){
-                 boardService.delete(id);
-             }else {
-                 //찾는 게시글 없어서 not found 오류
-                 throw new NotFoundException(String.format("ID[%s] not found",id));
-             }
-         }else {
-             //스크립트에서 1차로 차단하지만 서버로 바로접근하는 경우 차단용
+            System.out.println("delete "+id);
+         //게시글이 먼저 있는지 확인
+         BoardDto boardDto=boardDao.view(id);
+        System.out.println(session.getAttribute("userid ")+"유저 아이디");
+         if(boardDto==null){
+             //찾는 게시글이없으므로 Not found 오류 보내기
+             throw new NotFoundException(String.format("ID[%s] not found",id));
+         }
+         if(session.getAttribute("userid")==null||
+                 session.getAttribute("userid").equals(boardDto.getFk_userid_user_userid())==false){
+             //로그인한 아이디와 작성자 아이디가 달라서 권한없음 오류보냄
              throw new UnauthorizedException(String.format("unauthorized you"));
+         }else {
+             //로그인 아이디 와 작성자 아이디 가 같아서 글삭제
+             boardService.delete(id);
          }
 
     }
@@ -111,11 +112,12 @@ public class LookController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping ("/looks")
     public BoardDto boardWrite(BoardDto boardDto) {
+        System.out.println(boardDto+"게시글작성");
         if(session.getAttribute("userid")==null){
             //서버로 바로접근하는 경우 아이디값 없으면 클라이언트 권한없음 오류보냄
             throw new UnauthorizedException(String.format("unauthorized you"));
         }
-        //게 시글등록
+        //게시글등록
         boardService.insert(boardDto);
         //selectKey로 등록된 게시글 가져온 기본키로 등록된 게시글 정보보내줌 새롭게 추가되 댓글이없으므로 게시글만넘김
         return boardDao.view(boardDto.getLook_num());
@@ -125,20 +127,22 @@ public class LookController {
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     @PutMapping ("/looks")
-    public BoardDto boardModify(BoardDto boardDto) {
-        int lookNum=boardDto.getLook_num();
-        //로그인 아이디와 작성자 아이디가 같은지 확인한다
-        if(session.getAttribute("userid").equals(boardDto.getFk_userid_user_userid())){
-            //찾는 값이 없으면 404 에러 보냄
-            if(boardDao.view(lookNum)==null){
-                throw new NotFoundException(String.format("lookNum[%s] not found",lookNum));
-            }
-            //게시글 수정
-            boardService.update(boardDto);
+    public BoardDto boardModify(BoardDto modifyBoardDto) {
+        System.out.println(modifyBoardDto+" dto");
+        //넘어온 값에 기본키id 값으로 게시글작성자 id 와 기본키넘버값 가져오기
+        String lookId=boardDao.view(modifyBoardDto.getLook_num()).getFk_userid_user_userid();
+        int lookNum=boardDao.view(modifyBoardDto.getLook_num()).getLook_num();
+        if( lookId==null){
+            //수정할 게시글이 없으므로 not found 에러 보냄
+            throw new NotFoundException(String.format("lookNum[%s] not found",modifyBoardDto.getLook_num()));
+        }
+        if(session.getAttribute("userid").equals(lookId)){
+            //로그인한 아이디와 수정할려는 게시글 작성자 아이디 비교하여 같으면 게시글수정
+            boardService.update(modifyBoardDto);
             //수정된 게시글 정보 넘겨주기
             return boardDao.view(lookNum);
         }else {
-            //작성자 아디이와 로그인한 아이디가 다르면 권한없음 오류 보냄
+            //게시글 작성자 아디이와 로그인한 아이디가 다르면 권한없음 오류 보냄
             throw new UnauthorizedException(String.format("unauthorized you"));
         }
     }
