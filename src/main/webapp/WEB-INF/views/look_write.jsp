@@ -14,10 +14,8 @@
     <!--/*여기는 맨 위에 있는 바 부분*/ -->
         <jsp:include page="header.jsp" flush="false"/>
     <!-- /*여기부터가 본문*/  -->
-    <form name="writeForm">
+    <form name="writeForm" encType="multipart/form-data">
         <div class="body_root"> <!--/* 전체 바탕 아무 것도 안함*/ -->
-            <%--@elvariable id="boardDto" type="jeans"--%>
-
 
                 <div class="header_space"></div>
                 <!--/* 위에 있는 바와 간격 벌리기 위한것*/ -->
@@ -42,9 +40,9 @@
 
                 <div class="space"></div>
 
-                <div class="upload">
+                <div class="upload" id="js-uploadDiv">
                     사진첨부ㅤ
-                    <input type="file" name="profile_pt" id="profile_pt" onchange="previewImage(this,'View_area')">
+                    <input type="file" multiple  name="profile_pt" id="profile_pt" accept=".jpg, .jpeg, .png, .svg, .gif" onchange="previewImage(this,'View_area')">
                 </div>
 
                 <div class="space"></div>
@@ -52,10 +50,10 @@
                 <div  class="img_space">
                     <div class="look_img_container">
                         <div class="look_img_viewport">
-                            <div class="look_flick_camera">
-                                <div id="View_area" class="flick_panel s1" style="left: 0px;">
-                                    <!-- JS영역 -->
-                                </div>
+                            <div class="look_flick_camera"  id="View_area">  
+                                <!-- preview == View_area -->
+                                <!-- <div  class="flick_panel" style="left: 0px;">
+                                </div> JS로 태그 생성-->
                             </div>
             
                             <button type="button" class="look_slide_button" id="look_slide_button_left" style="left: 0;">
@@ -117,7 +115,7 @@
 
 
                     <div class="memo">
-                        <textarea name="memo" class="input_memo"/></textarea>
+                        <textarea name="memo" class="input_memo"></textarea>
                     </div>
                 </div>
 
@@ -150,7 +148,7 @@
 <script>headerReset()</script>
 <!-- <script src="static/js/ex1.js"></script> -->
 <!-- <script src="/static/js/look_info.js"></script> -->
-<script src="/static/js/uploadFileSlide.js"></script>
+<script src="/static/js/showiFileImage.js"></script>
 
 
 </body>

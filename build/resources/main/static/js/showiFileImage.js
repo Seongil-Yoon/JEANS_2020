@@ -1,3 +1,6 @@
+//CSS클래스명 불러오기
+const FLICK_PANEL = "flick_panel";
+
 function previewImage(targetObj, View_area) { //(this,'View_area')
     let preview = document.getElementById(View_area); //div id
     let ua = window.navigator.userAgent;
@@ -17,7 +20,7 @@ function previewImage(targetObj, View_area) { //(this,'View_area')
             let img = document.getElementById(View_area); //이미지가 뿌려질 곳
 
             //이미지 로딩, sizingMethod는 div에 맞춰서 사이즈를 자동조절 하는 역할
-            img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+src+"', sizingMethod='scale')";
+            img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + src + "', sizingMethod='scale')";
         } catch (e) {
             if (!document.getElementById("ie_preview_error_" + View_area)) {
                 let info = document.createElement("<p>");
@@ -29,26 +32,39 @@ function previewImage(targetObj, View_area) { //(this,'View_area')
         //ie가 아닐때(크롬, 사파리, FF)
     } else {
         let files = targetObj.files;
-        for ( let i = 0; i < files.length; i++) {
+        for (let i = 0; i < files.length; i++) {
             let file = files[i];
             let imageType = /image.*/; //이미지 파일일경우만.. 뿌려준다.
             if (!file.type.match(imageType))
                 continue;
-            let prevImg = document.getElementById("prev_" + View_area); //이전에 미리보기가 있다면 삭제
-            if (prevImg) {
-                preview.removeChild(prevImg);
-            }
+            // let prevImg = document.getElementById("prev_" + View_area); //이전에 미리보기가 있다면 삭제
+            // if (prevImg) {
+            //     preview.removeChild(prevImg);
+            // }
             let img = document.createElement("img");
+
+            let flick_panel = document.createElement('div');
+            flick_panel.classList.add(FLICK_PANEL);
+            flick_panel.className = "flick_panel";
+            flick_panel.appendChild(img);
+            preview.appendChild(flick_panel);
+
+            document.getElementsByClassName('flick_panel').files[length];
+
+            console.log(flick_panel);
+
             img.id = "prev_" + View_area;
             img.classList.add("obj");
             img.file = file;
             img.style.width = '100%';
             img.style.height = '100%';
-            preview.appendChild(img);
+
+            // preview.appendChild(createFlick_panel(img));
+
             if (window.FileReader) { // FireFox, Chrome, Opera 확인.
                 let reader = new FileReader();
-                reader.onloadend = (function(aImg) {
-                    return function(e) {
+                reader.onloadend = (function (aImg) {
+                    return function (e) {
                         aImg.src = e.target.result;
                     };
                 })(img);
@@ -67,6 +83,18 @@ function previewImage(targetObj, View_area) { //(this,'View_area')
     }
 }
 
+// function createFlick_panel(img) {
+//     let flick_panel = document.createElement('div');
+//     flick_panel.classList.add(FLICK_PANEL);
+//     flick_panel.className = "flick_panel";
+//     flick_panel.appendChild(img);
+
+//     document.getElementsByClassName('flick_panel').files[length];
+
+//     console.log(flick_panel);
+//     return flick_panel;
+// }
+
 
 function slide() {
     const slideList = document.querySelector('.look_flick_camera');  // Slide parent dom
@@ -77,7 +105,7 @@ function slide() {
     const slideWidth = 300; // slide width
     const slideSpeed = 300; // slide speed
     const startNum = 0; // initial slide index (0 ~ 4)
-    
+
     slideList.style.width = slideWidth * (slideLen + 2) + "px";
 
     // Copy first and last slide
@@ -98,13 +126,13 @@ function slide() {
 
 
     /** Next Button Event */
-    slideBtnNext.addEventListener('click', function() {
+    slideBtnNext.addEventListener('click', function () {
         if (curIndex <= slideLen - 1) {
             slideList.style.transition = slideSpeed + "ms";
             slideList.style.transform = "translate3d(-" + (slideWidth * (curIndex + 2)) + "px, 0px, 0px)";
         }
         if (curIndex === slideLen - 1) {
-            setTimeout(function() {
+            setTimeout(function () {
                 slideList.style.transition = "0ms";
                 slideList.style.transform = "translate3d(-" + slideWidth + "px, 0px, 0px)";
             }, slideSpeed);
@@ -116,13 +144,13 @@ function slide() {
     });
 
     /** Prev Button Event */
-    slideBtnPrev.addEventListener('click', function() {
+    slideBtnPrev.addEventListener('click', function () {
         if (curIndex >= 0) {
             slideList.style.transition = slideSpeed + "ms";
             slideList.style.transform = "translate3d(-" + (slideWidth * curIndex) + "px, 0px, 0px)";
         }
         if (curIndex === 0) {
-            setTimeout(function() {
+            setTimeout(function () {
                 slideList.style.transition = "0ms";
                 slideList.style.transform = "translate3d(-" + (slideWidth * slideLen) + "px, 0px, 0px)";
             }, slideSpeed);
@@ -136,13 +164,11 @@ function slide() {
 
 }
 
-function storeFile(){
-    
-}
 
-function init(){
-    
-    slide(previewImage(targetObj, View_area));
+function init() {
+    slide();
+    previewImage(targetObj, View_area);
+
 }
 
 init();
