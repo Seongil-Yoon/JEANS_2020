@@ -44,11 +44,23 @@ function commentReady(lookNum) {
 
 function comment() {
     //name 은중복을 허용해서 사용할때 0을 꼭붙여야함
+    var comment_sender_id = document.getElementsByName("comment_sender_id")[0].value
+    var comment_sender_name = document.getElementsByName("comment_sender_name")[0].value
+    var fk_look_num_Look_look_num = document.getElementsByName("fk_look_num_Look_look_num")[0].value
     var comment_content = document.getElementsByName("comment_content")[0].value
+
+    let data = {
+        comment_sender_id: comment_sender_id,
+        comment_sender_name: comment_sender_name,
+        fk_look_num_Look_look_num: fk_look_num_Look_look_num,
+        comment_content: comment_content,
+    };
+    //데이터 json 문자열 형태로 변환
+    var commentDto = JSON.stringify(data);
+
     if (comment_content) { //자바스크립트는 null값을 false 로 인식함
         //form태그 name인 commentForm 에 내용을 한번에 가져옴 serialize 는 form태그 내용 한번에 가져옴
-        var Data = $('[name=commentForm]').serialize();
-        commentConfirm('', '댓글을 등록할까요?', Data);
+        commentConfirm('', '댓글을 등록할까요?', commentDto);
     } else {
         //false null 값이니 경고문 나오기
         swal("댓글내용 입력안됨!!", "", "error")
@@ -57,7 +69,7 @@ function comment() {
 }
 
 //댓글 등록후 댓글 바로위에 등록함수
-function commentConfirm(msg, title, Data) {
+function commentConfirm(msg, title, commentDto) {
     swal({
         title: title,
         text: msg,
@@ -73,8 +85,9 @@ function commentConfirm(msg, title, Data) {
             $.ajax({
                 url: "/look_comment",
                 type: "POST", //데이터 전달방식
-                data: Data, //전송객체
+                data: commentDto, //전송객체
                 dataType: "json",//데이터 받을타입 데이터받는이유 댓글작성하고 추가된 글까지 받기위해서
+                contentType: "application/json", //json 형태로 댓글보내기
                 success: function (result, textStatus, jqxHR) {
                     //result 리턴값 textStatus
                     if (jqxHR.status == 201) {
@@ -256,13 +269,18 @@ $(document).on("click", ".comment_change_button", function (event) {
     let comment_id = look_commentTag.children('.comment_id').val();
     //수정내용 가져오기
     let content = look_commentTag.find(".comment_textarea").val();
+    // 값을 key value 형태로 변환
+    let contentData = {
+        comment_content: content,
+    };
 
     //저장 버튼누르면 1  취소는 2
     if ($(event.target).val() == 1) {
         $.ajax({
             url: "/look_comment/" + comment_id,
             type: "PATCH", //데이터 전달방식
-            data: {'comment_content': content}, //전송객체
+            data: JSON.stringify(contentData), //json 문자열로 반환 해서보냄
+            contentType: "application/json", //json 형태로 보내기
             success: function (result, textStatus, jqxHR) {
                 look_commentTag.children().remove();
                 let html = '';

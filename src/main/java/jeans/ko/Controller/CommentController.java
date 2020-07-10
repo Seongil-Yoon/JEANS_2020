@@ -87,17 +87,16 @@ public class CommentController {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody //이거없으면 스프링은 반환형태를 뷰로 판단함
     @PostMapping("/look_comment")
-    public CommentDto commentWrite(CommentDto commentDto) {
+    public CommentDto commentWrite(@RequestBody CommentDto commentDto) {
 
-//        //로그인 해야 댓글 작성가능
-//        if(session.getAttribute("userid")!=null){
+        if(session.getAttribute("userid")!=null){
             commentService.insert(commentDto);
             //selectKey 해서 새로 등록한 댓글 기본키 값으로 새로등록된 댓글 가져오기
             return commentService.comment(commentDto.getComment_id());
-//        }else {
-//            //권한없음 오류
-//            throw new UnauthorizedException(String.format("unauthorized you"));
-//        }
+        }else {
+            //권한없음 오류
+            throw new UnauthorizedException(String.format("unauthorized you"));
+        }
 
     }
 
@@ -105,18 +104,20 @@ public class CommentController {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     @PatchMapping("look_comment/{comment_id}")
-    public CommentDto updateLookComment(@PathVariable int comment_id,CommentDto commentDto){
+    public CommentDto updateLookComment(@PathVariable int comment_id,@RequestBody CommentDto updateDto){
+        //댓글정보 가져오기
         CommentDto dto=commentService.comment(comment_id);
         if(dto==null){
             //수정할 댓글이 없으면 not found 404 에러
-            throw new NotFoundException(String.format("ID[%s] not found",comment_id));
+            throw new NotFoundException(String.format("comment_id[%s] not found",comment_id));
         }
-        if(dto.getComment_sender_id().equals(session.getAttribute("userid"))){
-            //작성자 아이디와 세션 아이디가 같아야 수정할수있음
-            commentService.update(comment_id,commentDto.getComment_content());
-        }else {
-            //댓글 작성자 아이디와 세션 아이디가 다를 경우 권한없음오류
+        if(dto.getComment_sender_id().equals(session.getAttribute("userid"))==false||
+                session.getAttribute("userid")==null){
+            //작성자 아이디와 세션 아이디가 달라서 권한없음 오류
             throw new UnauthorizedException("unauthorized you");
+        }else {
+            //작성자 아이디와 세션 아이디가 같아 수정가능
+            commentService.update(comment_id,updateDto.getComment_content());
         }
         //수정된 댓글정보 넘겨주기
         return commentService.comment(comment_id);
