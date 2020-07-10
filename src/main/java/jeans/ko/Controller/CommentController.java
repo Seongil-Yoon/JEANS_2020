@@ -37,23 +37,6 @@ public class CommentController {
     @Autowired
     ICommentDao commentDao;
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @ResponseBody //이거없으면 스프링은 반환형태를 뷰로 판단함
-    @PostMapping("/look_comment")
-    public CommentDto commentWrite(CommentDto commentDto) {
-
-        //로그인 해야 댓글 작성가능
-        if(session.getAttribute("userid")!=null){
-            commentService.insert(commentDto);
-            //selectKey 해서 새로 등록한 댓글 기본키 값으로 새로등록된 댓글 가져오기
-            return commentService.comment(commentDto.getComment_id());
-        }else {
-            //권한없음 오류
-            throw new UnauthorizedException(String.format("unauthorized you"));
-        }
-
-    }
-
     @ResponseBody
     @GetMapping ("/look_comment/{comment_id}")
     public CommentDto comment(@PathVariable int comment_id) {
@@ -89,14 +72,32 @@ public class CommentController {
 
         if(commentDto==null){
             //찾는 댓글이 없으면 not found 404 에러
-            throw new NotFoundException(String.format("ID[%s] not found",comment_id));
+            throw new NotFoundException(String.format("comment_id[%s] not found",comment_id));
         }
-        if(commentDto.getComment_sender_id().equals(session.getAttribute("userid"))){
-            commentService.delete(comment_id);
-        }else {
-            //댓글 작성자 아이디와 로그인한 아이디가 다를 경우 권한없음오류
+        if(commentDto.getComment_sender_id().equals(session.getAttribute("userid"))==false
+        ||session.getAttribute("userid")==null){
             throw new UnauthorizedException("unauthorized you");
+        }else {
+            //로그인한 아이디와 작성자 아이디가 같아서 댓글삭제
+            commentService.delete(comment_id);
         }
+
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody //이거없으면 스프링은 반환형태를 뷰로 판단함
+    @PostMapping("/look_comment")
+    public CommentDto commentWrite(CommentDto commentDto) {
+
+//        //로그인 해야 댓글 작성가능
+//        if(session.getAttribute("userid")!=null){
+            commentService.insert(commentDto);
+            //selectKey 해서 새로 등록한 댓글 기본키 값으로 새로등록된 댓글 가져오기
+            return commentService.comment(commentDto.getComment_id());
+//        }else {
+//            //권한없음 오류
+//            throw new UnauthorizedException(String.format("unauthorized you"));
+//        }
 
     }
 

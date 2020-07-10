@@ -1,18 +1,17 @@
-
 let isEnd = false; //더이상 가져올값이 없으면 중지하기 위한변수
-let num=0; //4개씩 나오기 위한변수
+let num = 0; //4개씩 나오기 위한변수
 let mainScrollTime = true;
 
-$(document).ready(function(){
+$(document).ready(function () {
     start(); //처음 4개 출력
-    $(window).scroll(function(){   //스크롤 감지 이벤트
+    $(window).scroll(function () {   //스크롤 감지 이벤트
 
         let scroll = $(document).scrollTop(); //현재 스크롤 값
         let documentHeight = $(document).height();//문서 전체높이
-        let windowHeight= window.innerHeight; //윈도우 높이
+        let windowHeight = window.innerHeight; //윈도우 높이
         //윈도우 높이에 스크롤값을 계속더해서 문서 전체 길이에서 100 px 앞에 스크롤이 왔을때 데이터 불러옴
-        if((windowHeight + scroll) >= documentHeight-100){
-            if(mainScrollTime==true){
+        if ((windowHeight + scroll) >= documentHeight - 100) {
+            if (mainScrollTime == true) {
                 start();
             }
         }
@@ -25,24 +24,24 @@ function start() {
 
     $.ajax({
         url: "/looks", //요청url
-        type:"GET",
+        type: "GET",
         dataType: "json", //json 으로 받기
-        success: function(result) { //성공 하면 데이터를 result로 받아옴
+        success: function (result) { //성공 하면 데이터를 result로 받아옴
 
-            if(isEnd == true){
+            if (isEnd == true) {
                 return;
             }
 
             //4개씩 출력 0~3  4~7 8~11 12~15
-            for(var i=num; i<num+4; i++){
+            for (var i = num; i < num + 4; i++) {
 
-                if( result[i].look_num  == null ){
+                if (result[i].look_num == null) {
                     isEnd = true; //더이상 가져올값이 없으면 true로 바꿔 더이상 값을 못가져오게함
                 }
 
-                let html="\n" +
+                let html = "\n" +
                     "\n" +
-                    "      <a class=\"look_view_a\"  href=\"look?look_num="+result[i].look_num + "\">\n" +
+                    "      <a class=\"look_view_a\"  href=\"look?look_num=" + result[i].look_num + "\">\n" +
                     "          <div class=\"main\">\n" +
                     "\n" +
                     "              <div claas=\"main_container\">\n" +
@@ -52,7 +51,7 @@ function start() {
                     "                          <div class=\"is_body\" >\n" +
                     "                              <!-- 헤더-->\n" +
                     "                              <div class=\"my_img\">\n" +
-                    "                                  <img src=\"static/images/mypicture.png\" alt=\"search\" height=\"50\" width=\"60\" />\n" +
+                    "                                 <img src=\"displayMthumbnail?id="+result[i].fk_userid_user_userid+"\">\n"+
                     "                              </div>\n" +
                     "                              <div class=\"name\">\n" +
                     "                                  <ul class=\"look_header_ul\">\n" +
@@ -122,10 +121,12 @@ function start() {
                     "      </div>"
                 $("body").append(html);
             }
-            setTimeout(function(){ mainScrollTime = true;},200);//스크롤이벤트 0.2초뒤실행 중복방지위해
-            num+=4; //4개씩 차례대로 출력하게 4더함
+            setTimeout(function () {
+                mainScrollTime = true;
+            }, 200);//스크롤이벤트 0.2초뒤실행 중복방지위해
+            num += 4; //4개씩 차례대로 출력하게 4더함
         },
-        error: function(errorThrown) {
+        error: function (errorThrown) {
             alert("fail");
         }
     });
