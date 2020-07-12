@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="static/css/look_list.css"/>
     <link rel="stylesheet" href="static/css/look_list_Look.css"/>
+    <link rel="stylesheet" href="static/css/slideShow.css" />
 </head>
 <body>
 

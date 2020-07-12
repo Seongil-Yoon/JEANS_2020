@@ -8,6 +8,7 @@
     <meta charset="UTF-8"/>
     <title>login</title>
     <link rel="stylesheet" href="static/css/login.css"/>
+    <link rel="stylesheet" href="static/css/slideShow.css" />
 </head>
 <body>
 

@@ -41,28 +41,24 @@ function previewImage(targetObj, View_area) { //(this,'View_area')
             // if (prevImg) {
             //     preview.removeChild(prevImg);
             // }
-            let flick_panel = document.createElement('div');
             let img = document.createElement("img");
-            //태그 생성 부분
 
-            preview.appendChild(flick_panel);
-            flick_panel.appendChild(img); //flick_panel의자식으로 img태그를 연결
-            //태그 연결 부분
-
+            let flick_panel = document.createElement('div');
             flick_panel.classList.add(FLICK_PANEL);
             flick_panel.className = "flick_panel";
-            
-            img.classList.add("look_img_file");
+            flick_panel.appendChild(img);
+            preview.appendChild(flick_panel);
+
+            document.getElementsByClassName('flick_panel').files[length];
+
+            console.log(flick_panel);
+
             img.id = "prev_" + View_area;
+            img.classList.add("look_img_file");
             img.file = file;
             img.style.width = '100%';
             img.style.height = '100%';
-            //태그 속성 적용 부분
-            
-            
-            
-            console.log(flick_panel);
-            // document.getElementsByClassName('flick_panel').files[length];
+
             // preview.appendChild(createFlick_panel(img));
 
             if (window.FileReader) { // FireFox, Chrome, Opera 확인.

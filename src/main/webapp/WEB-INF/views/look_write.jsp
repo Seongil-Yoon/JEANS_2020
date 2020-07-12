@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="static/css/jeans_write_body.css">
+    <link rel="stylesheet" href="static/css/slideShow.css" />
 </head>
 <body>
 
@@ -53,6 +54,7 @@
                             <div class="look_flick_camera"  id="View_area">  
                                 <!-- preview == View_area -->
                                 <!-- <div  class="flick_panel" style="left: 0px;">
+                                    <img/>
                                 </div> JS로 태그 생성-->
                             </div>
             

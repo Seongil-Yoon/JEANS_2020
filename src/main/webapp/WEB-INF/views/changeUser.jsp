@@ -7,6 +7,7 @@
     <meta charset="utf-8" />
     <title></title>
     <link rel="stylesheet" href="static/css/changeUser.css" />
+    <link rel="stylesheet" href="static/css/slideShow.css" />
 </head>
 <body>
 <!-- <div class="leftTop"></div>

@@ -9,6 +9,7 @@
     <title></title>
     <link rel="stylesheet" href="static/css/mypageUser_top.css">
     <link rel="stylesheet" href="static/css/mypageUser_bottom.css">
+    <link rel="stylesheet" href="static/css/slideShow.css" />
 </head>
 <body>
 <!--/*여기는 맨 위에 있는 바 부분*/ -->

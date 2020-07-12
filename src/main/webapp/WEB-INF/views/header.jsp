@@ -7,6 +7,7 @@
     <meta charset="UTF-8"/>
     <title>header</title>
     <link rel="stylesheet" href="static/css/jeans_header_.css"/>
+    <link rel="stylesheet" href="static/css/slideShow.css" />
 </head>
 <body>
 
