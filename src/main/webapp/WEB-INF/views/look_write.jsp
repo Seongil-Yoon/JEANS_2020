@@ -46,6 +46,7 @@
                     <!-- <input type="file" multiple  name="profile_pt" id="profile_pt" accept=".jpg, .jpeg, .png, .svg, .gif" onchange="previewImage(this,'View_area')"> -->
                     <input type="file" multiple  name="profile_pt" id="profile_pt" accept=".jpg, .jpeg, .png, .svg, .gif"/>
                     <!-- JS에서 이벤트리스너 함수 추가 -->
+                    <button type="button" class="resetButton">초기화</button>
                 </div>
 
                 <div class="space"></div>
