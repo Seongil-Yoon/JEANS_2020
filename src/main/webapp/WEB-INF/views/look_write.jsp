@@ -43,7 +43,9 @@
 
                 <div class="upload" id="js-uploadDiv">
                     사진첨부ㅤ
-                    <input type="file" multiple  name="profile_pt" id="profile_pt" accept=".jpg, .jpeg, .png, .svg, .gif" onchange="previewImage(this,'View_area')">
+                    <!-- <input type="file" multiple  name="profile_pt" id="profile_pt" accept=".jpg, .jpeg, .png, .svg, .gif" onchange="previewImage(this,'View_area')"> -->
+                    <input type="file" multiple  name="profile_pt" id="profile_pt" accept=".jpg, .jpeg, .png, .svg, .gif"/>
+                    <!-- JS에서 이벤트리스너 함수 추가 -->
                 </div>
 
                 <div class="space"></div>
@@ -132,6 +134,7 @@
     </form>
 </div>
 
+<script src="/static/js/showiFileImage.js"></script>
 <script src="/static/js/lookBoardWrite.js"></script>
 <script
         src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -150,7 +153,6 @@
 <script>headerReset()</script>
 <!-- <script src="static/js/ex1.js"></script> -->
 <!-- <script src="/static/js/look_info.js"></script> -->
-<script src="/static/js/showiFileImage.js"></script>
 
 
 </body>

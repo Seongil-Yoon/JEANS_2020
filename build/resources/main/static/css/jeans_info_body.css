@@ -1,430 +1,357 @@
 @charset "UTF-8";
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
-@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Gothic+A1:wght@700&display=swap");
 .body_root {
-    font-size: 16px
+  font-size: 16px;
 }
 
 input {
-    padding: 6px 12px;
-    width: 100%;
-    height: 100%;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    box-sizing: border-box;
-    resize: none;
-    font-size: 14px
+  padding: 6px 12px;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-sizing: border-box;
+  resize: none;
+  font-size: 14px;
 }
 
-.name, .title {
-    margin-left: -20px
+.name,
+.title {
+  margin-left: -20px;
 }
 
 .title {
-    font-weight: 700;
-    font-size: 20px
+  font-weight: 700;
+  font-size: 20px;
 }
 
 .name {
-    margin-top: 10px
+  margin-top: 10px;
 }
 
 .write_date {
-    font-weight: 700;
-    margin-top: 10px;
-    padding-right: 10px;
-    text-align: right
+  font-weight: 700;
+  margin-top: 10px;
+  padding-right: 10px;
+  text-align: right;
 }
 
 .body_look {
-    display: -ms-grid;
-    display: grid;
-    width: 1100px;
-    height: 630px;
-    margin-left: auto;
-    margin-right: auto;
-    -ms-grid-rows: 20px 10px 20px 10px 400px 10px 100px 10px 30px;
-    grid-template-rows: 20px 20px 400px 100px 30px;
-    -ms-grid-columns: 90px 410px 600px;
-    grid-template-columns: 90px 410px 600px;
-    row-gap: 10px;
-    background-color: #e0e0e0
+  display: -ms-grid;
+  display: grid;
+  width: 1100px;
+  height: 630px;
+  margin-left: auto;
+  margin-right: auto;
+  -ms-grid-rows: 20px 10px 20px 10px 400px 10px 100px 10px 30px;
+  grid-template-rows: 20px 20px 400px 100px 30px;
+  -ms-grid-columns: 90px 410px 600px;
+  grid-template-columns: 90px 410px 600px;
+  row-gap: 10px;
+  background-color: #e0e0e0;
 }
 
 .body_look > :nth-child(1) {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
 }
 
 .body_look > :nth-child(2) {
-    -ms-grid-row: 1;
-    -ms-grid-column: 2
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
 }
 
 .body_look > :nth-child(3) {
-    -ms-grid-row: 1;
-    -ms-grid-column: 3
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
 }
 
 .body_look > :nth-child(4) {
-    -ms-grid-row: 3;
-    -ms-grid-column: 1
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
 }
 
 .body_look > :nth-child(5) {
-    -ms-grid-row: 3;
-    -ms-grid-column: 2
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
 }
 
 .body_look > :nth-child(6) {
-    -ms-grid-row: 3;
-    -ms-grid-column: 3
+  -ms-grid-row: 3;
+  -ms-grid-column: 3;
 }
 
 .body_look > :nth-child(7) {
-    -ms-grid-row: 5;
-    -ms-grid-column: 1
+  -ms-grid-row: 5;
+  -ms-grid-column: 1;
 }
 
 .body_look > :nth-child(8) {
-    -ms-grid-row: 5;
-    -ms-grid-column: 2
+  -ms-grid-row: 5;
+  -ms-grid-column: 2;
 }
 
 .body_look > :nth-child(9) {
-    -ms-grid-row: 5;
-    -ms-grid-column: 3
+  -ms-grid-row: 5;
+  -ms-grid-column: 3;
 }
 
 .body_look > :nth-child(10) {
-    -ms-grid-row: 7;
-    -ms-grid-column: 1
+  -ms-grid-row: 7;
+  -ms-grid-column: 1;
 }
 
 .body_look > :nth-child(11) {
-    -ms-grid-row: 7;
-    -ms-grid-column: 2
+  -ms-grid-row: 7;
+  -ms-grid-column: 2;
 }
 
 .body_look > :nth-child(12) {
-    -ms-grid-row: 7;
-    -ms-grid-column: 3
+  -ms-grid-row: 7;
+  -ms-grid-column: 3;
 }
 
 .body_look > :nth-child(13) {
-    -ms-grid-row: 9;
-    -ms-grid-column: 1
+  -ms-grid-row: 9;
+  -ms-grid-column: 1;
 }
 
 .body_look > :nth-child(14) {
-    -ms-grid-row: 9;
-    -ms-grid-column: 2
+  -ms-grid-row: 9;
+  -ms-grid-column: 2;
 }
 
 .body_look > :nth-child(15) {
-    -ms-grid-row: 9;
-    -ms-grid-column: 3
+  -ms-grid-row: 9;
+  -ms-grid-column: 3;
 }
 
 .my_img {
-    margin-top: 10px;
-    margin-left: 10px;
-    -ms-grid-row: 1;
-    -ms-grid-row-span: 2;
-    grid-row: 1/3
-}
-
-.look_img_container {
-    -ms-grid-row: 3;
-    -ms-grid-row-span: 1;
-    grid-row: 3/4;
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 3;
-    grid-column: 1/4;
-    z-index: 3
-}
-
-.look_img_container .look_img_viewport {
-    height: 400px;
-    width: 300px;
-    text-align: center;
-    margin: 0 auto;
-    position: relative;
-    overflow-x: hidden;
-    min-height: 100%;
-    touch-action: pan-y;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-user-drag: none
-}
-
-.look_img_container .look_img_viewport .look_flick_camera {
-    width: 100%;
-    height: 100%;
-    will-change: transform;
-    transform: translate3d(0, 0, 0)
-}
-
-.look_img_container .look_img_viewport .look_flick_camera .flick_panel {
-    width: 300px;
-    height: 400px;
-    display: table;
-    float: left;
-    margin: 0;
-    padding: 0
-}
-
-.look_img_container .look_img_viewport .look_flick_camera .flick_panel > img {
-    height: 100%;
-    width: 100%;
-    display: table-cell;
-    font-weight: 700;
-    text-align: center;
-    vertical-align: middle
-}
-
-.look_img_container .look_img_viewport .look_slide_button {
-    display: block;
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    bottom: 41px;
-    width: 40px;
-    box-sizing: border-box;
-    padding-top: 44px;
-    overflow: visible;
-    border: 0;
-    border-radius: 0;
-    background: 0 0
-}
-
-.look_img_container .look_img_viewport .look_slide_button .look_slide_button_icon {
-    display: inline-block;
-    background-repeat: no-repeat;
-    width: 25px;
-    height: 45px;
-    margin: 0 auto
+  margin-top: 10px;
+  margin-left: 10px;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  grid-row: 1/3;
 }
 
 .delete {
-    text-align: right;
-    margin-right: 10px;
-    margin-top: 5px
+  text-align: right;
+  margin-right: 10px;
+  margin-top: 5px;
 }
 
 .look_img_in {
-    text-align: center;
-    margin: 0 auto
+  text-align: center;
+  margin: 0 auto;
 }
 
 .look_img_file {
-    float: center;
-    height: 400px;
-    width: 300px;
-    line-height: 400px
+  float: center;
+  height: 400px;
+  width: 300px;
+  line-height: 400px;
 }
 
 .look_textarea_space {
-    -ms-grid-row: 4;
-    -ms-grid-row-span: 1;
-    grid-row: 4/5;
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 3;
-    grid-column: 1/4
+  -ms-grid-row: 4;
+  -ms-grid-row-span: 1;
+  grid-row: 4/5;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1/4;
 }
 
 .look_textarea {
-    width: 1000px;
-    height: 100px;
-    resize: none;
-    margin-left: 50px;
-    margin-right: 50px;
-    border: 0
+  width: 1000px;
+  height: 100px;
+  resize: none;
+  margin-left: 50px;
+  margin-right: 50px;
+  border: 0;
 }
 
 .like {
-    display: flex
+  display: flex;
 }
 
 .heart_img {
-    margin-left: 10px;
-    margin-top: 10px;
-    height: 30px;
-    width: 30px
+  margin-left: 10px;
+  margin-top: 10px;
+  height: 30px;
+  width: 30px;
 }
 
 .like_number {
-    margin-top: 10px;
-    line-height: 30px;
-    margin-left: 12px
+  margin-top: 10px;
+  line-height: 30px;
+  margin-left: 12px;
 }
 
 .views {
-    font-family: Impact;
-    display: flex;
-    text-align: right;
-    line-height: 50px;
-    overflow: visible
+  font-family: Impact;
+  display: flex;
+  text-align: right;
+  line-height: 50px;
+  overflow: visible;
 }
 
 .view_icon {
-    margin-left: 40px;
-    margin-top: 13px
+  margin-left: 40px;
+  margin-top: 13px;
 }
 
 .look_tag {
-    font-weight: 700;
-    margin-top: 10px;
-    text-align: right;
-    margin-right: 10px
+  font-weight: 700;
+  margin-top: 10px;
+  text-align: right;
+  margin-right: 10px;
 }
 
 .look_comment {
-    margin-top: 10px;
-    display: -ms-grid;
-    display: grid;
-    width: 1100px;
-    height: 180px;
-    margin-left: auto;
-    margin-right: auto;
-    -ms-grid-rows: 40px 10px 80px 10px 30px;
-    grid-template-rows: 40px 80px 30px;
-    -ms-grid-columns: 70px 50px 980px;
-    grid-template-columns: 70px 100px 930px;
-    row-gap: 10px;
-    background-color: #e0e0e0
+  margin-top: 10px;
+  display: -ms-grid;
+  display: grid;
+  width: 1100px;
+  height: 180px;
+  margin-left: auto;
+  margin-right: auto;
+  -ms-grid-rows: 40px 10px 80px 10px 30px;
+  grid-template-rows: 40px 80px 30px;
+  -ms-grid-columns: 70px 50px 980px;
+  grid-template-columns: 70px 100px 930px;
+  row-gap: 10px;
+  background-color: #e0e0e0;
 }
 
 .look_comment > :nth-child(1) {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
 }
 
 .look_comment > :nth-child(2) {
-    -ms-grid-row: 1;
-    -ms-grid-column: 2
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
 }
 
 .look_comment > :nth-child(3) {
-    -ms-grid-row: 1;
-    -ms-grid-column: 3
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
 }
 
 .look_comment > :nth-child(4) {
-    -ms-grid-row: 3;
-    -ms-grid-column: 1
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
 }
 
 .look_comment > :nth-child(5) {
-    -ms-grid-row: 3;
-    -ms-grid-column: 2
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
 }
 
 .look_comment > :nth-child(6) {
-    -ms-grid-row: 3;
-    -ms-grid-column: 3
+  -ms-grid-row: 3;
+  -ms-grid-column: 3;
 }
 
 .look_comment > :nth-child(7) {
-    -ms-grid-row: 5;
-    -ms-grid-column: 1
+  -ms-grid-row: 5;
+  -ms-grid-column: 1;
 }
 
 .look_comment > :nth-child(8) {
-    -ms-grid-row: 5;
-    -ms-grid-column: 2
+  -ms-grid-row: 5;
+  -ms-grid-column: 2;
 }
 
 .look_comment > :nth-child(9) {
-    -ms-grid-row: 5;
-    -ms-grid-column: 3
+  -ms-grid-row: 5;
+  -ms-grid-column: 3;
 }
 
 .other_people_img {
-    margin-left: 10px;
-    margin-top: 10px;
-    -ms-grid-row: 1;
-    -ms-grid-row-span: 1;
-    grid-row: 1/2
+  margin-left: 10px;
+  margin-top: 10px;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1/2;
 }
 
 .other_people_name {
-    margin-top: 10px;
-    line-height: 45px
+  margin-top: 10px;
+  line-height: 45px;
 }
 
 .right_etc {
-    text-align: right
+  text-align: right;
 }
 
 .right_etc img {
-    padding-top: 20px;
-    padding-right: 10px
+  padding-top: 20px;
+  padding-right: 10px;
 }
 
 .comment_textarea_space {
-    margin-top: 10px;
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 3;
-    grid-column: 1/4
+  margin-top: 10px;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1/4;
 }
 
 .comment_textarea {
-    width: 1000px;
-    height: 80px;
-    resize: none;
-    margin-left: 50px;
-    margin-right: 50px;
-    border: 0
+  width: 1000px;
+  height: 80px;
+  resize: none;
+  margin-left: 50px;
+  margin-right: 50px;
+  border: 0;
 }
 
-.re_comment{
-    margin-top: 10px;
-    text-align: center;
-    grid-column: 1/3;
+.re_comment {
+  margin-top: 10px;
+  text-align: center;
+  grid-column: 1/3;
 }
 
-.comment_date{
-    margin-top: 10px;
-    grid-column: 3/4;
-    text-align: right;
-    padding-right: 10px;
+.comment_date {
+  margin-top: 10px;
+  grid-column: 3/4;
+  text-align: right;
+  padding-right: 10px;
 }
 
 .comment_button {
-    font-size: 100%;
-    border-radius: 5px;
-    border: 1px solid #000;
-    background-color: transparent;
-    color: #000
+  font-size: 100%;
+  border-radius: 5px;
+  border: 1px solid #000;
+  background-color: transparent;
+  color: #000;
 }
 
 /*2020 06 26 댓글 수정버튼 오경택만듬*/
 .comment_change_button {
-    margin-right: 10px;
-    font-size: 100%;
-    border-radius: 5px;
-    border: 1px solid #000;
-    background-color: transparent;
-    color: #000
+  margin-right: 10px;
+  font-size: 100%;
+  border-radius: 5px;
+  border: 1px solid #000;
+  background-color: transparent;
+  color: #000;
 }
-
 
 textarea::-moz-placeholder {
-    font-family: 'Gothic A1', sans-serif;
-    font-size: large
+  font-family: "Gothic A1", sans-serif;
+  font-size: large;
 }
 
-textarea:-ms-input-placeholder, textarea::-ms-input-placeholder {
-    font-family: 'Gothic A1', sans-serif;
-    font-size: large
+textarea:-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+  font-family: "Gothic A1", sans-serif;
+  font-size: large;
 }
 
 textarea::placeholder {
-    font-family: 'Gothic A1', sans-serif;
-    font-size: large
+  font-family: "Gothic A1", sans-serif;
+  font-size: large;
 }

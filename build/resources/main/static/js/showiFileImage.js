@@ -1,9 +1,14 @@
+//태그 불러오기
+const uploadDiv = document.querySelector("#js-uploadDiv"),
+    uploadButton = uploadDiv.querySelector("input") //파일선택 버튼.
+
 //CSS클래스명 불러오기
 const FLICK_PANEL = "flick_panel";
+const LOOK_FLICK_CAMERA = "look_flick_camera";
 
 function previewImage(targetObj, View_area) { //(this,'View_area')
-    let preview = document.getElementById(View_area); //div id
-    let ua = window.navigator.userAgent;
+    const preview = document.getElementById(View_area); //div id
+    const ua = window.navigator.userAgent;
 
     //ie일때(IE8 이하에서만 작동)
     if (ua.indexOf("MSIE") > -1) {
@@ -34,6 +39,8 @@ function previewImage(targetObj, View_area) { //(this,'View_area')
         let files = targetObj.files;
         for (let i = 0; i < files.length; i++) {
             let file = files[i];
+            console.log("파일",file);
+            console.log("this.value", targetObj);
             let imageType = /image.*/; //이미지 파일일경우만.. 뿌려준다.
             if (!file.type.match(imageType))
                 continue;
@@ -41,26 +48,33 @@ function previewImage(targetObj, View_area) { //(this,'View_area')
             // if (prevImg) {
             //     preview.removeChild(prevImg);
             // }
+
             let flick_panel = document.createElement('div');
             let img = document.createElement("img");
             //태그 생성 부분
+
+            console.log("View_area", preview);
+            console.log("flick_panel", flick_panel);
 
             preview.appendChild(flick_panel);
             flick_panel.appendChild(img); //flick_panel의자식으로 img태그를 연결
             //태그 연결 부분
 
+            preview.classList.add(LOOK_FLICK_CAMERA);
+
             flick_panel.classList.add(FLICK_PANEL);
-            flick_panel.className = "flick_panel";
-            
+            flick_panel.className = "flick_panel" + " s" + i;
+            flick_panel.style.left = i * 305;
+
             img.classList.add("look_img_file");
             img.id = "prev_" + View_area;
             img.file = file;
             img.style.width = '100%';
             img.style.height = '100%';
             //태그 속성 적용 부분
-            
-            
-            
+
+
+
             console.log(flick_panel);
             // document.getElementsByClassName('flick_panel').files[length];
             // preview.appendChild(createFlick_panel(img));
@@ -83,6 +97,7 @@ function previewImage(targetObj, View_area) { //(this,'View_area')
                     preview.insertBefore(info, null);
                 }
             }
+            console.log("반복횟수",i);
         }
     }
 }
@@ -101,6 +116,11 @@ function previewImage(targetObj, View_area) { //(this,'View_area')
 
 
 function slide() {
+    console.log("이벤트발생");
+    previewImage(this, "View_area");
+    console.log("previewImage 후");
+
+
     const slideList = document.querySelector('.look_flick_camera');  // Slide parent dom
     const slideContents = document.querySelectorAll('.flick_panel');  // each slide dom
     const slideBtnNext = document.querySelector('#look_slide_button_right'); // next button
@@ -110,6 +130,7 @@ function slide() {
     const slideSpeed = 300; // slide speed
     const startNum = 0; // initial slide index (0 ~ 4)
 
+    console.log(slideLen);
     slideList.style.width = slideWidth * (slideLen + 2) + "px";
 
     // Copy first and last slide
@@ -170,8 +191,7 @@ function slide() {
 
 
 function init() {
-    slide();
-    previewImage(targetObj, View_area);
+    uploadButton.addEventListener('change', slide);
 
 }
 

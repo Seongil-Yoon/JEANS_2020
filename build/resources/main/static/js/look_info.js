@@ -10,6 +10,7 @@ const startNum = 0; // initial slide index (0 ~ 4)
 function slide() {
 
     slideList.style.width = slideWidth * (slideLen + 2) + "px";
+    console.log(slideLen);
 
     // Copy first and last slide
     let firstChild = slideList.firstElementChild;
