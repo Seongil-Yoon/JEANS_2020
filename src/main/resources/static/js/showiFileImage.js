@@ -29,6 +29,8 @@ let ppreview = 0;
 let fflick_panel = 0;
 let iimg = 0;
 
+let slideCounter = 0;
+
 function previewImage(targetObj, View_area, event) { //(this,'View_area')
     preview = document.getElementById(View_area); //div id
     const ua = window.navigator.userAgent;
@@ -212,13 +214,14 @@ function excuteSlide() {
 }
 
 function slide(event) {
-    entryInit();
-    if (slideLen < 1) {
+    if (slideCounter < 1) {
+        entryInit();
         console.log("slide()진입");
         previewImage(this, "View_area", event); //슬라이드화면 생성전에 업로드할 이미지 생성
         console.log("previewImage 후");
 
         excuteSlide(event);
+        slideCounter += 1;
 
     } else {
         // this.files=null;
@@ -231,7 +234,7 @@ function resetImg() {
     while (preview.firstChild) {
         preview.removeChild(preview.firstChild);
     }
-    slideLen = 0;
+    slideCounter = 0;
 
     if (fileBuffer.length >= 1) {
         fileBuffer.splice(0, fileBuffer.length); //파일버퍼 비우기
@@ -248,7 +251,7 @@ function entryInit() {
     while (ppreview.firstChild) {
         ppreview.removeChild(ppreview.firstChild);
     }
-    slideLen = 0;
+    // slideCounter = 0;
 
     if (fileBuffer.length >= 1) {
         fileBuffer.splice(0, fileBuffer.length); //파일버퍼 비우기
@@ -287,7 +290,7 @@ function printInit() {
 
 
 function init() {
-    if (slideLen < 1) {
+    if (slideCounter < 1) {
         printInit();
     }
     uploadButton.addEventListener('change', slide);
