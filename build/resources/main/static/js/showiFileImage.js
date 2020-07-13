@@ -234,6 +234,10 @@ function resetImg() {
     while (preview.firstChild) {
         preview.removeChild(preview.firstChild);
     }
+
+    while (ppreview.firstChild) {
+        ppreview.removeChild(ppreview.firstChild);
+    }
     slideCounter = 0;
 
     if (fileBuffer.length >= 1) {

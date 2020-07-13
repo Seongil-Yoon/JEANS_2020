@@ -127,7 +127,7 @@
                 <div class="space"></div>
                 <div>
                     <div class="save">
-                        <button type="button" class="save_button" onclick="lookWrite()">Save</button>
+                        <button type="button" class="save_button">Save</button>
                     </div>
                 </div>
 
