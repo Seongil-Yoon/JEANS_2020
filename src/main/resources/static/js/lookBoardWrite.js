@@ -1,5 +1,6 @@
+//showFileImage.js로 이관
 const saveDiv = document.querySelector(".save"),
-    saveButton = saveDiv.querySelector("input") //전송버튼
+    saveButton = saveDiv.querySelector("button") //전송버튼
 
 
 function lookWrite() {

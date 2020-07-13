@@ -236,6 +236,7 @@ function joinUser() {
     if(file==undefined) {
        alert("이힝 이파일은 없지롱");
 
+
         //JQuery 옵션
         //data : 서버로 보낼 데이터
         //dataType : 서버에서 반환되는 데이터 형식을 지정
@@ -245,9 +246,9 @@ function joinUser() {
             url: "/user",
             type: "post",
             data: formData,
-            dataType : 'json',
+            dataType : false,
             processData: false,
-            contentType:'application/json; charset=UTF-8',
+            contentType:'multipart/form-data',
             success: function () {
                 alert(JSON.stringify(formData));//성공 시 출력 나중에 지울것!
                 location.href = "/loginUser";
@@ -283,9 +284,9 @@ function joinUser() {
             url: "/userfile",
             type: "post",
             data: formData,
-            dataType: "text",
+            dataType : false,
             processData: false,
-            contentType:false,
+            contentType:'multipart/form-data',
             success: function () {
                 alert(JSON.stringify(formData));//성공 시 출력 나중에 지울것!
                 location.href = "/loginUser";

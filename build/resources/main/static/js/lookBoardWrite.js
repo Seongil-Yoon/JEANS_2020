@@ -1,5 +1,6 @@
-const uploadDiv = document.querySelector("#js-uploadDiv"),
-    uploadButton = uploadDiv.querySelector("input") //파일선택 버튼.
+//showFileImage.js로 이관
+const saveDiv = document.querySelector(".save"),
+    saveButton = saveDiv.querySelector("button") //전송버튼
 
 
 function lookWrite() {
@@ -85,7 +86,7 @@ function storeFile() {
 }
 
 function init() {
-    uploadButton.addEventListener('change', storeFile);
+    saveButton.addEventListener('click', lookWrite);
 
 
 }
