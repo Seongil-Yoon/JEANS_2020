@@ -1,6 +1,6 @@
 package jeans.ko.Controller;
 
-import com.sun.scenario.effect.impl.sw.java.JSWBlend_SRC_OUTPeer;
+
 import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dto.BoardDto;
 import jeans.ko.Service.CommentService;
@@ -9,19 +9,13 @@ import jeans.ko.exception.NotFoundException;
 import jeans.ko.exception.UnauthorizedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
-
 
 @Controller
 public class LookController {
@@ -42,7 +36,7 @@ public class LookController {
 
     //게시판 상세보기 model and view 웹용
     @RequestMapping("/look")
-    public String view(@RequestParam("look_num")int look_num ,Model model)
+    public String view(@RequestParam("look_num")int look_num , Model model)
     {
         boardDao.countUpdate(look_num); //글상세보기 하면 조회수 증가
         model.addAttribute("view",boardDao.view(look_num)); //게시글정보가져오기
@@ -67,7 +61,7 @@ public class LookController {
 
     @ResponseBody
     @GetMapping("/looks/{id}") //룩상세보기 안드로이드에 값주게 json 데이터만 넘기는용
-    public  HashMap<String,Object> searchLook(@PathVariable int id)
+    public HashMap<String,Object> searchLook(@PathVariable int id)
     {   //looks/1   looks/3  -->String으로 오는데 int id 해서 int 로 변환해서 받음
         System.out.println("WERwerwer");
         HashMap<String, Object> map = new HashMap<String, Object>();
