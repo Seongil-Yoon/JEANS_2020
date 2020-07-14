@@ -38,7 +38,7 @@ function initFile() {
 }
 
 function storeBuffer() {
-    let i=0;
+    let i = 0;
     for (i = 0; i < fileBuffer.length; i++) {
         event.target.files[i] = fileBuffer[i];
 
@@ -49,7 +49,7 @@ function storeBuffer() {
 function nullBuffer() {
     fileBuffer.splice(0, fileBuffer.length);
 
-    let i=0;
+    let i = 0;
     for (i = 0; i < fileBuffer.length; i++) {
         event.target.files[i] = fileBuffer[i];
 
@@ -60,7 +60,7 @@ function nullBuffer() {
 function previewImage(targetObj, View_area, event) { //(this,'View_area')
     preview = document.getElementById(View_area); //div id
     const ua = window.navigator.userAgent;
-    fileBuffer = Array.from(event.target.files);
+    fileBuffer = Array.prototype.slice.call(event.target.files);
 
     storeBuffer();
 
@@ -328,6 +328,14 @@ function printInit() {
 const saveDiv = document.querySelector(".save"),
     saveButton = saveDiv.querySelector("button") //전송버튼
 
+// function fileFormData() {
+//     let fileFormData = 0;
+//     for (i = 0; i < fileBuffer.length; i++) {
+//          Array.prototype.
+
+//     }
+// }
+
 
 function lookWrite() {
 
@@ -335,6 +343,7 @@ function lookWrite() {
         swal('', '로그인을 먼저하세요', '');
         return
     }
+
     let title = document.getElementsByName("title")[0].value
     let season = document.getElementsByName("season");
     let look_public = document.getElementsByName("look_public");
@@ -352,30 +361,82 @@ function lookWrite() {
             empty += list[i] + " ";
         }
     }
+
+    let BoardDto = {
+        title: title,
+        seasonCheck,
+        look_publicCheck,
+        tag: tag,
+        memo: memo
+    }
+
+    let formData = new FormData();
+    formData.append("BoardDto", JSON.stringify(BoardDto));
+
     if (empty == '') {
-        let data = $('[name=writeForm]').serialize();
-        $.ajax({
-            url: "/looks",
-            type: "POST", //데이터 전달방식
-            data: data, //전송객체
-            success: function (result, textStatus, jqxHR) {
-                if (jqxHR.status == 201) {
-                    swal('', '게시글 등록을 하였습니다', 'success');
-                    //등록 성공하면 내가등록한 게시글화면으로 이동
-                    setTimeout(function () { location.href = "/look?look_num=" + result.look_num; }, 2000);
+        if (fileBuffer == undefined) {
+            let data = $('[name=writeForm]').serialize();
+            $.ajax({
+                url: "/looks",
+                type: "POST", //데이터 전달방식
+                data: formData,
+                dataType: false,
+                processData: false,
+                // contentType: 'multipart/form-data',
+                contentType: false,
+                success: function (result, textStatus, jqxHR) {
+                    if (jqxHR.status == 201) {
+                        alert(JSON.stringify(formData));
+                        swal('', '게시글 등록을 하였습니다', 'success');
+                        //등록 성공하면 내가등록한 게시글화면으로 이동
+                        setTimeout(function () { location.href = "/look?look_num=" + result.look_num; }, 2000);
+                    }
+                },
+                error: function (error) {
+                    //서버오류 500  찾는 자료없음 404  권한없음  401
+                    if (error.status == 404) {
+                        swal('찾는 자료가 없습니다', '', 'error');
+                    } else if (error.status == 401) {
+                        swal('접근 권한이 없습니다', '', 'error');
+                    } else if (error.status == 500) {
+                        swal('서버 오류 관리자에게 문의 하세요', '', 'error');
+                    }
                 }
-            },
-            error: function (error) {
-                //서버오류 500  찾는 자료없음 404  권한없음  401
-                if (error.status == 404) {
-                    swal('찾는 자료가 없습니다', '', 'error');
-                } else if (error.status == 401) {
-                    swal('접근 권한이 없습니다', '', 'error');
-                } else if (error.status == 500) {
-                    swal('서버 오류 관리자에게 문의 하세요', '', 'error');
+            })
+        } else {
+            function appendFile() {
+                for (i = 0; i < fileBuffer.length; i++) {
+                    formData.append("file", fileBuffer[i]);
                 }
+
             }
-        })
+            appendFile();
+
+            $.ajax({
+                url: "/looks",
+                type: "post",
+                data: formData,
+                dataType: false,
+                processData: false,
+                // contentType: 'multipart/form-data',
+                contentType: false,
+                success: function () {
+                    alert(JSON.stringify(formData));
+                    location.href = "/loginUser";
+                },
+                error: function (error) {
+                    //서버오류 500  찾는 자료없음 404  권한없음  401
+                    if (error.status == 404) {
+                        swal('찾는 자료가 없습니다', '', 'error');
+                    } else if (error.status == 401) {
+                        swal('접근 권한이 없습니다', '', 'error');
+                    } else if (error.status == 500) {
+                        swal('서버 오류 관리자에게 문의 하세요', '', 'error');
+                    }
+                }
+            });
+
+        }
     } else {
         //입력안한 부분있으면 다시작성하게함
         swal('', empty + ' 을 다시 입력하세요', '');
@@ -413,18 +474,18 @@ function look_public_check(look_public) {
 
 
 function init() {
-    if (slideCounter < 1) {
+    if (slideCounter < 1) { //파일선택 버튼 누른 횟수
         printInit();
     }
-    uploadButton.addEventListener('change', slide);
-    initButton.addEventListener('click', resetImg);
+    uploadButton.addEventListener('change', slide); //파일선택 이벤트
+    initButton.addEventListener('click', resetImg); //초기화 이벤트
 
 
 
 
 
-    
-    saveButton.addEventListener('click', lookWrite);
+
+    saveButton.addEventListener('click', lookWrite); //파일업로드 부분
 
 
 

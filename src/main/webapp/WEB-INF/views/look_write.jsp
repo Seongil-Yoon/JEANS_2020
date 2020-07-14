@@ -15,7 +15,7 @@
     <!--/*여기는 맨 위에 있는 바 부분*/ -->
         <jsp:include page="header.jsp" flush="false"/>
     <!-- /*여기부터가 본문*/  -->
-    <form name="writeForm" encType="multipart/form-data">
+    <form name="writeForm">
         <div class="body_root"> <!--/* 전체 바탕 아무 것도 안함*/ -->
 
                 <div class="header_space"></div>
@@ -135,7 +135,7 @@
     </form>
 </div>
 
-<script src="/static/js/showiFileImage.js"></script>
+<script src="/static/js/look_write.js"></script>
 <!-- <script src="/static/js/lookBoardWrite.js"></script> -->
 <script
         src="https://code.jquery.com/jquery-3.5.1.min.js"

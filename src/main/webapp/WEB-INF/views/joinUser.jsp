@@ -20,9 +20,7 @@
 
 
     <div>
-
-        <%--@elvariable id="userDto" type="jeans"--%>
-        <form:form modelAttribute="userDto" >
+        <form:form modelAttribute="userDto">
             <div class="main"></div>
             <div class="main_title">회원가입</div>
 

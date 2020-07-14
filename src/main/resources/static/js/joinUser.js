@@ -217,6 +217,8 @@ function joinUser() {
         }
     }
 
+    console.log("정규식 통과 후");
+
     let UserDto = {
         userid: userid,
         password: password,
@@ -248,7 +250,8 @@ function joinUser() {
             data: formData,
             dataType : false,
             processData: false,
-            contentType:'multipart/form-data',
+            // contentType:'multipart/form-data',
+            contentType:false,
             success: function () {
                 alert(JSON.stringify(formData));//성공 시 출력 나중에 지울것!
                 location.href = "/loginUser";
@@ -286,7 +289,8 @@ function joinUser() {
             data: formData,
             dataType : false,
             processData: false,
-            contentType:'multipart/form-data',
+            // contentType:'multipart/form-data',
+            contentType:false,
             success: function () {
                 alert(JSON.stringify(formData));//성공 시 출력 나중에 지울것!
                 location.href = "/loginUser";
