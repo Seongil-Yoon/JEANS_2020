@@ -13,7 +13,7 @@
         )
 
         <selectKey resultType="java.lang.Integer" keyProperty="look_num" order="AFTER">
-           <!--return 값은 dto 객체로 넘어간다 get메소드로 값을 갖고와야됨 -->
+            <!--return 값은 dto 객체로 넘어간다 get메소드로 값을 갖고와야됨 -->
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
@@ -41,4 +41,3 @@
     </update>
 
 </mapper>
-
