@@ -19,7 +19,6 @@ public class BoardService implements IBoardService {
     HttpSession httpSession;
 
     public int insert(BoardDto boardDto) {
-
         //시간을 내가 원하는 형식으로 출력
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일");
         String look_date=  formatter.format(new Date());
