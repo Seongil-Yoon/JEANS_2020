@@ -96,6 +96,42 @@
   margin-right: 20px;
 }
 
-input[type="file"] .resetButton{
+input[type="file"] .resetButton {
+}
 
+/* input[type="file"] {
+  display: none;
+  border-width: 5px 5px 5px 5px;
+}
+
+input[type="file"]:checked + span {
+  margin: -1px 0 0 -1px;
+  border: 1px solid #f27935;
+  font-weight: 700;
+  color: #f27935;
+} */
+.selector {
+  display: inline-block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 30%;
+  height: 35px;
+  border-width: 1px 1px 1px 1px;
+  border-style: solid;
+  border-color: #838383;
+  background-color: #efefef;
+  text-align: center;
+  line-height: 35px;
+  margin-right: 5%;
+}
+.attachButton {
+  display: none;
+}
+
+.selector_span {
+  margin: auto;
+  text-align: center;
+  border-width: 1px 1px 1px 1px;
 }

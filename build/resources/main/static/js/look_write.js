@@ -51,7 +51,7 @@ function storeBuffer() {
 }
 
 function nullBuffer() {
-    fileBuffer.splice(0, fileBuffer.length);
+    fileBuffer.splice(0, fileBuffer.length); //splice는 항목제거
 
     let i = 0;
     for (i = 0; i < fileBuffer.length; i++) {
@@ -368,8 +368,8 @@ function lookWrite() {
 
     let BoardDto = {
         title: title,
-        seasonCheck,
-        look_publicCheck,
+        season: seasonCheck,
+        look_public: look_publicCheck,
         tag: tag,
         memo: memo
     }

@@ -44,7 +44,11 @@
                 <div class="upload" id="js-uploadDiv">
                     사진첨부ㅤ
                     <!-- <input type="file" multiple  name="profile_pt" id="profile_pt" accept=".jpg, .jpeg, .png, .svg, .gif" onchange="previewImage(this,'View_area')"> -->
-                    <input type="file" multiple  name="profile_pt" id="profile_pt" accept=".jpg, .jpeg, .png, .svg, .gif"/>
+                <label class="selector" >
+                    <input type="file" multiple  class="attachButton" name="profile_pt" id="profile_pt" accept=".jpg, .jpeg, .png, .svg, .gif"/>
+                    <span class="selector_span">사진첨부</span>
+                </label>
+                        
                     <!-- JS에서 이벤트리스너 함수 추가 -->
                     <button type="button" class="resetButton">초기화</button>
                 </div>
