@@ -1,3 +1,6 @@
+//look_info.js, ex2.js
+
+
 //태그 불러오기
 const uploadDiv = document.querySelector("#js-uploadDiv"),
     uploadButton = uploadDiv.querySelector("input"), //파일선택 버튼.
@@ -6,6 +9,7 @@ const uploadDiv = document.querySelector("#js-uploadDiv"),
 //CSS클래스명 불러오기
 const FLICK_PANEL = "flick_panel";
 const LOOK_FLICK_CAMERA = "look_flick_camera";
+const LOOK_IMG_FILE = "look_img_file";
 
 //slide();
 let slideList = 0
@@ -22,7 +26,7 @@ let preview = 0;
 let flick_panel = 0;
 let img = 0;
 let files = 0;
-let fileBuffer = 0; //파일목록 저장배열
+let fileBuffer = 0;  //formdData에 날릴 배열, input태그의 배열에 들어간 파일을 보내지 않음.
 // let fflick_panel = document.querySelector("#fflick_panel");
 
 let ppreview = 0;
@@ -125,7 +129,7 @@ function previewImage(targetObj, View_area, event) { //(this,'View_area')
             flick_panel.style.left = i * 305;
             flick_panel.id = "flick_panel";
 
-            img.classList.add("look_img_file");
+            img.classList.add(LOOK_IMG_FILE);
             img.id = "prev_" + View_area;
             img.file = file;
             img.style.width = '100%';
@@ -249,7 +253,7 @@ function slide(event) {
         previewImage(this, "View_area", event); //슬라이드화면 생성전에 업로드할 이미지 생성
         console.log("previewImage 후");
 
-        excuteSlide(event);
+        excuteSlide(event); //생성된 이미지 슬라이드쇼에 붙이기
         slideCounter += 1;
 
     } else {
@@ -314,7 +318,7 @@ function printInit() {
     fflick_panel.style.left = -305;
     fflick_panel.id = "flick_panel";
 
-    iimg.classList.add("look_img_file");
+    iimg.classList.add(LOOK_IMG_FILE);
     iimg.style.width = '100%';
     iimg.style.height = '100%';
     iimg.src = "static/images/100.jpg";
@@ -475,7 +479,9 @@ function look_public_check(look_public) {
 
 function init() {
     if (slideCounter < 1) { //파일선택 버튼 누른 횟수
-        printInit();
+        //초기 진입할때
+        printInit(); 
+        //또는 초기화 누르면 카운터는 다시0이 되고 화면초기화
     }
     uploadButton.addEventListener('change', slide); //파일선택 이벤트
     initButton.addEventListener('click', resetImg); //초기화 이벤트

@@ -249,7 +249,7 @@ function slide(event) {
         previewImage(this, "View_area", event); //슬라이드화면 생성전에 업로드할 이미지 생성
         console.log("previewImage 후");
 
-        excuteSlide(event);
+        excuteSlide(event); //생성된 이미지 슬라이드쇼에 붙이기
         slideCounter += 1;
 
     } else {
@@ -474,18 +474,20 @@ function look_public_check(look_public) {
 
 
 function init() {
-    if (slideCounter < 1) {
-        printInit();
+    if (slideCounter < 1) { //파일선택 버튼 누른 횟수
+        //초기 진입할때
+        printInit(); 
+        //또는 초기화 누르면 카운터는 다시0이 되고 화면초기화
     }
-    uploadButton.addEventListener('change', slide);
-    initButton.addEventListener('click', resetImg);
+    uploadButton.addEventListener('change', slide); //파일선택 이벤트
+    initButton.addEventListener('click', resetImg); //초기화 이벤트
 
 
 
 
 
 
-    saveButton.addEventListener('click', lookWrite);
+    saveButton.addEventListener('click', lookWrite); //파일업로드 부분
 
 
 

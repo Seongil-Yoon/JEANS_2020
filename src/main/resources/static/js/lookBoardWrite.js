@@ -1,4 +1,5 @@
-//showFileImage.js로 이관
+//미사용
+//look_wirte.js로 이관
 const saveDiv = document.querySelector(".save"),
     saveButton = saveDiv.querySelector("button") //전송버튼
 
