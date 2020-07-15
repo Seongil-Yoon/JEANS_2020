@@ -249,14 +249,23 @@ public class UserController {
         logger.info("displayMthumbnail 호출 글등에서 보여줄 중간 크기의 썸네일을 써먹겠다 : " + id);
         HttpHeaders headers = new HttpHeaders();
         try {
+//            if(picture.equals("")){
+//                logger.info("해당유저의 프로필사진이 없다. 기본이미지 적용.");
+//                in=new FileInputStream(uploadPath+ "\\" +defaultdirectory+ "\\"+defaultSthumbnail);
+//                logger.info(in.toString());
+//            }else{
+//                logger.info("사진이 있다.");
+//                in=new FileInputStream(uploadPath+"\\"+id+"\\"+profile+"\\"+middleHeader+picture);
+//            }
             if(picture.equals("")){
                 logger.info("해당유저의 프로필사진이 없다. 기본이미지 적용.");
-                in=new FileInputStream(uploadPath+ "\\" +defaultdirectory+ "\\"+defaultSthumbnail);
+                in=new FileInputStream(uploadPath+ "/" +defaultdirectory+ "/"+defaultSthumbnail);
                 logger.info(in.toString());
             }else{
                 logger.info("사진이 있다.");
-                in=new FileInputStream(uploadPath+"\\"+id+"\\"+profile+"\\"+middleHeader+picture);
+                in=new FileInputStream(uploadPath+"/"+id+"/"+profile+"/"+middleHeader+picture);
             }
+
         //    headers.setContentType(MediaType.IMAGE_JPEG);
             entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
         } catch (Exception e) {
