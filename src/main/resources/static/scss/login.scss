@@ -1,0 +1,205 @@
+body {
+	margin: 0;
+}
+input {
+	padding: 6px 12px;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	box-sizing: border-box;
+	resize: none;
+	font-size: 14px;
+}
+.webview {
+	overflow: hidden;
+	position: relative;
+	width: 1200px;
+	height: 1033px;
+	margin: 0 auto;
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+.container {
+	overflow: hidden;
+	position: relative;
+	width: 1200px;
+	height: 990px;
+	margin: 0 auto;
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+.wrap {
+	position: absolute;
+	background-color: rgb(224, 224, 224);
+	top: 85.6px;
+	left: 34.0125px;
+	width: 1132px;
+	height: 878px;
+	user-select: auto;
+	box-sizing: content-box;
+	display: block;
+}
+.inner_main {
+	position: absolute;
+	top: 158.6px;
+	left: 129px;
+	width: 942.715px;
+	height: 731px;
+	user-select: auto;
+}
+.upside {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 1199px;
+	height: 60px;
+	user-select: auto;
+	box-sizing: content-box;
+	background-color: rgb(146, 206, 244);
+	user-select: auto;
+}
+.upside_title {
+	position: absolute;
+	top: 12px;
+	left: 564.5px;
+	width: 71px;
+	height: 34px;
+	user-select: auto;
+}
+.inner_title {
+	font-size: 24px;
+	user-select: auto;
+	color: rgb(255, 255, 255);
+}
+.upside_search {
+	position: absolute;
+	top: 10px;
+	left: 13px;
+	width: 38px;
+	height: 38px;
+	user-select: auto;
+	border: 0;
+}
+.upside_inputbox {
+	position: absolute;
+	top: 12px;
+	left: 65px;
+	width: 255px;
+	height: 34px;
+	user-select: auto;
+}
+.upside_input {
+	color: rgb(94, 94, 94);
+	user-select: auto;
+}
+.main {
+	position: absolute;
+	top: 158.6px;
+	left: 129px;
+	width: 942.715px;
+	height: 731px;
+	user-select: auto;
+	background-color: rgb(255, 255, 255);
+	user-select: auto;
+}
+.main_title {
+	position: absolute;
+	top: 237px;
+	left: 439px;
+	width: 323px;
+	height: 72px;
+	user-select: auto;
+	font-size: 45px;
+	user-select: auto;
+	color: rgb(0, 0, 0);
+}
+.main_idInputbox {
+	position: absolute;
+	top: 356px;
+	left: 399px;
+	width: 401px;
+	height: 54px;
+	user-select: auto;
+}
+.main_idInput {
+	color: rgb(94, 94, 94);
+	user-select: auto;
+}
+.main_pwInputbox {
+	position: absolute;
+	top: 427px;
+	left: 400px;
+	width: 401px;
+	height: 54px;
+	user-select: auto;
+}
+.main_pwInput {
+	color: rgb(94, 94, 94);
+	user-select: auto;
+}
+.main_loginBtnbox {
+	position: absolute;
+	top: 507px;
+	left: 399px;
+	width: 179px;
+	height: 63px;
+	user-select: auto;
+	position: absolute;
+	top: 507px;
+	left: 399px;
+	width: 179px;
+	height: 63px;
+	user-select: auto;
+}
+.main_loginBtn {
+	font-size: 34px;
+	width: 179px;
+	height: 63px;
+	color: rgb(255, 255, 255);
+	line-height: 1.6em;
+	border-radius: 4px;
+	background-color: rgb(146, 206, 244);
+	user-select: auto;
+	text-align: center;
+}
+.main_joinBtnbox {
+	position: absolute;
+	top: 505px;
+	left: 622px;
+	width: 179px;
+	height: 63px;
+	user-select: auto;
+}
+.main_joinBtn {
+	font-size: 34px;
+	width: 179px;
+	height: 63px;
+	color: rgb(255, 255, 255);
+	line-height: 1.6em;
+	border-radius: 4px;
+	background-color: rgb(146, 206, 244);
+	user-select: auto;
+	text-align: center;
+}
+.main_bar {
+	position: absolute;
+	top: 606px;
+	left: 353px;
+	width: 494px;
+	height: 75px;
+	user-select: auto;
+}
+.main_noIdea {
+	position: absolute;
+	top: 681px;
+	left: 466.5px;
+	width: 300px;
+	height: 36px;
+	font-size: 26px;
+	color: rgb(41, 90, 221);
+	text-decoration: underline;
+	box-sizing: content-box;
+}

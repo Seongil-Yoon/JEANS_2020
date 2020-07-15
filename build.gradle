@@ -48,3 +48,12 @@ dependencies {
 	compile('org.apache.tomcat.embed:tomcat-embed-jasper')//jsp 사용
 	compile('javax.servlet:jstl')//jsp 사용
 }
+
+sourceSets {
+	main {
+		resources {
+			srcDir 'src/main/resources'
+			exclude 'node_modules/**'
+		}
+	}
+}

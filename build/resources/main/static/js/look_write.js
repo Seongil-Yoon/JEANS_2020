@@ -495,7 +495,7 @@ function init() {
 
 
 
-    saveButton.addEventListener('click', lookWrite); //파일업로드 부분
+    saveButton.addEventListener('click', lookWrite); //폼전송 부분
 
 
 

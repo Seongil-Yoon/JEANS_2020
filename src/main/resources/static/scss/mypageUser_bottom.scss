@@ -1,0 +1,111 @@
+.my_page_body_bottom {
+	input[type=radio] {
+		display: none;
+	}
+}
+#tab-1:checked ~ .tab label:nth-child(1),
+#tab-2:checked ~ .tab label:nth-child(2) {
+	color: #92CEF4;
+	box-shadow: none;
+}
+.content {
+	& > div {
+		display: none;
+	}
+}
+#tab-1:checked ~ .content div:nth-child(1),
+#tab-2:checked ~ .content div:nth-child(2) {
+	display: block;
+}
+.tab {
+	overflow: hidden;
+	border-bottom: 1px solid gray;
+	label {
+		font-size: 18px;
+		cursor: pointer;
+		float: left;
+		width: 10%;
+		text-align: center;
+		padding: 15px 0;
+		text-transform: uppercase;
+		font-weight: bold;
+		letter-spacing: 2px;
+		user-select: none;
+		-webkit-user-select: none;
+	}
+}
+.add {
+	float: right;
+}
+.add_img {
+	background: url("add.png");
+	width: 25px;
+	height: 25px;
+	border: none;
+	margin: 0px auto;
+}
+.content-1 {
+	text-align: center;
+	& > div {
+		background-color: rgb(224, 224, 224);
+		height: 400px;
+		width: 46%;
+		padding: 2%;
+		float: left;
+	}
+}
+.content-2 {
+}
+.closet1_body , .closet2_body , .closet3_body {
+	padding-top: 1%;
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-bottom: 1%;
+}
+.closet1_button , .closet2_button , .closet3_button {
+	width: 100%;
+	height: 50px;
+	border: none;
+	font-size: 15px;
+	border: 1px solid gray;
+	border-radius: 10px 10px 10px 10px;
+}
+.closet1 , .closet2 , .closet3 {
+	text-align: center;
+}
+.closet1 {
+	& > div {
+		background-color: rgb(224, 224, 224);
+		height: 400px;
+		width: 46%;
+		padding-top: 1%;
+		padding-left: 2%;
+		padding-right: 2%;
+		padding-bottom: 1%;
+		float: left;
+	}
+}
+.closet2 {
+	& > div {
+		background-color: rgb(224, 224, 224);
+		height: 400px;
+		width: 46%;
+		padding-top: 1%;
+		padding-left: 2%;
+		padding-right: 2%;
+		padding-bottom: 1%;
+		float: left;
+	}
+}
+.closet3 {
+	& > div {
+		background-color: rgb(224, 224, 224);
+		height: 400px;
+		width: 46%;
+		padding-top: 1%;
+		padding-left: 2%;
+		padding-right: 2%;
+		padding-bottom: 1%;
+		float: left;
+	}
+}

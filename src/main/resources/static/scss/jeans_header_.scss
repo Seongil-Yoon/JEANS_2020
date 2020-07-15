@@ -1,0 +1,65 @@
+/*구글웹폰트 가져다쓰기*/
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+body{
+  margin: 0px;
+}
+
+form {
+	display: block;
+	margin-top: 0em;
+	margin-block-end: 1em;
+}
+.jeans_root {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background-color: white;
+	z-index: 5;
+}
+.header_space {
+	height: 80px;
+}
+.jeans_header {
+	margin: 0px auto;
+	width: 100%;
+	height: 60px;
+	background-color: #92CEF4;
+	color: white;
+	display: grid;
+	grid-template-columns: 2% 3% 19% 23.5% 8% 23%  15% 1% 4% 1.5%;
+	align-items: center;
+	padding-top: 0%;
+}
+.search_logo {
+	margin-top: 5px;
+}
+.my_info {
+	text-align: right;
+	margin-top: 5px;
+	display: flex;
+	justify-content: flex-end;
+}
+.user_nickname {
+	line-height: 40px;
+}
+.search_text {
+	border: none;
+	width: 200px;
+	height: 20px;
+	line-height: 40px;
+}
+.look_write {
+	margin-top: 100px;
+	margin-left: 200px;
+	font-family: 'Anton', sans-serif;
+	font-size: large;
+}
+.search_input {
+	margin-top: 0px;
+}
+.header_a {
+	text-decoration: none;
+	color: white;
+}
