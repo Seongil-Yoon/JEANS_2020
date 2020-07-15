@@ -13,43 +13,7 @@
 
 <div class="webview">
     <!--/*여기는 맨 위에 있는 바 부분*/ -->
-    <div class="jeans_root">
-        <div class="jeans_header">
-            <div class="search_left"></div>
-            <div class="search_logo">
-                <img src="static/images/search.jpg" alt="search" height="30" width="30"/>
-            </div>
-            <div class="search_input" style="margin-top: 20px">
-                <form>
-                    <input type="text" class="search_text"/>
-                </form>
-            </div>
-            <div class="logo_left"></div>
-            <div class="logo">
-                <a class="header_a" href="main"><img src="static/images/logo.PNG" alt="logo" height="30"
-                                                     width="71"/></a>
-            </div>
-
-            <a class="header_a" href="javascript:logo_right_click();">
-                <div class="logo_right"><span class="look_write"></span></div>
-            </a>
-
-            <div class="my_info">
-                <div class="my_picture"></div>
-                <span class="user_nickname"></span>
-            </div>
-
-            <div class="logout_left"></div>
-
-
-            <a class="header_a" href="javascript:logout_login_click();">
-                <div class="logout_login"></div>
-            </a>
-
-
-            <div class="logout_right"></div>
-        </div>
-    </div>
+         <jsp:include page="header.jsp" flush="false"/>
     <!-- /*여기부터가 본문*/  -->
     <form name="writeForm">
         <div class="body_root"> <!--/* 전체 바탕 아무 것도 안함*/ -->
