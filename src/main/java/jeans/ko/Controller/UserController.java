@@ -72,6 +72,10 @@ public class UserController {
     @Value("${profileMiddleheader}")
     String middleHeader;
 
+    //이미지 파일 저장 경로 설정
+    @Value("${route}")
+    String route;
+
     @Autowired
     HttpSession httpSession;
 
@@ -189,18 +193,21 @@ public class UserController {
 
     @ResponseBody
     @PostMapping("/session")
-    public HashMap<String, Object> loginRequest(UserDto userDto) {
-
+    public HashMap<String, Object> loginRequest(@RequestBody  UserDto userDto) {
         HashMap<String, Object> map = new HashMap<String, Object>();
         String nickname = userService.userLogin(userDto);//닉네임 값을 받아오도록
+        if (nickname==null){
+            //받아온 값이없어 null 값 리턴
+            return null;
+        }else {
+            //로그인 성공
+            httpSession.setAttribute("userid", userDto.getUserid());
+            httpSession.setAttribute("usernickname", nickname);
+            map.put("userid", httpSession.getAttribute("userid"));
+            map.put("nickname", httpSession.getAttribute("usernickname"));
 
-        httpSession.setAttribute("userid", userDto.getUserid());
-        httpSession.setAttribute("usernickname", nickname);
-
-        map.put("userid", httpSession.getAttribute("userid"));
-        map.put("usernickname", httpSession.getAttribute("usernickname"));
-
-        return map; //session 아이디 닉네임 넘겨주기
+            return map; //session 아이디 닉네임 넘겨주기
+        }
     }
 
     @ResponseBody
@@ -222,24 +229,17 @@ public class UserController {
         logger.info("displaySthumbnail 에서 해당 유저의 picture 값을 가져온다. picture : " + picture);
         HttpHeaders headers = new HttpHeaders();
         try {
-//            if (picture.equals("")) {
-//                logger.info("사진이 없습니다. 기본 이미지를 적용합니다.");
-//                in = new FileInputStream(uploadPath + "\\" +defaultdirectory+ "\\"+defaultSthumbnail);
-//            } else {
-//                logger.info("유저의 프로필 사진이 있습니다. 유저의 프로필 사진을 적용합니다.");
-//                in = new FileInputStream(uploadPath + "\\" + userid + "\\" + profile + "\\" +smallHeader+picture);
-//            }
-          //  headers.setContentType(MediaType.IMAGE_JPEG);//어차피 profile.jpg로 저장되기때문에 Type이 IMAGE_JPEG여도 괜찮다
-
             if (picture.equals("")) {
                 logger.info("사진이 없습니다. 기본 이미지를 적용합니다.");
-                in = new FileInputStream(uploadPath + "/" +defaultdirectory+ "/"+defaultSthumbnail);
+                in = new FileInputStream(uploadPath + route +defaultdirectory+ route+defaultSthumbnail);
             } else {
                 logger.info("유저의 프로필 사진이 있습니다. 유저의 프로필 사진을 적용합니다.");
-                in = new FileInputStream(uploadPath + "/" + userid + "/" + profile + "/" +smallHeader+picture);
+                in = new FileInputStream(uploadPath + route + userid + route + profile + route +smallHeader+picture);
             }
-
+            headers.setContentType(MediaType.IMAGE_JPEG);//어차피 profile.jpg로 저장되기때문에 Type이 IMAGE_JPEG여도 괜찮다
+            
             entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
+
         } catch (Exception e) {
             entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
         } finally {
@@ -257,24 +257,18 @@ public class UserController {
         logger.info("displayMthumbnail 호출 글등에서 보여줄 중간 크기의 썸네일을 써먹겠다 : " + id);
         HttpHeaders headers = new HttpHeaders();
         try {
-//            if(picture.equals("")){
-//                logger.info("해당유저의 프로필사진이 없다. 기본이미지 적용.");
-//                in=new FileInputStream(uploadPath+ "\\" +defaultdirectory+ "\\"+defaultSthumbnail);
-//                logger.info(in.toString());
-//            }else{
-//                logger.info("사진이 있다.");
-//                in=new FileInputStream(uploadPath+"\\"+id+"\\"+profile+"\\"+middleHeader+picture);
-//            }
             if(picture.equals("")){
                 logger.info("해당유저의 프로필사진이 없다. 기본이미지 적용.");
-                in=new FileInputStream(uploadPath+ "/" +defaultdirectory+ "/"+defaultSthumbnail);
+                in=new FileInputStream(uploadPath+ route +defaultdirectory+ route+defaultSthumbnail);
                 logger.info(in.toString());
             }else{
                 logger.info("사진이 있다.");
-                in=new FileInputStream(uploadPath+"/"+id+"/"+profile+"/"+middleHeader+picture);
+                in=new FileInputStream(uploadPath+route+id+route+profile+route+middleHeader+picture);
             }
 
-        //    headers.setContentType(MediaType.IMAGE_JPEG);
+
+
+            headers.setContentType(MediaType.IMAGE_JPEG);
             entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
         } catch (Exception e) {
             entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
