@@ -222,14 +222,22 @@ public class UserController {
         logger.info("displaySthumbnail 에서 해당 유저의 picture 값을 가져온다. picture : " + picture);
         HttpHeaders headers = new HttpHeaders();
         try {
+//            if (picture.equals("")) {
+//                logger.info("사진이 없습니다. 기본 이미지를 적용합니다.");
+//                in = new FileInputStream(uploadPath + "\\" +defaultdirectory+ "\\"+defaultSthumbnail);
+//            } else {
+//                logger.info("유저의 프로필 사진이 있습니다. 유저의 프로필 사진을 적용합니다.");
+//                in = new FileInputStream(uploadPath + "\\" + userid + "\\" + profile + "\\" +smallHeader+picture);
+//            }
+          //  headers.setContentType(MediaType.IMAGE_JPEG);//어차피 profile.jpg로 저장되기때문에 Type이 IMAGE_JPEG여도 괜찮다
+
             if (picture.equals("")) {
                 logger.info("사진이 없습니다. 기본 이미지를 적용합니다.");
-                in = new FileInputStream(uploadPath + "\\" +defaultdirectory+ "\\"+defaultSthumbnail);
+                in = new FileInputStream(uploadPath + "/" +defaultdirectory+ "/"+defaultSthumbnail);
             } else {
                 logger.info("유저의 프로필 사진이 있습니다. 유저의 프로필 사진을 적용합니다.");
-                in = new FileInputStream(uploadPath + "\\" + userid + "\\" + profile + "\\" +smallHeader+picture);
+                in = new FileInputStream(uploadPath + "/" + userid + "/" + profile + "/" +smallHeader+picture);
             }
-          //  headers.setContentType(MediaType.IMAGE_JPEG);//어차피 profile.jpg로 저장되기때문에 Type이 IMAGE_JPEG여도 괜찮다
 
             entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
         } catch (Exception e) {
