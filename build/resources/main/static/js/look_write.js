@@ -410,7 +410,7 @@ function lookWrite() {
         } else {
             function appendFile() {
                 for (i = 0; i < fileBuffer.length; i++) {
-                    formData.append("file", fileBuffer[i]);
+                    formData.append("files", fileBuffer[i]);
                 }
 
             }
@@ -424,9 +424,13 @@ function lookWrite() {
                 processData: false,
                 // contentType: 'multipart/form-data',
                 contentType: false,
-                success: function () {
-                    alert(JSON.stringify(formData));
-                    location.href = "/loginUser";
+                success: function (result, textStatus, jqxHR) {
+                    if (jqxHR.status == 201) {
+                        alert(JSON.stringify(formData));
+                        swal('', '게시글 등록을 하였습니다', 'success');
+                        //등록 성공하면 내가등록한 게시글화면으로 이동
+                        setTimeout(function () { location.href = "/look?look_num=" + result.look_num; }, 2000);
+                    }
                 },
                 error: function (error) {
                     //서버오류 500  찾는 자료없음 404  권한없음  401
