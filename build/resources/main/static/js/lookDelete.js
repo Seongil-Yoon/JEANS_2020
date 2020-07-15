@@ -5,16 +5,16 @@ function lookDelete(lookNum,lookUserId){
     var lookUserId=lookUserId;
 
     if(sessionStorage.getItem("userid")==lookUserId){
-        lookConfirm('', '게시글을 삭제할까요?',lookNum,lookUserId);
+        deleteConfirm('', '게시글을 삭제할까요?',lookNum,lookUserId);
     }else if(sessionStorage.getItem("userid")==null){
         swal("","로그인을 먼저해주세요");
     }else {
-        swal("","게시글 작성자만 삭제할수있습니다");
+        swal("","게시글 작성자만 삭제 할수있습니다");
     }
 
 }
 
- function lookConfirm(msg, title,lookNum,lookUserId) {
+ function deleteConfirm(msg, title,lookNum,lookUserId) {
 
     swal({
         title : title,

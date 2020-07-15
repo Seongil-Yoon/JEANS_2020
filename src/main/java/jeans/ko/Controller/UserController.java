@@ -51,6 +51,27 @@ public class UserController {
     @Value("${directory}")
     String uploadPath;
 
+    //유저개인 폴더 밑에 유저의 기본프로필사진&썸네일사진들을 저장하는 파일의 이름이다.
+    @Value("${profilepath}")
+    String profile;
+
+    //${directory}경로 밑에 defaultimagefiles경로이다. 이전에 경로는 ${directory}가 다 잡아줘서 폴더명만 사용한다.
+    @Value("${defaultdirectory}")
+    String defaultdirectory;
+
+    //${defaultdirectory}밑에 있는 작은 썸네일 이미지다.
+    //이 이미지는 회원가입시 프로필사진을 업로드 하지 않은 유저를 위한 기본 프로필사진이다.
+    @Value("${defaultprofileSmallimage}")
+    String defaultSthumbnail;
+
+    //작은 크기썸네일 식별을 위해 원본파일명 앞에 붙이는 식별자다.
+    @Value("${profileSmallheader}")
+    String smallHeader;
+
+    //중간 크기썸네일 식별을 위해 원본파일명 앞에 붙이는 식별자다.
+    @Value("${profileMiddleheader}")
+    String middleHeader;
+
     @Autowired
     HttpSession httpSession;
 
@@ -73,13 +94,10 @@ public class UserController {
     @ResponseBody
     @PostMapping(value = "/user")
     public ResponseEntity<Void> join(@RequestPart("UserDto") String userString, BindingResult result) throws IOException {
-        logger.info("join() 프로필사진이 없다!");
 
         @Valid
         UserDto user = new ObjectMapper().readValue(userString, UserDto.class);
-        user.setPicture("");
-        logger.info(userString);
-
+        user.setPicture("");//사진이름은 ""으로 둔다.
 
         System.out.println("result.getErrorCount() = " + result.getErrorCount());
         System.out.println("result.hasGlobalErrors(); = " + result.getFieldError());
@@ -110,7 +128,6 @@ public class UserController {
         if (check > 0)
             return new ResponseEntity<>(HttpStatus.OK);
         else
-
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
@@ -120,23 +137,13 @@ public class UserController {
     @ResponseBody
     @PostMapping(value = "/userfile")
     public ResponseEntity<Void> join(@RequestPart("UserDto") String userString, @RequestPart("file") MultipartFile picture, BindingResult result) throws Exception {
-        logger.info("join() 프로필사진이 있다.");
-        logger.info("파일이름 : " + picture.getOriginalFilename());
-        logger.info("파일크기 : " + picture.getSize());
-        logger.info("파일컨텐트타입 : " + picture.getContentType());
+              String fileOriginalname = picture.getOriginalFilename();//올린 이미지 파일의 원래이름
 
         @Valid
         UserDto user = new ObjectMapper().readValue(userString, UserDto.class);
 
-        user.setPicture("profile.jpg");
-        //우리의 현재 전략은 프로파일 사진은 한 사용자당 하나다.
-        //사용자가 어떤 이름으로든 프로파일사진을 올리던 우리는 profile.jpg로 저장한다.
-        //만약 사용자가 올린 사진명대로 해야된다면 이를 지우고 밑에 주석 된걸 해제해주자.
-        //user.setPicture(picture.getOriginalFilename());
-        //파일업로드를 담당하는 FileService 부분에도 profile.jpg로 이름을 자동으로 바꿔준다.
-        //!!헷갈리지 말자 이건 DB에 picture값을 profile.jpg로 해주는거지, 업로드될 사진의 이름을 profile.jpg로 해주는게 아니다.
-
-        logger.info(userString);
+        user.setPicture(fileOriginalname);
+        //user의 picture값을 파일의 이름으로 설정한다.
 
         System.out.println("result.getErrorCount() = " + result.getErrorCount());
         System.out.println("result.hasGlobalErrors(); = " + result.getFieldError());
@@ -164,14 +171,15 @@ public class UserController {
         int check = userService.joinUser(user);
 
         //프로필사진 업로드 이벤트
-        //uploadPath 경로 밑에 유저명의 폴더를 만든 후 getBytes()를 통해 받은 사진을 profile.jpg라는 명으로 저장시킨다.
+        //uploadPath 경로 밑에 유저명의 폴더를 만든 후 getBytes()를 통해 받은 사진을 저장시킨다.
+        //경로 : uploadPath/유저명/profile//이미지파일명
         fileService.uploadProfile(uploadPath, user.getUserid(), user.getPicture(), picture.getBytes());
 
         //업로드된 폴더를 통해 썸네일 이미지 제작 이벤트
         //uploadPath : 업로드 될 모든 파일들의 기본 부모
         //user.getUserid : 해당유저의 파일
         //profile : 그중에서도 개인 프로파일용사진 폴더.
-        fileService.makeprofileThumbnail("profile.jpg", uploadPath, user.getUserid(), "profile");
+        fileService.makeprofileThumbnail(user.getPicture(), uploadPath, user.getUserid(), profile);
 
         //성공적으로 회원가입 시 1반환
         if (check > 0)
@@ -204,7 +212,7 @@ public class UserController {
         httpSession.invalidate();
     }
 
-    //sthumbnail 즉 작은 이미지를 들고오는것이다.
+    //sthumbnail 즉 작은 이미지를 들고오는것이다. 로그인후 헤더의 프로필사진부분.
     @GetMapping("/displaySthumbnail")
     public ResponseEntity<byte[]> display() throws IOException {
         InputStream in = null;
@@ -212,20 +220,39 @@ public class UserController {
         Object f = httpSession.getAttribute("userid");
         String userid = (String) f;
         String picture = userService.getPicture(userid);
-        logger.info("displaySthumbnail 에서 해당 유저의 picture 값을 가져온다. : " + picture);
+        //userid로 select를 이용해서 mysql에서 picture문 뽑아낸다.
         HttpHeaders headers = new HttpHeaders();
         try {
-            if (picture.equals("profile.jpg")) {
-                logger.info("사진이 있다");
-                in = new FileInputStream(uploadPath + "\\" + userid + "\\" + "profile" + "\\s_profile.jpg");
+            if (picture.equals("")) {
+                in = new FileInputStream(uploadPath + "\\" +defaultdirectory+ "\\"+defaultSthumbnail);
             } else {
-                logger.info("사진이 없다.");
-
-                in = new FileInputStream(uploadPath + "\\" + "defaultimagefiles" + "\\s_profile.jpg");
-                logger.info(in.toString());
-
+                in = new FileInputStream(uploadPath + "\\" + userid + "\\" + profile + "\\" +smallHeader+picture);
             }
-            headers.setContentType(MediaType.IMAGE_JPEG);//어차피 profile.jpg로 저장되기때문에 Type이 IMAGE_JPEG여도 괜찮다
+          //  headers.setContentType(MediaType.IMAGE_JPEG);//어차피 profile.jpg로 저장되기때문에 Type이 IMAGE_JPEG여도 괜찮다
+
+            entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+        } finally {
+            in.close();
+        }
+        return entity;
+    }
+    
+    //중간크기의 썸네일 이미지를 반환. 유저가 작성한 글의 썸네일이미지
+    @GetMapping("/displayMthumbnail")
+    public ResponseEntity<byte[]> displayMthumbnail(@RequestParam("id") String id) throws Exception {
+        InputStream in = null;
+        ResponseEntity<byte[]> entity = null;
+        String picture = userService.getPicture(id);
+        HttpHeaders headers = new HttpHeaders();
+        try {
+            if(picture.equals("")){
+                in=new FileInputStream(uploadPath+ "\\" +defaultdirectory+ "\\"+defaultSthumbnail);
+            }else{
+                in=new FileInputStream(uploadPath+"\\"+id+"\\"+profile+"\\"+middleHeader+picture);
+            }
+        //    headers.setContentType(MediaType.IMAGE_JPEG);
             entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
         } catch (Exception e) {
             entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
