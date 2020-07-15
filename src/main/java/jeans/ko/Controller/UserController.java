@@ -80,17 +80,24 @@ public class UserController {
         return "joinUser";
     }
 
+    //마이페이지 이동
+    @RequestMapping("/mypageUser")
+    public String mypageUser()
+    { return "mypageUser"; }
+
+    //회원정보수정 페이지 이동
+    @RequestMapping("/changeUser")
+    public String changeUser()
+    { return "changeUser"; }
 
     //회원가입 시 프로필사진이 없다
     @ResponseBody
     @PostMapping(value = "/user")
     public ResponseEntity<Void> join(@RequestPart("UserDto") String userString, BindingResult result) throws IOException {
-        logger.info("join() 메소드 프로필사진이 없다!");
 
         @Valid
         UserDto user = new ObjectMapper().readValue(userString, UserDto.class);
         user.setPicture("");//사진이름은 ""으로 둔다.
-        logger.info(userString);
 
         System.out.println("result.getErrorCount() = " + result.getErrorCount());
         System.out.println("result.hasGlobalErrors(); = " + result.getFieldError());
@@ -130,18 +137,13 @@ public class UserController {
     @ResponseBody
     @PostMapping(value = "/userfile")
     public ResponseEntity<Void> join(@RequestPart("UserDto") String userString, @RequestPart("file") MultipartFile picture, BindingResult result) throws Exception {
-        logger.info("join() 프로필사진이 있다.");
-        logger.info("파일이름 : " + picture.getOriginalFilename());
-        logger.info("파일크기 : " + picture.getSize());
-        logger.info("파일컨텐트타입 : " + picture.getContentType());
-        String fileOriginalname = picture.getOriginalFilename();//올린 이미지 파일의 원래이름
+              String fileOriginalname = picture.getOriginalFilename();//올린 이미지 파일의 원래이름
 
         @Valid
         UserDto user = new ObjectMapper().readValue(userString, UserDto.class);
 
         user.setPicture(fileOriginalname);
         //user의 picture값을 파일의 이름으로 설정한다.
-        logger.info(userString);
 
         System.out.println("result.getErrorCount() = " + result.getErrorCount());
         System.out.println("result.hasGlobalErrors(); = " + result.getFieldError());
@@ -219,14 +221,11 @@ public class UserController {
         String userid = (String) f;
         String picture = userService.getPicture(userid);
         //userid로 select를 이용해서 mysql에서 picture문 뽑아낸다.
-        logger.info("displaySthumbnail 에서 해당 유저의 picture 값을 가져온다. picture : " + picture);
         HttpHeaders headers = new HttpHeaders();
         try {
             if (picture.equals("")) {
-                logger.info("사진이 없습니다. 기본 이미지를 적용합니다.");
                 in = new FileInputStream(uploadPath + "\\" +defaultdirectory+ "\\"+defaultSthumbnail);
             } else {
-                logger.info("유저의 프로필 사진이 있습니다. 유저의 프로필 사진을 적용합니다.");
                 in = new FileInputStream(uploadPath + "\\" + userid + "\\" + profile + "\\" +smallHeader+picture);
             }
           //  headers.setContentType(MediaType.IMAGE_JPEG);//어차피 profile.jpg로 저장되기때문에 Type이 IMAGE_JPEG여도 괜찮다
@@ -246,15 +245,11 @@ public class UserController {
         InputStream in = null;
         ResponseEntity<byte[]> entity = null;
         String picture = userService.getPicture(id);
-        logger.info("displayMthumbnail 호출 글등에서 보여줄 중간 크기의 썸네일을 써먹겠다 : " + id);
         HttpHeaders headers = new HttpHeaders();
         try {
             if(picture.equals("")){
-                logger.info("해당유저의 프로필사진이 없다. 기본이미지 적용.");
                 in=new FileInputStream(uploadPath+ "\\" +defaultdirectory+ "\\"+defaultSthumbnail);
-                logger.info(in.toString());
             }else{
-                logger.info("사진이 있다.");
                 in=new FileInputStream(uploadPath+"\\"+id+"\\"+profile+"\\"+middleHeader+picture);
             }
         //    headers.setContentType(MediaType.IMAGE_JPEG);

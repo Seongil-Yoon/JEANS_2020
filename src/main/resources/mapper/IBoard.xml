@@ -18,6 +18,7 @@
         </selectKey>
     </insert>
 
+
     <select id="list" resultType="jeans.ko.Dto.BoardDto">
         select * from look order by look_num desc
     </select>

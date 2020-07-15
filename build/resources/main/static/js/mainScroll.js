@@ -51,7 +51,7 @@ function start() {
                     "                          <div class=\"is_body\" >\n" +
                     "                              <!-- 헤더-->\n" +
                     "                              <div class=\"my_img\">\n" +
-                    "                                 <img src=\"displayMthumbnail?id="+result[i].fk_userid_user_userid+"\">\n"+
+                    "                                 <img src=\"displayMthumbnail?id=" + result[i].fk_userid_user_userid + "\">\n" +
                     "                              </div>\n" +
                     "                              <div class=\"name\">\n" +
                     "                                  <ul class=\"look_header_ul\">\n" +
@@ -121,6 +121,7 @@ function start() {
                     "      </div>"
                 $("body").append(html);
             }
+
             setTimeout(function () {
                 mainScrollTime = true;
             }, 200);//스크롤이벤트 0.2초뒤실행 중복방지위해

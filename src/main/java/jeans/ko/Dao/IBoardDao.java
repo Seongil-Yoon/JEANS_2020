@@ -23,7 +23,7 @@ public interface IBoardDao {
     //  public int insert(@Param("boardDto")BoardDto boardDto, @Param("lists")List<PictureDto>lists);
 
     //각 게시글에 저장된 사진들 내역 DB에 저장
-    public int insertPicturedatabase(List<PictureDto> lists);
+  //  public int insertPicturedatabase(List<PictureDto> lists);
 
     //게시글 상세보기
     public BoardDto view(@Param("look_num") int look_num);

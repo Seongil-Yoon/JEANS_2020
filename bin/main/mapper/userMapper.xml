@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jeans.ko.Dao.IUserDao">
+    <insert id="insertUser">
+        insert into user values(#{role},#{userid},#{nickname},#{password},#{sex},#{height},#{weight},#{picture},#{email})
+    </insert>
+    <select id="userLogin" resultType="String">
+        select password from user where userid= (#{userid})
+    </select>
+    <select id="getNickname" resultType="String">
+        select nickname from user where userid=(#{id});
+    </select>
+    <select id="getPicture" resultType="String">
+        select picture from user where userid=(#{userid});
+    </select>
+</mapper>
+
+        <!-- resultType="jeans.ko.Dto.UserDto"-->

@@ -32,6 +32,13 @@ function logo_right_click() {
     }
 }
 
+function myInfo_click(){
+    if(nickname!=null) {
+        location.href = "/mypageUser";
+    }
+}
+
+
 function logout_login_click() {
     if(sessionStorage.getItem("userid")!=null) {
         $.ajax({

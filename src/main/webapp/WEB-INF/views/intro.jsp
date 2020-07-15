@@ -9,6 +9,7 @@
     <title>fullPage.js</title>
     <link rel="stylesheet" href="static/css/fullpage.min.css"/>
     <link rel="stylesheet" href="static/css/intro.css"/>
+    <link rel="stylesheet" href="static/css/slideShow.css" />
 </head>
     <body>
     <div class="header">

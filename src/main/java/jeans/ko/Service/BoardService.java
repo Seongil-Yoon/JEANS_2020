@@ -31,8 +31,7 @@ public class BoardService implements IBoardService {
     @Autowired
     HttpSession httpSession;
 
-    public void insert(BoardDto boardDto/*, List<MultipartFile> files*/) {
-        System.out.println("BoardService insert메소드 호출");
+    public void insert(BoardDto boardDto, List<MultipartFile> files) {
         //시간을 내가 원하는 형식으로 출력
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일");
         String look_date = formatter.format(new Date());
@@ -45,9 +44,10 @@ public class BoardService implements IBoardService {
 
         //1. 사용자가 입력한 글내역 중 파일들을 제외하고 나머지 내용들을 입력.
         boardDao.insert(boardDto);
+        bindingPicture(files,boardDto.getLook_num());
 
         //2.파일리스트들의 내용을 pictureDB에 입력. 단 1번에서 PK값을 가져온다.
-
+        //   boardDao.insertPicturedatabase(bindingPicture(files, boardDto.getLook_num()));
 
         //3.파일들을 지정된경로에 업로드한다. 업로드 전략은
 
@@ -67,29 +67,22 @@ public class BoardService implements IBoardService {
     }
 
     @Override
-    public ArrayList<PictureDto> bindingPicture(List<MultipartFile> e) {
+    public ArrayList<PictureDto> bindingPicture(List<MultipartFile> e, int looknum) {
         ArrayList<PictureDto> lists = new ArrayList<PictureDto>();
         for (MultipartFile i : e) {
             PictureDto pictureDto = new PictureDto();
             String name = i.getOriginalFilename();
             long size = i.getSize();
+            pictureDto.setLookNum(looknum);
             pictureDto.setPictureName(name);
             pictureDto.setPictureSize(size);
-            System.out.println("name + size = " + name + size);
+
+            System.out.println("i.getOriginalFilename() = " + pictureDto.getLookNum());
+            System.out.println("i.getSize() = " + pictureDto.getPictureName());
+            System.out.println("pictureDto.getPictureSize() = " + pictureDto.getPictureSize());
             lists.add(pictureDto);
         }
-        /*for (int i = 0; i < e.size(); i++) {
-            String name = e.get(0).getOriginalFilename();
-            System.out.println("name = " + name);
-            long size = e.get(0).getSize();
-            pictureDto.setPictureName(name);
-            pictureDto.setPictureSize(size);
-            lists.add(pictureDto);
-            System.out.println("pictureDto = " + lists.get(i));
-        }*/
-        for (int i = 0; i <= 1; i++) {
-            System.out.println("i.getPictureName() = " + lists.get(i).getPictureName());
-        }
+
         return lists;
     }
 

@@ -8,55 +8,19 @@
     <meta charset="UTF-8"/>
     <title>register</title>
     <link rel="stylesheet" href="static/css/register.css"/>
-    <link rel="stylesheet" href="static/css/jeans_header_.css"/>
+    <link rel="stylesheet" href="static/css/slideShow.css" />
 </head>
 <body>
 
 
 <!--/*여기는 맨 위에 있는 바 부분*/ -->
 <div class="webview">
-    <div class="jeans_root">
-        <div class="jeans_header">
-            <div class="search_left"></div>
-            <div class="search_logo">
-                <img src="static/images/search.jpg" alt="search" height="30" width="30" />
-            </div>
-            <div class="search_input" style="margin-top: 0px" >
-                <form>
-                    <input type="text" class = "search_text"/>
-                </form>
-            </div>
-            <div class="logo_left"></div>
-            <div class="logo" >
-                <a class="header_a" href="main"><img src="static/images/logo.PNG" alt="logo" height="30" width="71" /></a>
-            </div>
-
-            <a class="header_a" href="javascript:logo_right_click();">
-                <div class="logo_right"><span class="look_write"></span></div>
-            </a>
-
-            <div class="my_info">
-                <div class="my_picture"></div>
-                <span class="user_nickname"></span>
-            </div>
-
-            <div class="logout_left"></div>
-
-
-            <a class="header_a" href="javascript:logout_login_click();">
-                <div class="logout_login"></div>
-            </a>
-
-            <div class="logout_right"></div>
-        </div>
-    </div>
+      <jsp:include page="header.jsp" flush="false"/>
     <!-- /*여기부터가 본문*/  -->
 
 
     <div>
-
-        <%--@elvariable id="userDto" type="jeans"--%>
-        <form:form modelAttribute="userDto" >
+        <form:form modelAttribute="userDto">
             <div class="main"></div>
             <div class="main_title">회원가입</div>
 
@@ -79,10 +43,10 @@
 
 
             <div class="select_profile">
-                <input type="file" id="input_profile" name="picture" accept=".jpg,.jpeg,.png,.bmp" />
+                <input type="file" id="input_profile" name="picture" accept=".jpg,.jpeg,.png,.bmp" onchange="previewImage(this,'View_area')"/>
             </div>
-            <div class="upload_image">
-                <img id="img"/>
+            <div class="upload_image" id="View_area">
+                <!-- JS로 img태그 생성 -->
             </div>
 
             <div class="register_bodyType">공개/비공개</div>
@@ -151,5 +115,6 @@
 </c:if>
 <%--header 부분 초기화--%>
 <script>headerReset()</script>
+<script src="static/js/ex2.js"></script>
 </body>
 </html>
