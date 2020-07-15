@@ -55,16 +55,6 @@ public class FileService implements IFileService {
         logger.info("사진 업로드를 위한 폴더를 만듭니다.");
 
 
-        //폴더가 이미 만들어져있을때가 작동을 안한다... 찜찜하긴 하지만 일단 넘어가자
- /*       if (new File(paths[paths.length - 1]).exists()) {
-            logger.info("사진이 업로드 될 폴더가 이미 만들어져있습니다.");
-            for (String path : paths) {
-                uploadPath += "\\" + path;
-            }
-            logger.info("사진이 업로드될 위치 : " + uploadPath);
-            return uploadPath;
-        }*/
-
         for (String path : paths) {
             //uploadPath 뒤로 매개변수로 입력받은 path들을 다 붙여준다.
             File dirPath = new File(uploadPath += "\\" + path);
