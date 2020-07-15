@@ -66,8 +66,7 @@ public class FileService implements IFileService {
         logger.info("폴더를 새로 만들었습니다 : " + uploadPath);
         return uploadPath;
     }
-
-
+    
     //썸네일을 만드는 메소드
     //입력된 매개변수로 유저가 올린 이미지 파일을 찾는다.
     @Override
