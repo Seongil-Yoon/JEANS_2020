@@ -66,15 +66,19 @@ public class FileService implements IFileService {
         logger.info("폴더를 새로 만들었습니다 : " + uploadPath);
         return uploadPath;
     }
-    
+
     //썸네일을 만드는 메소드
     //입력된 매개변수로 유저가 올린 이미지 파일을 찾는다.
     @Override
     public void makeprofileThumbnail(String filename, String uploadPath, String... paths) throws Exception {
 
-        //유저가 입력한 path를 통해 해당유저의 profile폴더까지 찾아 들어간다.
+//        //유저가 입력한 path를 통해 해당유저의 profile폴더까지 찾아 들어간다.
+//        for (String path : paths) {
+//            uploadPath += "\\" + path;
+//        }
+
         for (String path : paths) {
-            uploadPath += "\\" + path;
+            uploadPath += "/" + path;
         }
 
         //이미지를 읽기 위한 버퍼
@@ -86,8 +90,10 @@ public class FileService implements IFileService {
         BufferedImage smallImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 40);
         BufferedImage middleImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 50);
         String formatName = filename.substring(filename.lastIndexOf(".") + 1);
-        File smallThumbnail = new File(uploadPath + "\\" + smallHeader + filename);
-        File middleThumbnail = new File(uploadPath + "\\" + middleHeader + filename);
+//        File smallThumbnail = new File(uploadPath + "\\" + smallHeader + filename);
+//        File middleThumbnail = new File(uploadPath + "\\" + middleHeader + filename);
+        File smallThumbnail = new File(uploadPath + "/" + smallHeader + filename);
+        File middleThumbnail = new File(uploadPath + "/" + middleHeader + filename);
         ImageIO.write(smallImg, formatName.toUpperCase(), smallThumbnail);
         ImageIO.write(middleImg, formatName.toUpperCase(), middleThumbnail);
 
