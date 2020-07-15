@@ -54,10 +54,10 @@ public class FileService implements IFileService {
 
         logger.info("사진 업로드를 위한 폴더를 만듭니다.");
 
-
         for (String path : paths) {
             //uploadPath 뒤로 매개변수로 입력받은 path들을 다 붙여준다.
-            File dirPath = new File(uploadPath += "\\" + path);
+//            File dirPath = new File(uploadPath += "\\" + path);
+              File dirPath = new File(uploadPath += "/" + path);
             if (!dirPath.exists()) {
                 //만약 폴더가 존재하지 않는다면 경로에 해당되는 폴더를 만든다.
                 dirPath.mkdir();
