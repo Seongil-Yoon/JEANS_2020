@@ -19,7 +19,7 @@
                 <img src="static/images/search.jpg" alt="search" height="30" width="30"/>
             </div>
             <div class="search_input" style="margin-top: 20px">
-                <form>
+                <form class="search_input_form">
                     <input type="text" class="search_text"/>
                 </form>
             </div>
@@ -52,6 +52,8 @@
             <div class="logout_right"></div>
         </div>
     </div>  
+    <div class = "header_space"></div>
+
 
 <script
         src="https://code.jquery.com/jquery-3.5.1.min.js"

@@ -18,9 +18,6 @@
     <form name="writeForm">
         <div class="body_root"> <!--/* 전체 바탕 아무 것도 안함*/ -->
 
-            <div class="header_space"></div>
-            <!--/* 위에 있는 바와 간격 벌리기 위한것*/ -->
-
             <div class="body_lookupload">
                 <!--/* 본문 바탕 */ -->
 

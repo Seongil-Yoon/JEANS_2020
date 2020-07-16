@@ -16,12 +16,9 @@
 <div class="rightBottom"></div> -->
 
 <div class="webview">
-         <jsp:include page="header.jsp" flush="false"/>
+    <jsp:include page="header.jsp" flush="false"/>
 
-    <!-- End of Header-->
-
-    <div class="header_space" style="height: 100px;"></div>
-    <!-- End of Header-->
+    <!-- /*여기부터가 본문*/  -->
 
     <div class="body_root">
         <div class="changePW">

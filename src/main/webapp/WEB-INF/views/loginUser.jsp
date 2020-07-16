@@ -17,8 +17,8 @@
     <jsp:include page="header.jsp" flush="false"/>
     <!-- End of Header-->
 
-    <form name="loginForm">
-        <div class="container">
+    <div class="container">
+     <form name="loginForm">
             <div class="wrap"></div>
             <div class="main"></div>
             <div class="main_title">Jeans에 로그인!</div>
@@ -40,8 +40,8 @@
             <div class="main_noIdea">
                 <a href="https://www.naver.com">계정을 잊어버리셨나요?</a>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 </div>
 </div>

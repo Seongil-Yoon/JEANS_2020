@@ -49,6 +49,7 @@ dependencies {
 	compile('javax.servlet:jstl')//jsp 사용
 }
 
+//리소스밑에 노드모듈을 빌드제외 시킴.
 sourceSets {
 	main {
 		resources {

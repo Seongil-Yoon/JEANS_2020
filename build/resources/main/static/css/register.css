@@ -3,13 +3,7 @@ body{
 }
 
 .webview{
-  overflow: hidden;
   position: relative;
-  width: 1200px;
-  height: 1033px;
-  margin: 0 auto;
-  -webkit-transform: translate3d(0,0,0);
-  transform: translate3d(0,0,0);
 }
 
 input{
@@ -37,7 +31,7 @@ input{
 
 .main{
   position: absolute;
-  top: 92px;
+  /* top: 92px; */
   left: 34px;
   width: 1132px;
   height: 878px;

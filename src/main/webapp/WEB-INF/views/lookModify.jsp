@@ -20,7 +20,6 @@
             <%--@elvariable id="boardDto" type="jeans"--%>
 
 
-            <div class="header_space"></div>
             <!--/* 위에 있는 바와 간격 벌리기 위한것*/ -->
 
             <div class="body_lookupload">

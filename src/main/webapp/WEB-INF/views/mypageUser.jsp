@@ -19,9 +19,6 @@
 <!-- /*여기부터가 본문*/  -->
 
     <div class="body_root">
-
-        <div class = "header_space"></div>
-
         <div class = "my_page_body">
             <div class ="my_page_body_top">
 
