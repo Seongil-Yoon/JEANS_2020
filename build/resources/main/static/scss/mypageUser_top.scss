@@ -31,6 +31,7 @@ input {
 	display: grid;
 	grid-template-columns: 150px 540px 130px 130px 130px 20px;
 	grid-template-rows: 30px 10px 40px 50px 20px 90px 10px;
+	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
 }
 .my_img {
 	margin-top: 10px;
