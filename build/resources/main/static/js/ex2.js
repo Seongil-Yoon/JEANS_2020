@@ -1,3 +1,4 @@
+//joinUser페이지에서 호출.
 function previewImage(targetObj, View_area) {
     var preview = document.getElementById(View_area); //div id
     var ua = window.navigator.userAgent;
@@ -42,8 +43,8 @@ function previewImage(targetObj, View_area) {
             img.id = "prev_" + View_area;
             img.classList.add("obj");
             img.file = file;
-            img.style.width = '100%';
-            img.style.height = '100%';
+            img.style.width = '357px';
+            img.style.height = '357px';
             preview.appendChild(img);
             if (window.FileReader) { // FireFox, Chrome, Opera 확인.
                 var reader = new FileReader();

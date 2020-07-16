@@ -11,9 +11,11 @@ let sel_file;
 $('#id').blur(function () {
     //blur 엘리먼트가 포커스를 잃을때 발생되는 이벤트
     if (idreg.test($('#id').val())) {
+        $('#id_check').css('margin-bottom', '4%');
         console.log('true');
         $('#id_check').text('');//값이 true라면 경고문을 지운다.
     } else {
+        $('#id_check').css('margin-bottom', '-4%');
         console.log('false');
         $('#id_check').text('4~12자리 영어소문자,숫자 조합 만 가능합니다.');
         $('#id_check').css('color', 'red'); //정규식에 맞지 않는 다면 빨간색 경고문이뜬다.
@@ -24,9 +26,11 @@ $('#id').blur(function () {
 $('#pw').blur(function () {
     //blur 엘리먼트가 포커스를 잃을때 발생되는 이벤트
     if (pwreg.test($('#pw').val())) {
+        $('#pass_check').css('margin-bottom', '4%');
         console.log('true');
         $('#pass_check').text('');//값이 true라면 경고문을 지운다.
     } else {
+        $('#pass_check').css('margin-bottom', '-4%');
         console.log('false');
         $('#pass_check').text('8~12자리 !@#$%^&*()? 중 하나이상이 들어가야합니다.'); //정규식에 맞지 않는 다면 빨간색 경고문이뜬다.
         $('#pass_check').css('color', 'red');
@@ -36,9 +40,11 @@ $('#pw').blur(function () {
 //정규식을 통한 닉네임체크
 $('#nick').blur(function () {
     if (nickreg.test($('#nick').val())) {
+        $('#nick_check').css('margin-bottom', '4%');
         console.log('true');
         $('#nick_check').text('');//값이 true라면 경고문을 지운다.
     } else {
+        $('#nick_check').css('margin-bottom', '-4%');
         $('#nick_check').text('4~8자리 영어소분자,숫자,한글조합만 가능합니다.'); //정규식에 맞지 않는 다면 빨간색 경고문이뜬다.
         $('#nick_check').css('color', 'red');
     }
@@ -47,9 +53,11 @@ $('#nick').blur(function () {
 //정규식을 통한 키확인
 $('#height').blur(function () {
     if (heightweightreg.test($('#height').val())) {
+        $('#height_check').css('margin-bottom', '4%');
         console.log('true');
         $('#height_check').text('');//값이 true라면 경고문을 지운다.
     } else {
+        $('#height_check').css('margin-bottom', '-4%');
         $('#height_check').text('2~3자리 숫자를 입력해주세요'); //정규식에 맞지 않는 다면 빨간색 경고문이뜬다.
         $('#height_check').css('color', 'red');
     }
@@ -58,9 +66,11 @@ $('#height').blur(function () {
 //정규식을 통한 몸무게확인
 $('#weight').blur(function () {
     if (heightweightreg.test($('#height').val())) {
+        $('#weight_check').css('margin-bottom', '4%');
         console.log('true');
         $('#weight_check').text('');//값이 true라면 경고문을 지운다.
     } else {
+        $('#weight_check').css('margin-bottom', '-4%');
         $('#weight_check').text('2~3자리 숫자를 입력해주세요'); //정규식에 맞지 않는 다면 빨간색 경고문이뜬다.
         $('#weight_check').css('color', 'red');
     }
@@ -69,9 +79,11 @@ $('#weight').blur(function () {
 //정규식을 통한 이메일체크
 $('#emailbox').blur(function () {
     if (emailreg.test($('#emailbox').val())) {
+        $('#email_check').css('margin-bottom', '4%');
         console.log('true');
         $('#email_check').text('');//값이 true라면 경고문을 지운다.
     } else {
+        $('#email_check').css('margin-bottom', '-4%');
         $('#email_check').text('이메일형식에 맞게 입력해주세요'); //정규식에 맞지 않는 다면 빨간색 경고문이뜬다.
         $('#email_check').css('color', 'red');
     }
@@ -160,6 +172,7 @@ function joinUser() {
         //아이디값을 정규식과 비교
         Arr[0] = true;//정규식을 통과하면 true값
     } else {
+        $('#id_check').css('margin-bottom', '-4%');
         msg += "아이디가 입력되지 않았습니다.\n";//swal에서 보여줄 msg.
         $('#id_check').text('4~12자리 영어소문자,숫자 조합 만 가능합니다.');
         $('#id_check').css('color', 'red');
@@ -170,6 +183,7 @@ function joinUser() {
         //패스워드 값을 정규식과 비교
         Arr[1] = true;//정규식을 통과하면 true값
     } else {
+        $('#pass_check').css('margin-bottom', '-4%');
         msg += "비밀번호가 입력되지 않았습니다.\n";//swal에서 보여줄 msg.
         $('#pass_check').text('8~12자리 !@#$%^&*()? 중 하나이상이 들어가야합니다.');
         $('#pass_check').css('color', 'red');
@@ -179,6 +193,7 @@ function joinUser() {
     if (nickreg.test(nickname)) {
         Arr[2] = true;//정규식을 통과하면 true값
     } else {
+        $('#nick_check').css('margin-bottom', '-4%');
         msg += "닉네임이 입력되지 않았습니다.\n";//swal에서 보여줄 msg.
         $('#nick_check').text('4~8자리 영어소문자,숫자,한글조합만 가능합니다.');
         $('#nick_check').css('color', 'red');
@@ -186,11 +201,14 @@ function joinUser() {
         Arr[2] = false;//정규식을 통과하지 못하면 false값
     }
     if ($('input:radio[name=sex]').is(':checked')) {
+        console.log("성별true");
         //라디오버튼(sex라는이름의)의 체크여부확인
         Arr[3] = true;//정규식을 통과하면 true값
     } else {
+        console.log("성별false");
         Arr[3] = false;//정규식을 통과하지 못하면 false값
         msg += "성별이 입력되지 않았습니다\n";//swal에서 보여줄 msg.
+        $('#gender_check').css('margin-bottom', '-4%');
         $('#gender_check').text('성별을 입력해주세요');
         $('#gender_check').css('color', 'red');
         //정규식에 맞지 않는 다면 빨간색 경고문이뜬다.
@@ -199,6 +217,7 @@ function joinUser() {
         Arr[4] = true;//정규식을 통과하면 true값
     } else {
         msg += "이메일이 입력되지 않았습니다.\n"//swal에서 보여줄 msg.
+        $('#email_check').css('margin-bottom', '-4%');
         $('#email_check').text('이메일형식에 맞게 입력해주세요');
         $('#email_check').css('color', 'red');
         //정규식에 맞지 않는 다면 빨간색 경고문이뜬다.
