@@ -193,9 +193,9 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    @PostMapping("/session")
+    @PostMapping("/session")//@RequestBody json 형태 문자열로 받겠다 객체는 못받음
     public HashMap<String, Object> loginRequest(@RequestBody  UserDto userDto) {
-        System.out.println("session 로그인 컨트롤러 접근함");
+
         HashMap<String, Object> map = new HashMap<String, Object>();
         String nickname = userService.userLogin(userDto);//닉네임 값을 받아오도록
         if (nickname==null){
