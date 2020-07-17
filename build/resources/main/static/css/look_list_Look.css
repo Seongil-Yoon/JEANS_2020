@@ -150,6 +150,15 @@ input{
     border: none;
   }
 
+  .view_look_textarea{
+    width: 495px;
+    height: 100px;
+    resize: none;
+    margin-left: 50px;
+    margin-right: 50px;
+    border: solid 1.5px;
+  }
+
   .like_img_box{
     position: relative;
     float: left;

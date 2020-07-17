@@ -246,6 +246,18 @@ input {
     border: 0
 }
 
+.view_textarea{
+    width: 1000px;
+    height: 100px;
+    resize: none;
+    margin-left: 50px;
+    margin-right: 50px;
+    border: 1.5px solid;
+    font-family: Georgia ;
+    font-size: x-large ;
+}
+
+
 .like {
     display: flex
 }
@@ -304,7 +316,7 @@ input {
     display: -ms-grid;
     display: grid;
     width: 880px;
-    height: 160px;
+    height: 180px;
     margin-left: auto;
     margin-right: auto;
     /*-ms-grid-rows: 40px 10px 80px 10px 30px;*/
@@ -392,7 +404,7 @@ input {
 
 .child_comment_textarea {
     width: 90.9%;
-    height: 80%;
+    height: 180%;
     resize: none;
     margin-left: 4.55%;
     margin-right: 4.55%;
@@ -400,7 +412,6 @@ input {
 }
 
 .comment_textarea{
-
     width: 1000px;
     height: 80px;
     resize: none;
@@ -409,6 +420,14 @@ input {
     border: none;
 }
 
+.view_comment_textarea{
+    width: 1000px;
+    height: 80px;
+    resize: none;
+    margin-left: 50px;
+    margin-right: 50px;
+    border: 1.5px solid;
+}
 
 .re_comment{
     margin-top: 10px;
@@ -440,6 +459,16 @@ input {
     background-color: transparent;
     color: #000
 }
+
+.child_comment_change_button {
+    margin-right: 10px;
+    font-size: 100%;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background-color: transparent;
+    color: #000
+}
+
 
 
 textarea::-moz-placeholder {

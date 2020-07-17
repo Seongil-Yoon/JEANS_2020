@@ -17,7 +17,7 @@ function commentHTML(result, html) {
     html += '<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
     html += '</div>';
     html += '<div class=\"comment_textarea_space\">';
-    html += '<textarea style=\"background-color:#E4EBEA \"disabled class=\"comment_textarea\" placeholder=\"' + result.comment_content + '\"></textarea>';
+    html += '<textarea style=\"background-color:#e0e0e0 \"disabled class=\"view_comment_textarea\" placeholder=\"' + result.comment_content + '\"></textarea>';
     html += '</div>';
     html += '<div class="re_comment"> 답글 </div>';
     html += '<div class=\"comment_date\">' + result.date + '</div>';
@@ -157,7 +157,7 @@ function commentList(lookNum) {
                 html += '<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
                 html += '</div>';
                 html += '<div class=\"comment_textarea_space\">';
-                html += '<textarea style=\"background-color:#E4EBEA \"disabled class=\"comment_textarea\" placeholder=\"' + result[i].comment_content + '\"></textarea>';
+                html += '<textarea style=\"background-color:#e0e0e0 \"disabled class=\"view_comment_textarea\" placeholder=\"' + result[i].comment_content + '\"></textarea>';
                 html += '</div>';
                 html += '<div class="re_comment"> 답글 </div>';
                 html += '<div class=\"comment_date\">' + result[i].date + '</div>';

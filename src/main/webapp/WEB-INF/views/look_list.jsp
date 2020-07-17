@@ -6,9 +6,9 @@
 <head>
     <meta charset="UTF-8"/>
     <title>look_list</title>
-
     <link rel="stylesheet" href="static/css/look_list.css"/>
     <link rel="stylesheet" href="static/css/look_list_Look.css"/>
+    <link rel="stylesheet" href="static/css/jeans_look_body.css"/>
     <link rel="stylesheet" href="static/css/jeans_header_.css"/>
 </head>
 <body>
