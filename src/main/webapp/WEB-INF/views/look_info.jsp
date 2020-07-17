@@ -107,7 +107,7 @@
         </div>
 
         <%--댓글입력부분--%>
-        <form name="commentForm">
+        <form name="commentForm" class="writeComment">
             <c:if test="${sessionScope.userid != null}"> <%--로그인 해야 작성가능--%>
                 <div class="look_comment">
                     <div class="other_people_img">
@@ -149,6 +149,7 @@
 <script type="text/javascript" src="/static/js/lookDelete.js"></script>
 <script src="/static/js/look_info.js"></script>
 <script type="text/javascript" src="/static/js/comment.js"></script>
+<script type="text/javascript" src="/static/js/child_comment.js"></script>
 <script>commentReady(${view.look_num})</script>
 <%--서버세션이 종료되어 자바스크립트 session 종료--%>
 <c:set var="userid" value="${sessionScope.userid}"/>

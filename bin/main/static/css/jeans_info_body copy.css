@@ -307,9 +307,7 @@ input {
     height: 180px;
     margin-left: auto;
     margin-right: auto;
-    /*-ms-grid-rows: 40px 10px 80px 10px 30px;*/
     grid-template-rows: 32px 64px 24px;
-    /*-ms-grid-columns: 70px 50px 980px;*/
     grid-template-columns: 56px 80px 744px;
     row-gap: 8px;
     background-color: #e0e0e0
@@ -397,6 +395,15 @@ input {
     margin-left: 4.55%;
     margin-right: 4.55%;
     border: 0
+}
+
+.child_comment_change_button {
+    margin-right: 10px;
+    font-size: 100%;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background-color: transparent;
+    color: #000
 }
 
 .comment_textarea{
