@@ -51,6 +51,7 @@ public class UserService implements IUserService {
         sqlPassword=userDao.userLogin(userDto);
 
         if(sqlPassword==null) {
+            System.out.println("회원가입된 아이디가 없으므로 null 값출력");
             return null;   //회원가입된 아이디가 없으므로 null 값줌
         }
 

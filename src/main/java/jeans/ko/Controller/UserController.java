@@ -5,6 +5,7 @@ import jeans.ko.Dao.IUserDao;
 import jeans.ko.Dto.UserDto;
 import jeans.ko.Service.IFileService;
 import jeans.ko.Service.IUserService;
+import jeans.ko.exception.NotFoundException;
 import lombok.extern.flogger.Flogger;
 import org.apache.commons.io.IOUtils;
 import org.apache.ibatis.io.ResolverUtil;
@@ -190,15 +191,16 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-
+    @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     @PostMapping("/session")
     public HashMap<String, Object> loginRequest(@RequestBody  UserDto userDto) {
+        System.out.println("session 로그인 컨트롤러 접근함");
         HashMap<String, Object> map = new HashMap<String, Object>();
         String nickname = userService.userLogin(userDto);//닉네임 값을 받아오도록
         if (nickname==null){
-            //받아온 값이없어 null 값 리턴
-            return null;
+            //아이디와 비빌번호가 맞지않음
+            throw new NotFoundException(String.format("Please enter your ID and password again"));
         }else {
             //로그인 성공
             httpSession.setAttribute("userid", userDto.getUserid());
