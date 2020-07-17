@@ -118,7 +118,7 @@
 
         <div class="look_textarea_space">
             <form class="textarea_form">
-                <textarea style="background-color:#F6F6F6 " disabled class="look_textarea"
+                <textarea style="background-color:#E4EBEA" disabled class="look_textarea"
                           placeholder="${view.memo}"></textarea>
             </form>
         </div>
@@ -186,6 +186,7 @@
 <script type="text/javascript" src="/static/js/lookDelete.js"></script>
 <script src="/static/js/look_info.js"></script>
 <script type="text/javascript" src="/static/js/comment.js"></script>
+<script type="text/javascript" src="/static/js/child_comment.js"></script>
 <script>commentReady(${view.look_num})</script>
 <%--서버세션이 종료되어 자바스크립트 session 종료--%>
 <c:set var="userid" value="${sessionScope.userid}"/>

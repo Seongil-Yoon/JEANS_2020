@@ -299,6 +299,23 @@ input {
     background-color: #e0e0e0
 }
 
+.child_look_comment {
+    margin-top: 8px;
+    display: -ms-grid;
+    display: grid;
+    width: 880px;
+    height: 160px;
+    margin-left: auto;
+    margin-right: auto;
+    /*-ms-grid-rows: 40px 10px 80px 10px 30px;*/
+    grid-template-rows: 32px 64px 24px;
+    /*-ms-grid-columns: 70px 50px 980px;*/
+    grid-template-columns: 56px 80px 744px;
+    row-gap: 8px;
+    background-color: #e0e0e0
+}
+
+
 .look_comment > :nth-child(1) {
     -ms-grid-row: 1;
     -ms-grid-column: 1
@@ -373,14 +390,25 @@ input {
     grid-column: 1/4
 }
 
-.comment_textarea {
+.child_comment_textarea {
+    width: 90.9%;
+    height: 80%;
+    resize: none;
+    margin-left: 4.55%;
+    margin-right: 4.55%;
+    border: 0
+}
+
+.comment_textarea{
+
     width: 1000px;
     height: 80px;
     resize: none;
     margin-left: 50px;
     margin-right: 50px;
-    border: 0
+    border: none;
 }
+
 
 .re_comment{
     margin-top: 10px;

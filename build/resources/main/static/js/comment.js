@@ -17,7 +17,7 @@ function commentHTML(result, html) {
     html += '<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
     html += '</div>';
     html += '<div class=\"comment_textarea_space\">';
-    html += '<textarea style=\"background-color:#F6F6F6 \"disabled class=\"comment_textarea\" placeholder=\"' + result.comment_content + '\"></textarea>';
+    html += '<textarea style=\"background-color:#E4EBEA \"disabled class=\"comment_textarea\" placeholder=\"' + result.comment_content + '\"></textarea>';
     html += '</div>';
     html += '<div class="re_comment"> 답글 </div>';
     html += '<div class=\"comment_date\">' + result.date + '</div>';
@@ -157,7 +157,7 @@ function commentList(lookNum) {
                 html += '<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
                 html += '</div>';
                 html += '<div class=\"comment_textarea_space\">';
-                html += '<textarea style=\"background-color:#F6F6F6 \"disabled class=\"comment_textarea\" placeholder=\"' + result[i].comment_content + '\"></textarea>';
+                html += '<textarea style=\"background-color:#E4EBEA \"disabled class=\"comment_textarea\" placeholder=\"' + result[i].comment_content + '\"></textarea>';
                 html += '</div>';
                 html += '<div class="re_comment"> 답글 </div>';
                 html += '<div class=\"comment_date\">' + result[i].date + '</div>';
@@ -259,7 +259,6 @@ $(document).on("click", ".right_pen", function (event) {
     html += '</div>';
 
     look_commentTag.append(html); //look_comment 아래에 추가
-
 });
 //수정 다하고 저장 버튼 이나 취소 버튼 누를 경우 이벤트
 $(document).on("click", ".comment_change_button", function (event) {

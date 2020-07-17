@@ -77,7 +77,7 @@ function start() {
                     "\n" +
                     "                              <div class=\"look_textarea_space\">\n" +
                     "                                  <form class=\"textarea_form\" >\n" +
-                    "                                      <textarea style=\"background-color: #F6F6F6\" class = \"look_textarea\" placeholder=\"" + result[i].tag + "\"></textarea>\n" +
+                    "                                      <textarea style=\"background-color: #E4EBEA\" class = \"look_textarea\" placeholder=\"" + result[i].tag + "\"></textarea>\n" +
                     "                                  </form>\n" +
                     "                              </div>\n" +
                     "\n" +
