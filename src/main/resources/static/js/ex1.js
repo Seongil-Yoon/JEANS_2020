@@ -1,3 +1,4 @@
+//joinUser에서 호출
 function previewImage(targetObj, View_area) {
     var preview = document.getElementById(View_area); //div id
     var ua = window.navigator.userAgent;

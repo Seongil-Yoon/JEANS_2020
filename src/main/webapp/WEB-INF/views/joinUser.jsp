@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <title>joinUSer</title>
+    <title>회원가입</title>
     <link rel="stylesheet" href="static/css/joinUser.css"/>
     <link rel="stylesheet" href="static/css/jeans_header_.css"/>
 </head>
@@ -115,6 +115,6 @@
 </c:if>
 <%--header 부분 초기화--%>
 <script>headerReset()</script>
-<script src="static/js/ex2.js"></script>
+<script src="static/js/ex1.js"></script>
 </body>
 </html>

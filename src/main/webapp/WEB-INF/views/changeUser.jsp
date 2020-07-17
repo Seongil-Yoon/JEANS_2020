@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>회원정보수정</title>
     <link rel="stylesheet" href="static/css/changeUser.css" />
     <link rel="stylesheet" href="static/css/slideShow.css" />
 </head>

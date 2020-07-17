@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>글 작성</title>
     <link rel="stylesheet" href="static/css/jeans_write_body.css">
     <link rel="stylesheet" href="static/css/slideShow.css"/>
 </head>

@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>글 상세보기</title>
     <link rel="stylesheet" href="static/css/jeans_info_body.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
     <link rel="stylesheet" href="static/css/slideShow.css" />

@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <title>login</title>
+    <title>로그인</title>
     <link rel="stylesheet" href="static/css/login.css"/>
     <link rel="stylesheet" href="static/css/slideShow.css" />
 </head>

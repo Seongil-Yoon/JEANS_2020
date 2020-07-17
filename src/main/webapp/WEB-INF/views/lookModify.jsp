@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>글 수정</title>
     <link rel="stylesheet" href="static/css/jeans_header_.css">
     <link rel="stylesheet" href="static/css/jeans_write_body.css">
 </head>

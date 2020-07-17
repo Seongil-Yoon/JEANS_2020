@@ -29,17 +29,19 @@ button {
 
 body {
   .webview {
-    display: flex;
-    flex-flow: column nowrap;
+    // display: flex;
+    // flex-flow: column nowrap;
     margin: 0 auto;
-    height: 1150px;
     // max-width: 123.5vh; //1200px와 비슷, max-width를해야 뷰포트의 크기에 동적으로 맞춰진다
-    width: 1200px;
+    // width: 1200px;
     // height: px, vh단위는 부모플렉스에 높이주면 자식이 정렬안된다.
     // %, fr은 허용
+    // width: 1200px;
+    height: 1150px;
+
 
     .jeans_root {
-      order: 0;
+      // order: 0;
       .jeans_header {
         // width: 100%;
         // max-width: 123.5vh;
@@ -47,19 +49,21 @@ body {
       }
     }
     .header_space {
-      order: 1;
+      // order: 1;
       // 포지션의 속성이 fixed라서 아래태그(body_root)는 상대위치가 안먹는다.
       // fixed가 아닌 가상의 헤더공간을 위치시킨다.
     }
 
     .body_root {
-      order: 2;
+      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+      // order: 2;
       background-color: rgb(224, 224, 224);
       height: 100%;
       width: 100%;
       z-index: 4; //헤더는 5
       display: grid;
-      grid-template-columns: minmax(min-content, 1fr) minmax(min-content, 1fr) ;
+      // grid-template-columns: minmax(min-content, 1fr) minmax(min-content, 1fr) ;
+      grid-template-columns: 1fr 1fr;
       // grid-template-columns: 1fr 1fr;
       grid-template-rows: 4fr 4fr 7fr;
       grid-auto-flow: row;
@@ -78,7 +82,7 @@ body {
             width: 100%;
             height: 100%;
             grid-template-columns: repeat(16, 1fr);
-            grid-template-rows: repeat(3, 1fr);
+            grid-template-rows: repeat(3);
             //justify-items: center;
             gap: 10% 2%;
             padding: 2.5%;
@@ -135,7 +139,7 @@ body {
             width: 100%;
             height: 100%;
             grid-template-columns: repeat(16, 1fr);
-            grid-template-rows: repeat(3, 1fr);
+            grid-template-rows: repeat(3);
             //justify-items: center;
             gap: 10% 2%;
             padding: 2.5%;
@@ -207,7 +211,7 @@ body {
             width: 100%;
             height: 100%;
             grid-template-columns: repeat(16, 1fr);
-            grid-template-rows: repeat(10, 1fr);
+            grid-template-rows: repeat(10);
             //justify-items: center;
             gap: 2% 2%;
             padding: 4% 4% 4% 4%;

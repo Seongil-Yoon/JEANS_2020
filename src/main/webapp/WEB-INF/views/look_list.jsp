@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <title>look_list</title>
+    <title>글 목록</title>
 
     <link rel="stylesheet" href="static/css/look_list.css"/>
     <link rel="stylesheet" href="static/css/look_list_Look.css"/>
