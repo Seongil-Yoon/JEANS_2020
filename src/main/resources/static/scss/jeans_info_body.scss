@@ -178,12 +178,13 @@ body {
             .comment_textarea {
               width: 90.9%;
               height: 100%;
-              resize: none;
               margin-left: 4.55%;
               margin-right: 4.55%;
+              resize: none;
               border: 0;
             }
           }
+
           .re_comment {
             margin-top: 10px;
             text-align: center;
@@ -276,6 +277,14 @@ body {
           -ms-grid-column: 1;
           -ms-grid-column-span: 3;
           grid-column: 1/4;
+          .view_comment_textarea {
+            width: 90.9%;
+            margin-left: 4.55%;
+            margin-right: 4.55%;
+            height: 100%;
+            resize: none;
+            border: 1.5px solid;
+          }
           .comment_textarea {
             width: 90.9%;
             height: 100%;
@@ -353,8 +362,33 @@ body {
   }
 }
 
-
 //아래 스타일은 어디 태그에 들어있는지 모르지만 호출되고 있기 때문에 남겨둬야됨.
+.view_comment_textarea {
+  width: 1000px;
+  height: 80px;
+  resize: none;
+  margin-left: 50px;
+  margin-right: 50px;
+  border: 1.5px solid;
+}
+.view_look_textarea {
+  width: 495px;
+  height: 100px;
+  resize: none;
+  margin-left: 50px;
+  margin-right: 50px;
+  border: solid 1.5px;
+}
+.view_textarea {
+  width: 90.9%;
+  margin-left: 4.55%;
+  margin-right: 4.55%;
+  height: 100px;
+  resize: none;
+  border: 1.5px solid;
+  font-family: Georgia;
+  font-size: x-large;
+}
 .name,
 .title {
   margin-left: -20px;
@@ -366,6 +400,7 @@ body {
 .name {
   margin-top: 10px;
 }
+
 .write_date {
   font-weight: 700;
   margin-top: 10px;

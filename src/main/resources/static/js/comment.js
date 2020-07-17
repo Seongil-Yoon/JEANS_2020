@@ -6,7 +6,7 @@ let scrollTime = true;
 function commentHTML(result, html) {
 
     html += '<div class=\"other_people_img\">';
-    html += '<img src=displayMthumbnail?id='+result.comment_sender_id+'>';
+    html += '<img src=displayMthumbnail?id=' + result.comment_sender_id + '>';
     html += '</div>';
     html += '<div class=\"other_people_name\">' + result.comment_sender_name + '</div>';
     html += '<div class="right_etc">';
@@ -17,7 +17,7 @@ function commentHTML(result, html) {
     html += '<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
     html += '</div>';
     html += '<div class=\"comment_textarea_space\">';
-    html += '<textarea style=\"background-color:#F6F6F6 \"disabled class=\"comment_textarea\" placeholder=\"' + result.comment_content + '\"></textarea>';
+    html += '<textarea style=\"background-color:#e0e0e0 \"disabled class=\"view_comment_textarea\" placeholder=\"' + result.comment_content + '\"></textarea>';
     html += '</div>';
     html += '<div class="re_comment"> 답글 </div>';
     html += '<div class=\"comment_date\">' + result.date + '</div>';
@@ -143,8 +143,8 @@ function commentList(lookNum) {
                 /*
                                 html+='<img src=\"static/images/mypicture.png\" alt=\"other_people_imgage\" height=\"50\" width=\"60\"/>';
                 */
-           /* <img src=\"displayMthumbnail?id="+result[i].fk_userid_user_userid+"\">*/
-                html +='<img src=displayMthumbnail?id='+result[i].comment_sender_id+'>';
+                /* <img src=\"displayMthumbnail?id="+result[i].fk_userid_user_userid+"\">*/
+                html += '<img src=displayMthumbnail?id=' + result[i].comment_sender_id + '>';
 
                 //댓글의 이미지썸네일
                 html += '</div>';
@@ -157,7 +157,7 @@ function commentList(lookNum) {
                 html += '<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
                 html += '</div>';
                 html += '<div class=\"comment_textarea_space\">';
-                html += '<textarea style=\"background-color:#F6F6F6 \"disabled class=\"comment_textarea\" placeholder=\"' + result[i].comment_content + '\"></textarea>';
+                html += '<textarea style=\"background-color:#e0e0e0 \"disabled class=\"view_comment_textarea\" placeholder=\"' + result[i].comment_content + '\"></textarea>';
                 html += '</div>';
                 html += '<div class="re_comment"> 답글 </div>';
                 html += '<div class=\"comment_date\">' + result[i].date + '</div>';
@@ -247,7 +247,7 @@ $(document).on("click", ".right_pen", function (event) {
     let html = "";
     html += '<input class="comment_id" value="' + comment_id + '" type="hidden"/>';
     html += '<div class="other_people_img">';
-    html += '<img src=displayMthumbnail?id='+comment_sender_id+'>';
+    html += '<img src=displayMthumbnail?id=' + comment_sender_id + '>';
     html += '</div>';
     html += '<div class="other_people_name">' + nickName + '</div>';
     html += '<div class="comment_textarea_space">';
@@ -259,7 +259,6 @@ $(document).on("click", ".right_pen", function (event) {
     html += '</div>';
 
     look_commentTag.append(html); //look_comment 아래에 추가
-
 });
 //수정 다하고 저장 버튼 이나 취소 버튼 누를 경우 이벤트
 $(document).on("click", ".comment_change_button", function (event) {
@@ -320,6 +319,5 @@ $(document).on("click", ".comment_change_button", function (event) {
 
     }
 });
-
 
 
