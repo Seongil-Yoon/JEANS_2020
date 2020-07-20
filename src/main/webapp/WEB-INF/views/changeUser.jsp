@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>회원정보수정</title>
     <link rel="stylesheet" href="static/css/changeUser.css" />
     <link rel="stylesheet" href="static/css/slideShow.css" />
 </head>
@@ -16,12 +16,9 @@
 <div class="rightBottom"></div> -->
 
 <div class="webview">
-         <jsp:include page="header.jsp" flush="false"/>
+    <jsp:include page="header.jsp" flush="false"/>
 
-    <!-- End of Header-->
-
-    <div class="header_space" style="height: 100px;"></div>
-    <!-- End of Header-->
+    <!-- /*여기부터가 본문*/  -->
 
     <div class="body_root">
         <div class="changePW">

@@ -13,10 +13,11 @@
         )
 
         <selectKey resultType="java.lang.Integer" keyProperty="look_num" order="AFTER">
-           <!--return 값은 dto 객체로 넘어간다 get메소드로 값을 갖고와야됨 -->
+            <!--return 값은 dto 객체로 넘어간다 get메소드로 값을 갖고와야됨 -->
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
+
 
     <select id="list" resultType="jeans.ko.Dto.BoardDto">
         select * from look order by look_num desc
@@ -34,5 +35,10 @@
         update look set count = count + 1 where look_num = #{look_num}
     </update>
 
-</mapper>
+    <update id="update">
+        update look set title = #{title},season = #{season},tag = #{tag},
+        look_public = #{look_public},memo = #{memo},picture = #{picture}
+       where look_num = #{look_num}
+    </update>
 
+</mapper>

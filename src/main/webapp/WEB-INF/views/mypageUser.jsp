@@ -6,7 +6,7 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>프로필</title>
     <link rel="stylesheet" href="static/css/mypageUser_top.css">
     <link rel="stylesheet" href="static/css/mypageUser_bottom.css">
     <link rel="stylesheet" href="static/css/slideShow.css" />
@@ -19,9 +19,6 @@
 <!-- /*여기부터가 본문*/  -->
 
     <div class="body_root">
-
-        <div class = "header_space"></div>
-
         <div class = "my_page_body">
             <div class ="my_page_body_top">
 

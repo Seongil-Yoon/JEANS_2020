@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>글 작성</title>
     <link rel="stylesheet" href="static/css/jeans_write_body.css">
     <link rel="stylesheet" href="static/css/slideShow.css"/>
 </head>
@@ -17,9 +17,6 @@
     <!-- /*여기부터가 본문*/  -->
     <form name="writeForm">
         <div class="body_root"> <!--/* 전체 바탕 아무 것도 안함*/ -->
-
-            <div class="header_space"></div>
-            <!--/* 위에 있는 바와 간격 벌리기 위한것*/ -->
 
             <div class="body_lookupload">
                 <!--/* 본문 바탕 */ -->
