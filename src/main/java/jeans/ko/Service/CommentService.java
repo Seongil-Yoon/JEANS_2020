@@ -16,8 +16,6 @@ public class CommentService implements ICommentService {
 
     @Override
     public int insert(CommentDto commentDto) {
-         commentDto.setParent_comment_id(2); //대댓글 만들때 수정해야됨
-
 
        return commentDao.insert(commentDto);
     }

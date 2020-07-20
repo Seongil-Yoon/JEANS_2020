@@ -23,7 +23,6 @@ function lookWrite(purpose) {
     }
     if(empty==''){
         var data = $('[name=writeForm]').serialize();
-         alert(data);
         if(purpose=='write'){
             //글작성 하기
             $.ajax({
