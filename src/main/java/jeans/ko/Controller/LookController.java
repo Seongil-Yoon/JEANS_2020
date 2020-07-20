@@ -85,7 +85,7 @@ public class LookController {
             System.out.println("delete "+id);
          //게시글이 먼저 있는지 확인
          BoardDto boardDto=boardDao.view(id);
-        System.out.println(session.getAttribute("userid ")+"유저 아이디");
+        System.out.println(session.getAttribute("userid")+"유저 아이디");
          if(boardDto==null){
              //찾는 게시글이없으므로 Not found 오류 보내기
              throw new NotFoundException(String.format("ID[%s] not found",id));

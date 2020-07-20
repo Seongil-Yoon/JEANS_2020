@@ -13,7 +13,7 @@ function userLogin() {
                 $.ajax({
                     url:"/session", //저장되는 위치가 session 이라 url을 rest형식에 맟춰 /session으로함
                     type:"post", //데이터 전달방식
-                    data: JSON.stringify(userDto), //json 문자열로 반환 해서보냄
+                    data: JSON.stringify(userDto), //객체를 json 문자열로 반환 해서보냄 서버와는 문자열로통신
                     contentType: 'application/json', //json 으로 데이터줄떄 사용
                     success:function (result, textStatus, jqxHR) {
                             if (jqxHR.status == 201) {
