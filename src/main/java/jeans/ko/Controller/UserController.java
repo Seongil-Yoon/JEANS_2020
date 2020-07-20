@@ -132,6 +132,7 @@ public class UserController {
     }
 
 
+
     //회원가입 시 프로필사진이 있다.
     //REST 형식의 회원가입
     @ResponseBody
@@ -163,7 +164,7 @@ public class UserController {
             System.out.println("Error! = " + result.getFieldError("email").getDefaultMessage());
         }
         if (result.getErrorCount() > 0) {
-            System.out.println("이제 자바스크립트로 에러를 보낸다.");
+            //Validation 검사 결과 에러가 있다.
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
@@ -217,19 +218,22 @@ public class UserController {
     public ResponseEntity<byte[]> display() throws IOException {
         InputStream in = null;
         ResponseEntity<byte[]> entity = null;
+        
+        //유저의 id 값 추출
         Object f = httpSession.getAttribute("userid");
         String userid = (String) f;
-        String picture = userService.getPicture(userid);
         //userid로 select를 이용해서 mysql에서 picture문 뽑아낸다.
+        String picture = userService.getPicture(userid);
         HttpHeaders headers = new HttpHeaders();
         try {
             if (picture.equals("")) {
+                //회원DB에서 사진의 이름이 ""이라면 기본경로의 기본 이미지를 사용하게 한다.
                 in = new FileInputStream(uploadPath + "\\" +defaultdirectory+ "\\"+defaultSthumbnail);
             } else {
+                //회원DB에서 사진의 이름이 있다면 유저의 profile 폴더에 해당 사진의 s_썸네일 이미지를 사용하도록한다.
                 in = new FileInputStream(uploadPath + "\\" + userid + "\\" + profile + "\\" +smallHeader+picture);
             }
           //  headers.setContentType(MediaType.IMAGE_JPEG);//어차피 profile.jpg로 저장되기때문에 Type이 IMAGE_JPEG여도 괜찮다
-
             entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
         } catch (Exception e) {
             entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
@@ -240,6 +244,7 @@ public class UserController {
     }
     
     //중간크기의 썸네일 이미지를 반환. 유저가 작성한 글의 썸네일이미지
+    // /displaySthumbnail과 똑같다. 단지 이미지 크기만 다를 뿐이다.
     @GetMapping("/displayMthumbnail")
     public ResponseEntity<byte[]> displayMthumbnail(@RequestParam("id") String id) throws Exception {
         InputStream in = null;

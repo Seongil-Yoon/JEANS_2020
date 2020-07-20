@@ -23,7 +23,7 @@ public interface IBoardDao {
     //  public int insert(@Param("boardDto")BoardDto boardDto, @Param("lists")List<PictureDto>lists);
 
     //각 게시글에 저장된 사진들 내역 DB에 저장
-  //  public int insertPicturedatabase(List<PictureDto> lists);
+    public int insertPicturedatabase(List<PictureDto> files);
 
     //게시글 상세보기
     public BoardDto view(@Param("look_num") int look_num);
@@ -36,4 +36,10 @@ public interface IBoardDao {
 
     //게시글 수정
     public int update(BoardDto boardDto);
+
+    //look_num을 입력받아 look_date를 출력받는다
+    public String getLook_date(int look_num);
+
+    //look_num을 입력받아 picture테이블에서 해당 룩을 외래키로 가지고 있는 모든 사진들을 반환한다.
+    public List<String> getallPicturename(int look_num);
 }

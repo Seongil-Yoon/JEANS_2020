@@ -73,7 +73,6 @@ public class LookController {
     @ResponseBody
     @GetMapping("/looks/{id}") //룩상세보기 안드로이드에 값주게 json 데이터만 넘기는용
     public HashMap<String, Object> searchLook(@PathVariable int id) {   //looks/1   looks/3  -->String으로 오는데 int id 해서 int 로 변환해서 받음
-        System.out.println("WERwerwer");
         HashMap<String, Object> map = new HashMap<String, Object>();
         //게시글 가져오기
         BoardDto boardDto = boardDao.view(id);
@@ -92,10 +91,9 @@ public class LookController {
     @ResponseBody
     @DeleteMapping("/looks/{id}")
     public void deleteLook(@PathVariable int id) {
-        System.out.println("delete " + id);
+
         //게시글이 먼저 있는지 확인
         BoardDto boardDto = boardDao.view(id);
-        System.out.println(session.getAttribute("userid ") + "유저 아이디");
         if (boardDto == null) {
             //찾는 게시글이없으므로 Not found 오류 보내기
             throw new NotFoundException(String.format("ID[%s] not found", id));
@@ -116,8 +114,7 @@ public class LookController {
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/looks")
-    public BoardDto boardWrite(@RequestPart("BoardDto")String boarddto, @RequestPart("files") List<MultipartFile> files) throws IOException {
-        System.out.println(boarddto + "게시글작성");
+    public BoardDto boardWrite(@RequestPart("BoardDto")String boarddto, @RequestPart("files") List<MultipartFile> files) throws Exception {
         BoardDto boardDto = new ObjectMapper().readValue(boarddto, BoardDto.class);
         if (session.getAttribute("userid") == null) {
             //서버로 바로접근하는 경우 아이디값 없으면 클라이언트 권한없음 오류보냄
@@ -134,7 +131,6 @@ public class LookController {
     @ResponseStatus(HttpStatus.CREATED)
     @PutMapping("/looks")
     public BoardDto boardModify(BoardDto modifyBoardDto) {
-        System.out.println(modifyBoardDto + " dto");
         //넘어온 값에 기본키id 값으로 게시글작성자 id 와 기본키넘버값 가져오기
         String lookId = boardDao.view(modifyBoardDto.getLook_num()).getFk_userid_user_userid();
         int lookNum = boardDao.view(modifyBoardDto.getLook_num()).getLook_num();

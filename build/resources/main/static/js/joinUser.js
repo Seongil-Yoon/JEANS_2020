@@ -235,8 +235,6 @@ function joinUser() {
     formData.append("UserDto",JSON.stringify(UserDto));
 
     if(file==undefined) {
-       alert("이힝 이파일은 없지롱");
-
 
         //JQuery 옵션
         //data : 서버로 보낼 데이터

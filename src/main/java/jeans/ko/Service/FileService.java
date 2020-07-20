@@ -8,16 +8,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 @Service
 public class FileService implements IFileService {
     private Logger logger = LoggerFactory.getLogger(FileService.class);
+
+    @Value("${directory}")
+    String directory;
 
     //유저 개인 폴더 밑에 유저의 기본프로필사진&썸네일사진들을 저장하는 파일의 이름이다.
     @Value("${profilepath}")
@@ -52,9 +60,6 @@ public class FileService implements IFileService {
     @Override
     public String makeDir(String uploadPath, String... paths) {
 
-        logger.info("사진 업로드를 위한 폴더를 만듭니다.");
-
-
         //폴더가 이미 만들어져있을때가 작동을 안한다... 찜찜하긴 하지만 일단 넘어가자
  /*       if (new File(paths[paths.length - 1]).exists()) {
             logger.info("사진이 업로드 될 폴더가 이미 만들어져있습니다.");
@@ -76,7 +81,6 @@ public class FileService implements IFileService {
         logger.info("폴더를 새로 만들었습니다 : " + uploadPath);
         return uploadPath;
     }
-
 
     //썸네일을 만드는 메소드
     //입력된 매개변수로 유저가 올린 이미지 파일을 찾는다.
@@ -101,8 +105,79 @@ public class FileService implements IFileService {
         File middleThumbnail = new File(uploadPath + "\\" + middleHeader + filename);
         ImageIO.write(smallImg, formatName.toUpperCase(), smallThumbnail);
         ImageIO.write(middleImg, formatName.toUpperCase(), middleThumbnail);
-
         return;
     }
 
+    //이미지 폴더의 기본 경로를 생성한다. ${directory}/년/월 파일을 만든다.
+    @Override
+    public String makepictureDir(List<String> lists) {
+        logger.info("makepictureDir 메소드 : ${directory}/년/월파일을 만든다.");
+        String tempPath = directory;
+
+        //배열 안에 있는 년/월을 뽑아내서 폴더 존재 여부 확인 후 폴더 생성
+        for (int i = 0; i < lists.size(); i++) {
+            File dirPath = new File(tempPath += "\\" + lists.get(i));
+            if (!dirPath.exists()) {
+                dirPath.mkdir();
+            }
+        }
+        //${directory}년/월 까지 기본경로로 반환한다.
+        return tempPath;
+    }
+
+    //이미지 파일들을 업로드한다.
+    @Override
+    public void uploadPictures(List<MultipartFile> files, String path) throws Exception {
+        //경로에 보드의 pk 값을 더해줘야해서 String으로 변환.
+        File dirPath = new File(path);
+        if (!dirPath.exists()) {
+            dirPath.mkdir();
+        }
+
+        //파일을 업로드한다.
+        for (int i = 0; i < files.size(); i++) {
+            File target = new File(path, files.get(i).getOriginalFilename());
+            FileCopyUtils.copy(files.get(i).getBytes(), target);
+        }
+    }
+
+    @Override
+    public void deleteallFiles(List<String> path, List<String> files) {
+        logger.info("deleteallFiles메소드 : 전체파일삭제");
+        String parentPath = directory;
+
+        //1. 보드넘까지 받아서 보드넘경로까지 들어간다
+        //2. 테이블에서 보드넘을 검색한 리스트를 받아온다. boardDao로 해서 부모를 looknum으로 하는 애들의
+        //이름을 다 뽑아온다.
+
+        //parentPath에 path리스트로부터 받은 path들을 다 더함으로 look번호 까지 온전한 path를 설정
+        for (String i : path) {
+            parentPath += "\\" + i;
+        }
+
+        //파일 내 모든 사진 파일 삭제
+        for (String i : files) {
+            new File(parentPath + "\\" + i).delete();
+        }
+        //룩번호 폴더 삭제
+        new File(parentPath).delete();
+    }
+
+    @Override
+    public void deleteFiles(List<String> path, List<String> files) {
+        String parentPath = directory;
+        //1. 보드넘까지 받아서 보드넘경로까지 들어간다
+        //2. 테이블에서 보드넘을 검색한 리스트를 받아온다. boardDao로 해서 부모를 looknum으로 하는 애들의
+        //이름을 다 뽑아온다.
+
+        //parentPath에 path리스트로부터 받은 path들을 다 더함으로 look번호 까지 온전한 path를 설정
+        for (String i : path) {
+            parentPath += "\\" + i;
+        }
+
+        //파일 내 모든 사진 파일 삭제
+        for (String i : files) {
+            new File(parentPath + "\\" + i).delete();
+        }
+    }
 }
