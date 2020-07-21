@@ -1,36 +1,38 @@
 package jeans.ko.Controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.scenario.effect.impl.sw.java.JSWBlend_SRC_OUTPeer;
 import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dto.BoardDto;
+import jeans.ko.Service.BoardService;
 import jeans.ko.Service.CommentService;
 import jeans.ko.Service.IBoardService;
 import jeans.ko.exception.NotFoundException;
 import jeans.ko.exception.UnauthorizedException;
+import lombok.extern.flogger.Flogger;
 import org.apache.ibatis.annotations.Param;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Logger;
-
 
 @Controller
 public class LookController {
+
+    private Logger logger = LoggerFactory.getLogger(LookController.class);
 
     @Autowired
     HttpSession session;
@@ -44,12 +46,15 @@ public class LookController {
     //게시판 작성페이지 이동
     @RequestMapping("/look_write")
     public String look_write() {
+        logger.info("look_write()진입");
         return "look_write";
     }
 
     //게시판 상세보기 model and view 웹용
     @RequestMapping("/look")
-    public String view(@RequestParam("look_num") int look_num, Model model) {
+    public String view(@RequestParam("look_num")int look_num , Model model)
+    {
+        logger.info("view()진입");
         boardDao.countUpdate(look_num); //글상세보기 하면 조회수 증가
         model.addAttribute("view", boardDao.view(look_num)); //게시글정보가져오기
         model.addAttribute("comment", commentService.list(look_num)); //게시글에 댓글정보가져오기
@@ -59,6 +64,7 @@ public class LookController {
     //게시판 수정 페이지 이동
     @RequestMapping("/lookModify")
     public String lookModify(@RequestParam("look_num") int look_num, Model model) {
+        logger.info("lookModify()진입");
         BoardDto boardDto = boardDao.view(look_num);
         model.addAttribute("view", boardDto); //게시글정보 가져오기
         return "lookModify";
@@ -67,12 +73,15 @@ public class LookController {
     @ResponseBody
     @GetMapping("/looks")  //룩 전체 리스트
     public List<BoardDto> searchAllLook() {
+        logger.info("searchAllLook()진입");
         return boardDao.list();
     }
 
     @ResponseBody
     @GetMapping("/looks/{id}") //룩상세보기 안드로이드에 값주게 json 데이터만 넘기는용
-    public HashMap<String, Object> searchLook(@PathVariable int id) {   //looks/1   looks/3  -->String으로 오는데 int id 해서 int 로 변환해서 받음
+    public HashMap<String,Object> searchLook(@PathVariable int id)
+    {   //looks/1   looks/3  -->String으로 오는데 int id 해서 int 로 변환해서 받음
+        logger.info("searchLook()진입");
         HashMap<String, Object> map = new HashMap<String, Object>();
         //게시글 가져오기
         BoardDto boardDto = boardDao.view(id);
@@ -90,23 +99,23 @@ public class LookController {
     //삭제
     @ResponseBody
     @DeleteMapping("/looks/{id}")
-    public void deleteLook(@PathVariable int id) {
+    public void deleteLook (@PathVariable int id)  {
+        logger.info("deleteLook()진입");
+         //게시글이 먼저 있는지 확인
+         BoardDto boardDto=boardDao.view(id);
 
-        //게시글이 먼저 있는지 확인
-        BoardDto boardDto = boardDao.view(id);
-        if (boardDto == null) {
-            //찾는 게시글이없으므로 Not found 오류 보내기
-            throw new NotFoundException(String.format("ID[%s] not found", id));
-        }
-        if (session.getAttribute("userid") == null ||
-                session.getAttribute("userid").equals(boardDto.getFk_userid_user_userid()) == false) {
-            //로그인한 아이디와 작성자 아이디가 달라서 권한없음 오류보냄
-            throw new UnauthorizedException(String.format("unauthorized you"));
-        } else {
-            //로그인 아이디 와 작성자 아이디 가 같아서 글삭제
-            boardService.delete(id);
-        }
-
+         if(boardDto==null){
+             //찾는 게시글이없으므로 Not found 오류 보내기
+             throw new NotFoundException(String.format("ID[%s] not found",id));
+         }
+         if(session.getAttribute("userid")==null||
+                 session.getAttribute("userid").equals(boardDto.getFk_userid_user_userid())==false){
+             //로그인한 아이디와 작성자 아이디가 달라서 권한없음 오류보냄
+             throw new UnauthorizedException(String.format("unauthorized you"));
+         }else {
+             //로그인 아이디 와 작성자 아이디 가 같아서 글삭제
+             boardService.delete(id);
+         }
     }
 
 
@@ -115,6 +124,7 @@ public class LookController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/looks")
     public BoardDto boardWrite(@RequestPart("BoardDto")String boarddto, @RequestPart("files") List<MultipartFile> files) throws Exception {
+        logger.info("boardWrite()진입");
         BoardDto boardDto = new ObjectMapper().readValue(boarddto, BoardDto.class);
         if (session.getAttribute("userid") == null) {
             //서버로 바로접근하는 경우 아이디값 없으면 클라이언트 권한없음 오류보냄
@@ -131,6 +141,7 @@ public class LookController {
     @ResponseStatus(HttpStatus.CREATED)
     @PutMapping("/looks")
     public BoardDto boardModify(BoardDto modifyBoardDto) {
+        logger.info("boardModify()진입");
         //넘어온 값에 기본키id 값으로 게시글작성자 id 와 기본키넘버값 가져오기
         String lookId = boardDao.view(modifyBoardDto.getLook_num()).getFk_userid_user_userid();
         int lookNum = boardDao.view(modifyBoardDto.getLook_num()).getLook_num();

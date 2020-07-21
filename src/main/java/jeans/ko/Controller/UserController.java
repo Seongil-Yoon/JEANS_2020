@@ -5,6 +5,7 @@ import jeans.ko.Dao.IUserDao;
 import jeans.ko.Dto.UserDto;
 import jeans.ko.Service.IFileService;
 import jeans.ko.Service.IUserService;
+import jeans.ko.exception.NotFoundException;
 import lombok.extern.flogger.Flogger;
 import org.apache.commons.io.IOUtils;
 import org.apache.ibatis.io.ResolverUtil;
@@ -72,6 +73,10 @@ public class UserController {
     @Value("${profileMiddleheader}")
     String middleHeader;
 
+    //이미지 파일 저장 경로 설정
+    @Value("${route}")
+    String route;
+
     @Autowired
     HttpSession httpSession;
 
@@ -82,13 +87,15 @@ public class UserController {
 
     //마이페이지 이동
     @RequestMapping("/mypageUser")
-    public String mypageUser()
-    { return "mypageUser"; }
+    public String mypageUser() {
+        return "mypageUser";
+    }
 
     //회원정보수정 페이지 이동
     @RequestMapping("/changeUser")
-    public String changeUser()
-    { return "changeUser"; }
+    public String changeUser() {
+        return "changeUser";
+    }
 
     //회원가입 시 프로필사진이 없다
     @ResponseBody
@@ -132,13 +139,12 @@ public class UserController {
     }
 
 
-
     //회원가입 시 프로필사진이 있다.
     //REST 형식의 회원가입
     @ResponseBody
     @PostMapping(value = "/userfile")
     public ResponseEntity<Void> join(@RequestPart("UserDto") String userString, @RequestPart("file") MultipartFile picture, BindingResult result) throws Exception {
-              String fileOriginalname = picture.getOriginalFilename();//올린 이미지 파일의 원래이름
+        String fileOriginalname = picture.getOriginalFilename();//올린 이미지 파일의 원래이름
 
         @Valid
         UserDto user = new ObjectMapper().readValue(userString, UserDto.class);
@@ -189,21 +195,25 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-
+    @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    @PostMapping("/session")
-    public HashMap<String, Object> loginRequest(UserDto userDto) {
+    @PostMapping("/session")//@RequestBody json 형태 문자열로 받겠다 객체는 못받음
+    public HashMap<String, Object> loginRequest(@RequestBody UserDto userDto) {
 
         HashMap<String, Object> map = new HashMap<String, Object>();
         String nickname = userService.userLogin(userDto);//닉네임 값을 받아오도록
+        if (nickname == null) {
+            //아이디와 비빌번호가 맞지않음
+            throw new NotFoundException(String.format("Please enter your ID and password again"));
+        } else {
+            //로그인 성공
+            httpSession.setAttribute("userid", userDto.getUserid());
+            httpSession.setAttribute("usernickname", nickname);
+            map.put("userid", httpSession.getAttribute("userid"));
+            map.put("nickname", httpSession.getAttribute("usernickname"));
 
-        httpSession.setAttribute("userid", userDto.getUserid());
-        httpSession.setAttribute("usernickname", nickname);
-
-        map.put("userid", httpSession.getAttribute("userid"));
-        map.put("usernickname", httpSession.getAttribute("usernickname"));
-
-        return map; //session 아이디 닉네임 넘겨주기
+            return map; //session 아이디 닉네임 넘겨주기
+        }
     }
 
     @ResponseBody
@@ -218,7 +228,7 @@ public class UserController {
     public ResponseEntity<byte[]> display() throws IOException {
         InputStream in = null;
         ResponseEntity<byte[]> entity = null;
-        
+
         //유저의 id 값 추출
         Object f = httpSession.getAttribute("userid");
         String userid = (String) f;
@@ -227,14 +237,23 @@ public class UserController {
         HttpHeaders headers = new HttpHeaders();
         try {
             if (picture.equals("")) {
-                //회원DB에서 사진의 이름이 ""이라면 기본경로의 기본 이미지를 사용하게 한다.
+               /* //회원DB에서 사진의 이름이 ""이라면 기본경로의 기본 이미지를 사용하게 한다.
                 in = new FileInputStream(uploadPath + "\\" +defaultdirectory+ "\\"+defaultSthumbnail);
             } else {
                 //회원DB에서 사진의 이름이 있다면 유저의 profile 폴더에 해당 사진의 s_썸네일 이미지를 사용하도록한다.
                 in = new FileInputStream(uploadPath + "\\" + userid + "\\" + profile + "\\" +smallHeader+picture);
+            }*/
+                //  headers.setContentType(MediaType.IMAGE_JPEG);//어차피 profile.jpg로 저장되기때문에 Type이 IMAGE_JPEG여도 괜찮다
+                logger.info("사진이 없습니다. 기본 이미지를 적용합니다.");
+                in = new FileInputStream(uploadPath + route + defaultdirectory + route + defaultSthumbnail);
+            } else {
+                logger.info("유저의 프로필 사진이 있습니다. 유저의 프로필 사진을 적용합니다.");
+                in = new FileInputStream(uploadPath + route + userid + route + profile + route + smallHeader + picture);
             }
-          //  headers.setContentType(MediaType.IMAGE_JPEG);//어차피 profile.jpg로 저장되기때문에 Type이 IMAGE_JPEG여도 괜찮다
+            //   headers.setContentType(MediaType.IMAGE_JPEG);//카피한 소스코드에서는 이게 있었는데 이렇게 주석처리해도 돌아가더라
+
             entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
+
         } catch (Exception e) {
             entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
         } finally {
@@ -242,7 +261,7 @@ public class UserController {
         }
         return entity;
     }
-    
+
     //중간크기의 썸네일 이미지를 반환. 유저가 작성한 글의 썸네일이미지
     // /displaySthumbnail과 똑같다. 단지 이미지 크기만 다를 뿐이다.
     @GetMapping("/displayMthumbnail")
@@ -252,12 +271,22 @@ public class UserController {
         String picture = userService.getPicture(id);
         HttpHeaders headers = new HttpHeaders();
         try {
-            if(picture.equals("")){
-                in=new FileInputStream(uploadPath+ "\\" +defaultdirectory+ "\\"+defaultSthumbnail);
-            }else{
-                in=new FileInputStream(uploadPath+"\\"+id+"\\"+profile+"\\"+middleHeader+picture);
+            if (picture.equals("")) {
+
+                       /* in = new FileInputStream(uploadPath + "\\" + defaultdirectory + "\\" + defaultSthumbnail);
+            } else {
+                in = new FileInputStream(uploadPath + "\\" + id + "\\" + profile + "\\" + middleHeader + picture);
+*/
+                logger.info("해당유저의 프로필사진이 없다. 기본이미지 적용.");
+                in = new FileInputStream(uploadPath + route + defaultdirectory + route + defaultSthumbnail);
+                logger.info(in.toString());
+            } else {
+                logger.info("사진이 있다.");
+                in = new FileInputStream(uploadPath + route + id + route + profile + route + middleHeader + picture);
             }
-        //    headers.setContentType(MediaType.IMAGE_JPEG);
+
+
+            headers.setContentType(MediaType.IMAGE_JPEG);
             entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
         } catch (Exception e) {
             entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
