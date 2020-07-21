@@ -43,7 +43,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     }
 
     //BadRequestException 오류 처리 하는곳  400 에러 보내줌
-    @ExceptionHandler(UnauthorizedException.class)
+    @ExceptionHandler(BadRequestException.class)
     public final ResponseEntity<Object>BadRequestException(Exception ex,WebRequest request){
         ExceptionResponse exceptionResponse=new ExceptionResponse(new Date(),ex.getMessage(),request.getDescription(false));
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);

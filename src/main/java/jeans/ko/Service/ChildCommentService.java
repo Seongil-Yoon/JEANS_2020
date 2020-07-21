@@ -15,6 +15,7 @@ public class ChildCommentService implements IChildCommentService {
 
     @Override
     public int insert(ChildCommentDto childCommentDto) {
+        System.out.println(childCommentDto+"  asdasd");
         return childCommentDao.insert(childCommentDto);
     }
 
