@@ -272,11 +272,6 @@ public class UserController {
         HttpHeaders headers = new HttpHeaders();
         try {
             if (picture.equals("")) {
-
-                       /* in = new FileInputStream(uploadPath + "\\" + defaultdirectory + "\\" + defaultSthumbnail);
-            } else {
-                in = new FileInputStream(uploadPath + "\\" + id + "\\" + profile + "\\" + middleHeader + picture);
-*/
                 logger.info("해당유저의 프로필사진이 없다. 기본이미지 적용.");
                 in = new FileInputStream(uploadPath + route + defaultdirectory + route + defaultSthumbnail);
                 logger.info(in.toString());
@@ -284,9 +279,7 @@ public class UserController {
                 logger.info("사진이 있다.");
                 in = new FileInputStream(uploadPath + route + id + route + profile + route + middleHeader + picture);
             }
-
-
-            headers.setContentType(MediaType.IMAGE_JPEG);
+            //headers.setContentType(MediaType.IMAGE_JPEG);
             entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
         } catch (Exception e) {
             entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);

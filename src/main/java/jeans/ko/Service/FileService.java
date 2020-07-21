@@ -39,6 +39,7 @@ public class FileService implements IFileService {
     @Value("${profileMiddleheader}")
     String middleHeader;
 
+    //위도우에서는 \\, 리눅스서버에서는/
     @Value("${route}")
     String route;
 
@@ -76,8 +77,6 @@ public class FileService implements IFileService {
 
         for (String path : paths) {
             //uploadPath 뒤로 매개변수로 입력받은 path들을 다 붙여준다.
-            //File dirPath = new File(uploadPath += "\\" + path);
-            //File dirPath = new File(uploadPath += "/" + path);
             File dirPath = new File(uploadPath += route + path);
             if (!dirPath.exists()) {
                 //만약 폴더가 존재하지 않는다면 경로에 해당되는 폴더를 만든다.
@@ -93,14 +92,9 @@ public class FileService implements IFileService {
     @Override
     public void makeprofileThumbnail(String filename, String uploadPath, String... paths) throws Exception {
         logger.info("makeprofileThumbnail메소드");
-//        //유저가 입력한 path를 통해 해당유저의 profile폴더까지 찾아 들어간다.
-//        for (String path : paths) {
-//            uploadPath += "\\" + path;
-//        }
-
+        //유저가 입력한 path를 통해 해당유저의 profile폴더까지 찾아간다.
         for (String path : paths) {
             uploadPath += route + path;
-            //   uploadPath += "/" + path;
         }
 
         //이미지를 읽기 위한 버퍼
@@ -112,8 +106,6 @@ public class FileService implements IFileService {
         BufferedImage smallImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 40);
         BufferedImage middleImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 50);
         String formatName = filename.substring(filename.lastIndexOf(".") + 1);
-//        File smallThumbnail = new File(uploadPath + "\\" + smallHeader + filename);
-//        File middleThumbnail = new File(uploadPath + "\\" + middleHeader + filename);
         File smallThumbnail = new File(uploadPath + route + smallHeader + filename);
         File middleThumbnail = new File(uploadPath + route + middleHeader + filename);
         ImageIO.write(smallImg, formatName.toUpperCase(), smallThumbnail);
@@ -129,7 +121,6 @@ public class FileService implements IFileService {
 
         //배열 안에 있는 년/월을 뽑아내서 폴더 존재 여부 확인 후 폴더 생성
         for (int i = 0; i < lists.size(); i++) {
-           // File dirPath = new File(tempPath += "\\" + lists.get(i));
             File dirPath = new File(tempPath += route + lists.get(i));
             if (!dirPath.exists()) {
                 dirPath.mkdir();
@@ -168,12 +159,10 @@ public class FileService implements IFileService {
         //parentPath에 path리스트로부터 받은 path들을 다 더함으로 look번호 까지 온전한 path를 설정
         for (String i : path) {
            parentPath += route+ i;
-         //   parentPath += "\\" + i;
         }
 
         //파일 내 모든 사진 파일 삭제
         for (String i : files) {
-           // new File(parentPath + "\\" + i).delete();
             new File(parentPath + route + i).delete();
 
         }
@@ -192,13 +181,11 @@ public class FileService implements IFileService {
         //parentPath에 path리스트로부터 받은 path들을 다 더함으로 look번호 까지 온전한 path를 설정
         for (String i : path) {
             parentPath += route + i;
-//            parentPath += "\\" + i;
         }
 
         //파일 내 모든 사진 파일 삭제
         for (String i : files) {
             new File(parentPath + route + i).delete();
-  /*          new File(parentPath + "\\" + i).delete();*/
         }
     }
 }
