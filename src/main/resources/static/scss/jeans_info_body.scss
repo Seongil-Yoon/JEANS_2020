@@ -41,6 +41,19 @@ body {
         grid-template-columns: 90fr 410fr 600fr;
         row-gap: 8px;
         background-color: #e0e0e0;
+        .view_textarea {
+          width: 90.9%;
+          margin-left: 4.55%;
+          margin-right: 4.55%;
+          height: 100px;
+          resize: none;
+          // border: 1.5px solid;
+          border: none;
+          font-family: Georgia;
+          font-size: x-large;
+          //border-color: white;
+          background-color: #f7f1e3;
+        }
         & > :nth-child(1) {
           -ms-grid-row: 1;
           -ms-grid-column: 1;
@@ -205,6 +218,7 @@ body {
           }
         }
       }
+
       //댓글목록
       .look_comment {
         margin-top: 10px;
@@ -283,7 +297,8 @@ body {
             margin-right: 4.55%;
             height: 100%;
             resize: none;
-            border: 1.5px solid;
+            border: none;
+            background-color: #f7f1e3;
           }
           .comment_textarea {
             width: 90.9%;
@@ -341,6 +356,7 @@ body {
             margin-left: 4.55%;
             margin-right: 4.55%;
             border: 0;
+            background-color: #F6F6F6;
           }
         }
         .comment_date {
@@ -363,32 +379,15 @@ body {
 }
 
 //아래 스타일은 어디 태그에 들어있는지 모르지만 호출되고 있기 때문에 남겨둬야됨.
-.view_comment_textarea {
-  width: 1000px;
-  height: 80px;
-  resize: none;
-  margin-left: 50px;
-  margin-right: 50px;
-  border: 1.5px solid;
-}
-.view_look_textarea {
-  width: 495px;
-  height: 100px;
-  resize: none;
-  margin-left: 50px;
-  margin-right: 50px;
-  border: solid 1.5px;
-}
-.view_textarea {
-  width: 90.9%;
-  margin-left: 4.55%;
-  margin-right: 4.55%;
-  height: 100px;
-  resize: none;
-  border: 1.5px solid;
-  font-family: Georgia;
-  font-size: x-large;
-}
+// .view_comment_textarea {
+//   width: 1000px;
+//   height: 80px;
+//   resize: none;
+//   margin-left: 50px;
+//   margin-right: 50px;
+//   border: 1.5px solid;
+// }
+
 .name,
 .title {
   margin-left: -20px;

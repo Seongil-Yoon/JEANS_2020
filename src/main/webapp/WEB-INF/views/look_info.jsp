@@ -81,7 +81,7 @@
 
             <div class="look_textarea_space">
                 <form class="textarea_form">
-                    <textarea style="background-color:#e0e0e0 " disabled class="view_textarea"
+                    <textarea class="view_textarea"
                             placeholder="${view.memo}"></textarea>
                 </form>
             </div>
