@@ -24,7 +24,7 @@
                 <!-- <%--
                             <img src="static/images/mypicture.png" alt="search" height="50" width="60"/>
                 --%> -->
-                <img src="displayMthumbnail?id=${view.fk_userid_user_userid}">
+                <img src="displayMthumbnail/${view.fk_userid_user_userid}">
             </div>
 
             <div class="name">${view.nickname}</div>
@@ -114,7 +114,7 @@
                             <%--
                                                 <img src="static/images/mypicture.png" alt="other_people_imgage" height="50" width="60"/>
                             --%>
-                        <img src="/displayMthumbnail?id=${sessionScope.userid}">
+                        <img src="/displayMthumbnail/${sessionScope.userid}">
                     </div>
 
                     <div class="other_people_name">${sessionScope.usernickname}</div>

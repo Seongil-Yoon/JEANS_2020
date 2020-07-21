@@ -40,6 +40,9 @@ public interface IBoardDao {
     //look_num을 입력받아 look_date를 출력받는다
     public String getLook_date(int look_num);
 
+    //look_num을 입력받아 picture테이블에서 해당 룩을 외래키로 가지고 있는 단 하나의 사진을 반환한다.
+    public String getonePicturename(int look_num);
+
     //look_num을 입력받아 picture테이블에서 해당 룩을 외래키로 가지고 있는 모든 사진들을 반환한다.
     public List<String> getallPicturename(int look_num);
 }

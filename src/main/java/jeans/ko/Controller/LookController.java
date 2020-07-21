@@ -6,14 +6,19 @@ import jeans.ko.Dto.BoardDto;
 import jeans.ko.Service.BoardService;
 import jeans.ko.Service.CommentService;
 import jeans.ko.Service.IBoardService;
+import jeans.ko.Service.IUtilService;
 import jeans.ko.exception.NotFoundException;
 import jeans.ko.exception.UnauthorizedException;
 import lombok.extern.flogger.Flogger;
+import org.apache.commons.io.IOUtils;
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +26,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.util.ArrayList;
 
@@ -42,6 +49,14 @@ public class LookController {
     IBoardService boardService;
     @Autowired
     IBoardDao boardDao;
+    @Autowired
+    IUtilService utilService;
+
+    @Value("${directory}")
+    private String uploadPath;
+
+    @Value("${route}")
+    private String route;
 
     //게시판 작성페이지 이동
     @RequestMapping("/look_write")
@@ -159,6 +174,30 @@ public class LookController {
             throw new UnauthorizedException(String.format("unauthorized you"));
         }
     }
+
+    @GetMapping("/displayLthumbnail/{look_num}")
+    public ResponseEntity<byte[]> displayLthumbnail(@PathVariable int look_num) throws Exception{
+        logger.info("displayLthumbnail메소드");
+        InputStream in=null;
+        ResponseEntity<byte[]> entity=null;
+        List<String>datepath=utilService.looknumtoPath(look_num);
+
+        //워낙 간단한 메소드니 바로 boardDao를 쓰겠다. 룩번호를 입력하고 해당 룩번호에서 한개의 사진을 불러온다.
+        String picture =boardDao.getonePicturename(look_num);
+
+              HttpHeaders headers=new HttpHeaders();
+        try{
+            in=new FileInputStream(uploadPath+route+datepath.get(0)+route+datepath.get(1)+route+datepath.get(2)+route+picture);
+            entity=new ResponseEntity<byte[]>(IOUtils.toByteArray(in),headers,HttpStatus.OK);
+        }catch(Exception e){
+            entity=new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+        }finally{
+            in.close();
+        }
+        return entity;
+    }
+
+
 }
 
 

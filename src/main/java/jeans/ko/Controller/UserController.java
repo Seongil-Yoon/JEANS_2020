@@ -237,13 +237,6 @@ public class UserController {
         HttpHeaders headers = new HttpHeaders();
         try {
             if (picture.equals("")) {
-               /* //회원DB에서 사진의 이름이 ""이라면 기본경로의 기본 이미지를 사용하게 한다.
-                in = new FileInputStream(uploadPath + "\\" +defaultdirectory+ "\\"+defaultSthumbnail);
-            } else {
-                //회원DB에서 사진의 이름이 있다면 유저의 profile 폴더에 해당 사진의 s_썸네일 이미지를 사용하도록한다.
-                in = new FileInputStream(uploadPath + "\\" + userid + "\\" + profile + "\\" +smallHeader+picture);
-            }*/
-                //  headers.setContentType(MediaType.IMAGE_JPEG);//어차피 profile.jpg로 저장되기때문에 Type이 IMAGE_JPEG여도 괜찮다
                 logger.info("사진이 없습니다. 기본 이미지를 적용합니다.");
                 in = new FileInputStream(uploadPath + route + defaultdirectory + route + defaultSthumbnail);
             } else {
@@ -264,8 +257,8 @@ public class UserController {
 
     //중간크기의 썸네일 이미지를 반환. 유저가 작성한 글의 썸네일이미지
     // /displaySthumbnail과 똑같다. 단지 이미지 크기만 다를 뿐이다.
-    @GetMapping("/displayMthumbnail")
-    public ResponseEntity<byte[]> displayMthumbnail(@RequestParam("id") String id) throws Exception {
+    @GetMapping("/displayMthumbnail/{id}")
+    public ResponseEntity<byte[]> displayMthumbnail(@PathVariable String id) throws Exception {
         InputStream in = null;
         ResponseEntity<byte[]> entity = null;
         String picture = userService.getPicture(id);

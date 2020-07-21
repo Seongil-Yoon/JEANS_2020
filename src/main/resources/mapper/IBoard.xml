@@ -49,6 +49,10 @@
         select name from picture where looknum=#{look_num}
     </select>
 
+    <select id="getonePicturename" resultType="string">
+        select name from picture where looknum=#{look_num} limit 1
+    </select>
+
     <delete id="delete">
         delete from look where look_num= #{look_num}
     </delete>
