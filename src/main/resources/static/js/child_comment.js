@@ -1,3 +1,4 @@
+
 let eventResult=true; //대댓글 이벤트 중복 실행 방지 위해
 
 //답글 누르면 이벤트
@@ -21,11 +22,11 @@ $(document).on("click", ".re_comment", function (event) {
             html += '<input class="child_comment_nickname" value="' + sessionStorage.getItem("usernickname") + '" type="hidden"/>';
             html += '<input class="fk_comment_id" value="' + comment_id + '" type="hidden"/>';
             html += '<div class="other_people_img">';
-            html += '<img src=displayMthumbnail?id=' + sessionStorage.getItem("userid") + '>';
+            html += '<img src=displayMthumbnail/' + sessionStorage.getItem("userid") + '>';
             html += '</div>';
             html += '<div class="child_other_people_name">' + sessionStorage.getItem("usernickname") + '</div>';
             html += '<div class="comment_textarea_space">';
-            html += '<textarea style="background-color:#F6F6F6 " class="child_comment_content" placeholder="답글 내용을 입력 하세요"></textarea>';
+            html += '<textarea  class="child_comment_content" placeholder="답글 내용을 입력 하세요"></textarea>';
             html += '</div>';
             html += '<div class="comment_date">';
             html += '<button class="child_comment_change_button" value="2" type="button" >취소</button>';

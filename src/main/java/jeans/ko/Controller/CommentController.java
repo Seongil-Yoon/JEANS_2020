@@ -9,6 +9,8 @@ import jeans.ko.Service.IBoardService;
 import jeans.ko.Service.ICommentService;
 import jeans.ko.exception.NotFoundException;
 import jeans.ko.exception.UnauthorizedException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.stream.events.Comment;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +28,8 @@ import java.util.List;
 
 @Controller
 public class CommentController {
+    private Logger logger = LoggerFactory.getLogger(CommentController.class);
+
     @Autowired
     HttpSession session;
 
@@ -41,15 +46,15 @@ public class CommentController {
     ICommentDao commentDao;
 
     @ResponseBody
-    @GetMapping ("/look_comment/{comment_id}")
+    @GetMapping("/look_comment/{comment_id}")
     public CommentDto comment(@PathVariable int comment_id) {
+        logger.info("comment()진입");
+        CommentDto commentDto = commentService.comment(comment_id);
 
-        CommentDto commentDto=commentService.comment(comment_id);
-
-        if(commentDto==null){
+        if (commentDto == null) {
             //찾는 댓글이 없으면 not found 404 에러
-            throw new NotFoundException(String.format("ID[%s] not found",comment_id));
-        }else {
+            throw new NotFoundException(String.format("ID[%s] not found", comment_id));
+        } else {
             return commentDto;
         }
 
@@ -58,29 +63,30 @@ public class CommentController {
     @ResponseBody
     @GetMapping("/look_comment_all/{look_num}")
     public List<CommentDto> commentList(@PathVariable int look_num) {
-
-        if(boardDao.view(look_num)==null){
+        logger.info("commentList()진입");
+        if (boardDao.view(look_num) == null) {
             //게시글이 없으면 not found 에러
-            throw new NotFoundException(String.format("ID[%s] not found",look_num));
+            throw new NotFoundException(String.format("ID[%s] not found", look_num));
         }
         //게시판에 댓글 리스트를 전달
-       return commentDao.list(look_num);
+        return commentDao.list(look_num);
     }
 
     @ResponseBody
     @DeleteMapping("look_comment/{comment_id}")
-    public void deleteLookComment(@PathVariable int comment_id){
+    public void deleteLookComment(@PathVariable int comment_id) {
+        logger.info("deleteLookComment()진입");
         //삭제할 댓글이 있는지 확인
-        CommentDto commentDto=commentService.comment(comment_id);
+        CommentDto commentDto = commentService.comment(comment_id);
 
-        if(commentDto==null){
+        if (commentDto == null) {
             //찾는 댓글이 없으면 not found 404 에러
-            throw new NotFoundException(String.format("comment_id[%s] not found",comment_id));
+            throw new NotFoundException(String.format("comment_id[%s] not found", comment_id));
         }
-        if(commentDto.getComment_sender_id().equals(session.getAttribute("userid"))==false
-        ||session.getAttribute("userid")==null){
+        if (commentDto.getComment_sender_id().equals(session.getAttribute("userid")) == false
+                || session.getAttribute("userid") == null) {
             throw new UnauthorizedException("unauthorized you");
-        }else {
+        } else {
             //로그인한 아이디와 작성자 아이디가 같아서 댓글삭제
             commentService.delete(comment_id);
         }
@@ -91,12 +97,12 @@ public class CommentController {
     @ResponseBody //이거없으면 스프링은 반환형태를 뷰로 판단함
     @PostMapping("/look_comment")
     public CommentDto commentWrite(@RequestBody CommentDto commentDto) {
-
-        if(session.getAttribute("userid")!=null){
+        logger.info("commentWrite()진입");
+        if (session.getAttribute("userid") != null) {
             commentService.insert(commentDto);
             //selectKey 해서 새로 등록한 댓글 기본키 값으로 새로등록된 댓글 가져오기
             return commentService.comment(commentDto.getComment_id());
-        }else {
+        } else {
             //권한없음 오류
             throw new UnauthorizedException(String.format("unauthorized you"));
         }
@@ -107,20 +113,21 @@ public class CommentController {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     @PatchMapping("look_comment/{comment_id}")
-    public CommentDto updateLookComment(@PathVariable int comment_id,@RequestBody CommentDto updateDto){
+    public CommentDto updateLookComment(@PathVariable int comment_id, @RequestBody CommentDto updateDto) {
+        logger.info("updateLookComment()진입");
         //댓글정보 가져오기
-        CommentDto dto=commentService.comment(comment_id);
-        if(dto==null){
+        CommentDto dto = commentService.comment(comment_id);
+        if (dto == null) {
             //수정할 댓글이 없으면 not found 404 에러
-            throw new NotFoundException(String.format("comment_id[%s] not found",comment_id));
+            throw new NotFoundException(String.format("comment_id[%s] not found", comment_id));
         }
-        if(dto.getComment_sender_id().equals(session.getAttribute("userid"))==false||
-                session.getAttribute("userid")==null){
+        if (dto.getComment_sender_id().equals(session.getAttribute("userid")) == false ||
+                session.getAttribute("userid") == null) {
             //작성자 아이디와 세션 아이디가 달라서 권한없음 오류
             throw new UnauthorizedException("unauthorized you");
-        }else {
+        } else {
             //작성자 아이디와 세션 아이디가 같아 수정가능
-            commentService.update(comment_id,updateDto.getComment_content());
+            commentService.update(comment_id, updateDto.getComment_content());
         }
         //수정된 댓글정보 넘겨주기
         return commentService.comment(comment_id);

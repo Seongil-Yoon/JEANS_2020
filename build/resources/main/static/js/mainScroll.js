@@ -12,6 +12,10 @@ $(document).ready(function () {
         //윈도우 높이에 스크롤값을 계속더해서 문서 전체 길이에서 100 px 앞에 스크롤이 왔을때 데이터 불러옴
         if ((windowHeight + scroll) >= documentHeight - 100) {
             if (mainScrollTime == true) {
+                console.log("현재 스크롤 값", scroll);
+                console.log("전체높이", documentHeight);
+                console.log("윈도우 높이", windowHeight);
+                console.log("윈도우높이 + 스크롤 >= 문서높이 -100px");
                 start();
             }
         }
@@ -51,7 +55,7 @@ function start() {
                     "                          <div class=\"is_body\" >\n" +
                     "                              <!-- 헤더-->\n" +
                     "                              <div class=\"my_img\">\n" +
-                    "                                 <img src=\"displayMthumbnail?id="+result[i].fk_userid_user_userid+"\">\n"+
+                    "                                 <img src=\"displayMthumbnail/" + result[i].fk_userid_user_userid + "\">\n" +
                     "                              </div>\n" +
                     "                              <div class=\"name\">\n" +
                     "                                  <ul class=\"look_header_ul\">\n" +
@@ -71,7 +75,8 @@ function start() {
                     "                              <!-- 본문-->\n" +
                     "                              <div class=\"look_img\">\n" +
                     "                                  <div class=\"look_img_in\">\n" +
-                    "                                      <img src=\"static/images/1.JPG\" alt=\"look_image\" class= \"look_img_file\"/>\n" +
+                    "                                      <img src=\"displayLthumbnail/"+result[i].look_num+"\">\n" +/*건드려야할부분*/
+/*                  "                                      <img src=\"static/images/4.JPG\" alt=\"look_image\" class= \"look_img_file\"/>\n" +*/
                     "                                  </div>\n" +
                     "                              </div>\n" +
                     "\n" +
@@ -119,11 +124,15 @@ function start() {
                     "          </div>\n" +
                     "      </a>\n" +
                     "      </div>"
-                $("body").append(html);
+                // let toBodyroot = $(".body_root").append(html);
+                // let toWebview = $(".webview").append(toBodyroot);
+                // $('body').append(toWebview);
+                $(".body_root").append(html);
             }
+
             setTimeout(function () {
                 mainScrollTime = true;
-            }, 200);//스크롤이벤트 0.2초뒤실행 중복방지위해
+            }, 400);//스크롤이벤트 0.2초뒤실행 중복방지위해
             num += 4; //4개씩 차례대로 출력하게 4더함
         },
         error: function (errorThrown) {

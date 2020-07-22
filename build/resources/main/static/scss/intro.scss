@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400&family=Roboto+Condensed:wght@300&display=swap');
+body {
+	padding-top: 100px;
+}
+.section {
+	color: white;
+	text-align: center;
+}
+img {
+	width: 190px;
+	height: 150px;
+}
+h1 {
+	font-family: 'Merriweather', serif;
+	font-size: 250%;
+	display: none;
+}
+.s3 {
+	h2 {
+		color: #7AD7F9;
+		font-size: 750%;
+		font-family: 'Playfair Display', serif;
+		display: none;
+	}
+	h3 {
+		color: #7AD7F9;
+		font-size: 470%;
+		font-family: 'Merriweather', serif;
+		display: none;
+	}
+}
+.header {
+	width: 100%;
+	position: fixed;
+	z-index: 100;
+	padding-left: 85%;
+	font-size: 300%;
+	font-family: 'Playfair Display', serif;
+}
+a {
+	text-decoration: none;
+	color: white;
+}
+#fp-nav {
+	ul {
+		li {
+			a {
+				span {
+					background-color: white;
+				}
+			}
+		}
+	}
+}

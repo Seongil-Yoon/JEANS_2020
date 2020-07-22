@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jeans.ko.Dao.IBoardDao">
+
+    <insert id="insert">
+        insert into look
+        values
+        (
+        #{look_num},#{title},#{like},#{season},#{tag},#{look_public},#{fk_userid_user_userid}
+        ,#{memo},#{look_date},#{count},#{comment_count},#{picture},#{nickname}
+        )
+
+        <selectKey resultType="java.lang.Integer" keyProperty="look_num" order="AFTER">
+            <!--return 값은 dto 객체로 넘어간다 get메소드로 값을 갖고와야됨 -->
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+
+    <select id="list" resultType="jeans.ko.Dto.BoardDto">
+        select * from look order by look_num desc
+    </select>
+
+    <select id="view" resultType="jeans.ko.Dto.BoardDto">
+        select * from look where look_num = #{look_num}
+    </select>
+
+    <delete id="delete">
+        delete from look where look_num= #{look_num}
+    </delete>
+
+    <update id="countUpdate">
+        update look set count = count + 1 where look_num = #{look_num}
+    </update>
+
+    <update id="update">
+        update look set title = #{title},season = #{season},tag = #{tag},
+        look_public = #{look_public},memo = #{memo},picture = #{picture}
+       where look_num = #{look_num}
+    </update>
+
+</mapper>
