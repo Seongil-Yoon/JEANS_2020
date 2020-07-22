@@ -21,9 +21,8 @@
         select * from child_comment where fk_comment_id = #{comment_id} order by child_comment_num desc;
     </select>
     <!--대댓글 하나 가져오기-->
-    <select id="comment" resultType="jeans.ko.Dto.CommentDto">
+    <select id="childComment" resultType="jeans.ko.Dto.ChildCommentDto">
         select * from child_comment where child_comment_num = #{child_comment_num};
     </select>
-
 
 </mapper>
