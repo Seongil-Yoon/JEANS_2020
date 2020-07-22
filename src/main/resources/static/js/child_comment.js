@@ -16,7 +16,7 @@ $(document).on("click", ".re_comment", function (event) {
         html += '<div class=\"child_look_comment\" >';
         html += '<input class="comment_id" value="' + sessionStorage.getItem("userid") + '" type="hidden"/>';
         html += '<div class="other_people_img">';
-        html += '<img src=displayMthumbnail?id='+sessionStorage.getItem("userid")+'>';
+        html += '<img src=displayMthumbnail/'+sessionStorage.getItem("userid")+'>';
         html += '</div>';
         html += '<div class="child_other_people_name">' + sessionStorage.getItem("usernickname") + '</div>';
         html += '<div class="comment_textarea_space">';

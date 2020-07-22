@@ -104,7 +104,10 @@ public class FileService implements IFileService {
 
         BufferedImage sourceImg = ImageIO.read(f);
         BufferedImage smallImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 40);
+
         BufferedImage middleImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 50);
+
+
         String formatName = filename.substring(filename.lastIndexOf(".") + 1);
         File smallThumbnail = new File(uploadPath + route + smallHeader + filename);
         File middleThumbnail = new File(uploadPath + route + middleHeader + filename);

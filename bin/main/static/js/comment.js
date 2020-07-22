@@ -6,7 +6,7 @@ let scrollTime = true;
 function commentHTML(result, html) {
 
     html += '<div class=\"other_people_img\">';
-    html += '<img src=displayMthumbnail?id=' + result.comment_sender_id + '>';
+    html += '<img src=displayMthumbnail/' + result.comment_sender_id + '>';
     html += '</div>';
     html += '<div class=\"other_people_name\">' + result.comment_sender_name + '</div>';
     html += '<div class="right_etc">';
@@ -140,11 +140,7 @@ function commentList(lookNum) {
 
                 html += '<div class=\"look_comment\" >';
                 html += '<div class=\"other_people_img\">';
-                /*
-                                html+='<img src=\"static/images/mypicture.png\" alt=\"other_people_imgage\" height=\"50\" width=\"60\"/>';
-                */
-                /* <img src=\"displayMthumbnail?id="+result[i].fk_userid_user_userid+"\">*/
-                html += '<img src=displayMthumbnail?id=' + result[i].comment_sender_id + '>';
+                html += '<img src=displayMthumbnail/' + result[i].comment_sender_id + '>';
 
                 //댓글의 이미지썸네일
                 html += '</div>';
@@ -247,7 +243,7 @@ $(document).on("click", ".right_pen", function (event) {
     let html = "";
     html += '<input class="comment_id" value="' + comment_id + '" type="hidden"/>';
     html += '<div class="other_people_img">';
-    html += '<img src=displayMthumbnail?id=' + comment_sender_id + '>';
+    html += '<img src=displayMthumbnail/' + comment_sender_id + '>';
     html += '</div>';
     html += '<div class="other_people_name">' + nickName + '</div>';
     html += '<div class="comment_textarea_space">';
