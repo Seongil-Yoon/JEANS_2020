@@ -15,8 +15,7 @@ contentType="text/html;charset=UTF-8" language="java" %>
       <!--/*여기는 맨 위에 있는 바 부분*/ -->
       <jsp:include page="header.jsp" flush="false" />
       <!-- /*여기부터가 본문*/  -->
-      <div class="body_root">
-      </div>
+      <div class="body_root"></div>
     </div>
 
     <script src="/static/js/mainScroll.js" charset="utf-8"></script>

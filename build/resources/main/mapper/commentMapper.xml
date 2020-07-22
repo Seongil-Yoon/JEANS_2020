@@ -8,7 +8,7 @@
         insert into comment
         values
         (
-        #{comment_id},#{fk_look_num_Look_look_num},#{parent_comment_id},#{comment_content}
+        #{comment_id},#{fk_look_num_Look_look_num},#{comment_content}
         ,#{comment_sender_name},#{comment_sender_id},CURDATE()
         )
         <selectKey resultType="java.lang.Integer" keyProperty="comment_id" order="AFTER">

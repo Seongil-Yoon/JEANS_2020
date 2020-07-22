@@ -55,7 +55,7 @@ function start() {
                     "                          <div class=\"is_body\" >\n" +
                     "                              <!-- 헤더-->\n" +
                     "                              <div class=\"my_img\">\n" +
-                    "                                 <img src=\"displayMthumbnail?id=" + result[i].fk_userid_user_userid + "\">\n" +
+                    "                                 <img src=\"displayMthumbnail/" + result[i].fk_userid_user_userid + "\">\n" +
                     "                              </div>\n" +
                     "                              <div class=\"name\">\n" +
                     "                                  <ul class=\"look_header_ul\">\n" +

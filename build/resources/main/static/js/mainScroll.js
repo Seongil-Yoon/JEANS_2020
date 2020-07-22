@@ -52,7 +52,7 @@ function start() {
                 html += '<div class=\"is_body\" >';
                 html += '<!-- 헤더-->';
                 html += '<div class=\"my_img\">';
-                html += '<img src=displayMthumbnail?id=' + result[i].fk_userid_user_userid + '>';
+                html += '<img src=displayMthumbnail/' + result[i].fk_userid_user_userid + '>';
                 html += ' </div>';
                 html += '<div class=\"name\">';
                 html += ' <ul class=\"look_header_ul\">';
@@ -69,7 +69,8 @@ function start() {
                 html += '<!-- 본문-->';
                 html += ' <div class=\"look_img\">';
                 html += '<div class=\"look_img_in\">';
-                html += '<img src=\"static/images/1.JPG\" alt=\"look_image\" class= \"look_img_file\"/>';
+                // html += '<img src=\"static/images/1.JPG\" alt=\"look_image\" class= \"look_img_file\"/>';
+                html += '<img class= \"look_img_file\" src=\"displayLthumbnail/' + result[i].look_num + '\">';
                 html += ' </div>';
                 html += ' </div>';
                 html += '<div class=\"look_textarea_space\">';
@@ -107,6 +108,7 @@ function start() {
                 html += ' </div>';
                 html += ' </div>';
                 html += ' </a>';
+
 
                 // let toBodyroot = $(".body_root").append(html);
                 // let toWebview = $(".webview").append(toBodyroot);

@@ -16,7 +16,7 @@ import java.util.Date;
 //5XX -> 서버측에서 오류.
 
 @RestController
-@ControllerAdvice //모든컨트롤러가 실행될때 이 어노테이션을 갖고있는 bean이 실행됨
+@ControllerAdvice //모든 컨트롤러가 실행 될때 이 어노테이션 을 갖고 있는 bean이 실행됨
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 //ResponseEntityExceptionHandler @ExceptionHandler내부  예외를 처리 하는 메소드를 제공
 
@@ -35,11 +35,18 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 
-    //UnauthorizedException 오류 처리하는곳  401 에러 보내줌
+    //UnauthorizedException 오류 처리 하는곳  401 에러 보내줌
     @ExceptionHandler(UnauthorizedException.class)
     public final ResponseEntity<Object>UnauthorizedException(Exception ex,WebRequest request){
         ExceptionResponse exceptionResponse=new ExceptionResponse(new Date(),ex.getMessage(),request.getDescription(false));
         return new ResponseEntity<>(exceptionResponse, HttpStatus.UNAUTHORIZED);
+    }
+
+    //BadRequestException 오류 처리 하는곳  400 에러 보내줌
+    @ExceptionHandler(BadRequestException.class)
+    public final ResponseEntity<Object>BadRequestException(Exception ex,WebRequest request){
+        ExceptionResponse exceptionResponse=new ExceptionResponse(new Date(),ex.getMessage(),request.getDescription(false));
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 
 }

@@ -1,1 +1,9 @@
+#gradle 파일들 git 에서 제외
+.gradle/5.6.4/
+.gradle/buildOutputCleanup
+.gradle/caches/
+.gradle/native/
+.gradle/wrapper/
+.gradle/daemon/
+#노드모듈 git 에서 제외
 src/main/resources/node_modules/**
