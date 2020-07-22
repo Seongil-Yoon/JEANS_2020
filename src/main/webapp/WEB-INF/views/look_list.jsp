@@ -16,9 +16,6 @@ contentType="text/html;charset=UTF-8" language="java" %>
       <jsp:include page="header.jsp" flush="false" />
       <!-- /*여기부터가 본문*/  -->
       <div class="body_root">
-        <ul class="main_look_item">
-          <!-- mainScroll.js -->
-        </ul>
       </div>
     </div>
 

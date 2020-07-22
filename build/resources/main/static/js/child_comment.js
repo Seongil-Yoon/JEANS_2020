@@ -20,7 +20,7 @@ $(document).on("click", ".re_comment", function (event) {
         html += '</div>';
         html += '<div class="child_other_people_name">' + sessionStorage.getItem("usernickname") + '</div>';
         html += '<div class="comment_textarea_space">';
-        html += '<textarea class="child_comment_textarea" placeholder="답글 내용을 입력 하세요"></textarea>';
+        html += '<textarea class="child_comment_content" placeholder="답글 내용을 입력 하세요"></textarea>';
         html += '</div>';
         html += '<div class="comment_date">';
         html += '<button class="child_comment_change_button" value="2" type="button" >취소</button>';
