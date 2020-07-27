@@ -88,6 +88,7 @@ public class UserController {
     //마이페이지 이동
     @RequestMapping("/mypageUser")
     public String mypageUser() {
+        logger.info("mypageUser메소드");
         return "mypageUser";
     }
 
@@ -202,6 +203,7 @@ public class UserController {
 
         HashMap<String, Object> map = new HashMap<String, Object>();
         String nickname = userService.userLogin(userDto);//닉네임 값을 받아오도록
+
         if (nickname == null) {
             //아이디와 비빌번호가 맞지않음
             throw new NotFoundException(String.format("Please enter your ID and password again"));
@@ -209,11 +211,13 @@ public class UserController {
             //로그인 성공
             httpSession.setAttribute("userid", userDto.getUserid());
             httpSession.setAttribute("usernickname", nickname);
+
             map.put("userid", httpSession.getAttribute("userid"));
             map.put("nickname", httpSession.getAttribute("usernickname"));
 
             return map; //session 아이디 닉네임 넘겨주기
         }
+
     }
 
     @ResponseBody

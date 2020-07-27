@@ -48,12 +48,21 @@ public class UserService implements IUserService {
 
     public String userLogin(UserDto userDto){
         logger.info("userLogin메소드");
+        UserDto successUser;
         String sqlPassword=null;
         String id=userDto.getUserid();
         String password=userDto.getPassword();
         String nickname=null;
 
-        sqlPassword=userDao.userLogin(userDto);
+      sqlPassword=userDao.userLogin(userDto);
+
+        successUser=userDao.getInformation(userDto);
+        logger.info(successUser.toString());
+        if(successUser!=null){
+            System.out.println("성공");
+        }else{
+            System.out.println("실패");
+        }
 
         if(sqlPassword==null) {
             logger.info("회원가입된 아이디가 없으므로 null값");
@@ -66,7 +75,8 @@ public class UserService implements IUserService {
             //String nick=userDao.getNickname(id);
             //로그인 성공시 id 값을 보내고 닉네임을 받아온다.
           nickname=userDao.getNickname(id);
-           return nickname;
+
+       return nickname;
        }else{
            logger.info("로그인실패");
            return nickname;
