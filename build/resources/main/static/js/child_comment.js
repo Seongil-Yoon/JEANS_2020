@@ -38,6 +38,7 @@ $(document).on("click", ".re_comment", function (event) {
     }
 });
 
+<<<<<<< HEAD
 //취소나 저장 버튼 누를 경우 이벤트
 $(document).on("click", ".child_comment_change_button", function (event) {
     //이벤트 부모태그 가져오기
@@ -50,6 +51,22 @@ $(document).on("click", ".child_comment_change_button", function (event) {
     let fk_comment_id=child_look_commentTag.find(".fk_comment_id").val();
     //대댓글 내용 가져오기
     let child_comment_content=child_look_commentTag.find(".child_comment_content").val();
+=======
+        html += '<div class=\"child_look_comment\" >';
+        html += '<input class="comment_id" value="' + sessionStorage.getItem("userid") + '" type="hidden"/>';
+        html += '<div class="other_people_img">';
+        html += '<img src=displayMthumbnail/'+sessionStorage.getItem("userid")+'>';
+        html += '</div>';
+        html += '<div class="child_other_people_name">' + sessionStorage.getItem("usernickname") + '</div>';
+        html += '<div class="comment_textarea_space">';
+        html += '<textarea style="background-color:#F6F6F6 " class="child_comment_textarea" placeholder="답글 내용을 입력 하세요"></textarea>';
+        html += '</div>';
+        html += '<div class="comment_date">';
+        html += '<button class="child_comment_change_button" value="2" type="button" >취소</button>';
+        html += '<button class="child_comment_change_button" value="1" type="button" >저장</button>';
+        html += '</div>';
+        html += '</div>';
+>>>>>>> 5be867f83e852c57b8fd6ad7e94104f98465d70f
 
 
     let data = {
