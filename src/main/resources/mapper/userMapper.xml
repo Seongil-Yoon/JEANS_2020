@@ -15,6 +15,9 @@
     <select id="getPicture" resultType="String">
         select picture from user where userid=(#{userid});
     </select>
+    <select id="getInformation" resultType="jeans.ko.Dto.UserDto">
+        select * from user where userid=(#{userid}) and password=(#{password});
+    </select>
 </mapper>
 
         <!-- resultType="jeans.ko.Dto.UserDto"-->
