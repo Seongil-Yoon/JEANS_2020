@@ -202,22 +202,32 @@ public class UserController {
     public HashMap<String, Object> loginRequest(@RequestBody UserDto userDto) {
 
         HashMap<String, Object> map = new HashMap<String, Object>();
-        String nickname = userService.userLogin(userDto);//닉네임 값을 받아오도록
+       //String nickname = userService.userLogin(userDto);//닉네임 값을 받아오도록
 
-        if (nickname == null) {
+        UserDto successLogin=userService.userLogin(userDto);
+
+        if (successLogin == null) {
             //아이디와 비빌번호가 맞지않음
             throw new NotFoundException(String.format("Please enter your ID and password again"));
         } else {
             //로그인 성공
-            httpSession.setAttribute("userid", userDto.getUserid());
-            httpSession.setAttribute("usernickname", nickname);
+            httpSession.setAttribute("userrole",successLogin.getRole());
+            httpSession.setAttribute("userid", successLogin.getUserid());
+            httpSession.setAttribute("usernickname", successLogin.getNickname());
+            httpSession.setAttribute("usersex",successLogin.getSex());
+            httpSession.setAttribute("userheight",successLogin.getHeight());
+            httpSession.setAttribute("userweight",successLogin.getWeight());
+            httpSession.setAttribute("useremail",successLogin.getEmail());
 
+            map.put("role",httpSession.getAttribute("userrole"));
             map.put("userid", httpSession.getAttribute("userid"));
             map.put("nickname", httpSession.getAttribute("usernickname"));
-
+            map.put("sex",httpSession.getAttribute("usersex"));
+            map.put("height",httpSession.getAttribute("userheight"));
+            map.put("weight",httpSession.getAttribute("userweight"));
+            map.put("email",httpSession.getAttribute("useremail"));
             return map; //session 아이디 닉네임 넘겨주기
         }
-
     }
 
     @ResponseBody

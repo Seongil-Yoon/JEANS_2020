@@ -17,8 +17,13 @@ function userLogin() {
                     contentType: 'application/json', //json 으로 데이터줄떄 사용
                     success:function (result, textStatus, jqxHR) {
                             if (jqxHR.status == 201) {
+                                sessionStorage.setItem("userrole",result.role);
                                 sessionStorage.setItem("userid", result.userid); //자바스크립트에 쓸수있게 아이디 저장
                                 sessionStorage.setItem("usernickname", result.nickname); // 닉네임 저장
+                                sessionStorage.setItem("usersex",result.sex);
+                                sessionStorage.setItem("userheight",result.height);
+                                sessionStorage.setItem("userweight",result.weight);
+                                sessionStorage.setItem("useremail",result.email);
                                 swal("로그인 성공", "", "success");
                                 //로그인 성공후 메인 화면 이동
                                 setTimeout(function () {location.href = "/main"}, 1500);

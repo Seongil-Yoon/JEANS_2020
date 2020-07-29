@@ -46,41 +46,20 @@ public class UserService implements IUserService {
         return insert_count;
     }
 
-    public String userLogin(UserDto userDto){
+    public UserDto userLogin(UserDto userDto){
         logger.info("userLogin메소드");
-        UserDto successUser;
-        String sqlPassword=null;
+        UserDto successLogin=null;
+
         String id=userDto.getUserid();
         String password=userDto.getPassword();
-        String nickname=null;
 
-      sqlPassword=userDao.userLogin(userDto);
+        successLogin=userDao.getInformation(userDto);
 
-        successUser=userDao.getInformation(userDto);
-        logger.info(successUser.toString());
-        if(successUser!=null){
-            System.out.println("성공");
+        if(successLogin!=null){
+            return successLogin;
         }else{
-            System.out.println("실패");
+            return successLogin;
         }
-
-        if(sqlPassword==null) {
-            logger.info("회원가입된 아이디가 없으므로 null값");
-            return null;   //회원가입된 아이디가 없으므로 null 값줌
-        }
-
-       if(sqlPassword.equals(password)){
-           logger.info("로그인성공");
-            //여기서 닉네임 받아오면 되지 ㅏㅇㄶ을까
-            //String nick=userDao.getNickname(id);
-            //로그인 성공시 id 값을 보내고 닉네임을 받아온다.
-          nickname=userDao.getNickname(id);
-
-       return nickname;
-       }else{
-           logger.info("로그인실패");
-           return nickname;
-       }
     }
 
     public String getPicture(String userid){
