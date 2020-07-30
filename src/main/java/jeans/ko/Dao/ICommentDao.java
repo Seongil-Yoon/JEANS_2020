@@ -12,9 +12,9 @@ import java.util.List;
 public interface ICommentDao {
     //댓글작성
     public int insert(CommentDto commentDto);
-
+    //댓글 하나 정보 가져오기
     public CommentDto comment(int comment_id);
-
+    //댓글 전체 정보 가져오기
     public List<CommentDto> list(int look_num);
 
     public int delete (int comment_id);

@@ -1,183 +1,124 @@
 /*구글웹폰트 가져다쓰기*/
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
-.body_base {
-	width: 1200px;
-	display: grid;
-	grid-template-columns: 590px 20px 590px;
-	margin: 0px auto;
-	font-size: 16px;
-}
-.name {
-	margin-top: 10px;
-	margin-left: -20px;
-	margin-top: 10px;
-	margin-left: -20px;
-}
-form {
-	display: block;
-	margin-top: 0em;
-}
-.title {
-	font-weight: bold;
-	font-size: 20px;
-	margin-left: -20px;
-}
-input {
-	padding: 6px 12px;
-	width: 100%;
-	height: 100%;
-	background: #fff;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-	box-sizing: border-box;
-	resize: none;
-	font-size: 14px;
-}
-.look_header_ul {
-	border-style: none;
-	margin-top: 0px;
-	position: relative;
-	float: left;
-	margin-left: -40px;
-	width: 500px;
-	height: 40px;
-}
-.look_header_li {
-	border-style: none;
-	position: relative;
-	float: left;
-	margin-left: 0px;
-	width: 40px;
-	height: 40px;
-}
-.look_footer_ul {
-	margin-top: 0px;
-	position: relative;
-	float: left;
-	margin-left: 0px;
-	width: 590px;
-	height: 40px;
-}
-.look_footer_li {
-	position: relative;
-	float: left;
-	margin-left: 0px;
-	width: 40px;
-	height: 40px;
-}
-.infinite-scroll-component__outerdiv {
-	width: 600px;
-}
-.home {
-	background-color: rgb(224, 224, 224);
-}
-.is_body {
-	margin: auto;
-	width: 590px;
-	height: 650px;
-	display: grid;
-	grid-template-columns: 50px 50px 490px;
-	grid-template-rows: 35px 35px 430px 100px 40px;
-	background-color: rgb(224, 224, 224);
-}
-.start_space {
-	height: 80px;
-}
-.space_end {
-	grid-column: 1/4;
-	height: 10px;
-	background-color: white;
-}
-.my_img {
-	margin-left: 10px;
-	padding-top: 10px;
-	grid-row: 1/3;
-	grid-column: 1/3;
-}
-.look_img {
-	grid-row: 3/4;
-	grid-column: 1/4;
-	padding-top: 10px;
-}
-.look_img_in {
-	text-align: center;
-	margin: 0 auto;
-}
-.look_img_file {
-	float: center;
-	height: 400px;
-	width: 300px;
-	line-height: 400px;
-}
-.look_textarea_space {
-	grid-row: 4/5;
-	grid-column: 1/4;
-}
-.look_textarea {
-	width: 495px;
-	height: 100px;
-	resize: none;
-	margin-left: 50px;
-	margin-right: 50px;
-	border: none;
-}
-.like_img_box {
-	position: relative;
-	float: left;
-	width: 30px;
-	margin-left: 2px;
-}
-.count_img_box {
-	position: relative;
-	float: left;
-	width: 30px;
-	margin-left: 2px;
-}
-.like_img {
-	margin-top: 10px;
-	height: 30px;
-	width: 30px;
-}
-.count_img {
-	margin-top: 10px;
-	height: 30px;
-	width: 30px;
-}
-.like_number {
-	position: relative;
-	float: left;
-	margin-top: 10px;
-	line-height: 30px;
-	margin-left: 1px;
-}
-.count_number {
-	position: relative;
-	float: left;
-	margin-top: 10px;
-	line-height: 30px;
-	margin-left: 1px;
-}
-.look_tag {
-	position: relative;
-	float: left;
-	line-height: 30px;
-	margin-top: 10px;
-	text-align: right;
-	margin-right: 10px;
-}
-textarea {
-	&::placeholder {
-		font-family: 'Hanna', sans-serif;
-		font-size: large;
-	}
+@import "look_list.scss";
+//속성은 다른 파일로 따로정의해서 import시킨다.
+//무한스크롤때문에 여기서는 틀만 잡아야 됨.
+
+body {
+  .webview {
+    width: 90%;
+    .jeans_root {
+      .jeans_header {
+      }
+    }
+    .header_space {
+    }
+
+    //본문시작
+    .body_root {
+      // width: 100%;
+      margin-top: -1em;
+      .look_view_a {
+        .main {
+          .main_container {
+            .main_look_item {
+              //ul
+              li {
+                .is_body {
+                  .my_img {
+                  }
+                  .name {
+                    .look_header_ul {
+                      .look_header_li {
+                        .user_name {
+                        }
+                      }
+                    }
+                  }
+                  .title {
+                  }
+                  .look_img {
+                    .look_img_in {
+                      .look_img_file {
+                      }
+                    }
+                  }
+                  .look_textarea_space {
+                    .textarea_form {
+                      textarea {
+                        &::placeholder {
+                        }
+                      }
+                      .view_look_textarea {
+                      }
+                    }
+                  }
+                  .look_footer_ul {
+                    .look_footer_li {
+                      .like_img_box {
+                        .like_img {
+                        }
+                      }
+                      .like_number {
+                      }
+                      .count_img_box {
+                        .count_img {
+                        }
+                      }
+                      .count_number {
+                      }
+                    }
+                  }
+                  .space_end {
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-.view_look_textarea{
-    width: 495px;
-    height: 100px;
-    resize: none;
-    margin-left: 50px;
-    margin-right: 50px;
-    border: solid 1.5px;
-  }
+// .body_base {
+//   width: 1200px;
+//   display: grid;
+//   grid-template-columns: 590px 20px 590px;
+//   margin: 0px auto;
+//   font-size: 16px;
+// }
+
+form {
+  display: block;
+  margin-top: 0em;
+}
+
+input {
+  padding: 6px 12px;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-sizing: border-box;
+  resize: none;
+  font-size: 14px;
+}
+
+.infinite-scroll-component__outerdiv {
+  width: 600px;
+}
+.home {
+  background-color: rgb(224, 224, 224);
+}
+
+// .look_tag {
+//   position: relative;
+//   float: left;
+//   line-height: 30px;
+//   margin-top: 10px;
+//   text-align: right;
+//   margin-right: 10px;
+// }

@@ -17,7 +17,11 @@ function commentHTML(result, html) {
     html += '<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
     html += '</div>';
     html += '<div class=\"comment_textarea_space\">';
-    html += '<textarea style=\"background-color:#e0e0e0 \"disabled class=\"view_comment_textarea\" placeholder=\"' + result.comment_content + '\"></textarea>';
+
+    html += '<textarea class=\"view_comment_textarea\" placeholder=\"' + result.comment_content + '\"></textarea>';
+    // =======
+    //     html += '<textarea disabled class=\"view_comment_textarea\" placeholder=\"' + result.comment_content + '\"></textarea>';
+    // >>>>>>> a2a7c9f5353df08992bb8b38fb96f7e905a08521
     html += '</div>';
     html += '<div class="re_comment"> 답글 </div>';
     html += '<div class=\"comment_date\">' + result.date + '</div>';
@@ -153,7 +157,7 @@ function commentList(lookNum) {
                 html += '<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
                 html += '</div>';
                 html += '<div class=\"comment_textarea_space\">';
-                html += '<textarea style=\"background-color:#e0e0e0 \"disabled class=\"view_comment_textarea\" placeholder=\"' + result[i].comment_content + '\"></textarea>';
+                html += '<textarea class=\"view_comment_textarea\" placeholder=\"' + result[i].comment_content + '\"></textarea>';
                 html += '</div>';
                 html += '<div class="re_comment"> 답글 </div>';
                 html += '<div class=\"comment_date\">' + result[i].date + '</div>';
@@ -247,7 +251,7 @@ $(document).on("click", ".right_pen", function (event) {
     html += '</div>';
     html += '<div class="other_people_name">' + nickName + '</div>';
     html += '<div class="comment_textarea_space">';
-    html += '<textarea style="background-color:#F6F6F6 " class="comment_textarea" placeholder="수정할 내용을 입력하세요" name="comment_content"></textarea>';
+    html += '<textarea class="comment_textarea" placeholder="수정할 내용을 입력하세요" name="comment_content"></textarea>';
     html += '</div>';
     html += '<div class="comment_date">';
     html += '<button class="comment_change_button" value="2" type="button" >취소</button>';

@@ -43,87 +43,73 @@ function start() {
                     isEnd = true; //더이상 가져올값이 없으면 true로 바꿔 더이상 값을 못가져오게함
                 }
 
-                let html = "\n" +
-                    "\n" +
-                    "      <a class=\"look_view_a\"  href=\"look?look_num=" + result[i].look_num + "\">\n" +
-                    "          <div class=\"main\">\n" +
-                    "\n" +
-                    "              <div claas=\"main_container\">\n" +
-                    "\n" +
-                    "                  <ul class=\"main_look_item\">\n" +
-                    "                      <li id=1>\n" +
-                    "                          <div class=\"is_body\" >\n" +
-                    "                              <!-- 헤더-->\n" +
-                    "                              <div class=\"my_img\">\n" +
-                    "                                 <img src=\"displayMthumbnail/" + result[i].fk_userid_user_userid + "\">\n" +
-                    "                              </div>\n" +
-                    "                              <div class=\"name\">\n" +
-                    "                                  <ul class=\"look_header_ul\">\n" +
-                    "                                      <li class=\"look_header_li\" style=\"width: auto\">\n" +
-                    "                                          <span class=\"user_name\" style=\"width: auto\">" + result[i].nickname + "</span>\n" +
-                    "                                      </li>\n" +
-                    "                                      <li class=\"look_header_li\" style=\"width: auto; \"></li>\n" +
-                    "                                      <li class=\"look_header_li\"\n" +
-                    "                                          style=\"width: fit-content; text-align: right; float: right; font-size: 15px; font-weight: bold\">\n" +
-                    "                                          <span id=\"look_date\">" + result[i].look_date + "</span>\n" +
-                    "                                      </li>\n" +
-                    "                                  </ul>\n" +
-                    "\n" +
-                    "                              </div>\n" +
-                    "                              <div class=\"title\" >" + result[i].title + "</div>\n" +
-                    "\n" +
-                    "                              <!-- 본문-->\n" +
-                    "                              <div class=\"look_img\">\n" +
-                    "                                  <div class=\"look_img_in\">\n" +
-                    "                                      <img src=\"displayLthumbnail/"+result[i].look_num+"\">\n" +/*건드려야할부분*/
-/*                  "                                      <img src=\"static/images/4.JPG\" alt=\"look_image\" class= \"look_img_file\"/>\n" +*/
-                    "                                  </div>\n" +
-                    "                              </div>\n" +
-                    "\n" +
-                    "                              <div class=\"look_textarea_space\">\n" +
-                    "                                  <form class=\"textarea_form\" >\n" +
-                    "                                      <textarea style=\"background-color: #e0e0e0\" class = \"view_look_textarea\" placeholder=\"" + result[i].tag + "\"></textarea>\n" +
-                    "                                  </form>\n" +
-                    "                              </div>\n" +
-                    "\n" +
-                    "                              <!-- 푸터-->\n" +
-                    "                              <ul class=\"look_footer_ul\">\n" +
-                    "                                  <li class=\"look_footer_li\">\n" +
-                    "                                      <div class =\"like_img_box\">\n" +
-                    "                                          <img src=\"static/images/heart.svg\" alt=\"heart_image\" class=\"like_img\" />\n" +
-                    "                                      </div>\n" +
-                    "                                  </li>\n" +
-                    "                                  <li class=\"look_footer_li\">\n" +
-                    "                                      <div class = \"like_number\">\n" +
-                    "                                          <span>10.5K</span>\n" +
-                    "                                             " +
-                    "                                      </div>\n" +
-                    "                                  </li>\n" +
-                    "                                  <li class=\"look_footer_li\" style=\"width: 25px;\"></li>\n" +
-                    "                                  <li class=\"look_footer_li\">\n" +
-                    "                                      <div class= \"count_img_box\">\n" +
-                    "                                          <img src=\"static/images/board_view_icon.svg\" alt=\"board_view_icon\" class=\"count_img\"/>\n" +
-                    "                                      </div>\n" +
-                    "                                  </li>\n" +
-                    "                                  <li class=\"look_footer_li\">\n" +
-                    "                                      <div class = \"count_number\">\n" +
-                    "                                          <span>" + result[i].count + "</span>\n" +
-                    "                                      </div>\n" +
-                    "\n" +
-                    "                              </ul>\n" +
-                    "                              <div class=\"space_end\"></div>\n" +
-                    "                          </div>\n" +
-                    "                      </li>\n" +
-                    "                  </ul>\n" +
-                    "\n" +
-                    " \n" +
-                    "\n" +
-                    "\n" +
-                    "              </div>\n" +
-                    "\n" +
-                    "          </div>\n" +
-                    "      </a>\n" +
-                    "      </div>"
+                let html = "";
+                html += '<a class=\"look_view_a\"  href=\"look?look_num=' + result[i].look_num + '\">';
+                html += '<div class=\"main\">';
+                html += '<div claas=\"main_container\">';
+                html += '<ul class=\"main_look_item\">';
+                html += '<li id=1>';
+                html += '<div class=\"is_body\" >';
+                html += '<!-- 헤더-->';
+                html += '<div class=\"my_img\">';
+                html += '<img src=displayMthumbnail/' + result[i].fk_userid_user_userid + '>';
+                html += ' </div>';
+                html += '<div class=\"name\">';
+                html += ' <ul class=\"look_header_ul\">';
+                html += ' <li class=\"look_header_li\" style=\"width: auto\">';
+                html += '<span class=\"user_name\" style=\"width: auto\">' + result[i].nickname + '</span>';
+                html += ' </li>';
+                html += ' <li class=\"look_header_li\" style=\"width: auto; \"></li>';
+                html += '<li class=\"look_header_li\"\n" style=\"width: fit-content; text-align: right; float: right; font-size: 15px; font-weight: bold\">';
+                html += '<span id=\"look_date\">' + result[i].look_date + '</span>';
+                html += ' </li>';
+                html += ' </ul>';
+                html += ' </div>';
+                html += '<div class=\"title\" >' + result[i].title + '</div>';
+                html += '<!-- 본문-->';
+                html += ' <div class=\"look_img\">';
+                html += '<div class=\"look_img_in\">';
+                // html += '<img src=\"static/images/1.JPG\" alt=\"look_image\" class= \"look_img_file\"/>';
+                html += '<img class= \"look_img_file\" src=\"displayLthumbnail/' + result[i].look_num + '\">';
+                html += ' </div>';
+                html += ' </div>';
+                html += '<div class=\"look_textarea_space\">';
+                html += '<form class=\"textarea_form\" >';
+                html += '<textarea  class = \"view_look_textarea\" placeholder=\"' + result[i].tag + '\"></textarea>';
+                html += '</form>';
+                html += ' </div>';
+                html += '<!-- 푸터-->';
+                html += ' <ul class=\"look_footer_ul\">';
+                html += '<li class=\"look_footer_li\">';
+                html += '<div class =\"like_img_box\">';
+                html += '<img src=\"static/images/heart.svg\" alt=\"heart_image\" class=\"like_img\" />';
+                html += ' </div>';
+                html += ' </li>';
+                html += '<li class=\"look_footer_li\">';
+                html += '<div class = \"like_number\">';
+                html += '<span>10.5K</span>';
+                html += ' </div>';
+                html += ' </li>';
+                html += '<li class=\"look_footer_li\" style=\"width: 25px;\"></li>';
+                html += ' <li class=\"look_footer_li\">';
+                html += '<div class= \"count_img_box\">';
+                html += '<img src=\"static/images/board_view_icon.svg\" alt=\"board_view_icon\" class=\"count_img\"/>';
+                html += ' </div>';
+                html += ' </li>';
+                html += '<li class=\"look_footer_li\">';
+                html += ' <div class = \"count_number\">';
+                html += '<span>' + result[i].count + '</span>';
+                html += ' </div>';
+                html += '</ul>';
+                html += ' <div class=\"space_end\"></div>';
+                html += ' </div>';
+                html += ' </li>';
+                html += '</ul>';
+                html += ' </div>';
+                html += ' </div>';
+                html += ' </a>';
+
+
                 // let toBodyroot = $(".body_root").append(html);
                 // let toWebview = $(".webview").append(toBodyroot);
                 // $('body').append(toWebview);
