@@ -31,18 +31,22 @@ export class slideShowClass {
 
         let curIndex = this.startNum; // current slide index (except copied slide)
         let curSlide = this.slideContents[curIndex]; // current slide dom
-        console.log(curSlide);
-
+        
+        // console.log("curSlide",curSlide);
         curSlide.classList.add('slide_active');
+        console.log("curSlide",curSlide);
 
         /** Next Button Event */
-        this.slideBtnNext.addEventListener('click', function () {
+        let nextClick=0;
+        this.slideBtnNext.addEventListener('click', nextClick = () => {
+            console.log("오른쪽 클릭");
             if (curIndex <= this.slideLen - 1) {
                 this.slideList.style.transition = this.slideSpeed + "ms";
                 this.slideList.style.transform = "translate3d(-" + (this.slideWidth * (curIndex + 2)) + "px, 0px, 0px)";
             }
             if (curIndex === this.slideLen - 1) {
-                setTimeout(function () {
+                let setTimeouts=0;
+                setTimeout(setTimeouts =  () => {
                     this.slideList.style.transition = "0ms";
                     this.slideList.style.transform = "translate3d(-" + this.slideWidth + "px, 0px, 0px)";
                 }, this.slideSpeed);
@@ -54,13 +58,15 @@ export class slideShowClass {
         });
 
         /** Prev Button Event */
-        this.slideBtnPrev.addEventListener('click', function () {
+        let prevClick=0;
+        this.slideBtnPrev.addEventListener('click',  prevClick = () => {
             if (curIndex >= 0) {
                 this.slideList.style.transition = this.slideSpeed + "ms";
                 this.slideList.style.transform = "translate3d(-" + (this.slideWidth * curIndex) + "px, 0px, 0px)";
             }
             if (curIndex === 0) {
-                setTimeout(function () {
+                let setTimeouts=0;
+                setTimeout(setTimeouts = () => {
                     this.slideList.style.transition = "0ms";
                     this.slideList.style.transform = "translate3d(-" + (this.slideWidth * this.slideLen) + "px, 0px, 0px)";
                 }, this.slideSpeed);

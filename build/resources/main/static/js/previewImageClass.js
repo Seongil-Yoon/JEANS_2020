@@ -12,13 +12,29 @@ export class previewImageClass {
         this.img = 0;
         this.files = 0;
         this.fileBuffer = 0;
+        this.FLICK_PANEL = "flick_panel";
+        this.LOOK_FLICK_CAMERA = "look_flick_camera";
+        this.LOOK_IMG_FILE = "look_img_file";
     }
-    previewImage(targetObj, View_area, event) {
+    previewImage(targetObj, View_area, event, event_fileBuffer) {
+        console.log(targetObj, View_area, event);
         this.preview = document.getElementById(View_area); //div id
         const ua = window.navigator.userAgent;
-        this.fileBuffer = Array.prototype.slice.call(event.target.files);
+        this.fileBuffer = event_fileBuffer;
+        // this.fileBuffer = Array.prototype.slice.call(event.target.files);
+        console.log("버퍼에 담은 것.", this.fileBuffer);
 
-        storeBuffer();
+        // let storeBuffer = () => {
+        //     let i = 0;
+        //     for (i = 0; i < this.fileBuffer.length; i++) {
+        //         event_fileBuffer[i] = this.fileBuffer[i];
+        //         // event.target.files[i] = this.fileBuffer[i];
+
+        //     }
+        //     console.log("버퍼에 저장 하고 다시 files에 저장", event.target.files[i], i);
+        //     console.log("버퍼에 저장 하고 다시 files에 저장", event_fileBuffer[i], i);
+        // }
+        // storeBuffer();
 
 
         //ie일때(IE8 이하에서만 작동)
@@ -47,9 +63,6 @@ export class previewImageClass {
             }
             //ie가 아닐때(크롬, 사파리, FF)
         } else {
-
-            files = targetObj.files;
-            console.log("파일s", files);
             for (let i = 0; i < this.fileBuffer.length; i++) {
                 let file = this.fileBuffer[i];
                 console.log("파일", file);
@@ -74,14 +87,14 @@ export class previewImageClass {
                 this.flick_panel.appendChild(this.img); //flick_panel의자식으로 img태그를 연결
                 //태그 연결 부분
 
-                this.preview.classList.add(LOOK_FLICK_CAMERA);
+                this.preview.classList.add(this.LOOK_FLICK_CAMERA);
 
-                this.flick_panel.classList.add(FLICK_PANEL);
+                this.flick_panel.classList.add(this.FLICK_PANEL);
                 this.flick_panel.className = "flick_panel" + " s" + i;
                 this.flick_panel.style.left = i * 305;
                 this.flick_panel.id = "flick_panel";
 
-                this.img.classList.add(LOOK_IMG_FILE);
+                this.img.classList.add(this.LOOK_IMG_FILE);
                 this.img.id = "prev_" + View_area;
                 this.img.file = file;
                 this.img.style.width = '100%';

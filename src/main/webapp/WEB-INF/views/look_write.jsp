@@ -138,7 +138,7 @@
     </form>
 </div>
 
-<script  type="module" src="/static/js/look_write.js"></script>
+<script   src="/static/js/look_write.js"></script>
 <!-- <script src="/static/js/lookBoardWrite.js"></script> -->
 <!-- <script type="module" src="/static/js/slideshowClass.js"></script> -->
 <script

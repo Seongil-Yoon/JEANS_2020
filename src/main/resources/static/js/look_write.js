@@ -1,9 +1,3 @@
-console.log("룩작성 진입");
-import * as slideshow from './slideshowClass.js';
-import * as previewImage from './previewImageClass.js';
-let look_writeSlideshow = new slideshow.slideShowClass(600);
-let look_writePreviewImage  = new previewImage.previewImageClass();
-
 //태그 불러오기
 const uploadDiv = document.querySelector("#js-uploadDiv"),
     uploadButton = uploadDiv.querySelector("input"), //파일선택 버튼.
@@ -182,73 +176,71 @@ function previewImage(targetObj, View_area, event) { //(this,'View_area')
 
 
 function excuteSlide() {
-    look_writeSlideshow.slideShow();
-    // slideList = document.querySelector('.look_flick_camera');  // Slide parent dom
-    // slideContents = document.querySelectorAll('.flick_panel');  // each slide dom
-    // slideBtnNext = document.querySelector('#look_slide_button_right'); // next button
-    // slideBtnPrev = document.querySelector('#look_slide_button_left'); // prev button
-    // slideLen = slideContents.length;  // slide length
-    // slideWidth = 300; // slide width
-    // slideSpeed = 300; // slide speed
-    // startNum = 0; // initial slide index (0 ~ 4)
 
-    // console.log(slideLen);
-    // slideList.style.width = slideWidth * (slideLen + 2) + "px";
-    // console.log(slideList);
-    // console.log(slideContents);
+    slideList = document.querySelector('.look_flick_camera');  // Slide parent dom
+    slideContents = document.querySelectorAll('.flick_panel');  // each slide dom
+    slideBtnNext = document.querySelector('#look_slide_button_right'); // next button
+    slideBtnPrev = document.querySelector('#look_slide_button_left'); // prev button
+    slideLen = slideContents.length;  // slide length
+    slideWidth = 300; // slide width
+    slideSpeed = 300; // slide speed
+    startNum = 0; // initial slide index (0 ~ 4)
 
-    // // Copy first and last slide
-    // let firstChild = slideList.firstElementChild;
-    // let lastChild = slideList.lastElementChild;
-    // let clonedFirst = firstChild.cloneNode(true);
-    // let clonedLast = lastChild.cloneNode(true);
+    console.log(slideLen);
+    slideList.style.width = slideWidth * (slideLen + 2) + "px";
 
-    // // Add copied Slides
-    // slideList.appendChild(clonedFirst);
-    // slideList.insertBefore(clonedLast, slideList.firstElementChild);
+    // Copy first and last slide
+    let firstChild = slideList.firstElementChild;
+    let lastChild = slideList.lastElementChild;
+    let clonedFirst = firstChild.cloneNode(true);
+    let clonedLast = lastChild.cloneNode(true);
 
-    // slideList.style.transform = "translate3d(-" + (slideWidth * (startNum + 1)) + "px, 0px, 0px)";
+    // Add copied Slides
+    slideList.appendChild(clonedFirst);
+    slideList.insertBefore(clonedLast, slideList.firstElementChild);
 
-    // let curIndex = startNum; // current slide index (except copied slide)
-    // let curSlide = slideContents[curIndex]; // current slide dom
-    // curSlide.classList.add('slide_active');
+    slideList.style.transform = "translate3d(-" + (slideWidth * (startNum + 1)) + "px, 0px, 0px)";
+
+    let curIndex = startNum; // current slide index (except copied slide)
+    let curSlide = slideContents[curIndex]; // current slide dom
+    curSlide.classList.add('slide_active');
 
 
-    // /** Next Button Event */
-    // slideBtnNext.addEventListener('click', function () {
-    //     if (curIndex <= slideLen - 1) {
-    //         slideList.style.transition = slideSpeed + "ms";
-    //         slideList.style.transform = "translate3d(-" + (slideWidth * (curIndex + 2)) + "px, 0px, 0px)";
-    //     }
-    //     if (curIndex === slideLen - 1) {
-    //         setTimeout(function () {
-    //             slideList.style.transition = "0ms";
-    //             slideList.style.transform = "translate3d(-" + slideWidth + "px, 0px, 0px)";
-    //         }, slideSpeed);
-    //         curIndex = -1;
-    //     }
-    //     curSlide.classList.remove('slide_active');
-    //     curSlide = slideContents[++curIndex];
-    //     curSlide.classList.add('slide_active');
-    // });
+    /** Next Button Event */
+    slideBtnNext.addEventListener('click', function () {
+        if (curIndex <= slideLen - 1) {
+            slideList.style.transition = slideSpeed + "ms";
+            slideList.style.transform = "translate3d(-" + (slideWidth * (curIndex + 2)) + "px, 0px, 0px)";
+        }
+        if (curIndex === slideLen - 1) {
+            setTimeout(function () {
+                slideList.style.transition = "0ms";
+                slideList.style.transform = "translate3d(-" + slideWidth + "px, 0px, 0px)";
+            }, slideSpeed);
+            curIndex = -1;
+        }
+        curSlide.classList.remove('slide_active');
+        curSlide = slideContents[++curIndex];
+        curSlide.classList.add('slide_active');
+    });
 
-    // /** Prev Button Event */
-    // slideBtnPrev.addEventListener('click', function () {
-    //     if (curIndex >= 0) {
-    //         slideList.style.transition = slideSpeed + "ms";
-    //         slideList.style.transform = "translate3d(-" + (slideWidth * curIndex) + "px, 0px, 0px)";
-    //     }
-    //     if (curIndex === 0) {
-    //         setTimeout(function () {
-    //             slideList.style.transition = "0ms";
-    //             slideList.style.transform = "translate3d(-" + (slideWidth * slideLen) + "px, 0px, 0px)";
-    //         }, slideSpeed);
-    //         curIndex = slideLen;
-    //     }
-    //     curSlide.classList.remove('slide_active');
-    //     curSlide = slideContents[--curIndex];
-    //     curSlide.classList.add('slide_active');
-    // });
+    /** Prev Button Event */
+    slideBtnPrev.addEventListener('click', function () {
+        if (curIndex >= 0) {
+            slideList.style.transition = slideSpeed + "ms";
+            slideList.style.transform = "translate3d(-" + (slideWidth * curIndex) + "px, 0px, 0px)";
+        }
+        if (curIndex === 0) {
+            setTimeout(function () {
+                slideList.style.transition = "0ms";
+                slideList.style.transform = "translate3d(-" + (slideWidth * slideLen) + "px, 0px, 0px)";
+            }, slideSpeed);
+            curIndex = slideLen;
+        }
+        curSlide.classList.remove('slide_active');
+        curSlide = slideContents[--curIndex];
+        curSlide.classList.add('slide_active');
+    });
 }
 
 function slide(event) {
