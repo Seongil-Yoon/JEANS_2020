@@ -138,9 +138,7 @@
     </form>
 </div>
 
-<script   src="/static/js/look_write.js"></script>
-<!-- <script src="/static/js/lookBoardWrite.js"></script> -->
-<!-- <script type="module" src="/static/js/slideshowClass.js"></script> -->
+<script   src="/static/js/look_write/look_write.js"></script>
 <script
         src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
@@ -156,8 +154,6 @@
 </c:if>
 <%--header 부분 초기화--%>
 <script>headerReset()</script>
-<!-- <script src="static/js/ex1.js"></script> -->
-<!-- <script src="/static/js/look_info.js"></script> -->
 
 
 </body>

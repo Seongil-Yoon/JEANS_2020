@@ -128,11 +128,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="/static/js/id_nickname_session.js"></script>
-<script type="text/javascript" src="/static/js/lookModify.js"></script>
-<script type="text/javascript" src="/static/js/lookDelete.js"></script>
-<script src="/static/js/look_info.js"></script>
-<script type="text/javascript" src="/static/js/comment.js"></script>
-<script type="text/javascript" src="/static/js/child_comment.js"></script>
+<script type="text/javascript" src="/static/js/lookModify/lookModify.js"></script>
+<script type="text/javascript" src="/static/js/look_info/lookDelete.js"></script>
+<script src="/static/js/look_info/look_info.js"></script>
+<script type="text/javascript" src="/static/js/look_info/comment.js"></script>
+<script type="text/javascript" src="/static/js/look_info/child_comment.js"></script>
 <script>commentReady(${view.look_num})</script>
 <script>lookReady(${view.look_num})</script>
 <%--서버세션이 종료되어 자바스크립트 session 종료--%>
