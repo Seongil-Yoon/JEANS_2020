@@ -1,10 +1,37 @@
-let isEnd = false; //더이상 가져올값이 없으면 중지하기위한 변수
-let num = 0; //댓글 세개씩 나오기 위한변수
+// 처음 게시글 들어 갈때 초기 최신 댓글 10개 받아 오기 위해 20억 기본값 으로 보냄
+let comment_id= 2000000000;
 let scrollTime = true;
+let fk_look_num_Look_look_num;
+let userId="";
 
-//html 에 화면에 뿌릴때사용
-function commentHTML(result, html) {
+function commentReady(look_num,userid) {
+//게시글 기본키 가져오기
+fk_look_num_Look_look_num=look_num;
+//수정 삭제 할때 권한 문제 떄문에 세션 아이디 값 가져 오기
+userId=userid;
 
+    $(window).scroll(function () {   //스크롤 감지 이벤트
+        let scroll = $(document).scrollTop(); //현재 스크롤 값
+        let documentHeight = $(document).height();//문서 전체높이
+        let windowHeight = window.innerHeight; //윈도우 높이
+        //윈도우 높이에 스크롤값을 계속더해서 문서 전체 길이에서 50 px 앞에 스크롤이 왔을때 데이터 불러옴
+        if ((windowHeight + scroll) >= documentHeight - 50) {
+            if (scrollTime == true) {
+                //스크롤 이벤트 중복 실행 방지
+                scrollTime = false
+                //다음 댓글 10개 가져옴
+                commentGet();
+            }
+        }
+    })
+}
+
+//댓글 html 태그 생성 하여 화면에 보여줌
+function commentHTML(result) {
+
+    let html="";
+
+    html += '<div class=\"look_comment\">';
     html += '<div class=\"other_people_img\">';
     html += '<img src=displayMthumbnail/' + result.comment_sender_id + '>';
     html += '</div>';
@@ -17,32 +44,17 @@ function commentHTML(result, html) {
     html += '<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
     html += '</div>';
     html += '<div class=\"comment_textarea_space\">';
-    html += '<textarea style=\"background-color:#e0e0e0 \"disabled class=\"view_comment_textarea\" placeholder=\"' + result.comment_content + '\"></textarea>';
+    html += '<textarea disabled class=\"view_comment_textarea\" placeholder=\"' + result.comment_content + '\"></textarea>';
     html += '</div>';
     html += '<div class="re_comment"> 답글 </div>';
     html += '<div class=\"comment_date\">' + result.date + '</div>';
+    html += '</div>';
 
     return html;
 }
 
-function commentReady(lookNum) {
-    var lookNum = lookNum;
-    commentList(lookNum); //스크롤 전 처음에 3개 댓글 출력
-    $(window).scroll(function () {   //스크롤 감지 이벤트
-        let scroll = $(document).scrollTop(); //현재 스크롤 값
-        let documentHeight = $(document).height();//문서 전체높이
-        let windowHeight = window.innerHeight; //윈도우 높이
-        //윈도우 높이에 스크롤값을 계속더해서 문서 전체 길이에서 50 px 앞에 스크롤이 왔을때 데이터 불러옴
-        if ((windowHeight + scroll) >= documentHeight - 50) {
-            if (scrollTime == true) {
-                commentList(lookNum);
-            }
-        }
-    })
-
-}
-
-function comment() {
+//댓글 입력 함수
+function commentWrite() {
     //name 은중복을 허용해서 사용할때 0을 꼭붙여야함
     var comment_sender_id = document.getElementsByName("comment_sender_id")[0].value
     var comment_sender_name = document.getElementsByName("comment_sender_name")[0].value
@@ -55,6 +67,7 @@ function comment() {
         fk_look_num_Look_look_num: fk_look_num_Look_look_num,
         comment_content: comment_content,
     };
+
     //데이터 json 문자열 형태로 변환
     var commentDto = JSON.stringify(data);
 
@@ -68,7 +81,7 @@ function comment() {
 
 }
 
-//댓글 등록후 댓글 바로위에 등록함수
+//댓글 등록후 댓글 바로 위에 등록 함수
 function commentConfirm(msg, title, commentDto) {
     swal({
         title: title,
@@ -92,14 +105,8 @@ function commentConfirm(msg, title, commentDto) {
                     //result 리턴값 textStatus
                     if (jqxHR.status == 201) {
                         swal('', '댓글을 등록하였습니다.', "success");
-                        let html = "";
-                        //여기서 애만 look_comment 추가하는이유는 수정은 look_comment 부모밑에 붙여서 이태그를 안붙이지만
-                        //여기는 form태그 밑에 붙여서 look_comment 를 html 에 붙여야함
-                        html += '<div class=\"look_comment\">';
-                        html = commentHTML(result, html);
-                        html += '</div>';
 
-                        $("form[name=commentForm]").after(html); //form태그 name이commentForm 인거 바로밑에 추가하기
+                         $("form[name=commentForm]").after(commentHTML(result));
                     }
                 },
                 error: function (error) {
@@ -118,56 +125,29 @@ function commentConfirm(msg, title, commentDto) {
     });
 }
 
-//게시글에 댓글목록 출력 함수
-function commentList(lookNum) {
-    if (isEnd == true) { //가져올값으 없으므로 리턴
-        return;
-    }
-    let look_num = lookNum;
-    scrollTime = false//스크롤이벤트 중복실행방지
+//댓글 10개씩 가져 오는 함수
+function commentGet() {
+
     $.ajax({
-        url: "/look_comment_all/" + look_num, //요청url
-        type: "get",//데이터 전달방식
-        dataType: "json", //json 으로 받기
+        url: "/look_comment_list/"+fk_look_num_Look_look_num+"/"+comment_id,
+        type: "get",
+        dataType: "json", //json 형태로 받기
         success: function (result) {
-            //0 1 2   3 4 5   6 7 8
-            for (var i = num; i < num + 3; i++) {
-                let html = "";
-                if (result.length == i) {
-                    //더이상 가져올 값이 없으므로 true 로 바꿔줌
-                    isEnd = true;
-                }
-
-                html += '<div class=\"look_comment\" >';
-                html += '<div class=\"other_people_img\">';
-                html += '<img src=displayMthumbnail/' + result[i].comment_sender_id + '>';
-
-                //댓글의 이미지썸네일
-                html += '</div>';
-                html += '<div class=\"other_people_name\">' + result[i].comment_sender_name + '</div>';
-                html += '<div class="right_etc">';
-                html += '<input class=\"comment_id\" value="' + result[i].comment_id + '" type="hidden"/>';
-                html += '<input class=\"comment_sender_id\" value="' + result[i].comment_sender_id + '" type="hidden"/>';
-                html += '<img src="static/images/pen.png" alt="modify_img" height="25" width="25" class="right_pen"/>';
-                html += '<img src="static/images/delete.png" alt="delete_img" height="25" width="25" class="right_delete" />';
-                html += '<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
-                html += '</div>';
-                html += '<div class=\"comment_textarea_space\">';
-                html += '<textarea style=\"background-color:#e0e0e0 \"disabled class=\"view_comment_textarea\" placeholder=\"' + result[i].comment_content + '\"></textarea>';
-                html += '</div>';
-                html += '<div class="re_comment"> 답글 </div>';
-                html += '<div class=\"comment_date\">' + result[i].date + '</div>';
-                html += '</div>';
-
-                $(".body_root").append(html); //body 마지막에 추가
+            //최신글 순으로  댓글 10개 받아 와서 받아온 만큼 댓글 화면에 보여줌
+            for(var i=0; i<result.length; i++){
+                let data = result[i];
+                $(".body_root").append( commentHTML(data)); //body 마지막에 추가
             }
-            num += 3; //다음3개 가져오기 위해 3더함
+            //마지막 댓글 기본키 를 변수값 에 넣어서 다음 데이터 10개를 받아올 수 있게 준비함
+            comment_id=result[result.length-1].comment_id;
+
             setTimeout(function () {
                 scrollTime = true;
-            }, 200);//스크롤이벤트 0.2초뒤실행 중복방지위해
+            }, 200);//스크롤 이벤트 0.2초뒤 실행 중복 방지 위해
+
         },
         error: function (error) {
-            if (error.status == 400) {
+            if (error.status == 404) {
                 swal('찾는 자료가 없습니다', '', 'error');
             }
         }
@@ -179,8 +159,8 @@ $(document).on("click", ".right_delete", function (event) {
     // 가져온 이벤트 객체에 부모태그 .right_etc 에 자식객체 input에 value 값 comment_id 가져오기
     let comment_id = $(event.target).parents(".right_etc").children('.comment_id').val();
 
-    if (sessionStorage.getItem("userid") == null) {
-        //로그인 안할경우 로그인 해라
+    if (userId == false) {
+        //로그인 안할 경우 로그인 해라
         swal('로그인 먼저하세요', '', 'error');
     } else {
         swal({
@@ -199,7 +179,7 @@ $(document).on("click", ".right_delete", function (event) {
                     url: "/look_comment/" + comment_id,
                     type: "DELETE", //데이터 전달방식
                     success: function () {
-                        //삭제 이미지 부모객체 look_comment 화면에서 지우기
+                        //삭제 이미지 부모 객체 look_comment 화면 에서 지우기
                         $(event.target).parents(".look_comment").remove();
                         swal('', '댓글을 삭제하였습니다.', "success");
                     },
@@ -220,9 +200,10 @@ $(document).on("click", ".right_delete", function (event) {
 
         });
     }
-
 });
-//댓글 수정이벤트
+
+
+//댓글 수정 이벤트
 $(document).on("click", ".right_pen", function (event) {
     if (sessionStorage.getItem("userid") == null) {
         //로그인 안한 사람 차단
@@ -247,7 +228,7 @@ $(document).on("click", ".right_pen", function (event) {
     html += '</div>';
     html += '<div class="other_people_name">' + nickName + '</div>';
     html += '<div class="comment_textarea_space">';
-    html += '<textarea style="background-color:#F6F6F6 " class="comment_textarea" placeholder="수정할 내용을 입력하세요" name="comment_content"></textarea>';
+    html += '<textarea class="comment_textarea" placeholder="수정할 내용을 입력하세요" name="comment_content"></textarea>';
     html += '</div>';
     html += '<div class="comment_date">';
     html += '<button class="comment_change_button" value="2" type="button" >취소</button>';
@@ -256,64 +237,67 @@ $(document).on("click", ".right_pen", function (event) {
 
     look_commentTag.append(html); //look_comment 아래에 추가
 });
-//수정 다하고 저장 버튼 이나 취소 버튼 누를 경우 이벤트
-$(document).on("click", ".comment_change_button", function (event) {
-    //이벤트 부모태그인 look_comment 값 가져오기
-    let look_commentTag = $(event.target).parents(".look_comment");
-    //댓글 기본키값 가져오기
-    let comment_id = look_commentTag.children('.comment_id').val();
-    //수정내용 가져오기
-    let content = look_commentTag.find(".comment_textarea").val();
-    // 값을 key value 형태로 변환
-    let contentData = {
-        comment_content: content,
-    };
 
-    //저장 버튼누르면 1  취소는 2
-    if ($(event.target).val() == 1) {
-        $.ajax({
-            url: "/look_comment/" + comment_id,
-            type: "PATCH", //데이터 전달방식
-            data: JSON.stringify(contentData), //json 문자열로 반환 해서보냄
-            contentType: "application/json", //json 형태로 보내기
-            success: function (result, textStatus, jqxHR) {
-                look_commentTag.children().remove();
-                let html = '';
-                //수정하여 수정된 html 화면으로 돌려주기
-                look_commentTag.append(commentHTML(result, html));
-            },
-            error: function (error) {
-                //서버오류 500  권한없음 401  찾는내용없음 400
-                if (error.status == 404) {
-                    swal('수정할 댓글이 없습니다', '', 'error');
-                } else if (error.status == 500) {
-                    swal('서버 오류 관리자에게 문의 하세요', '', 'error');
-                } else if (error.status == 401) {
-                    swal('수정할 권한이 없습니다', '', 'error');
-                }
-            }
-        })
-    } else {
-        $.ajax({
-            url: "/look_comment/" + comment_id,
-            type: "GET", //데이터 전달방식
-            success: function (result) {
-                look_commentTag.children().remove();
-                let html = '';
-                //수정취소를 하여 원래 html 화면으로 돌려주기
-                look_commentTag.append(commentHTML(result, html));
-            },
-            error: function (error) {
-                //서버오류 500  권한없음 401  찾는내용없음 400
-                if (error.status == 404) {
-                    swal('찾는 댓글이 없습니다', '', 'error');
-                } else if (error.status == 500) {
-                    swal('서버 오류 관리자에게 문의 하세요', '', 'error');
-                }
-            }
-        })
+// //수정 다하고 저장 버튼 이나 취소 버튼 누를 경우 이벤트
+// $(document).on("click", ".comment_change_button", function (event) {
+//     //이벤트 부모태그인 look_comment 값 가져오기
+//     let look_commentTag = $(event.target).parents(".look_comment");
+//     //댓글 기본키값 가져오기
+//     let comment_id = look_commentTag.children('.comment_id').val();
+//     //수정내용 가져오기
+//     let content = look_commentTag.find(".comment_textarea").val();
+//     // 값을 key value 형태로 변환
+//     let contentData = {
+//         comment_content: content,
+//     };
+//
+//     //저장 버튼누르면 1  취소는 2
+//     if ($(event.target).val() == 1) {
+//         $.ajax({
+//             url: "/look_comment/" + comment_id,
+//             type: "PATCH", //데이터 전달방식
+//             data: JSON.stringify(contentData), //json 문자열로 반환 해서보냄
+//             contentType: "application/json", //json 형태로 보내기
+//             success: function (result, textStatus, jqxHR) {
+//                 look_commentTag.children().remove();
+//                 let html = '';
+//                 //수정하여 수정된 html 화면으로 돌려주기
+//                 look_commentTag.append(commentHTML(result, html));
+//             },
+//             error: function (error) {
+//                 //서버오류 500  권한없음 401  찾는내용없음 400
+//                 if (error.status == 404) {
+//                     swal('수정할 댓글이 없습니다', '', 'error');
+//                 } else if (error.status == 500) {
+//                     swal('서버 오류 관리자에게 문의 하세요', '', 'error');
+//                 } else if (error.status == 401) {
+//                     swal('수정할 권한이 없습니다', '', 'error');
+//                 }
+//             }
+//         })
+//     } else {
+//         $.ajax({
+//             url: "/look_comment/" + comment_id,
+//             type: "GET", //데이터 전달방식
+//             success: function (result) {
+//                 look_commentTag.children().remove();
+//                 let html = '';
+//                 //수정취소를 하여 원래 html 화면으로 돌려주기
+//                 look_commentTag.append(commentHTML(result, html));
+//             },
+//             error: function (error) {
+//                 //서버오류 500  권한없음 401  찾는내용없음 400
+//                 if (error.status == 404) {
+//                     swal('찾는 댓글이 없습니다', '', 'error');
+//                 } else if (error.status == 500) {
+//                     swal('서버 오류 관리자에게 문의 하세요', '', 'error');
+//                 }
+//             }
+//         })
+//
+//     }
+// });
 
-    }
-});
+
 
 

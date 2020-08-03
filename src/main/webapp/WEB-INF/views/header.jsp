@@ -29,27 +29,52 @@
                                                      width="71"/></a>
             </div>
 
+            <c:choose>
+                <%--로그인 한경우--%>
+                <c:when test="${sessionScope.userid != null}">
+                    <a class="header_a" href="look_write">
+                        <div class="logo_right"><span class="look_write">look_write</span></div>
+                    </a>
 
-            <a class="header_a" href="javascript:logo_right_click();">
-                <div class="logo_right"><span class="look_write"></span></div>
-            </a>
+                    <a class="header_a">
+                        <div class="my_info">
+                            <div class="my_picture"><img src="/displaySthumbnail"/></div>
+                            <span class="user_nickname">${sessionScope.usernickname}</span>
+                        </div>
+                    </a>
 
-            <a class="header_a" href="javascript:myInfo_click();">
-                <div class="my_info">
-                    <div class="my_picture"></div>
-                    <span class="user_nickname"></span>
-                </div>
-            </a>
+                    <div class="logout_left"></div>
 
-            <div class="logout_left"></div>
+                    <a class="header_a" href="javascript:logout();">
+                        <div class="logout_login">logout</div>
+                    </a>
 
+                    <div class="logout_right"></div>
+                </c:when>
 
-            <a class="header_a" href="javascript:logout_login_click();">
-                <div class="logout_login"></div>
-            </a>
+                <c:otherwise>
+                    <a class="header_a" href="joinUser">
+                        <div class="logo_right"><span class="look_write">회원가입</span></div>
+                    </a>
 
+                    <a class="header_a">
+                        <div class="my_info">
+                            <div class="my_picture"></div>
+                            <span class="user_nickname"></span>
+                        </div>
+                    </a>
 
-            <div class="logout_right"></div>
+                    <div class="logout_left"></div>
+
+                    <a class="header_a" href="loginUser">
+                        <div class="logout_login">login</div>
+                    </a>
+
+                    <div class="logout_right"></div>
+                </c:otherwise>
+
+            </c:choose>
+
         </div>
     </div>  
     <div class = "header_space"></div>
@@ -62,14 +87,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="/static/js/backCashDelete.js"></script>
-<script src="/static/js/id_nickname_session.js"></script>
-<%--서버세션이 종료되어 자바스크립트 session 종료--%>
-<c:set var="userid" value="${sessionScope.userid}"/>
-<c:if test="${userid == null}">
-    <script>sessionRemove()</script>
-</c:if>
-<%--header 부분 초기화--%>
-<script>headerReset()</script>
+<script src="/static/js/logout.js"></script>
+
 
 </body>
 

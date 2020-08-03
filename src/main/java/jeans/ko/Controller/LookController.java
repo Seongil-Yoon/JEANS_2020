@@ -72,7 +72,7 @@ public class LookController {
         logger.info("view()진입");
         boardDao.countUpdate(look_num); //글상세보기 하면 조회수 증가
         model.addAttribute("view", boardDao.view(look_num)); //게시글정보가져오기
-        model.addAttribute("comment", commentService.list(look_num)); //게시글에 댓글정보가져오기
+
         return "look_info";
     }
 
@@ -105,7 +105,6 @@ public class LookController {
             throw new NotFoundException(String.format("ID[%s] not found", id));
         }
         map.put("look", boardDto); //게시글 가져오기
-        map.put("lookCommentList", commentService.list(id)); //댓글정보 가져오기
         boardDao.countUpdate(id); //글상세보기 하면 조회수 증가
 
         return map;

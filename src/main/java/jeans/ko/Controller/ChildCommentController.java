@@ -2,6 +2,7 @@ package jeans.ko.Controller;
 
 import jeans.ko.Dto.ChildCommentDto;
 import jeans.ko.Service.ChildCommentService;
+import jeans.ko.exception.BadRequestException;
 import jeans.ko.exception.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +35,7 @@ public class ChildCommentController {
         if (result.getErrorCount() > 2) {
             //대댓글 입력 안된 부분 있으면 400에러  2이상인 이유는 처음 넘어올때
             // 작성 시간과 기본 키값이 2개는 기본 적으로 안넘어오기 떄문
-            throw new UnauthorizedException(String.format("childComment validation error"));
+            throw new BadRequestException(String.format("childComment validation error"));
         }
 
         if(session.getAttribute("userid")!=null){
