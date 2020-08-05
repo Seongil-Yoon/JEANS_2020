@@ -86,10 +86,17 @@ public class LookController {
     }
 
     @ResponseBody
-    @GetMapping("/looks")  //룩 전체 리스트
-    public List<BoardDto> searchAllLook() {
+    @GetMapping("/looksList/{look_num}")  //룩 전체 리스트
+    public List<BoardDto> searchAllLook(@PathVariable int look_num) {
         logger.info("searchAllLook()진입");
-        return boardDao.list();
+
+        if (boardDao.list(look_num) == null) {
+            //게시글 이 없으면 not found 404 에러
+            throw new NotFoundException(String.format("board not found"));
+        }else {
+            return boardDao.list(look_num);
+        }
+
     }
 
     @ResponseBody

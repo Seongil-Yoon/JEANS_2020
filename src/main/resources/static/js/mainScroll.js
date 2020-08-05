@@ -1,6 +1,6 @@
-let isEnd = false; //더이상 가져올값이 없으면 중지하기 위한변수
-let num = 0; //4개씩 나오기 위한변수
-let mainScrollTime = true;
+let look_num = 20000; //게시글 6개씩 불러 오기 위해 look_num 값넣는 변수 초기값 은  2000000000
+let mainScrollTime = true; //스크롤 중복 방지 변수
+let end=true //게시글 없을 경우 데이터 가져오지 않는 변수
 
 $(document).ready(function () {
     start(); //처음 4개 출력
@@ -11,7 +11,7 @@ $(document).ready(function () {
         let windowHeight = window.innerHeight; //윈도우 높이
         //윈도우 높이에 스크롤값을 계속더해서 문서 전체 길이에서 100 px 앞에 스크롤이 왔을때 데이터 불러옴
         if ((windowHeight + scroll) >= documentHeight - 100) {
-            if (mainScrollTime == true) {
+            if (mainScrollTime == true && end==true) {
                 console.log("현재 스크롤 값", scroll);
                 console.log("전체높이", documentHeight);
                 console.log("윈도우 높이", windowHeight);
@@ -20,123 +20,104 @@ $(document).ready(function () {
             }
         }
     })
-
 });
 
 function start() {
+    //무한 스크롤 중복 방지
     mainScrollTime = false;
-
     $.ajax({
-        url: "/looks", //요청url
+        url: "/looksList/"+look_num,
         type: "GET",
         dataType: "json", //json 으로 받기
-        success: function (result) { //성공 하면 데이터를 result로 받아옴
+        success: function (result) {
 
-            if (isEnd == true) {
-                return;
-            }
+            for (var i = 0; i < result.length ; i++) {
 
-            //4개씩 출력 0~3  4~7 8~11 12~15
-            for (var i = num; i < num + 4; i++) {
+                let html = "";
+                html += '<a class=\"look_view_a\"  href=\"look?look_num=' + result[i].look_num + '\">';
+                html += '<div class=\"main\">';
+                html += '<div claas=\"main_container\">';
+                html += '<ul class=\"main_look_item\">';
+                html += '<li id=1>';
+                html += '<div class=\"is_body\" >';
+                html += '<!-- 헤더-->';
+                html += '<div class=\"my_img\">';
+                html += '<img src=displayMthumbnail/' + result[i].fk_userid_user_userid + '>';
+                html += ' </div>';
+                html += '<div class=\"name\">';
+                html += ' <ul class=\"look_header_ul\">';
+                html += ' <li class=\"look_header_li\" style=\"width: auto\">';
+                html += '<span class=\"user_name\" style=\"width: auto\">' + result[i].nickname + '</span>';
+                html += ' </li>';
+                html += ' <li class=\"look_header_li\" style=\"width: auto; \"></li>';
+                html += '<li class=\"look_header_li\"\n" style=\"width: fit-content; text-align: right; float: right; font-size: 15px; font-weight: bold\">';
+                html += '<span id=\"look_date\">' + result[i].look_date + '</span>';
+                html += ' </li>';
+                html += ' </ul>';
+                html += ' </div>';
+                html += '<div class=\"title\" >' + result[i].title + '</div>';
+                html += '<!-- 본문-->';
+                html += ' <div class=\"look_img\">';
+                html += '<div class=\"look_img_in\">';
+                // html += '<img src=\"static/images/1.JPG\" alt=\"look_image\" class= \"look_img_file\"/>';
+                html += '<img class= \"look_img_file\" src=\"displayLthumbnail/' + result[i].look_num + '\">';
+                html += ' </div>';
+                html += ' </div>';
+                html += '<div class=\"look_textarea_space\">';
+                html += '<form class=\"textarea_form\" >';
+                html += '<textarea  class = \"view_look_textarea\" placeholder=\"' + result[i].tag + '\"></textarea>';
+                html += '</form>';
+                html += ' </div>';
+                html += '<!-- 푸터-->';
+                html += ' <ul class=\"look_footer_ul\">';
+                html += '<li class=\"look_footer_li\">';
+                html += '<div class =\"like_img_box\">';
+                html += '<img src=\"static/images/heart.svg\" alt=\"heart_image\" class=\"like_img\" />';
+                html += ' </div>';
+                html += ' </li>';
+                html += '<li class=\"look_footer_li\">';
+                html += '<div class = \"like_number\">';
+                html += '<span>10.5K</span>';
+                html += ' </div>';
+                html += ' </li>';
+                html += '<li class=\"look_footer_li\" style=\"width: 25px;\"></li>';
+                html += ' <li class=\"look_footer_li\">';
+                html += '<div class= \"count_img_box\">';
+                html += '<img src=\"static/images/board_view_icon.svg\" alt=\"board_view_icon\" class=\"count_img\"/>';
+                html += ' </div>';
+                html += ' </li>';
+                html += '<li class=\"look_footer_li\">';
+                html += ' <div class = \"count_number\">';
+                html += '<span>' + result[i].count + '</span>';
+                html += ' </div>';
+                html += '</ul>';
+                html += ' <div class=\"space_end\"></div>';
+                html += ' </div>';
+                html += ' </li>';
+                html += '</ul>';
+                html += ' </div>';
+                html += ' </div>';
+                html += ' </a>';
 
-                if (result[i].look_num == null) {
-                    isEnd = true; //더이상 가져올값이 없으면 true로 바꿔 더이상 값을 못가져오게함
-                }
-
-                let html = "\n" +
-                    "\n" +
-                    "      <a class=\"look_view_a\"  href=\"look?look_num=" + result[i].look_num + "\">\n" +
-                    "          <div class=\"main\">\n" +
-                    "\n" +
-                    "              <div claas=\"main_container\">\n" +
-                    "\n" +
-                    "                  <ul class=\"main_look_item\">\n" +
-                    "                      <li id=1>\n" +
-                    "                          <div class=\"is_body\" >\n" +
-                    "                              <!-- 헤더-->\n" +
-                    "                              <div class=\"my_img\">\n" +
-                    "                                 <img src=\"displayMthumbnail/" + result[i].fk_userid_user_userid + "\">\n" +
-                    "                              </div>\n" +
-                    "                              <div class=\"name\">\n" +
-                    "                                  <ul class=\"look_header_ul\">\n" +
-                    "                                      <li class=\"look_header_li\" style=\"width: auto\">\n" +
-                    "                                          <span class=\"user_name\" style=\"width: auto\">" + result[i].nickname + "</span>\n" +
-                    "                                      </li>\n" +
-                    "                                      <li class=\"look_header_li\" style=\"width: auto; \"></li>\n" +
-                    "                                      <li class=\"look_header_li\"\n" +
-                    "                                          style=\"width: fit-content; text-align: right; float: right; font-size: 15px; font-weight: bold\">\n" +
-                    "                                          <span id=\"look_date\">" + result[i].look_date + "</span>\n" +
-                    "                                      </li>\n" +
-                    "                                  </ul>\n" +
-                    "\n" +
-                    "                              </div>\n" +
-                    "                              <div class=\"title\" >" + result[i].title + "</div>\n" +
-                    "\n" +
-                    "                              <!-- 본문-->\n" +
-                    "                              <div class=\"look_img\">\n" +
-                    "                                  <div class=\"look_img_in\">\n" +
-                    "                                      <img src=\"displayLthumbnail/"+result[i].look_num+"\">\n" +/*건드려야할부분*/
-/*                  "                                      <img src=\"static/images/4.JPG\" alt=\"look_image\" class= \"look_img_file\"/>\n" +*/
-                    "                                  </div>\n" +
-                    "                              </div>\n" +
-                    "\n" +
-                    "                              <div class=\"look_textarea_space\">\n" +
-                    "                                  <form class=\"textarea_form\" >\n" +
-                    "                                      <textarea style=\"background-color: #e0e0e0\" class = \"view_look_textarea\" placeholder=\"" + result[i].tag + "\"></textarea>\n" +
-                    "                                  </form>\n" +
-                    "                              </div>\n" +
-                    "\n" +
-                    "                              <!-- 푸터-->\n" +
-                    "                              <ul class=\"look_footer_ul\">\n" +
-                    "                                  <li class=\"look_footer_li\">\n" +
-                    "                                      <div class =\"like_img_box\">\n" +
-                    "                                          <img src=\"static/images/heart.svg\" alt=\"heart_image\" class=\"like_img\" />\n" +
-                    "                                      </div>\n" +
-                    "                                  </li>\n" +
-                    "                                  <li class=\"look_footer_li\">\n" +
-                    "                                      <div class = \"like_number\">\n" +
-                    "                                          <span>10.5K</span>\n" +
-                    "                                             " +
-                    "                                      </div>\n" +
-                    "                                  </li>\n" +
-                    "                                  <li class=\"look_footer_li\" style=\"width: 25px;\"></li>\n" +
-                    "                                  <li class=\"look_footer_li\">\n" +
-                    "                                      <div class= \"count_img_box\">\n" +
-                    "                                          <img src=\"static/images/board_view_icon.svg\" alt=\"board_view_icon\" class=\"count_img\"/>\n" +
-                    "                                      </div>\n" +
-                    "                                  </li>\n" +
-                    "                                  <li class=\"look_footer_li\">\n" +
-                    "                                      <div class = \"count_number\">\n" +
-                    "                                          <span>" + result[i].count + "</span>\n" +
-                    "                                      </div>\n" +
-                    "\n" +
-                    "                              </ul>\n" +
-                    "                              <div class=\"space_end\"></div>\n" +
-                    "                          </div>\n" +
-                    "                      </li>\n" +
-                    "                  </ul>\n" +
-                    "\n" +
-                    " \n" +
-                    "\n" +
-                    "\n" +
-                    "              </div>\n" +
-                    "\n" +
-                    "          </div>\n" +
-                    "      </a>\n" +
-                    "      </div>"
-                // let toBodyroot = $(".body_root").append(html);
-                // let toWebview = $(".webview").append(toBodyroot);
-                // $('body').append(toWebview);
                 $(".body_root").append(html);
             }
 
+            //다음 게시글 6개 가져 오기 위해 마지막 게시글 기본키 값 넘겨줌
+            look_num=result[result.length-1].look_num;
+
             setTimeout(function () {
                 mainScrollTime = true;
-            }, 400);//스크롤이벤트 0.2초뒤실행 중복방지위해
-            num += 4; //4개씩 차례대로 출력하게 4더함
+            }, 400);//스크롤 이벤트 0.2초뒤 실행 중복방지 위해
+
         },
-        error: function (errorThrown) {
-            alert("fail");
+        error: function (error) {
+            //서버오류 500  권한없음 401  찾는내용없음 400
+            if (error.status == 500) {
+                swal('서버오류', '', 'error');
+            } else if (error.status == 404) {
+                end=false;
+                //가져올 게시글이 없어서 더이상 데이터를 가져오지 않게 바꿈
+            }
         }
     });
 }

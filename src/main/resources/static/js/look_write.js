@@ -342,12 +342,12 @@ const saveDiv = document.querySelector(".save"),
 
 
 function lookWrite() {
+    let userid = document.getElementsByName("userid")[0].value
 
-    if (sessionStorage.getItem("userid") == null) {
+    if ( userid == false) {
         swal('', '로그인을 먼저하세요', '');
         return
     }
-
     let title = document.getElementsByName("title")[0].value
     let season = document.getElementsByName("season");
     let look_public = document.getElementsByName("look_public");
