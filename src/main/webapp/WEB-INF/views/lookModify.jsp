@@ -96,8 +96,6 @@
                     <span class="Jeans_bule"  >*메모</span>
                 </div>
 
-
-
                 <div class="memo">
                     <textarea name="memo" class="input_memo">${view.memo}</textarea>
                 </div>
@@ -106,8 +104,7 @@
             <div class="space"></div>
             <div>
                 <div class="save">
-                    <%--lookWrite에 modify 넣은이유 looKWrite에서 글작성 기능도 있어 구분위해서--%>
-                    <button type="button" class="save_button" onclick="lookWrite('modify')">수정</button>
+                    <button type="button" class="save_button" onclick="modifiy()">수정</button>
                 </div>
             </div>
 
@@ -115,7 +112,6 @@
     </form>
 </div>
 
-<script src="/static/js/lookModify/lookBoardWrite.js"></script>
 <script
         src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
@@ -126,13 +122,6 @@
 <script type="text/javascript" src="/static/js/lookModify/lookModify.js"></script>
 <%--수정전 내가선택한 계절 이랑 공개여부 값보내기--%>
 <script>seasonLook_publicResult('${view.season}',${view.look_public})</script>
-<%--서버세션이 종료되어 자바스크립트 session 종료--%>
-<c:set var="userid" value="${sessionScope.userid}"/>
-<c:if test="${userid == null}">
-    <script>sessionRemove()</script>
-</c:if>
-<%--header 부분 초기화--%>
-<script>headerReset()</script>
 
 </body>
 </html>

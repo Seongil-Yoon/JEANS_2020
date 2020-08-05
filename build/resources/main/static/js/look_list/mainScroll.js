@@ -1,6 +1,6 @@
-let isEnd = false; //더이상 가져올값이 없으면 중지하기 위한변수
-let num = 0; //4개씩 나오기 위한변수
-let mainScrollTime = true;
+let look_num = 20000; //게시글 6개씩 불러 오기 위해 look_num 값넣는 변수 초기값 은  2000000000
+let mainScrollTime = true; //스크롤 중복 방지 변수
+let end=true //게시글 없을 경우 데이터 가져오지 않는 변수
 
 $(document).ready(function () {
     start(); //처음 4개 출력
@@ -11,7 +11,7 @@ $(document).ready(function () {
         let windowHeight = window.innerHeight; //윈도우 높이
         //윈도우 높이에 스크롤값을 계속더해서 문서 전체 길이에서 100 px 앞에 스크롤이 왔을때 데이터 불러옴
         if ((windowHeight + scroll) >= documentHeight - 100) {
-            if (mainScrollTime == true) {
+            if (mainScrollTime == true && end==true) {
                 console.log("현재 스크롤 값", scroll);
                 console.log("전체높이", documentHeight);
                 console.log("윈도우 높이", windowHeight);
@@ -20,28 +20,18 @@ $(document).ready(function () {
             }
         }
     })
-
 });
 
 function start() {
+    //무한 스크롤 중복 방지
     mainScrollTime = false;
-
     $.ajax({
-        url: "/looks", //요청url
+        url: "/looksList/"+look_num,
         type: "GET",
         dataType: "json", //json 으로 받기
-        success: function (result) { //성공 하면 데이터를 result로 받아옴
+        success: function (result) {
 
-            if (isEnd == true) {
-                return;
-            }
-
-            //4개씩 출력 0~3  4~7 8~11 12~15
-            for (var i = num; i < num + 4; i++) {
-
-                if (result[i].look_num == null) {
-                    isEnd = true; //더이상 가져올값이 없으면 true로 바꿔 더이상 값을 못가져오게함
-                }
+            for (var i = 0; i < result.length ; i++) {
 
                 let html = "";
                 html += '<a class=\"look_view_a\"  href=\"look?look_num=' + result[i].look_num + '\">';
@@ -109,20 +99,25 @@ function start() {
                 html += ' </div>';
                 html += ' </a>';
 
-
-                // let toBodyroot = $(".body_root").append(html);
-                // let toWebview = $(".webview").append(toBodyroot);
-                // $('body').append(toWebview);
                 $(".body_root").append(html);
             }
 
+            //다음 게시글 6개 가져 오기 위해 마지막 게시글 기본키 값 넘겨줌
+            look_num=result[result.length-1].look_num;
+
             setTimeout(function () {
                 mainScrollTime = true;
-            }, 400);//스크롤이벤트 0.2초뒤실행 중복방지위해
-            num += 4; //4개씩 차례대로 출력하게 4더함
+            }, 400);//스크롤 이벤트 0.2초뒤 실행 중복방지 위해
+
         },
-        error: function (errorThrown) {
-            alert("fail");
+        error: function (error) {
+            //서버오류 500  권한없음 401  찾는내용없음 400
+            if (error.status == 500) {
+                swal('서버오류', '', 'error');
+            } else if (error.status == 404) {
+                end=false;
+                //가져올 게시글이 없어서 더이상 데이터를 가져오지 않게 바꿈
+            }
         }
     });
 }

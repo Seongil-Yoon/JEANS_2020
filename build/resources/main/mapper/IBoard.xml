@@ -31,8 +31,9 @@
         </foreach>
     </insert>
 
+    <!-- &lt;는 < 와 같다 게시글 6개씩 불러옴 -->
     <select id="list" resultType="jeans.ko.Dto.BoardDto">
-        select * from look order by look_num desc
+        SELECT * FROM look WHERE look_num &lt; #{look_num} ORDER BY look_num DESC LIMIT 6;
     </select>
 
     <select id="view" resultType="jeans.ko.Dto.BoardDto">

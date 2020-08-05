@@ -36,8 +36,8 @@
             <c:set var="viewId" value="${view.fk_userid_user_userid}"/>
 
             <div class = "delete">
-                <img src="static/images/pen.png" alt="search" height="25" width="25" onclick="lookModify(${view.look_num},'${viewId}')"/>
-                <img src="static/images/delete.png" alt="search" height="25" width="25" onclick="lookDelete(${view.look_num},'${viewId}')"/>
+                <img src="static/images/pen.png" alt="search" height="25" width="25" onclick="lookModify(${view.look_num},'${viewId}','${sessionScope.userid}')"/>
+                <img src="static/images/delete.png" alt="search" height="25" width="25" onclick="lookDelete(${view.look_num},'${viewId}','${sessionScope.userid}')"/>
             </div>
 
             <!-- 슬라이드 쇼-->
@@ -112,7 +112,7 @@
                                 class="comment_textarea" placeholder="댓글 내용을 입력하세요" name="comment_content"></textarea>
                     </div>
                     <div class="comment_date">
-                        <button class="comment_button" type="button" onclick="comment()">댓글</button>
+                        <button class="comment_button" type="button" onclick="commentWrite()">댓글</button>
                     </div>
                 </div>
             </c:if>
@@ -133,14 +133,8 @@
 <script type="text/javascript" src="/static/js/look_info/look_info.js"></script>
 <script type="text/javascript" src="/static/js/look_info/comment.js"></script>
 <script type="text/javascript" src="/static/js/look_info/child_comment.js"></script>
-<script>commentReady(${view.look_num})</script>
+<%--댓글 내용출력 위해 현재글에 기본키를 댓글 자바스크립트에 넘김--%>
+<script>commentReady(${view.look_num},'${sessionScope.userid}')</script>
 <script>lookReady(${view.look_num})</script>
-<%--서버세션이 종료되어 자바스크립트 session 종료--%>
-<c:set var="userid" value="${sessionScope.userid}"/>
-<c:if test="${userid == null}">
-    <script>sessionRemove()</script>
-</c:if>
-<%--header 부분 초기화--%>
-<script>headerReset()</script>
 </body>
 </html>

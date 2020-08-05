@@ -32,10 +32,9 @@
 
 
             <div class="name">
-
                 <span class="Jeans_bule">*글제목</span>ㅤ
-                <input type="title" class="input_name" name="title"/>&nbsp;
-
+                <input type="title" class="input_name" name="title"/>
+                <input type="hidden" name="userid" value="${sessionScope.userid}"/>&nbsp;&nbsp;
             </div>
 
             <div class="space"></div>
@@ -148,16 +147,6 @@
         crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script src="/static/js/id_nickname_session.js"></script>
-
-<%--서버세션이 종료되어 자바스크립트 session 종료--%>
-<c:set var="userid" value="${sessionScope.userid}"/>
-<c:if test="${userid == null}">
-    <script>sessionRemove()</script>
-</c:if>
-<%--header 부분 초기화--%>
-<script>headerReset()</script>
-
 
 </body>
 </html>
