@@ -214,7 +214,7 @@
     </div>
     
 
-    <script src ="static/js/mypageUser.js"></script>
+    <script src ="/static/js/mypageUser/mypageUser.js"></script>
     <script
             src="https://code.jquery.com/jquery-3.5.1.min.js"
             integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
@@ -222,7 +222,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <script src="/static/js/backCashDelete.js"></script>
+<<<<<<< HEAD
     <script src="/static/js/id_nickname_session.js"></script>
+=======
+>>>>>>> 76a986f4d821705fdd14aa2f550b4221ee9f8364
 
 </body>
 </html>

@@ -24,4 +24,7 @@ public interface IUserDao {
     //유저 아이디로 프로필사진유무확인
     public String getPicture(String userid);
     public void list();
+
+    //아이디와 비밀번호를 입력하면 userDto 다 반환
+    public UserDto getInformation(UserDto userDto);
 }

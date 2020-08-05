@@ -44,29 +44,11 @@
 
             <div class="look_img_container">
                 <div class="look_img_viewport">
-                    <div class="look_flick_camera">
-
-                        <div class="flick_panel s1" style="left: 0px;">
-                            <img src="static/images/100.jpg" alt="look_image" class="look_img_file"/>
-                        </div>
-                        <div class="flick_panel s2" style="left: 305px;">
-                            <img src="static/images/101.jpg" alt="look_image" class="look_img_file"/>
-                        </div>
-                        <div class="flick_panel s3" style="left: 610px;">
-                            <img src="static/images/102.jpg" alt="look_image" class="look_img_file"/>
-                        </div>
-                        <div class="flick_panel s4" style="left: 915px;">
-                            <img src="static/images/201.jpg" alt="look_image" class="look_img_file"/>
-                        </div>
-                        <div class="flick_panel s5" style="left: 1220px;">
-                            <img src="static/images/202.jpg" alt="look_image" class="look_img_file"/>
-                        </div>
-                        <div class="flick_panel s6" style="left: 1525px;">
-                            <img src="static/images/203.jpg" alt="look_image" class="look_img_file"/>
-                        </div>
-                        <div class="flick_panel s7" style="left: 1830px;">
-                            <img src="static/images/4.jpg" alt="look_image" class="look_img_file"/>
-                        </div>
+                    <div class="look_flick_camera" id="View_area">
+                        <!-- preview == View_area -->
+                        <!-- <div  class="flick_panel" style="left: 0px;">
+                            <img/>
+                        </div> JS로 태그 생성-->
                     </div>
 
                     <button type="button" class="look_slide_button" id="look_slide_button_left" style="left: 0;">
@@ -81,6 +63,7 @@
 
             <div class="look_textarea_space">
                 <form class="textarea_form">
+
                     <textarea  disabled class="view_textarea"
                             placeholder="${view.memo}"></textarea>
                 </form>
@@ -144,13 +127,14 @@
         crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script src="/static/js/id_nickname_session.js"></script>
-<script type="text/javascript" src="/static/js/lookModify.js"></script>
-<script type="text/javascript" src="/static/js/lookDelete.js"></script>
-<script src="/static/js/look_info.js"></script>
-<script type="text/javascript" src="/static/js/look_comment.js"></script>
-<script type="text/javascript" src="/static/js/child_comment.js"></script>
+<script type="text/javascript" src="/static/js/lookModify/lookModify.js"></script>
+<script type="text/javascript" src="/static/js/look_info/lookDelete.js"></script>
+<script type="text/javascript" src="/static/js/look_info/look_info.js"></script>
+<script type="text/javascript" src="/static/js/look_info/comment.js"></script>
+<script type="text/javascript" src="/static/js/look_info/child_comment.js"></script>
+<script type="text/javascript" src="/static/js/look_info/look_comment.js"></script>
 <%--댓글 내용출력 위해 현재글에 기본키를 댓글 자바스크립트에 넘김--%>
 <script>commentReady(${view.look_num},'${sessionScope.userid}')</script>
+<script>lookReady(${view.look_num})</script>
 </body>
 </html>

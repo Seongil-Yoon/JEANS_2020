@@ -112,7 +112,6 @@
     </form>
 </div>
 
-<script src="/static/js/lookBoardWrite.js"></script>
 <script
         src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
@@ -120,7 +119,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="/static/js/id_nickname_session.js"></script>
-<script type="text/javascript" src="/static/js/lookModify.js"></script>
+<script type="text/javascript" src="/static/js/lookModify/lookModify.js"></script>
 <%--수정전 내가선택한 계절 이랑 공개여부 값보내기--%>
 <script>seasonLook_publicResult('${view.season}',${view.look_public})</script>
 

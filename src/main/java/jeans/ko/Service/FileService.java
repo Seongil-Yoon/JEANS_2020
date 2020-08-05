@@ -103,8 +103,10 @@ public class FileService implements IFileService {
         File f = new File(uploadPath, filename);
 
         BufferedImage sourceImg = ImageIO.read(f);
-        BufferedImage smallImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 40);
 
+        //중간에 크롭으로 정사각형으로 만든 다.
+        //그 후에 resize...
+        BufferedImage smallImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 40);
         BufferedImage middleImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 50);
 
 

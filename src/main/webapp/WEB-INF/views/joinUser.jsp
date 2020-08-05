@@ -7,8 +7,8 @@
 <head>
     <meta charset="UTF-8"/>
     <title>회원가입</title>
-    <link rel="stylesheet" href="static/css/joinUser.css"/>
-    <link rel="stylesheet" href="static/css/jeans_header_.css"/>
+    <link rel="stylesheet" href="/static/css/joinUser.css"/>
+    <link rel="stylesheet" href="/static/css/jeans_header_.css"/>
 </head>
 <body>
 
@@ -106,9 +106,13 @@
         crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<<<<<<< HEAD
 <script src="/static/js/joinUser.js"/>
 <script src="/static/js/id_nickname_session.js"></script>
 
+=======
+<script src="/static/js/joinUser/joinUser.js"/>
+>>>>>>> 76a986f4d821705fdd14aa2f550b4221ee9f8364
 <script src="static/js/ex1.js"></script>
 </body>
 </html>
