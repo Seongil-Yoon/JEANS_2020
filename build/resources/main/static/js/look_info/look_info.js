@@ -20,127 +20,127 @@ let img = 0;
 let files = 0;
 let fileBuffer = 0;  //formdData에 날릴 배열, input태그의 배열에 들어간 파일을 보내지 않음.
 
-function previewImage(targetObj, View_area, event) { //(this,'View_area')
-    preview = document.getElementById(View_area); //div id
+///////////  전역 변수  //////////////////
+//////////////////////////////////////////
+//////////////////////////////////////////
+
+function previewImage(result) { //(this,'View_area')
+    preview = document.getElementById("View_area"); //div id
     const ua = window.navigator.userAgent;
-    fileBuffer = Array.prototype.slice.call(event.target.files);
 
-    storeBuffer();
+    for (let i = 0; i < result.length; i++) {
+        let file = result[i];
+        console.log("파일", file);
+        // let imageType = /image.*/; //이미지 파일일경우만.. 뿌려준다.
+        // if (!file.type.match(imageType))
+        //     continue;
 
+        flick_panel = document.createElement('div');
+        img = document.createElement("img");
+        //태그 생성 부분
 
-    //ie일때(IE8 이하에서만 작동)
-    if (ua.indexOf("MSIE") > -1) {
-        targetObj.select();
-        try {
-            let src = document.selection.createRange().text; // get file full path(IE9, IE10에서 사용 불가)
-            let ie_preview_error = document.getElementById("ie_preview_error_" + View_area);
+        console.log("View_area", preview);
+        console.log("flick_panel", flick_panel);
 
+        preview.appendChild(flick_panel);
+        flick_panel.appendChild(img); //flick_panel의자식으로 img태그를 연결
+        //태그 연결 부분
 
-            if (ie_preview_error) {
-                preview.removeChild(ie_preview_error); //error가 있으면 delete
-            }
+        preview.classList.add(LOOK_FLICK_CAMERA);
 
-            let img = document.getElementById(View_area); //이미지가 뿌려질 곳
+        flick_panel.classList.add(FLICK_PANEL);
+        flick_panel.className = "flick_panel" + " s" + i;
+        flick_panel.style.left = i * 300;
+        flick_panel.id = "flick_panel";
 
-            //이미지 로딩, sizingMethod는 div에 맞춰서 사이즈를 자동조절 하는 역할
-            img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + src + "', sizingMethod='scale')";
-        } catch (e) {
-            if (!document.getElementById("ie_preview_error_" + View_area)) {
-                let info = document.createElement("<p>");
-                info.id = "ie_preview_error_" + View_area;
-                info.innerHTML = e.name;
-                preview.insertBefore(info, null);
-            }
-        }
-        //ie가 아닐때(크롬, 사파리, FF)
-    } else {
+        img.classList.add(LOOK_IMG_FILE);
+        img.id = "prev_" + View_area;
+        img.src = `data:image/jpg;base64, ${file}`
+        img.style.width = '100%';
+        img.style.height = '100%';
+        //태그 속성 적용 부분
+        console.log(flick_panel);
 
-        files = targetObj.files;
-        console.log("파일s", files);
-        for (let i = 0; i < fileBuffer.length; i++) {
-            let file = fileBuffer[i];
-            console.log("파일", file);
-            console.log("this.value", targetObj);
-            let imageType = /image.*/; //이미지 파일일경우만.. 뿌려준다.
-            if (!file.type.match(imageType))
-                continue;
-            // let prevImg = document.getElementById("prev_" + View_area); //이전에 미리보기가 있다면 삭제
-            // if (prevImg) {
-            //     preview.removeChild(prevImg);
-            // }
-
-
-            flick_panel = document.createElement('div');
-            img = document.createElement("img");
-            //태그 생성 부분
-
-            console.log("View_area", preview);
-            console.log("flick_panel", flick_panel);
-
-            preview.appendChild(flick_panel);
-            flick_panel.appendChild(img); //flick_panel의자식으로 img태그를 연결
-            //태그 연결 부분
-
-            preview.classList.add(LOOK_FLICK_CAMERA);
-
-            flick_panel.classList.add(FLICK_PANEL);
-            flick_panel.className = "flick_panel" + " s" + i;
-            flick_panel.style.left = i * 305;
-            flick_panel.id = "flick_panel";
-
-            img.classList.add(LOOK_IMG_FILE);
-            img.id = "prev_" + View_area;
-            img.file = file;
-            img.style.width = '100%';
-            img.style.height = '100%';
-            //태그 속성 적용 부분
-
-
-
-            console.log(flick_panel);
-            // document.getElementsByClassName('flick_panel').files[length];
-            // preview.appendChild(createFlick_panel(img));
-
-            if (window.FileReader) { // FireFox, Chrome, Opera 확인.
-                let reader = new FileReader();
-                reader.onloadend = (function (aImg) {
-                    return function (e) {
-                        aImg.src = e.target.result;
-                    };
-                })(img);
-                reader.readAsDataURL(file);
-            } else { // safari is not supported FileReader
-                //alert('not supported FileReader');
-                if (!document.getElementById("sfr_preview_error_"
-                    + View_area)) {
-                    let info = document.createElement("p");
-                    info.id = "sfr_preview_error_" + View_area;
-                    info.innerHTML = "not supported FileReader";
-                    preview.insertBefore(info, null);
-                }
-            }
-            console.log("반복횟수", i);
-        }
+        console.log("반복횟수", i);
     }
 }
 
-function infoSlide(result) {
 
-}
+function excuteSlide() {
 
-function lookReady(lookNum) {
-    let lookNumer = lookNum;
-    init(lookNumer);
+    slideList = document.querySelector('.look_flick_camera');  // Slide parent dom
+    slideContents = document.querySelectorAll('.flick_panel');  // each slide dom
+    slideBtnNext = document.querySelector('#look_slide_button_right'); // next button
+    slideBtnPrev = document.querySelector('#look_slide_button_left'); // prev button
+    slideLen = slideContents.length;  // slide length
+    slideWidth = 300; // slide width
+    slideSpeed = 280; // slide speed
+    startNum = 0; // initial slide index (0 ~ 4)
+
+    console.log(slideLen);
+    slideList.style.width = slideWidth * (slideLen + 2) + "px";
+
+    // Copy first and last slide
+    let firstChild = slideList.firstElementChild;
+    let lastChild = slideList.lastElementChild;
+    let clonedFirst = firstChild.cloneNode(true);
+    let clonedLast = lastChild.cloneNode(true);
+
+    // Add copied Slides
+    slideList.appendChild(clonedFirst);
+    slideList.insertBefore(clonedLast, slideList.firstElementChild);
+
+    slideList.style.transform = "translate3d(-" + (slideWidth * (startNum + 1)) + "px, 0px, 0px)";
+
+    let curIndex = startNum; // current slide index (except copied slide)
+    let curSlide = slideContents[curIndex]; // current slide dom
+    curSlide.classList.add('slide_active');
+
+
+    /** Next Button Event */
+    slideBtnNext.addEventListener('click', function () {
+        if (curIndex <= slideLen - 1) {
+            slideList.style.transition = slideSpeed + "ms";
+            slideList.style.transform = "translate3d(-" + (slideWidth * (curIndex + 2)) + "px, 0px, 0px)";
+        }
+        if (curIndex === slideLen - 1) {
+            setTimeout(function () {
+                slideList.style.transition = "0ms";
+                slideList.style.transform = "translate3d(-" + slideWidth + "px, 0px, 0px)";
+            }, slideSpeed);
+            curIndex = -1;
+        }
+        curSlide.classList.remove('slide_active');
+        curSlide = slideContents[++curIndex];
+        curSlide.classList.add('slide_active');
+    });
+
+    /** Prev Button Event */
+    slideBtnPrev.addEventListener('click', function () {
+        if (curIndex >= 0) {
+            slideList.style.transition = slideSpeed + "ms";
+            slideList.style.transform = "translate3d(-" + (slideWidth * curIndex) + "px, 0px, 0px)";
+        }
+        if (curIndex === 0) {
+            setTimeout(function () {
+                slideList.style.transition = "0ms";
+                slideList.style.transform = "translate3d(-" + (slideWidth * slideLen) + "px, 0px, 0px)";
+            }, slideSpeed);
+            curIndex = slideLen;
+        }
+        curSlide.classList.remove('slide_active');
+        curSlide = slideContents[--curIndex];
+        curSlide.classList.add('slide_active');
+    });
 }
 
 function startAjax(lookNumer) {
-    mainScrollTime = false;
-
     $.ajax({
         url: `/displayInthumbnail/${lookNumer}`,
         type: "GET",
         success: function (result) {
-            infoSlide(result);
+            previewImage(result);
+            excuteSlide();
         },
         error: function (error) {
             //서버오류 500  찾는 자료없음 404  권한없음  401
@@ -155,8 +155,15 @@ function startAjax(lookNumer) {
     })
 }
 
+//JSP파일 서버변수 호출함수
+function lookReady(lookNum) {
+    let lookNumer = lookNum;
+    init(lookNumer);
+}
+
 function init(lookNumer) {
     startAjax(lookNumer);
 }
+
 
 init();

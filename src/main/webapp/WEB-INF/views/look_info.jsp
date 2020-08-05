@@ -130,7 +130,7 @@
 <script src="/static/js/id_nickname_session.js"></script>
 <script type="text/javascript" src="/static/js/lookModify/lookModify.js"></script>
 <script type="text/javascript" src="/static/js/look_info/lookDelete.js"></script>
-<script src="/static/js/look_info/look_info.js"></script>
+<script type="text/javascript" src="/static/js/look_info/look_info.js"></script>
 <script type="text/javascript" src="/static/js/look_info/comment.js"></script>
 <script type="text/javascript" src="/static/js/look_info/child_comment.js"></script>
 <script>commentReady(${view.look_num})</script>
