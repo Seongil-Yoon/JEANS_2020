@@ -4,6 +4,7 @@ let scrollTime = true;
 let fk_look_num_Look_look_num;
 let userId="";
 
+
 function commentReady(look_num,userid) {
 //게시글 기본키 가져오기
 fk_look_num_Look_look_num=look_num;
@@ -300,7 +301,6 @@ $(document).on("click", ".comment_change_button", function (event) {
                 }
             }
         })
-
     }
 });
 

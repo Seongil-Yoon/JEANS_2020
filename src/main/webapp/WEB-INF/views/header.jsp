@@ -36,7 +36,7 @@
                         <div class="logo_right"><span class="look_write">look_write</span></div>
                     </a>
 
-                    <a class="header_a">
+                    <a class="header_a" href="mypageUser">
                         <div class="my_info">
                             <div class="my_picture"><img src="/displaySthumbnail"/></div>
                             <span class="user_nickname">${sessionScope.usernickname}</span>

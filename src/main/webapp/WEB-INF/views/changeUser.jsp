@@ -137,13 +137,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="/static/js/backCashDelete.js"></script>
 <script src="/static/js/id_nickname_session.js"></script>
-<%--서버세션이 종료되어 자바스크립트 session 종료--%>
-<c:set var="userid" value="${sessionScope.userid}"/>
-<c:if test="${userid == null}">
-    <script>sessionRemove()</script>
-</c:if>
-<%--header 부분 초기화--%>
-<script>headerReset()</script>
+
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="static/js/ex2.js"></script>
