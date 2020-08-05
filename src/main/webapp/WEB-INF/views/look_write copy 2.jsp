@@ -41,28 +41,16 @@
             <div class="space"></div>
 
             <div class="upload" id="js-uploadDiv">
-                사진첨부ㅤ
-                <!-- <input type="file" multiple  name="profile_pt" id="profile_pt" accept=".jpg, .jpeg, .png, .svg, .gif" onchange="previewImage(this,'View_area')"> -->
-                <label class="selector">
-                    <input type="file" multiple class="attachButton" name="profile_pt" id="profile_pt"
-                           accept=".jpg, .jpeg, .png, .svg, .gif"/>
-                    <span class="selector_span">사진첨부</span>
-                </label>
-
-                <!-- JS에서 이벤트리스너 함수 추가 -->
-                <button type="button" class="resetButton">초기화</button>
             </div>
 
             <div class="space"></div>
 
             <div class="img_space">
-                <div class="look_img_container">
+                <input type="file" multiple  name="profile_pt" id="profile_pt"
+                accept=".jpg, .jpeg, .png, .svg, .gif"/>
+                <!-- <div class="look_img_container">
                     <div class="look_img_viewport">
                         <div class="look_flick_camera" id="View_area">
-                            <!-- preview == View_area -->
-                            <!-- <div  class="flick_panel" style="left: 0px;">
-                                <img/>
-                            </div> JS로 태그 생성-->
                         </div>
 
                         <button type="button" class="look_slide_button" id="look_slide_button_left" style="left: 0;">
@@ -73,7 +61,7 @@
                         </button>
                     </div>
 
-                </div>
+                </div> -->
             </div>
 
             <!--{/* 오른쪽 부분들 */} -->
@@ -139,8 +127,15 @@
         </div>
     </form>
 </div>
+
+<!-- FileFond CDN -->
 <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
 <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+<script src="https://unpkg.com/filepond-plugin-file-metadata/dist/filepond-plugin-file-metadata.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.js"></script>
+<script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
+<!-- FileFond CDN -->
+
 <script   src="/static/js/look_write/look_write.js"></script>
 <script
         src="https://code.jquery.com/jquery-3.5.1.min.js"
