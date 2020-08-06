@@ -6,10 +6,12 @@ let userId="";
 
 
 function commentReady(look_num,userid) {
-//게시글 기본키 가져오기
-fk_look_num_Look_look_num=look_num;
-//수정 삭제 할때 권한 문제 떄문에 세션 아이디 값 가져 오기
-userId=userid;
+    //게시글 기본키 가져 오기
+    fk_look_num_Look_look_num=look_num;
+    //수정 삭제 할때 권한 문제 떄문에 세션 아이디 값 가져 오기
+    userId=userid;
+    //처음 화면 들어 갔을 떄 댓글 데이터 10개 가져 오기
+    commentGet();
 
     $(window).scroll(function () {   //스크롤 감지 이벤트
         let scroll = $(document).scrollTop(); //현재 스크롤 값
@@ -18,8 +20,6 @@ userId=userid;
         //윈도우 높이에 스크롤값을 계속더해서 문서 전체 길이에서 50 px 앞에 스크롤이 왔을때 데이터 불러옴
         if ((windowHeight + scroll) >= documentHeight - 50) {
             if (scrollTime == true) {
-                //스크롤 이벤트 중복 실행 방지
-                scrollTime = false
                 //다음 댓글 10개 가져옴
                 commentGet();
             }
@@ -127,7 +127,8 @@ function commentConfirm(msg, title, commentDto) {
 
 //댓글 10개씩 가져 오는 함수
 function commentGet() {
-
+    //스크롤 이벤트 중복 실행 방지
+    scrollTime = false
     $.ajax({
         url: "/look_comment_list/"+fk_look_num_Look_look_num+"/"+comment_id,
         type: "get",
