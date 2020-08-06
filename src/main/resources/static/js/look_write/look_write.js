@@ -206,7 +206,8 @@ function filePond() {
             return;
         }
         function fileBufferUpdate(file) {
-            console.log(pond.getFiles(0).getFileEncodeBase64String());
+            // console.log(pond.getFiles(0).getFileEncodeBase64String());
+            console.log(file.getFileEncodeBase64String());
         }fileBufferUpdate(file);
         
         // console.log(pond.getFiles().length);
