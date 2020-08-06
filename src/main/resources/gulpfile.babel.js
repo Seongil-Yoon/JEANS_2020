@@ -22,7 +22,8 @@ const routes = {
       "static/scss/mypageUser_bottom.scss",
       "static/scss/mypageUser_top.scss",
       "static/scss/joinUser.scss",
-      "static/scss/slideShow.scss"
+      "static/scss/slideShow.scss",
+      "static/scss/fullpage.min.scss"
     ],
     dest: "static/css"
   }
