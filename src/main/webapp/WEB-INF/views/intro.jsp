@@ -9,7 +9,6 @@ contentType="text/html;charset=UTF-8" language="java" %>
     <title>인트로</title>
     <link rel="stylesheet" href="static/css/fullpage.min.css" />
     <link rel="stylesheet" href="static/css/intro.css" />
-    <link rel="stylesheet" href="static/css/slideShow.css" />
   </head>
   <body>
     <div class="header">
