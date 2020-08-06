@@ -8,7 +8,7 @@
         insert into comment
         values
         (
-        #{comment_id},#{fk_look_num_Look_look_num},#{parent_comment_id},#{comment_content}
+        #{comment_id},#{fk_look_num_Look_look_num},#{comment_content}
         ,#{comment_sender_name},#{comment_sender_id},CURDATE()
         )
         <selectKey resultType="java.lang.Integer" keyProperty="comment_id" order="AFTER">
@@ -17,10 +17,14 @@
         </selectKey>
     </insert>
 
+    <!-- 댓글 10개씩 불러옴  &lt;는 < 와 같다 -->
     <select id="list" resultType="jeans.ko.Dto.CommentDto">
-        select * from comment where fk_look_num_Look_look_num = #{look_num} order by comment_id desc;
+        SELECT * FROM comment WHERE fk_look_num_Look_look_num = #{fk_look_num_Look_look_num} AND
+         comment_id &lt; #{comment_id} ORDER BY comment_id DESC LIMIT 10 ;
     </select>
 
+
+    <!--댓글 개별 한개 데이터 갖고 오기-->
     <select id="comment" resultType="jeans.ko.Dto.CommentDto">
         select * from comment where comment_id=#{comment_id};
     </select>

@@ -3,6 +3,8 @@ package jeans.ko.Service;
 import jeans.ko.Dao.IUserDao;
 import jeans.ko.Dto.UserDto;
 import org.apache.jasper.compiler.JspUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import java.util.List;
 
 @Service
 public class UserService implements IUserService {
+    private Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private IUserDao userDao;
@@ -23,6 +26,7 @@ public class UserService implements IUserService {
 
 
     public int joinUser(UserDto userDto){
+        logger.info("joinUser메소드");
         userDto.setRole(1);
         System.out.println("nuserService에서");
         System.out.println("userDto.getUserid() = " + userDto.getUserid());
@@ -36,39 +40,30 @@ public class UserService implements IUserService {
         System.out.println("userDto.getSex() = " + userDto.getSex());
         System.out.println("userDto = " + userDto);
         int insert_count= userDao.insertUser(userDto);
-        System.out.println("insert_count = " + insert_count);
+        logger.info("insert_count = "+insert_count);
         //dao에서 db에 넣는게 성공했는지 안했는지 확인
         //이게 userDao 가 성공했는지 안했는지 확인하고 if 문으로 가랄져야한다
         return insert_count;
     }
 
-    public String userLogin(UserDto userDto){
-        String sqlPassword=null;
+    public UserDto userLogin(UserDto userDto){
+        logger.info("userLogin메소드");
+        UserDto successLogin=null;
+
         String id=userDto.getUserid();
         String password=userDto.getPassword();
-        String nickname=null;
 
-        sqlPassword=userDao.userLogin(userDto);
+        successLogin=userDao.getInformation(userDto);
 
-        if(sqlPassword==null) {
-            System.out.println("회원가입된 아이디가 없으므로 null 값출력");
-            return null;   //회원가입된 아이디가 없으므로 null 값줌
+        if(successLogin!=null){
+            return successLogin;
+        }else{
+            return successLogin;
         }
-
-       if(sqlPassword.equals(password)){
-           System.out.println("로그인성공");
-            //여기서 닉네임 받아오면 되지 ㅏㅇㄶ을까
-            //String nick=userDao.getNickname(id);
-            //로그인 성공시 id 값을 보내고 닉네임을 받아온다.
-          nickname=userDao.getNickname(id);
-           return nickname;
-       }else{
-           System.out.println("로그인실패");
-           return nickname;
-       }
     }
 
     public String getPicture(String userid){
+        logger.info("getPicture메소드");
         String picture=userDao.getPicture(userid);
         return picture;
     }

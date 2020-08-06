@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class NotFoundException extends RuntimeException {
-    // RuntimeException 프로그램 실행중오류 개발자가 의도적으로 잡아내기 위한 조건에 부합할떄 발생
-    public NotFoundException(String messge) {
-        super(messge);
+    // RuntimeException 프로그램 실행중 오류 개발자가 의도적 으로 잡아 내기 위한 조건에 부합 할떄 발생
+    public NotFoundException(String message) {
+        super(message);
     }
 }

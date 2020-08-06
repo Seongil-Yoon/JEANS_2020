@@ -26,8 +26,8 @@ public class CommentService implements ICommentService {
     }
 
     @Override
-    public List<CommentDto> list(int look_num) {
-        return commentDao.list(look_num);
+    public List<CommentDto> list(int fk_look_num_Look_look_num,int comment_id) {
+        return commentDao.list(fk_look_num_Look_look_num,comment_id);
     }
 
     @Override

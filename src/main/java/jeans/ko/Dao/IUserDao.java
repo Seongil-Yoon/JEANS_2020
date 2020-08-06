@@ -13,7 +13,7 @@ import java.util.List;
 //Mapper 어노테이션에 의해 application.properties에 걸려있는 설정으로 mybatis.mapper에 모든 xml을 뒤져서 매핑한다.
 //mybatis.mapper 자신과 같은 namespace를 확인하고 같은 id를 사용한다
 @Mapper
-@Repository
+@Repository //Dao 라는 것을 알려줌
 public interface IUserDao {
     //회원가입을 위해 유저정보 기입
     public int insertUser(UserDto userDto);
@@ -24,4 +24,7 @@ public interface IUserDao {
     //유저 아이디로 프로필사진유무확인
     public String getPicture(String userid);
     public void list();
+
+    //아이디와 비밀번호를 입력하면 userDto 다 반환
+    public UserDto getInformation(UserDto userDto);
 }

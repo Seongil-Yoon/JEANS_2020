@@ -13,17 +13,45 @@
         )
 
         <selectKey resultType="java.lang.Integer" keyProperty="look_num" order="AFTER">
-           <!--return 값은 dto 객체로 넘어간다 get메소드로 값을 갖고와야됨 -->
+            <!--return 값은 dto 객체로 넘어간다 get메소드로 값을 갖고와야됨 -->
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
 
+    <!--룩을 등록한 후 룩에 등록된 사진들의 정보를 picture테이블에 등록한다.-->
+    <insert id="insertPicturedatabase" parameterType="java.util.ArrayList">
+        <selectKey resultType="java.math.BigInteger" keyProperty="pictureId" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into picture values
+        <foreach collection="list" item="i" separator=",">
+            (
+            #{i.pictureId},#{i.lookNum},#{i.pictureName},#{i.pictureSize}
+            )
+        </foreach>
+    </insert>
+
+    <!-- &lt;는 < 와 같다 게시글 6개씩 불러옴 -->
     <select id="list" resultType="jeans.ko.Dto.BoardDto">
-        select * from look order by look_num desc
+        SELECT * FROM look WHERE look_num &lt; #{look_num} ORDER BY look_num DESC LIMIT 6;
     </select>
 
     <select id="view" resultType="jeans.ko.Dto.BoardDto">
         select * from look where look_num = #{look_num}
+    </select>
+
+    <!--룩번호를 입력받아 해당되는 글의 날짜를 반환한다.-->
+    <select id="getLook_date" resultType="string">
+        select look_date from look where look_num=#{look_num};
+    </select>
+
+    <!--룩번호를 입력 받아 해당되는 룩에 있는 사진들의 이름을 반환한다.-->
+    <select id="getallPicturename" resultType="string">
+        select name from picture where looknum=#{look_num}
+    </select>
+
+    <select id="getonePicturename" resultType="string">
+        select name from picture where looknum=#{look_num} limit 1
     </select>
 
     <delete id="delete">
@@ -41,4 +69,3 @@
     </update>
 
 </mapper>
-
