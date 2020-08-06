@@ -222,10 +222,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <script src="/static/js/backCashDelete.js"></script>
-<<<<<<< HEAD
-    <script src="/static/js/id_nickname_session.js"></script>
-=======
->>>>>>> 76a986f4d821705fdd14aa2f550b4221ee9f8364
+
 
 </body>
 </html>
