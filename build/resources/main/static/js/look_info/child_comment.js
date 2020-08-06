@@ -1,40 +1,43 @@
-
 let eventResult=true; //대댓글 이벤트 중복 실행 방지 위해
 
 //답글 누르면 이벤트
 $(document).on("click", ".re_comment", function (event) {
+    //아이디 값 가져 오기
+    let userid=$('input[name=comment_sender_id]').val();
+    //닉네임 값 가져 오기
+    let userNickname=$('input[name=comment_sender_name]').val();
 
 
-    if (sessionStorage.getItem("userid") == null) {
+    if (userid == null) {
         //로그인 안할경우 로그인 해라
         swal('로그인 먼저하세요', '', 'error');
     }else if(eventResult == true) {
-            eventResult=false; //이벤트 중복 실행방지
-            //이벤트 부모 태그 가져 오기
-            let look_commentTag = $(event.target).parents(".look_comment");
-            //댓글 아이디값 가져오기  find는 후손에 값 가져옴
-            let comment_id=look_commentTag.find(".comment_id").val();
+        eventResult=false; //이벤트 중복 실행방지
+        //이벤트 부모 태그 가져 오기
+        let look_commentTag = $(event.target).parents(".look_comment");
+        //댓글 아이디값 가져오기  find는 후손에 값 가져옴
+        let comment_id=look_commentTag.find(".comment_id").val();
 
-            let html = "";
+        let html = "";
 
-            html += '<div class=\"child_look_comment\" >';
-            html += '<input class="child_comment_id" value="' + sessionStorage.getItem("userid") + '" type="hidden"/>';
-            html += '<input class="child_comment_nickname" value="' + sessionStorage.getItem("usernickname") + '" type="hidden"/>';
-            html += '<input class="fk_comment_id" value="' + comment_id + '" type="hidden"/>';
-            html += '<div class="other_people_img">';
-            html += '<img src=displayMthumbnail/' + sessionStorage.getItem("userid") + '>';
-            html += '</div>';
-            html += '<div class="child_other_people_name">' + sessionStorage.getItem("usernickname") + '</div>';
-            html += '<div class="comment_textarea_space">';
-            html += '<textarea  class="child_comment_content" placeholder="답글 내용을 입력 하세요"></textarea>';
-            html += '</div>';
-            html += '<div class="comment_date">';
-            html += '<button class="child_comment_change_button" value="2" type="button" >취소</button>';
-            html += '<button class="child_comment_change_button" value="1" type="button" >저장</button>';
-            html += '</div>';
-            html += '</div>';
+        html += '<div class=\"child_look_comment\" >';
+        html += '<input class="child_comment_id" value="' + userid + '" type="hidden"/>';
+        html += '<input class="child_comment_nickname" value="' + userNickname + '" type="hidden"/>';
+        html += '<input class="fk_comment_id" value="' + comment_id + '" type="hidden"/>';
+        html += '<div class="other_people_img">';
+        html += '<img src=displayMthumbnail/' + userid + '>';
+        html += '</div>';
+        html += '<div class="child_other_people_name">' + userNickname + '</div>';
+        html += '<div class="comment_textarea_space">';
+        html += '<textarea  class="child_comment_content" placeholder="답글 내용을 입력 하세요"></textarea>';
+        html += '</div>';
+        html += '<div class="comment_date">';
+        html += '<button class="child_comment_change_button" value="2" type="button" >취소</button>';
+        html += '<button class="child_comment_change_button" value="1" type="button" >저장</button>';
+        html += '</div>';
+        html += '</div>';
 
-            look_commentTag.after(html) //look_comment 아래에 추가
+        look_commentTag.after(html) //look_comment 아래에 추가
     }
 });
 
@@ -63,7 +66,7 @@ $(document).on("click", ".child_comment_change_button", function (event) {
     //저장 버튼 눌렀 는데 대댓글 이 null 값일 경우 에러 발생
     if(child_comment_content==false&&$(event.target).val()==1){
         swal('답글 내용을 입력 하세요', '', 'error');
-         return ;
+        return ;
     }else if($(event.target).val()==1) {
         //저장 버튼 누를경우 ajax 로 대댓글 저장
         alert("저장 버튼");

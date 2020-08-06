@@ -25,7 +25,7 @@ let preview = 0;
 let flick_panel = 0;
 let img = 0;
 let files = 0;
-let fileBuffer = 0;  //formdData에 날릴 배열, input태그의 배열에 들어간 파일을 보내지 않음.
+let fileBuffer = [];  //formdData에 날릴 배열, input태그의 배열에 들어간 파일을 보내지 않음.
 // let fflick_panel = document.querySelector("#fflick_panel");
 
 let ppreview = 0;
@@ -46,7 +46,7 @@ const saveDiv = document.querySelector(".save"),
 function lookWrite() {
     let userid = document.getElementsByName("userid")[0].value
 
-    if ( userid == false) {
+    if (userid == false) {
         swal('', '로그인을 먼저하세요', '');
         return
     }
@@ -81,6 +81,7 @@ function lookWrite() {
 
     if (empty == '') {
         if (fileBuffer == undefined) {
+            console.log("fileBuffer == undefined");
             let data = $('[name=writeForm]').serialize();
             $.ajax({
                 url: "/looks",
@@ -110,6 +111,7 @@ function lookWrite() {
                 }
             })
         } else {
+            console.log("fileBuffer == defined");
             function appendFile() {
                 for (i = 0; i < fileBuffer.length; i++) {
                     formData.append("files", fileBuffer[i]);
@@ -191,32 +193,25 @@ function filePond() {
         FilePondPluginImagePreview,
         FilePondPluginFileEncode
     );
-
-    // Get a reference to the file input element
-
     // Create the FilePond instance
     const pond = FilePond.create(inputElement, {
         allowMultiple: true,
         allowReorder: true
     });
 
-    pond.on('addfile', (error, file) => {
-        if (error) {
-            console.log('Oh no');
-            return;
+    const filepondRoot = document.querySelector('.filepond--root');
+    filepondRoot.addEventListener('FilePond:updatefiles', e => {
+        // console.log('File updatefiles', e.detail.items);
+
+        fileBuffer.splice(0, fileBuffer.length);
+        for (let i = 0; i < e.detail.items.length; i++) {
+            console.log('File updatefiles e.detail.items[i]', e.detail.items[i]);
+            fileBuffer[i] = e.detail.items[i].getFileEncodeBase64String();
+            console.log(fileBuffer);
         }
-        function fileBufferUpdate(file) {
-            // console.log(pond.getFiles(0).getFileEncodeBase64String());
-            console.log(file.getFileEncodeBase64String());
-        }fileBufferUpdate(file);
-        
-        // console.log(pond.getFiles().length);
-        // console.log(pond.getFiles(0));
-
-        // for(let i=0; i<getFiles.length)
-        // console.log('File added', file);
-    })
-
+        console.log('File updatefiles' + e.detail);
+        console.log('File updatefiles  e.detail.items', e.detail.items);
+    });
 }
 
 function init() {
@@ -226,11 +221,12 @@ function init() {
     //     //또는 초기화 누르면 카운터는 다시0이 되고 화면초기화
     // }
     filePond();
+    saveButton.addEventListener('click', lookWrite); //폼전송 부분
+
     // inputElement.addEventListener('change', filePond); //파일선택 이벤트
     // initButton.addEventListener('click', resetImg); //초기화 이벤트
 
     // fileBuffer =Array.prototype.slice.call(event.target.files);
-    // saveButton.addEventListener('click', lookWrite); //폼전송 부분
 
 
 

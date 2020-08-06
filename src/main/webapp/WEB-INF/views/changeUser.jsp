@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <title>회원정보수정</title>
     <link rel="stylesheet" href="static/css/changeUser.css" />
-    <link rel="stylesheet" href="static/css/slideShow.css" />
+    <!-- <link rel="stylesheet" href="static/css/slideShow.css" /> -->
 </head>
 <body>
 <!-- <div class="leftTop"></div>
@@ -22,19 +22,19 @@
 
     <div class="body_root">
         <div class="changePW">
-            <form class="changePW_1" action="/loginRequest" method="post">
+            <form class="changePW_1" method="post">
                 <div class="changePW_1_1"> <!-- changePW의 손자 태그-->
                     <div class="changePW_1_1_1">비밀번호 변경</div>
                     <div class="changePW_1_1_2">변경할 비밀번호</div>
                     <div class="changePW_1_1_3">
-                        <input typec="password" class="main_pwInput" placeholder="P/W" name="password"></input>
+                        <input type="password" class="main_pwInput" placeholder="P/W" name="password" ></input>
                     </div>
-                    <div class="changePW_1_1_4">비밀번호 확인</div>
+                    <div class="changePW_1_1_4" name="changePassword">비밀번호 확인</div>
                     <div class="changePW_1_1_5">
-                        <input type="password" class="main_pwInput" placeholder="P/W" name="password"></input>
+                        <input type="password" class="main_pwInput" placeholder="P/W" name="checkPassword"></input>
                     </div>
                     <div class="changePW_1_1_6">
-                        <button class="register_save" type="submit" onclick="y" value="비밀번호 변경">비밀번호 변경</button>
+                        <button class="register_save" type="button" onclick="changePassword()" value="비밀번호 변경">비밀번호 변경</button>
                     </div>
                 </div>
             </form>
@@ -136,14 +136,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="/static/js/backCashDelete.js"></script>
-<<<<<<< HEAD
-<script src="/static/js/id_nickname_session.js"></script>
-
-
-=======
->>>>>>> 76a986f4d821705fdd14aa2f550b4221ee9f8364
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="/static/js/changeUser/ex2.js"></script>
+<script src="/static/js/changeUser/changeUser.js"></script>
+
 
 </body>
 </html>
