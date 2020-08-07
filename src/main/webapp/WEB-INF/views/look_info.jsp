@@ -104,8 +104,7 @@
 
                     <div class="comment_textarea_space">
                         <input type="hidden" name="comment_sender_id" value="${sessionScope.userid}"/> <%--작성자 아이디--%>
-                        <input type="hidden" name="comment_sender_name"
-                            value="${sessionScope.usernickname}"/> <%--작성자 닉네임--%>
+                        <input type="hidden" name="comment_sender_name" value="${sessionScope.usernickname}"/> <%--작성자 닉네임--%>
                         <input type="hidden" name="fk_look_num_Look_look_num"
                             value="${view.look_num}"/> <%--게시글 기본키인 게시글숫자--%>
                         <textarea style="background-color:#F6F6F6 "
@@ -130,11 +129,10 @@
 <script type="text/javascript" src="/static/js/lookModify/lookModify.js"></script>
 <script type="text/javascript" src="/static/js/look_info/lookDelete.js"></script>
 <script type="text/javascript" src="/static/js/look_info/look_info.js"></script>
-<script type="text/javascript" src="/static/js/look_info/comment.js"></script>
 <script type="text/javascript" src="/static/js/look_info/child_comment.js"></script>
 <script type="text/javascript" src="/static/js/look_info/look_comment.js"></script>
 <%--댓글 내용출력 위해 현재글에 기본키를 댓글 자바스크립트에 넘김--%>
-<script>commentReady(${view.look_num},'${sessionScope.userid}')</script>
+<script>commentReady(${view.look_num},'${sessionScope.userid}','${sessionScope.usernickname}')</script>
 <script>lookReady(${view.look_num})</script>
 </body>
 </html>

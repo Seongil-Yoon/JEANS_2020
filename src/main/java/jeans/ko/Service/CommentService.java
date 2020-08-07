@@ -27,6 +27,9 @@ public class CommentService implements ICommentService {
 
     @Override
     public List<CommentDto> list(int fk_look_num_Look_look_num,int comment_id) {
+        //comment_id가 0이면 처음 게시글 들어간 초기값이여서 자바 최대값으로 최신 댓글 10개 가져옴
+        if(comment_id==0){ comment_id=Integer.MAX_VALUE; }
+
         return commentDao.list(fk_look_num_Look_look_num,comment_id);
     }
 

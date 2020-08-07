@@ -9,7 +9,7 @@
         values
         (
         #{comment_id},#{fk_look_num_Look_look_num},#{comment_content}
-        ,#{comment_sender_name},#{comment_sender_id},CURDATE()
+        ,#{comment_sender_name},#{comment_sender_id},CURDATE(),#{parents}
         )
         <selectKey resultType="java.lang.Integer" keyProperty="comment_id" order="AFTER">
             <!--return 값은 dto 객체로 넘어간다 get메소드로 값을 갖고와야됨 -->
@@ -22,7 +22,6 @@
         SELECT * FROM comment WHERE fk_look_num_Look_look_num = #{fk_look_num_Look_look_num} AND
          comment_id &lt; #{comment_id} ORDER BY comment_id DESC LIMIT 10 ;
     </select>
-
 
     <!--댓글 개별 한개 데이터 갖고 오기-->
     <select id="comment" resultType="jeans.ko.Dto.CommentDto">

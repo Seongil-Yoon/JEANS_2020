@@ -4,7 +4,6 @@ package jeans.ko.Controller;
 import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dao.ICommentDao;
 import jeans.ko.Dto.BoardDto;
-import jeans.ko.Dto.ChildCommentDto;
 import jeans.ko.Dto.CommentDto;
 import jeans.ko.Service.IBoardService;
 import jeans.ko.Service.ICommentService;

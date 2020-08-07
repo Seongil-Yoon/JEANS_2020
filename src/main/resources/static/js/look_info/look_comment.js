@@ -1,15 +1,18 @@
-// 처음 게시글 들어 갈때 초기 최신 댓글 10개 받아 오기 위해 20억 기본값 으로 보냄
-let comment_id= 2000000000;
+// 처음 게시글 들어 갈때 최신 댓글 10개 받아 오기 위해 0을보냄 그 이후부턴 마지막 댓글 기본키 값보냄
+let comment_id=0;
 let scrollTime = true;
 let fk_look_num_Look_look_num;
-let userId="";
+let userId ;
+let userNickname;
 
+function commentReady(look_num,userid,usernickname) {
 
-function commentReady(look_num,userid) {
     //게시글 기본키 가져 오기
     fk_look_num_Look_look_num=look_num;
-    //수정 삭제 할때 권한 문제 떄문에 세션 아이디 값 가져 오기
+    //세션 아이디 값 가져 오기
     userId=userid;
+    //세션 닉네임 값 가져 오기
+    userNickname=usernickname;
     //처음 화면 들어 갔을 떄 댓글 데이터 10개 가져 오기
     commentGet();
 
@@ -63,6 +66,7 @@ function commentWrite() {
         comment_sender_name: comment_sender_name,
         fk_look_num_Look_look_num: fk_look_num_Look_look_num,
         comment_content: comment_content,
+        parents : 0, //대댓글 아니므로 값을 0줌
     };
 
     //데이터 json 문자열 형태로 변환
