@@ -21,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.BindingResultUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -102,7 +103,7 @@ public class UserController {
     @ResponseBody
     @PostMapping(value = "/user")
     public ResponseEntity<Void> join(@RequestPart("UserDto") String userString, BindingResult result) throws IOException {
-
+        BindingResult e;
         @Valid
         UserDto user = new ObjectMapper().readValue(userString, UserDto.class);
         user.setPicture("");//사진이름은 ""으로 둔다.
@@ -144,7 +145,7 @@ public class UserController {
     //REST 형식의 회원가입
     @ResponseBody
     @PostMapping(value = "/userfile")
-    public ResponseEntity<Void> join(@RequestPart("UserDto") String userString, @RequestPart("file") MultipartFile picture, BindingResult result) throws Exception {
+    public ResponseEntity<Void> join( @RequestPart("UserDto") String userString, @RequestPart("file") MultipartFile picture, BindingResult result) throws Exception {
         String fileOriginalname = picture.getOriginalFilename();//올린 이미지 파일의 원래이름
 
         @Valid
@@ -154,7 +155,7 @@ public class UserController {
         //user의 picture값을 파일의 이름으로 설정한다.
 
         System.out.println("result.getErrorCount() = " + result.getErrorCount());
-        System.out.println("result.hasGlobalErrors(); = " + result.getFieldError());
+        System.out.println("result.hasGlobalErrors() = " + result.getFieldError());
         if (result.getFieldError("userid") != null) {
             System.out.println("Error! " + result.getFieldError("userid").getDefaultMessage());
         }
@@ -226,6 +227,9 @@ public class UserController {
             map.put("height",httpSession.getAttribute("userheight"));
             map.put("weight",httpSession.getAttribute("userweight"));
             map.put("email",httpSession.getAttribute("useremail"));
+            System.out.println(" user 에서 세션 = " +httpSession.getId());
+            System.out.println("successLogin = " + successLogin);
+            
             return map; //session 아이디 닉네임 넘겨주기
         }
     }

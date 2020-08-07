@@ -45,4 +45,7 @@ public interface IBoardDao {
 
     //look_num을 입력받아 picture테이블에서 해당 룩을 외래키로 가지고 있는 모든 사진들을 반환한다.
     public List<String> getallPicturename(int look_num);
+
+    //userID를 받아 그 유저가 쓴 모든 글 목록을 반환하는 메소드
+    public List<BoardDto> getLooksforId(String userId);
 }
