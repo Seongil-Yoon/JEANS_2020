@@ -198,21 +198,48 @@ function filePond() {
         allowMultiple: true,
         allowReorder: true
     });
+    pond.on('addfile', (error, file) => {
+        if (error) {
+            console.log('Oh no');
+            return;
+        }
+        console.log('File added', file);
+    });
 
     const filepondRoot = document.querySelector('.filepond--root');
-    filepondRoot.addEventListener('FilePond:updatefiles', e => {
-        // console.log('File updatefiles', e.detail.items);
 
+    filepondRoot.addEventListener('FilePond:updatefiles', e => {
         fileBuffer.splice(0, fileBuffer.length);
+
         for (let i = 0; i < e.detail.items.length; i++) {
             console.log('File updatefiles e.detail.items[i]', e.detail.items[i]);
-            fileBuffer[i] = e.detail.items[i].getFileEncodeBase64String();
+            fileBuffer[i] = dataURLtoFile(e.detail.items[i].getFileEncodeDataURL(),e.detail.items[i].filename);
             console.log(fileBuffer);
         }
         console.log('File updatefiles' + e.detail);
         console.log('File updatefiles  e.detail.items', e.detail.items);
+
     });
 }
+
+const dataURLtoFile = (dataurl, fileName) => {
+
+    var arr = dataurl.split(','),
+        mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]),
+        n = bstr.length,
+        u8arr = new Uint8Array(n);
+
+    while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new File([u8arr], fileName, { type: mime });
+}
+
+// //Usage example:
+// var file = dataURLtoFile('data:text/plain;base64,aGVsbG8gd29ybGQ=','hello.txt');
+// console.log(file);
 
 function init() {
     // if (slideCounter < 1) { //파일선택 버튼 누른 횟수
