@@ -184,7 +184,6 @@ function look_public_check(look_public) {
 //
 
 // Register the plugin with FilePond
-
 function filePond() {
 
     FilePond.registerPlugin(
@@ -198,13 +197,13 @@ function filePond() {
         allowMultiple: true,
         allowReorder: true
     });
-    pond.on('addfile', (error, file) => {
-        if (error) {
-            console.log('Oh no');
-            return;
-        }
-        console.log('File added', file);
-    });
+    // pond.on('addfile', (error, file) => {
+    //     if (error) {
+    //         console.log('Oh no');
+    //         return;
+    //     }
+    //     console.log('File added', file);
+    // });
 
     const filepondRoot = document.querySelector('.filepond--root');
 
@@ -222,9 +221,10 @@ function filePond() {
     });
 }
 
+//base64 to File객체
 const dataURLtoFile = (dataurl, fileName) => {
 
-    var arr = dataurl.split(','),
+    let arr = dataurl.split(','),
         mime = arr[0].match(/:(.*?);/)[1],
         bstr = atob(arr[1]),
         n = bstr.length,
@@ -237,23 +237,9 @@ const dataURLtoFile = (dataurl, fileName) => {
     return new File([u8arr], fileName, { type: mime });
 }
 
-// //Usage example:
-// var file = dataURLtoFile('data:text/plain;base64,aGVsbG8gd29ybGQ=','hello.txt');
-// console.log(file);
-
 function init() {
-    // if (slideCounter < 1) { //파일선택 버튼 누른 횟수
-    //     //초기 진입할때
-    //     printInit();
-    //     //또는 초기화 누르면 카운터는 다시0이 되고 화면초기화
-    // }
     filePond();
     saveButton.addEventListener('click', lookWrite); //폼전송 부분
-
-    // inputElement.addEventListener('change', filePond); //파일선택 이벤트
-    // initButton.addEventListener('click', resetImg); //초기화 이벤트
-
-    // fileBuffer =Array.prototype.slice.call(event.target.files);
 
 
 

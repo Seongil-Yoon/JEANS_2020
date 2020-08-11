@@ -24,6 +24,46 @@ let fileBuffer = 0;  //formdData에 날릴 배열, input태그의 배열에 들�
 //////////////////////////////////////////
 //////////////////////////////////////////
 
+
+//게시글에서 수정 pen 버튼 누를경우 이벤트
+//look_modify 리다이렉트
+function lookModify(lookNum,lookUserId,userid){
+
+    var lookNum=lookNum;
+    var lookUserId=lookUserId;
+
+    if(userid==lookUserId){
+        //로그인 한 아이디 와 작성자 아이디 가 같으면 글수정
+        modifyConfirm('', '게시글을 수정할까요?',lookNum);
+    } else {
+        swal("","게시글 작성자만 수정 할수있습니다");
+    }
+
+}
+
+function modifyConfirm(msg,title,lookNum) {
+    swal({
+        title : title,
+        text : msg,
+        type : "warning",
+        showCancelButton : true,
+        confirmButtonClass : "btn-danger",
+        confirmButtonText : "예",
+        cancelButtonText : "아니오",
+        closeOnConfirm : false,
+        closeOnCancel : false
+    }, function(isConfirm) {
+        if (isConfirm) {
+            location.href="/lookModify?look_num="+lookNum;
+        }else{
+            swal('', '게시글 수정을 취소 하였습니다.');
+        }
+
+    });
+}
+// end of 게시글에서 수정 pen 버튼 누를경우 이벤트
+
+
 function previewImage(result) { //(this,'View_area')
     preview = document.getElementById("View_area"); //div id
     const ua = window.navigator.userAgent;
@@ -134,9 +174,9 @@ function excuteSlide() {
     });
 }
 
-function startAjax(lookNumer) {
+function startAjax(lookNumber) {
     $.ajax({
-        url: `/displayInthumbnail/${lookNumer}`,
+        url: `/displayInthumbnail/${lookNumber}`,
         type: "GET",
         success: function (result) {
             previewImage(result);
@@ -157,12 +197,12 @@ function startAjax(lookNumer) {
 
 //JSP파일 서버변수 호출함수
 function lookReady(lookNum) {
-    let lookNumer = lookNum;
-    init(lookNumer);
+    let lookNumber = lookNum;
+    init(lookNumber);
 }
 
-function init(lookNumer) {
-    startAjax(lookNumer);
+function init(lookNumber) {
+    startAjax(lookNumber);
 }
 
 
