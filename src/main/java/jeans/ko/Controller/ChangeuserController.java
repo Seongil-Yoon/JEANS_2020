@@ -19,11 +19,11 @@ public class ChangeuserController {
 
 
     @PostMapping(value = "/password")
-    public ResponseEntity<String> changePassword(@RequestBody String password, BindingResult result) throws Exception {
-        System.out.println("password = " + password);
+    public ResponseEntity<String> changePassword(@Valid @RequestBody PasswordDto passwordDto, BindingResult result) throws Exception {
+     //   System.out.println("password = " + password);
 
-        @Valid
-        PasswordDto passwordDto = new ObjectMapper().readValue(password, PasswordDto.class);
+       // @Valid
+       // PasswordDto passwordDto = new ObjectMapper().readValue(password, PasswordDto.class);
 
         System.out.println("passwordDto.getPs() = " + passwordDto.getPs());
         System.out.println("result.getErrorCount() = " + result.getErrorCount());

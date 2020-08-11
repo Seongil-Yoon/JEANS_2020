@@ -27,7 +27,6 @@ public class UserDto {
     Integer weight;
     String picture;
 
-
     @Email
     @NotBlank(message="email값을 입력해주세요.")
     String email;

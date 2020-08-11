@@ -115,9 +115,9 @@ function handleImgFileSelect(e) {
 
     if (size > MaxSize) {
         swal("용량이 너무 커요!", "10MB보다 큼\n", "error");
-        if($.browser.msie){
+        if ($.browser.msie) {
             $("#input_profile").replaceWith($("#input_profile").clone(true));
-        }else{
+        } else {
             $("#input_profile").val("");
         }
         return;
@@ -125,9 +125,9 @@ function handleImgFileSelect(e) {
 
     if (RegExtFilter.test(ext)) {
     } else {
-        if($.browser.msie){
-          $("#input_profile").replaceWith($("#input_profile").clone(true));
-        }else{
+        if ($.browser.msie) {
+            $("#input_profile").replaceWith($("#input_profile").clone(true));
+        } else {
             $("#input_profile").val("");
         }
         swal("이미지파일만 넣어주세요", "jpg,jpeg,png확장자만 허용됩니다.", "error");
@@ -162,7 +162,7 @@ function joinUser() {
     //라디오버튼(sex라는 이름)에서 체크된 값을 뽑는 JQuery. 아무것도 입력되지 않았으면 undefined다.
     let email = document.getElementsByName("email")[0].value;//이메일값
 
-    let file=$("input[name=picture]")[0].files[0];//joinUser.jsp에서 이미지 파일을 들고온다.
+    let file = $("input[name=picture]")[0].files[0];//joinUser.jsp에서 이미지 파일을 들고온다.
     console.log(file);
 
     //스크립트문에서 확인한 후 통과 되야지 백엔드로 넘긴다
@@ -250,10 +250,12 @@ function joinUser() {
     //FormData를 이용하여 업로드를 처리한다.
     //FormData 객체를 생성하여 업로드할 파일과 파일정보를 함께 보낸다.
     //JSON 데이터가 있는 다중 요청의 형태인데 혼합 멀티파트라고 한다.
-    let formData=new FormData();
-    formData.append("UserDto",JSON.stringify(UserDto));
-
-    if(file==undefined) {
+    let formData = new FormData();
+    let userDto = JSON.stringify(UserDto);
+    alert(userDto);
+    formData.append('UserDto',new Blob([JSON.stringify(UserDto)],{type:"application/json"}));
+//    formData.append('UserDto',userDto);
+    if (file == undefined) {
 
         //JQuery 옵션
         //data : 서버로 보낼 데이터
@@ -263,11 +265,11 @@ function joinUser() {
         $.ajax({
             url: "/user",
             type: "post",
-            data: formData,
-            dataType : false,
+            data: userDto,
+            dataType: 'json',
             processData: false,
-            // contentType:'multipart/form-data',
             contentType:false,
+           // contentType: false,
             success: function () {
                 alert(JSON.stringify(formData));//성공 시 출력 나중에 지울것!
                 location.href = "/loginUser";
@@ -291,8 +293,8 @@ function joinUser() {
         //         alert("code :" + request.status + "\n" + "message : " + request.responseText + "\n" + "error : " + error);
         //     }
         // });
-   }else{
-        formData.append("file",file);
+    } else {
+        formData.append('file', file);
 
         //JQuery 옵션
         //data : 서버로 보낼 데이터
@@ -303,10 +305,9 @@ function joinUser() {
             url: "/userfile",
             type: "post",
             data: formData,
-            dataType : false,
             processData: false,
-            // contentType:'multipart/form-data',
-            contentType:false,
+            contentType: false,
+            mimeType:'multipart/form-data',
             success: function () {
                 alert(JSON.stringify(formData));//성공 시 출력 나중에 지울것!
                 location.href = "/loginUser";

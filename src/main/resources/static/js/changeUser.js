@@ -4,10 +4,10 @@ function changePassword(){
     let password=document.getElementsByName("password")[0].value;
     let checkPassword=document.getElementsByName("checkPassword")[0].value;
 
-    let passwordDto={
+    let ps={
         ps: password
     };
-
+    var passwordDto=JSON.stringify(ps)
     if(password!=checkPassword){
         alert("두 비밀번호가 다릅니다");
         swal("","두 비밀번호가 다릅니다", "error");
@@ -26,7 +26,7 @@ function changePassword(){
         url:"/userinformation/password",
         type:"post",
         contentType:'application/json; charset=utf-8',
-        data: JSON.stringify(passwordDto),
+        data: passwordDto,
         dataType:'text',
         success: function(result){
             alert("성공")

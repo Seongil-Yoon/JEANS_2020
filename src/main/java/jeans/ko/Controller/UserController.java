@@ -14,10 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -102,10 +99,10 @@ public class UserController {
     //회원가입 시 프로필사진이 없다
     @ResponseBody
     @PostMapping(value = "/user")
-    public ResponseEntity<Void> join(@RequestPart("UserDto") String userString, BindingResult result) throws IOException {
+    public ResponseEntity<Void> join(@Valid @RequestBody UserDto user, BindingResult result) throws IOException {
         BindingResult e;
-        @Valid
-        UserDto user = new ObjectMapper().readValue(userString, UserDto.class);
+        // @Valid
+        // UserDto user = new ObjectMapper().readValue(userString, UserDto.class);
         user.setPicture("");//사진이름은 ""으로 둔다.
 
         System.out.println("result.getErrorCount() = " + result.getErrorCount());
@@ -145,11 +142,13 @@ public class UserController {
     //REST 형식의 회원가입
     @ResponseBody
     @PostMapping(value = "/userfile")
-    public ResponseEntity<Void> join( @RequestPart("UserDto") String userString, @RequestPart("file") MultipartFile picture, BindingResult result) throws Exception {
+    public ResponseEntity<Void> join(@Valid @RequestPart("UserDto") UserDto user, @RequestPart(value = "file") MultipartFile picture, BindingResult result) throws Exception {
+
+        logger.info(user.toString()+" "+picture.toString());
         String fileOriginalname = picture.getOriginalFilename();//올린 이미지 파일의 원래이름
 
-        @Valid
-        UserDto user = new ObjectMapper().readValue(userString, UserDto.class);
+       // @Valid
+       // UserDto user = new ObjectMapper().readValue(userString, UserDto.class);
 
         user.setPicture(fileOriginalname);
         //user의 picture값을 파일의 이름으로 설정한다.
@@ -203,33 +202,33 @@ public class UserController {
     public HashMap<String, Object> loginRequest(@RequestBody UserDto userDto) {
 
         HashMap<String, Object> map = new HashMap<String, Object>();
-       //String nickname = userService.userLogin(userDto);//닉네임 값을 받아오도록
+        //String nickname = userService.userLogin(userDto);//닉네임 값을 받아오도록
 
-        UserDto successLogin=userService.userLogin(userDto);
+        UserDto successLogin = userService.userLogin(userDto);
 
         if (successLogin == null) {
             //아이디와 비빌번호가 맞지않음
             throw new NotFoundException(String.format("Please enter your ID and password again"));
         } else {
             //로그인 성공
-            httpSession.setAttribute("userrole",successLogin.getRole());
+            httpSession.setAttribute("userrole", successLogin.getRole());
             httpSession.setAttribute("userid", successLogin.getUserid());
             httpSession.setAttribute("usernickname", successLogin.getNickname());
-            httpSession.setAttribute("usersex",successLogin.getSex());
-            httpSession.setAttribute("userheight",successLogin.getHeight());
-            httpSession.setAttribute("userweight",successLogin.getWeight());
-            httpSession.setAttribute("useremail",successLogin.getEmail());
+            httpSession.setAttribute("usersex", successLogin.getSex());
+            httpSession.setAttribute("userheight", successLogin.getHeight());
+            httpSession.setAttribute("userweight", successLogin.getWeight());
+            httpSession.setAttribute("useremail", successLogin.getEmail());
 
-            map.put("role",httpSession.getAttribute("userrole"));
+            map.put("role", httpSession.getAttribute("userrole"));
             map.put("userid", httpSession.getAttribute("userid"));
             map.put("nickname", httpSession.getAttribute("usernickname"));
-            map.put("sex",httpSession.getAttribute("usersex"));
-            map.put("height",httpSession.getAttribute("userheight"));
-            map.put("weight",httpSession.getAttribute("userweight"));
-            map.put("email",httpSession.getAttribute("useremail"));
-            System.out.println(" user 에서 세션 = " +httpSession.getId());
+            map.put("sex", httpSession.getAttribute("usersex"));
+            map.put("height", httpSession.getAttribute("userheight"));
+            map.put("weight", httpSession.getAttribute("userweight"));
+            map.put("email", httpSession.getAttribute("useremail"));
+            System.out.println(" user 에서 세션 = " + httpSession.getId());
             System.out.println("successLogin = " + successLogin);
-            
+
             return map; //session 아이디 닉네임 넘겨주기
         }
     }

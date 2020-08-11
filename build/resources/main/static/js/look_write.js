@@ -374,6 +374,7 @@ function lookWrite() {
         memo: memo
     }
 
+
     let formData = new FormData();
     formData.append("BoardDto", JSON.stringify(BoardDto));
 
