@@ -31,6 +31,9 @@
                     <a href="changeUser">
                         <img src="static/images/gear.png" alt="gear" height="30" width="30" />
                     </a>
+                    <a href="deleteUser">
+                        <img src="static/images/delete.png" alt="gear" height="30" width="30" />
+                    </a>
                 </div>
 
                 <div class="modify_right"></div>

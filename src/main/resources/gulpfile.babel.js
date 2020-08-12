@@ -11,6 +11,8 @@ const routes = {
     watch: "static/scss/*",
     src: [
       "static/scss/changeUser.scss",
+      "static/scss/deleteUser.scss",
+      "static/scss/fullpage.min.scss",
       "static/scss/intro.scss",
       "static/scss/jeans_header_.scss",
       "static/scss/jeans_info_body.scss",
@@ -23,7 +25,6 @@ const routes = {
       "static/scss/mypageUser_top.scss",
       "static/scss/joinUser.scss",
       "static/scss/slideShow.scss",
-      "static/scss/fullpage.min.scss"
     ],
     dest: "static/css"
   }
