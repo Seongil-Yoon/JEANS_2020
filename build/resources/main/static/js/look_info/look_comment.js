@@ -33,27 +33,35 @@ function commentReady(look_num,userid,usernickname) {
 }
 
 //댓글 html 태그 생성 하여 화면에 보여줌
+// function commentHTML(result,html) {
+
+//     html += '<div class=\"other_people_img\">';
+//     html += '<img src=displayMthumbnail/' + result.comment_sender_id + '>';
+//     html += '</div>';
+//     html += '<div class=\"other_people_name\">' + result.comment_sender_name + '</div>';
+//     html += '<div class="right_etc">';
+//     html += '<input class=\"comment_id\" value="' + result.comment_id + '" type="hidden" />';
+//     html += '<input class=\"comment_sender_id\" value="' + result.comment_sender_id + '" type="hidden"/>';
+//     html += '<img src="static/images/pen.png" alt="modify_img" height="25" width="25" class="right_pen"/>';
+//     html += '<img src="static/images/delete.png" alt="delete_img" height="25" width="25" class="right_delete"/>';
+//     html += '<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
+//     html += '</div>';
+//     html += '<div class=\"comment_textarea_space\">';
+//     html += '<textarea disabled class=\"view_comment_textarea\" placeholder=\"' + result.comment_content + '\"></textarea>';
+//     html += '</div>';
+//     html += '<div class="re_comment"> 답글 </div>';
+//     html += '<div class=\"comment_date\">' + result.date + '</div>';
+
+//     return html;
+// }
+
+// 댓글 html 태그 생성 하여 화면에 보여줌
 function commentHTML(result,html) {
 
-    html += '<div class=\"other_people_img\">';
-    html += '<img src=displayMthumbnail/' + result.comment_sender_id + '>';
-    html += '</div>';
-    html += '<div class=\"other_people_name\">' + result.comment_sender_name + '</div>';
-    html += '<div class="right_etc">';
-    html += '<input class=\"comment_id\" value="' + result.comment_id + '" type="hidden" />';
-    html += '<input class=\"comment_sender_id\" value="' + result.comment_sender_id + '" type="hidden"/>';
-    html += '<img src="static/images/pen.png" alt="modify_img" height="25" width="25" class="right_pen"/>';
-    html += '<img src="static/images/delete.png" alt="delete_img" height="25" width="25" class="right_delete"/>';
-    html += '<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
-    html += '</div>';
-    html += '<div class=\"comment_textarea_space\">';
-    html += '<textarea disabled class=\"view_comment_textarea\" placeholder=\"' + result.comment_content + '\"></textarea>';
-    html += '</div>';
-    html += '<div class="re_comment"> 답글 </div>';
-    html += '<div class=\"comment_date\">' + result.date + '</div>';
-
+    html += `<img src=displayMthumbnail/${result.comment_sender_id}>`
     return html;
 }
+
 
 //댓글 입력 함수
 function commentWrite() {
@@ -109,12 +117,12 @@ function commentConfirm(msg, title, commentDto) {
                     if (jqxHR.status == 201) {
                         swal('', '댓글을 등록하였습니다.', "success");
                         let html="";
+                        html += '<li class=\"look_comment\">';
                         html += '<div class=\"look_comment_wrap\">';
-                        html += '<div class=\"look_comment\">';
                         html = commentHTML(result,html);
                         html += '</div>';
-                        html += '</div>';
-                         $("form[name=commentForm]").after(html);
+                        html += '</li>';
+                         $("#js-comment-list").prepend(html);
                     }
                 },
                 error: function (error) {

@@ -34,7 +34,8 @@ function start() {
             for (var i = 0; i < result.length ; i++) {
 
                 let html = "";
-                html += '<a class=\"look_view_a\"  href=\"look?look_num=' + result[i].look_num + '\">';
+                // html += '<a class=\"look_view_a\"  href=\"look?look_num=' + result[i].look_num + '\">';
+                html += `<a class=\"look_view_a\"  href=\"look?look_num=${result[i].look_num}\">`;
                 html += '<div class=\"main\">';
                 html += '<div claas=\"main_container\">';
                 html += '<ul class=\"main_look_item\">';

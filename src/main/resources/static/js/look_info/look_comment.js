@@ -1,19 +1,19 @@
 // 처음 게시글 들어 갈때 최신 댓글 10개 받아 오기 위해 0을보냄
 // 그 이후부턴 마지막 값에 부모키 보냄
-let comment_id=0;
+let comment_id = 0;
 let scrollTime = true;
 let fk_look_num_Look_look_num;
-let userId ;
+let userId;
 let userNickname;
 
-function commentReady(look_num,userid,usernickname) {
+function commentReady(look_num, userid, usernickname) {
 
     //게시글 기본키 가져 오기
-    fk_look_num_Look_look_num=look_num;
+    fk_look_num_Look_look_num = look_num;
     //세션 아이디 값 가져 오기
-    userId=userid;
+    userId = userid;
     //세션 닉네임 값 가져 오기
-    userNickname=usernickname;
+    userNickname = usernickname;
 
     //처음 화면 들어 갔을 떄 댓글 데이터 10개 가져 오기
     commentGet();
@@ -33,27 +33,53 @@ function commentReady(look_num,userid,usernickname) {
 }
 
 //댓글 html 태그 생성 하여 화면에 보여줌
-function commentHTML(result,html) {
+// function commentHTML(result,html) {
 
-    html += '<div class=\"other_people_img\">';
-    html += '<img src=displayMthumbnail/' + result.comment_sender_id + '>';
-    html += '</div>';
-    html += '<div class=\"other_people_name\">' + result.comment_sender_name + '</div>';
-    html += '<div class="right_etc">';
-    html += '<input class=\"comment_id\" value="' + result.comment_id + '" type="hidden" />';
-    html += '<input class=\"comment_sender_id\" value="' + result.comment_sender_id + '" type="hidden"/>';
-    html += '<img src="static/images/pen.png" alt="modify_img" height="25" width="25" class="right_pen"/>';
-    html += '<img src="static/images/delete.png" alt="delete_img" height="25" width="25" class="right_delete"/>';
-    html += '<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
-    html += '</div>';
-    html += '<div class=\"comment_textarea_space\">';
-    html += '<textarea disabled class=\"view_comment_textarea\" placeholder=\"' + result.comment_content + '\"></textarea>';
-    html += '</div>';
-    html += '<div class="re_comment"> 답글 </div>';
-    html += '<div class=\"comment_date\">' + result.date + '</div>';
+//     html += '<div class=\"other_people_img\">';
+//     html += '<img src=displayMthumbnail/' + result.comment_sender_id + '>';
+//     html += '</div>';
+//     html += '<div class=\"other_people_name\">' + result.comment_sender_name + '</div>';
+//     html += '<div class="right_etc">';
+//     html += '<input class=\"comment_id\" value="' + result.comment_id + '" type="hidden" />';
+//     html += '<input class=\"comment_sender_id\" value="' + result.comment_sender_id + '" type="hidden"/>';
+//     html += '<img src="static/images/pen.png" alt="modify_img" height="25" width="25" class="right_pen"/>';
+//     html += '<img src="static/images/delete.png" alt="delete_img" height="25" width="25" class="right_delete"/>';
+//     html += '<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
+//     html += '</div>';
+//     html += '<div class=\"comment_textarea_space\">';
+//     html += '<textarea disabled class=\"view_comment_textarea\" placeholder=\"' + result.comment_content + '\"></textarea>';
+//     html += '</div>';
+//     html += '<div class="re_comment"> 답글 </div>';
+//     html += '<div class=\"comment_date\">' + result.date + '</div>';
+
+//     return html;
+// }
+
+// 댓글 html 태그 생성 하여 화면에 보여줌
+function commentHTML(result, html) {
+    // `` <= 바틱을 씁시다.
+    html += `<div class=\"other_people_img\">`;
+    html += `<img src=displayMthumbnail/${result.comment_sender_id}>`;
+    html += `</div>`;
+
+    html += `<div class=\"comment_center\">`;
+    html += `<div class=\"comment_center_header\">`;
+    html += `<span class=\"other_people_name\">${result.comment_sender_name}</div>`;
+    html += `</div>`;//<div class=\"comment_center_header\">
+    html += `<div class=\"comment_center_textarea\">`;
+    html += `<textarea disabled class=\"view_comment_textarea\" placeholder=\"${result.comment_content}\"></textarea>`;
+    html += `</div>`; //<div class=\"comment_center_textarea\">
+    html += `<div class=\"comment_center_fooer\">`;
+    html +=;
+    html += `</div>`;//<div class=\"comment_center_fooer\">
+    html += `</div>`;//<div class=\"comment_center\">
+
+    html += `<div class=\"comment_right\">`;
+    html += `</div>`;
 
     return html;
 }
+
 
 //댓글 입력 함수
 function commentWrite() {
@@ -68,7 +94,7 @@ function commentWrite() {
         comment_sender_name: comment_sender_name,
         fk_look_num_Look_look_num: fk_look_num_Look_look_num,
         comment_content: comment_content,
-        parents : 0, //대댓글 아니므로 값을 0줌
+        parents: 0, //대댓글 아니므로 값을 0줌
     };
 
     //데이터 json 문자열 형태로 변환
@@ -108,13 +134,14 @@ function commentConfirm(msg, title, commentDto) {
                     //result 리턴값 textStatus
                     if (jqxHR.status == 201) {
                         swal('', '댓글을 등록하였습니다.', "success");
-                        let html="";
+                        let html = "";
+                        html += '<li class=\"look_comment\">';
                         html += '<div class=\"look_comment_wrap\">';
-                        html += '<div class=\"look_comment\">';
-                        html = commentHTML(result,html);
+                        html = commentHTML(result, html);
                         html += '</div>';
-                        html += '</div>';
-                         $("form[name=commentForm]").after(html);
+                        // html +=  <div> 대댓글 </div>
+                        html += '</li>';
+                        $("#js-comment-list").prepend(html); //ul태그안에 시작부분에 삽입.
                     }
                 },
                 error: function (error) {
@@ -137,26 +164,26 @@ function commentConfirm(msg, title, commentDto) {
 function commentGet() {
     //스크롤 이벤트 중복 실행 방지
     scrollTime = false
-    let html="";
+    let html = "";
     $.ajax({
-        url: "/look_comment_list/"+fk_look_num_Look_look_num+"/"+comment_id,
+        url: "/look_comment_list/" + fk_look_num_Look_look_num + "/" + comment_id,
         type: "get",
         dataType: "json", //json 형태로 받기
         success: function (result) {
             //최신글 순으로  댓글 10개 받아 와서 받아온 만큼 댓글 화면에 보여줌
-            for(var i=0; i<result.length; i++){
+            for (var i = 0; i < result.length; {
                 let data = result[i];
 
-                    html += '<div class=\"look_comment_wrap\">';
-                    html += '<div class=\"look_comment\">';
-                    html = commentHTML(data,html);
-                    html += '</div>';
-                    html += '</div>'; //look_comment_wrap 닫기
-                    $(".body_root").append(html); //body 마지막에 추가
-                    html="";
+                html += '<div class=\"look_comment_wrap\">';
+                html += '<div class=\"look_comment\">';
+                html = commentHTML(data, html);
+                html += '</div>';
+                html += '</div>'; //look_comment_wrap 닫기
+                $(".body_root").append(html); //body 마지막에 추가
+                html = "";
             }
-            //마지막 댓글 기본키 를 변수값 에 넣어서 다음 데이터 10개를 받아올 수 있게 준비함
-            comment_id=result[result.length-1].comment_id;
+//마지막 댓글 기본키 를 변수값 에 넣어서 다음 데이터 10개를 받아올 수 있게 준비함
+comment_id = result[result.length - 1].comment_id;
 
             setTimeout(function () {
                 scrollTime = true;
@@ -280,9 +307,9 @@ $(document).on("click", ".comment_change_button", function (event) {
             contentType: "application/json", //json 형태로 보내기
             success: function (result, textStatus, jqxHR) {
                 look_commentTag.children().remove();
-                let html="";
+                let html = "";
                 //수정 하여 수정된 html 화면으로 돌려주기
-                look_commentTag.append(commentHTML(result,html));
+                look_commentTag.append(commentHTML(result, html));
             },
             error: function (error) {
                 //서버오류 500  권한없음 401  찾는내용없음 400
@@ -301,9 +328,9 @@ $(document).on("click", ".comment_change_button", function (event) {
             type: "GET", //데이터 전달방식
             success: function (result) {
                 look_commentTag.children().remove();
-                let html="";
+                let html = "";
                 //수정취소 를 하여 원래 html 화면 으로 돌려 주기
-                look_commentTag.append(commentHTML(result,html));
+                look_commentTag.append(commentHTML(result, html));
             },
             error: function (error) {
                 //서버오류 500  권한없음 401  찾는내용없음 400
