@@ -31,7 +31,7 @@
                 <div class="space"/>
             </div>
             <!-- /* class 이 space 인건 layout 을 위해 넣은 빈공간임*/-->
-            <div><span class="title">내 룩 등록</span></div>
+            <div><span class="title">내 룩 수정</span></div>
             <div class="space"></div>
             <%--로그인한 아이디와 작성자 아이디 비교위해 작성자 아이디 넘겨줌 --%>
             <input type="hidden"  name="fk_userid_user_userid" value="${view.fk_userid_user_userid}"/>

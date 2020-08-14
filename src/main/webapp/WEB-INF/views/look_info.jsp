@@ -139,7 +139,6 @@
 <!-- <script type="text/javascript" src="/static/js/lookModify/lookModify.js"></script> -->
 <script type="text/javascript" src="/static/js/look_info/lookDelete.js"></script>
 <script type="text/javascript" src="/static/js/look_info/look_info.js"></script>
-<script type="text/javascript" src="/static/js/look_info/comment.js"></script>
 <script type="text/javascript" src="/static/js/look_info/child_comment.js"></script>
 <script type="text/javascript" src="/static/js/look_info/look_comment.js"></script>
 <%--댓글 내용출력 위해 현재글에 기본키를 댓글 자바스크립트에 넘김--%>

@@ -53,7 +53,7 @@
                     </div>  
                 </div>
                 <div class="footer_wrap mt_40">
-                   <button class="defBtn" type="button" href="main">탈퇴하기</button>
+                   <button class="defBtn" type="button" onClick="userDelete()">탈퇴하기</button>
                 </div>
             </div>
         </form>
