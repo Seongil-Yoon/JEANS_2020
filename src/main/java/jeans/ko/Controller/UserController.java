@@ -96,62 +96,19 @@ public class UserController {
         return "changeUser";
     }
 
-    //회원가입 시 프로필사진이 없다
-    @ResponseBody
-    @PostMapping(value = "/user")
-    public ResponseEntity<Void> join(@Valid @RequestBody UserDto user, BindingResult result) throws IOException {
-        BindingResult e;
-        // @Valid
-        // UserDto user = new ObjectMapper().readValue(userString, UserDto.class);
-        user.setPicture("");//사진이름은 ""으로 둔다.
-
-        System.out.println("result.getErrorCount() = " + result.getErrorCount());
-        System.out.println("result.hasGlobalErrors(); = " + result.getFieldError());
-        if (result.getFieldError("userid") != null) {
-            System.out.println("Error! " + result.getFieldError("userid").getDefaultMessage());
-        }
-        if (result.getFieldError("nickname") != null) {
-            System.out.println("Error! = " + result.getFieldError("nickname").getDefaultMessage());
-        }
-        if (result.getFieldError("password") != null) {
-            System.out.println("Error! = " + result.getFieldError("password").getDefaultMessage());
-        }
-        if (result.getFieldError("sex") != null) {
-            System.out.println("Error! = " + result.getFieldError("sex").getDefaultMessage());
-        }
-        if (result.getFieldError("email") != null) {
-            System.out.println("Error! = " + result.getFieldError("email").getDefaultMessage());
-        }
-        if (result.getErrorCount() > 0) {
-            System.out.println("이제 자바스크립트로 에러를 보낸다.");
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        //회원가입 이벤트
-        int check = userService.joinUser(user);
-
-        //성공적으로 회원가입 시 1반환
-        if (check > 0)
-            return new ResponseEntity<>(HttpStatus.OK);
-        else
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
-
-
     //회원가입 시 프로필사진이 있다.
     //REST 형식의 회원가입
     @ResponseBody
-    @PostMapping(value = "/userfile")
-    public ResponseEntity<Void> join(@Valid @RequestPart("UserDto") UserDto user, @RequestPart(value = "file") MultipartFile picture, BindingResult result) throws Exception {
+    @PostMapping(value = "/user")
+    public ResponseEntity<Void> join(@Valid @RequestPart("UserDto") UserDto user, @RequestPart(value = "file", required = false) MultipartFile picture, BindingResult result) throws Exception {
+        logger.info("join메소드");
 
-        logger.info(user.toString()+" "+picture.toString());
-        String fileOriginalname = picture.getOriginalFilename();//올린 이미지 파일의 원래이름
-
-       // @Valid
-       // UserDto user = new ObjectMapper().readValue(userString, UserDto.class);
-
-        user.setPicture(fileOriginalname);
-        //user의 picture값을 파일의 이름으로 설정한다.
+        if(picture==null){
+            user.setPicture("");//이것도 나중에 바꿔줘야함. 왜냐하면 이런식으로 공백으로 하면 나중에 폴더 다 지워짐
+        }else{
+            String fileOriginalname = picture.getOriginalFilename();//올린 이미지 파일의 원래이름
+            user.setPicture(fileOriginalname);
+        }
 
         System.out.println("result.getErrorCount() = " + result.getErrorCount());
         System.out.println("result.hasGlobalErrors() = " + result.getFieldError());
@@ -178,16 +135,18 @@ public class UserController {
         //회원가입 이벤트
         int check = userService.joinUser(user);
 
-        //프로필사진 업로드 이벤트
-        //uploadPath 경로 밑에 유저명의 폴더를 만든 후 getBytes()를 통해 받은 사진을 저장시킨다.
-        //경로 : uploadPath/유저명/profile//이미지파일명
-        fileService.uploadProfile(uploadPath, user.getUserid(), user.getPicture(), picture.getBytes());
+        if(!user.getPicture().equals("")) {
+            //프로필사진 업로드 이벤트
+            //uploadPath 경로 밑에 유저명의 폴더를 만든 후 getBytes()를 통해 받은 사진을 저장시킨다.
+            //경로 : uploadPath/유저명/profile//이미지파일명
+            fileService.uploadProfile(uploadPath, user.getUserid(), user.getPicture(), picture.getBytes());
 
-        //업로드된 폴더를 통해 썸네일 이미지 제작 이벤트
-        //uploadPath : 업로드 될 모든 파일들의 기본 부모
-        //user.getUserid : 해당유저의 파일
-        //profile : 그중에서도 개인 프로파일용사진 폴더.
-        fileService.makeprofileThumbnail(user.getPicture(), uploadPath, user.getUserid(), profile);
+            //업로드된 폴더를 통해 썸네일 이미지 제작 이벤트
+            //uploadPath : 업로드 될 모든 파일들의 기본 부모
+            //user.getUserid : 해당유저의 파일
+            //profile : 그중에서도 개인 프로파일용사진 폴더.
+            fileService.makeprofileThumbnail(user.getPicture(), uploadPath, user.getUserid(), profile);
+        }
 
         //성공적으로 회원가입 시 1반환
         if (check > 0)
