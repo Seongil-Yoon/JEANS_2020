@@ -42,7 +42,7 @@
 
 
         <div class="changeEmail">
-            <form class="changeEmail_1" action="/loginRequest" method="post">
+            <form class="changeEmail_1" >
                 <div class="changeEmail_1_1"> <!-- changeEmail의 손자 태그-->
                     <div class="changeEmail_1_1_1">인증 이메일 변경</div>
                     <div class="changeEmail_1_1_2">변경할 인증 이메일</div>
@@ -110,16 +110,16 @@
             </form>
         </div>
         <div class="changePict">
-            <form class="changePict_1" action="/loginRequest" method="post">
+            <form class="changePict_1">
                 <div class="changePict_1_1"> <!-- changeEmail의 손자 태그-->
                     <div class="changePict_1_1_1">프로필 사진 수정</div>
                     <div class="changePict_1_1_2" id="View_area"></div>
                     <div class="changePict_1_1_3">
                         사진첨부ㅤ
-                        <input type="file" name="profile_pt" id="profile_pt" onchange="previewImage(this,'View_area')">
+                        <input type="file" name="profile_pt" id="profile_pt" accept=".jpg,.jpeg,.png,.bmp" onchange="previewImage(this,'View_area')">
                     </div>
                     <div class="changePict_1_1_4">
-                        <button class="register_save" type="submit" onclick="y" value="확인">확인</button>
+                        <button class="register_save" type="submit" onclick="changeprofileThumbnail()" value="확인">확인</button>
                     </div>
 
                 </div>

@@ -36,3 +36,23 @@ function changePassword(){
         }
     })
 }
+
+function changeprofileThumbnail(){
+    alert("자바스크립트실행");
+    let file=$("input[name=profile_pt]")[0].files[0];
+    let formData=new FormData();
+    formData.append('file',file);
+    $.ajax({
+        url:"/userinformation/profilethumbnail",
+        processData: false,
+        contentType: false,
+        type:"post",
+        data: formData,
+        success: function(){
+            alert("성공")
+        },
+        error: function(xhr,status,error){
+            alert("code : "+xhr.status+"\n"+"message"+xhr.responseText+"\n"+error);
+        }
+    })
+}

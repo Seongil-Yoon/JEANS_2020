@@ -5,6 +5,7 @@ import jeans.ko.Dao.IUserDao;
 import jeans.ko.Dto.UserDto;
 import jeans.ko.Service.IFileService;
 import jeans.ko.Service.IUserService;
+import jeans.ko.Service.IUtilService;
 import jeans.ko.exception.NotFoundException;
 import lombok.extern.flogger.Flogger;
 import org.apache.commons.io.IOUtils;
@@ -30,7 +31,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 //로그인이
@@ -41,6 +44,9 @@ public class UserController {
 
     @Autowired
     IUserService userService;
+
+    @Autowired
+    IUtilService utilService;
 
     //회원가입 시 프로필사진을 입력했을 때 사진 업로드를 위한 Service
     @Autowired
@@ -104,7 +110,7 @@ public class UserController {
         logger.info("join메소드");
 
         if(picture==null){
-            user.setPicture("");//이것도 나중에 바꿔줘야함. 왜냐하면 이런식으로 공백으로 하면 나중에 폴더 다 지워짐
+            user.setPicture(defaultSthumbnail);//이것도 나중에 바꿔줘야함. 왜냐하면 이런식으로 공백으로 하면 나중에 폴더 다 지워짐
         }else{
             String fileOriginalname = picture.getOriginalFilename();//올린 이미지 파일의 원래이름
             user.setPicture(fileOriginalname);
@@ -135,17 +141,27 @@ public class UserController {
         //회원가입 이벤트
         int check = userService.joinUser(user);
 
-        if(!user.getPicture().equals("")) {
+
+
+        List<String> profilethumbnailPath=utilService.usertoPath(user.getUserid());
+        List<MultipartFile>files=new ArrayList<>();
+        files.add(picture);
+
+        fileService.mkDir(profilethumbnailPath);
+
+        if(!user.getPicture().equals(defaultSthumbnail)) {
             //프로필사진 업로드 이벤트
             //uploadPath 경로 밑에 유저명의 폴더를 만든 후 getBytes()를 통해 받은 사진을 저장시킨다.
             //경로 : uploadPath/유저명/profile//이미지파일명
-            fileService.uploadProfile(uploadPath, user.getUserid(), user.getPicture(), picture.getBytes());
+            //fileService.uploadProfile(uploadPath, user.getUserid(), user.getPicture(), picture.getBytes());
 
+            fileService.uploadFiles(profilethumbnailPath, files);
             //업로드된 폴더를 통해 썸네일 이미지 제작 이벤트
             //uploadPath : 업로드 될 모든 파일들의 기본 부모
             //user.getUserid : 해당유저의 파일
             //profile : 그중에서도 개인 프로파일용사진 폴더.
-            fileService.makeprofileThumbnail(user.getPicture(), uploadPath, user.getUserid(), profile);
+           // fileService.makeprofileThumbnail(user.getPicture(), uploadPath, user.getUserid(), profile);
+            fileService.mkProfilethumbnail(profilethumbnailPath,user.getUserid());
         }
 
         //성공적으로 회원가입 시 1반환
@@ -212,7 +228,7 @@ public class UserController {
         String picture = userService.getPicture(userid);
         HttpHeaders headers = new HttpHeaders();
         try {
-            if (picture.equals("")) {
+            if (picture.equals(defaultSthumbnail)) {
                 logger.info("사진이 없습니다. 기본 이미지를 적용합니다.");
                 in = new FileInputStream(uploadPath + route + defaultdirectory + route + defaultSthumbnail);
             } else {
@@ -240,7 +256,7 @@ public class UserController {
         String picture = userService.getPicture(id);
         HttpHeaders headers = new HttpHeaders();
         try {
-            if (picture.equals("")) {
+            if (picture.equals(defaultSthumbnail)) {
                 logger.info("해당유저의 프로필사진이 없다. 기본이미지 적용.");
                 in = new FileInputStream(uploadPath + route + defaultdirectory + route + defaultSthumbnail);
                 logger.info(in.toString());

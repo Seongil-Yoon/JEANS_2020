@@ -182,7 +182,7 @@ public class LookController {
 
         HttpHeaders headers = new HttpHeaders();
         try {
-            in = new FileInputStream(uploadPath + route + datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route + picture);
+            in = new FileInputStream( datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route +datepath.get(3)+route+ picture);
             entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
         } catch (Exception e) {
             entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);

@@ -260,14 +260,13 @@ function joinUser() {
         //processData : 데이터를 querystring형태로 보내지 않고 DOMDocument 또는 다른 형태로 보내려면 false로 설정
         //contentType : 서버에 데이터를 보낼 때 사용 content-type 헤더의 값.
         $.ajax({
-            url: "/userfile",
+            url: "/user",
             type: "post",
             data: formData,
             processData: false,
             contentType: false,
             mimeType:'multipart/form-data',
             success: function () {
-                alert(JSON.stringify(formData));//성공 시 출력 나중에 지울것!
                 location.href = "/loginUser";
             },
             error: function (request, status, error) {
