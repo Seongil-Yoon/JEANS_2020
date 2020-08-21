@@ -32,4 +32,6 @@ public interface IUserDao {
 
     //아이디와 비밀번호를 입력하면 userDto 다 반환
     public UserDto getInformation(UserDto userDto);
+
+
 }

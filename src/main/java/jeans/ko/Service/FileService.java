@@ -76,8 +76,25 @@ public class FileService implements IFileService {
             return false;
         }
         BufferedImage sourceImg = ImageIO.read(f);
-        BufferedImage smallImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 40);
-        BufferedImage middleImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 50);
+
+        int length = 50;//50의 정사각형으로 썸네일을 생성한다.
+        int ow = sourceImg.getWidth();
+        int oh = sourceImg.getHeight();
+        int nw,nh;
+
+        if (ow < oh) {
+            nw = ow;
+            nh = ow;
+        } else {
+            nw = oh;
+            nh = oh;
+        }
+        BufferedImage cropImg=Scalr.crop(sourceImg,(ow-nw)/2,(oh-nh)/2,nw,nh);
+        BufferedImage smallImg = Scalr.resize(cropImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 40);
+        BufferedImage middleImg = Scalr.resize(cropImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 50);
+
+      /*  BufferedImage smallImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 40);
+        BufferedImage middleImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 50);*/
 
         String formatName = picture.substring(picture.lastIndexOf(".") + 1);
         File smallThumbnail = new File(path + route + smallHeader + picture);
@@ -109,15 +126,15 @@ public class FileService implements IFileService {
     @Override
     public boolean rmFiles(List<String> paths, List<String> pictures) {
         logger.info("rmFiles메소드");
-        String path=utilService.completePath(paths);
-        File f=new File(path);
-        if(!f.exists()){
+        String path = utilService.completePath(paths);
+        File f = new File(path);
+        if (!f.exists()) {
             logger.info("파일을 제거할 경로가 없습니다");
-            logger.info(path+"가 존재하지 않음");
+            logger.info(path + "가 존재하지 않음");
             return false;
         }
-        for(String picture:pictures){
-            new File(path+picture).delete();
+        for (String picture : pictures) {
+            new File(path + picture).delete();
         }
         return true;
     }
@@ -126,9 +143,9 @@ public class FileService implements IFileService {
     @Override
     public boolean rmDir(List<String> pahts) {
         logger.info("rmDir메소드");
-        String path=utilService.completePath(pahts);
-        File f=new File(path);
-        if(!f.exists()){
+        String path = utilService.completePath(pahts);
+        File f = new File(path);
+        if (!f.exists()) {
             logger.info("삭제할 폴더가 이미 없습니다");
             return true;
         }

@@ -65,46 +65,46 @@
 
 
         <div class="changeOther">
-            <form class="changeOther_1" action="/loginRequest" method="post">
+            <form class="changeOther_1">
                 <div class="changeOther_1_1">
                     <div class="changeOther_1_1_1">닉네임</div>
                     <div class="changeOther_1_1_2">
-                        <input type="text" name="nickname" class="register_nickInput" placeholder="수정할 닉네임">
+                        <input type="text" id="nick" name="nickname" class="register_nickInput" <%--placeholder="수정할 닉네임"--%>>
                     </div>
                     <!-- -->
                     <div class="changeOther_1_1_3">프로필 열람설정</div>
                     <div class="changeOther_1_1_4">성별</div>
                     <div class="changeOther_1_1_5">
-                        <input type="radio" value="bodyOpen"/>
+                        <input type="radio" name="privacy" value="bodyOpen"/>
                     </div>
                     <div class="changeOther_1_1_6">공개</div>
                     <div class="changeOther_1_1_7">
-                        <input type="radio"  value="bodyClose"/>
+                        <input type="radio" name="privacy" value="bodyClose"/>
                     </div>
                     <div class="changeOther_1_1_8">비공개</div>
                     <!-- -->
                     <div class="changeOther_1_1_9">
-                        <input type="radio" type="number" name="sex" value="1"/>
+                        <input type="radio" id="male" type="number" name="sex" value="1"/>
                     </div>
                     <div class="changeOther_1_1_10">남성</div>
                     <div class="changeOther_1_1_11">
-                        <input type="radio" type="number" name="sex" value="0"/>
+                        <input type="radio" id="female" type="number" name="sex" value="0"/>
                     </div>
                     <div class="changeOther_1_1_12">여성</div>
                     <!-- -->
                     <div class="changeOther_1_1_13">키</div>
                     <div class="changeOther_1_1_14">몸무게</div>
                     <div class="changeOther_1_1_15">
-                        <input type="number" class="register_heightInt" placeholder="168"/>
+                        <input type="number" id="height" name="height" class="register_heightInt" />
                     </div>
                     <div class="changeOther_1_1_16">cm</div>
                     <div class="changeOther_1_1_17">
-                        <input type="number" class="register_weightInt" placeholder="168"/>
+                        <input type="number" id="weight" name="weight" class="register_weightInt"/>
                     </div>
                     <div class="changeOther_1_1_18">Kg</div>
                     <!-- -->
                     <div class="changeOther_1_1_19">
-                        <button class="register_save" type="submit" onclick="y" value="확인">확인</button>
+                        <button class="register_save" type="submit" onclick="changeUserinformation()" value="확인">확인</button>
                     </div>
                 </div>
             </form>
