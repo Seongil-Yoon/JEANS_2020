@@ -21,6 +21,10 @@
     <select id="getInformation" resultType="jeans.ko.Dto.UserDto">
         select * from user where userid=(#{userid}) and password=(#{password});
     </select>
+    <update id="setPassword">
+        update user set password=(#{password}) where userid=(#{userid});
+    </update>
+
 </mapper>
 
         <!-- resultType="jeans.ko.Dto.UserDto"-->

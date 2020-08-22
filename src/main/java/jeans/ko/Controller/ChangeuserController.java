@@ -60,7 +60,8 @@ public class ChangeuserController {
         if (result.getFieldError("ps") != null) {
             System.out.println("Error! = " + result.getFieldError("ps").getDefaultMessage());
         }
-
+        String userid= (String) session.getAttribute("userid");
+        userDao.setPassword(userid,passwordDto.getPs());
 
         return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
     }

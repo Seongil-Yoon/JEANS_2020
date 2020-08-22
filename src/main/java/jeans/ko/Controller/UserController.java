@@ -110,7 +110,7 @@ public class UserController {
         logger.info("join메소드");
 
         if(picture==null){
-            user.setPicture(defaultSthumbnail);//이것도 나중에 바꿔줘야함. 왜냐하면 이런식으로 공백으로 하면 나중에 폴더 다 지워짐
+            user.setPicture(defaultSthumbnail);
         }else{
             String fileOriginalname = picture.getOriginalFilename();//올린 이미지 파일의 원래이름
             user.setPicture(fileOriginalname);
