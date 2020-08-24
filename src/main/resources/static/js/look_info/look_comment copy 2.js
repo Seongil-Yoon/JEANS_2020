@@ -33,24 +33,54 @@ function commentReady(look_num,userid,usernickname) {
 }
 
 //댓글 html 태그 생성 하여 화면에 보여줌
-function commentHTML(result,html) {
+// function commentHTML(result,html) {
 
-    html += '<div class=\"other_people_img\">';
-    html += '<img src=displayMthumbnail/' + result.comment_sender_id + '>';
-    html += '</div>';
-    html += '<div class=\"other_people_name\">' + result.comment_sender_name + '</div>';
-    html += '<div class="right_etc">';
-    html += '<input class=\"comment_id\" value="' + result.comment_id + '" type="hidden" />';
-    html += '<input class=\"comment_sender_id\" value="' + result.comment_sender_id + '" type="hidden"/>';
-    html += '<img src="static/images/pen.png" alt="modify_img" height="25" width="25" class="right_pen"/>';
-    html += '<img src="static/images/delete.png" alt="delete_img" height="25" width="25" class="right_delete"/>';
-    html += '<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
-    html += '</div>';
-    html += '<div class=\"comment_textarea_space\">';
-    html += '<textarea disabled class=\"view_comment_textarea\" placeholder=\"' + result.comment_content + '\"></textarea>';
-    html += '</div>';
-    html += '<div class="re_comment"> 답글 </div>';
-    html += '<div class=\"comment_date\">' + result.date + '</div>';
+//     html += '<div class=\"other_people_img\">';
+//     html += '<img src=displayMthumbnail/' + result.comment_sender_id + '>';
+//     html += '</div>';
+//     html += '<div class=\"other_people_name\">' + result.comment_sender_name + '</div>';
+//     html += '<div class="right_etc">';
+//     html += '<input class=\"comment_id\" value="' + result.comment_id + '" type="hidden" />';
+//     html += '<input class=\"comment_sender_id\" value="' + result.comment_sender_id + '" type="hidden"/>';
+//     html += '<img src="static/images/pen.png" alt="modify_img" height="25" width="25" class="right_pen"/>';
+//     html += '<img src="static/images/delete.png" alt="delete_img" height="25" width="25" class="right_delete"/>';
+//     html += '<img src="static/images/alarm.png" alt="alarm_img" height="25" width="25" class="alarm"/>';
+//     html += '</div>';
+//     html += '<div class=\"comment_textarea_space\">';
+//     html += '<textarea disabled class=\"view_comment_textarea\" placeholder=\"' + result.comment_content + '\"></textarea>';
+//     html += '</div>';
+//     html += '<div class="re_comment"> 답글 </div>';
+//     html += '<div class=\"comment_date\">' + result.date + '</div>';
+
+//     return html;
+// }
+function commentHTML(result, html) {
+    // `` <= 바틱을 씁시다.
+    html += `<div class=\"comment_left\">`;
+    html += `<img class=\"profile_img\" src=displayMthumbnail/${result.comment_sender_id}>`;
+    html += `</div>`;//<div class=\"comment_left\">
+
+    html += `<div class=\"comment_center\">`;
+    html += `<div class=\"comment_center_header\">`;
+    html += `<span class=\"other_people_name\">${result.comment_sender_name}</span>`;
+    html += `<div class="right_etc">`;
+    html += `<input class=\"comment_id\" value="${result.comment_id}" type="hidden" />`;
+    html += `<input class=\"comment_sender_id\" value="${result.comment_sender_id}" type="hidden" />`;
+    html += `<img src="static/images/pen.png" alt="modify_img"  class="right_pen"/>`;
+    html += `<img src="static/images/delete.png" alt="delete_img" class="right_delete"/>`;
+    html += `<img src="static/images/alarm.png" alt="alarm_img" class="alarm"/>`;
+    html += `</div>`;//<div class="right_etc">
+    html += `</div>`;//<div class=\"comment_center_header\">
+
+    html += `<div class=\"comment_center_textarea\">`;
+    html += `<span disabled class=\"view_comment_textarea\">${result.comment_content}</span>`;
+    html += `</div>`; //<div class=\"comment_center_textarea\">
+    html += `<div class=\"comment_center_footer\">`;
+    html += `<span class=\"view_child_comment\">답글 보기</span>`;
+    html += `<span class=\"write_child_comment\">답글 작성</span>`;
+    html += `</div>`;//<div class=\"comment_center_footer\">
+    html += `</div>`;//<div class=\"comment_center\">
+
 
     return html;
 }
@@ -147,13 +177,19 @@ function commentGet() {
             for(var i=0; i<result.length; i++){
                 let data = result[i];
 
+                    // html += '<div class=\"look_comment_wrap\">';
+                    // html += '<div class=\"look_comment\">';
+                    // html = commentHTML(data,html);
+                    // html += '</div>';
+                    // html += '</div>'; //look_comment_wrap 닫기
+                    // $(".body_root").append(html); //body 마지막에 추가
+                    // html="";
+                    html += '<li class=\"look_comment\">';
                     html += '<div class=\"look_comment_wrap\">';
-                    html += '<div class=\"look_comment\">';
-                    html = commentHTML(data,html);
+                    html = commentHTML(result, html);
                     html += '</div>';
-                    html += '</div>'; //look_comment_wrap 닫기
-                    $(".body_root").append(html); //body 마지막에 추가
-                    html="";
+                    html += '</li>';
+                    $("#js-comment-list").prepend(html); //ul태그안에 시작부분에 삽입.
             }
             //마지막 댓글 기본키 를 변수값 에 넣어서 다음 데이터 10개를 받아올 수 있게 준비함
             comment_id=result[result.length-1].comment_id;
