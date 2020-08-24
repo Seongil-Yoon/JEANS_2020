@@ -42,8 +42,8 @@
 
                 <div class = "my_information">
                     <span class="user_nickname"></span><span>   </span>
-                    <span>177cm 55kg</span><span>   </span>
-                    <span>(남)</span>
+                    <span>${sessionScope.userheight} ${sessionScope.userweight}</span><span>   </span>
+                    <span>${sessionScope.usersex}</span>
                 </div>
                 <div class = "my_followers">
                     <div class="div_space"></div>

@@ -40,7 +40,6 @@ public class UserService implements IUserService {
         System.out.println("userDto.getSex() = " + userDto.getSex());
         System.out.println("userDto = " + userDto);
         int insert_count= userDao.insertUser(userDto);
-        logger.info("insert_count = "+insert_count);
         //dao에서 db에 넣는게 성공했는지 안했는지 확인
         //이게 userDao 가 성공했는지 안했는지 확인하고 if 문으로 가랄져야한다
         return insert_count;

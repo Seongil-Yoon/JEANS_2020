@@ -5,6 +5,7 @@ import jeans.ko.Dao.IUserDao;
 import jeans.ko.Dto.UserDto;
 import jeans.ko.Service.IFileService;
 import jeans.ko.Service.IUserService;
+import jeans.ko.Service.IUtilService;
 import jeans.ko.exception.NotFoundException;
 import lombok.extern.flogger.Flogger;
 import org.apache.commons.io.IOUtils;
@@ -14,13 +15,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.BindingResultUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,7 +31,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 //로그인이
@@ -43,6 +44,9 @@ public class UserController {
 
     @Autowired
     IUserService userService;
+
+    @Autowired
+    IUtilService utilService;
 
     //회원가입 시 프로필사진을 입력했을 때 사진 업로드를 위한 Service
     @Autowired
@@ -105,62 +109,22 @@ public class UserController {
     }
 
     //회원가입 시 프로필사진이 없다
-    @ResponseBody
-    @PostMapping(value = "/user")
-    public ResponseEntity<Void> join(@RequestPart("UserDto") String userString, BindingResult result) throws IOException {
-
-        @Valid
-        UserDto user = new ObjectMapper().readValue(userString, UserDto.class);
-        user.setPicture("");//사진이름은 ""으로 둔다.
-
-        System.out.println("result.getErrorCount() = " + result.getErrorCount());
-        System.out.println("result.hasGlobalErrors(); = " + result.getFieldError());
-        if (result.getFieldError("userid") != null) {
-            System.out.println("Error! " + result.getFieldError("userid").getDefaultMessage());
-        }
-        if (result.getFieldError("nickname") != null) {
-            System.out.println("Error! = " + result.getFieldError("nickname").getDefaultMessage());
-        }
-        if (result.getFieldError("password") != null) {
-            System.out.println("Error! = " + result.getFieldError("password").getDefaultMessage());
-        }
-        if (result.getFieldError("sex") != null) {
-            System.out.println("Error! = " + result.getFieldError("sex").getDefaultMessage());
-        }
-        if (result.getFieldError("email") != null) {
-            System.out.println("Error! = " + result.getFieldError("email").getDefaultMessage());
-        }
-        if (result.getErrorCount() > 0) {
-            System.out.println("이제 자바스크립트로 에러를 보낸다.");
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        //회원가입 이벤트
-        int check = userService.joinUser(user);
-
-        //성공적으로 회원가입 시 1반환
-        if (check > 0)
-            return new ResponseEntity<>(HttpStatus.OK);
-        else
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
-
-
     //회원가입 시 프로필사진이 있다.
     //REST 형식의 회원가입
     @ResponseBody
-    @PostMapping(value = "/userfile")
-    public ResponseEntity<Void> join(@RequestPart("UserDto") String userString, @RequestPart("file") MultipartFile picture, BindingResult result) throws Exception {
-        String fileOriginalname = picture.getOriginalFilename();//올린 이미지 파일의 원래이름
+    @PostMapping(value = "/user")
+    public ResponseEntity<Void> join(@Valid @RequestPart("UserDto") UserDto user, @RequestPart(value = "file", required = false) MultipartFile picture, BindingResult result) throws Exception {
+        logger.info("join메소드");
 
-        @Valid
-        UserDto user = new ObjectMapper().readValue(userString, UserDto.class);
-
-        user.setPicture(fileOriginalname);
-        //user의 picture값을 파일의 이름으로 설정한다.
+        if(picture==null){
+            user.setPicture(defaultSthumbnail);
+        }else{
+            String fileOriginalname = picture.getOriginalFilename();//올린 이미지 파일의 원래이름
+            user.setPicture(fileOriginalname);
+        }
 
         System.out.println("result.getErrorCount() = " + result.getErrorCount());
-        System.out.println("result.hasGlobalErrors(); = " + result.getFieldError());
+        System.out.println("result.hasGlobalErrors() = " + result.getFieldError());
         if (result.getFieldError("userid") != null) {
             System.out.println("Error! " + result.getFieldError("userid").getDefaultMessage());
         }
@@ -184,16 +148,28 @@ public class UserController {
         //회원가입 이벤트
         int check = userService.joinUser(user);
 
-        //프로필사진 업로드 이벤트
-        //uploadPath 경로 밑에 유저명의 폴더를 만든 후 getBytes()를 통해 받은 사진을 저장시킨다.
-        //경로 : uploadPath/유저명/profile//이미지파일명
-        fileService.uploadProfile(uploadPath, user.getUserid(), user.getPicture(), picture.getBytes());
 
-        //업로드된 폴더를 통해 썸네일 이미지 제작 이벤트
-        //uploadPath : 업로드 될 모든 파일들의 기본 부모
-        //user.getUserid : 해당유저의 파일
-        //profile : 그중에서도 개인 프로파일용사진 폴더.
-        fileService.makeprofileThumbnail(user.getPicture(), uploadPath, user.getUserid(), profile);
+
+        List<String> profilethumbnailPath=utilService.usertoPath(user.getUserid());
+        List<MultipartFile>files=new ArrayList<>();
+        files.add(picture);
+
+        fileService.mkDir(profilethumbnailPath);
+
+        if(!user.getPicture().equals(defaultSthumbnail)) {
+            //프로필사진 업로드 이벤트
+            //uploadPath 경로 밑에 유저명의 폴더를 만든 후 getBytes()를 통해 받은 사진을 저장시킨다.
+            //경로 : uploadPath/유저명/profile//이미지파일명
+            //fileService.uploadProfile(uploadPath, user.getUserid(), user.getPicture(), picture.getBytes());
+
+            fileService.uploadFiles(profilethumbnailPath, files);
+            //업로드된 폴더를 통해 썸네일 이미지 제작 이벤트
+            //uploadPath : 업로드 될 모든 파일들의 기본 부모
+            //user.getUserid : 해당유저의 파일
+            //profile : 그중에서도 개인 프로파일용사진 폴더.
+           // fileService.makeprofileThumbnail(user.getPicture(), uploadPath, user.getUserid(), profile);
+            fileService.mkProfilethumbnail(profilethumbnailPath,user.getUserid());
+        }
 
         //성공적으로 회원가입 시 1반환
         if (check > 0)
@@ -208,33 +184,38 @@ public class UserController {
     public HashMap<String, Object> loginRequest(@RequestBody UserDto userDto) {
 
         HashMap<String, Object> map = new HashMap<String, Object>();
-       //String nickname = userService.userLogin(userDto);//닉네임 값을 받아오도록
+        //String nickname = userService.userLogin(userDto);//닉네임 값을 받아오도록
 
-        UserDto successLogin=userService.userLogin(userDto);
+        UserDto successLogin = userService.userLogin(userDto);
 
         if (successLogin == null) {
             //아이디와 비빌번호가 맞지않음
             throw new NotFoundException(String.format("Please enter your ID and password again"));
         } else {
             //로그인 성공
-            httpSession.setAttribute("userrole",successLogin.getRole());
+            httpSession.setAttribute("userrole", successLogin.getRole());
             httpSession.setAttribute("userid", successLogin.getUserid());
             httpSession.setAttribute("usernickname", successLogin.getNickname());
-            httpSession.setAttribute("usersex",successLogin.getSex());
-            httpSession.setAttribute("userheight",successLogin.getHeight());
-            httpSession.setAttribute("userweight",successLogin.getWeight());
-            httpSession.setAttribute("useremail",successLogin.getEmail());
+            httpSession.setAttribute("usersex", successLogin.getSex());
+            httpSession.setAttribute("userheight", successLogin.getHeight());
+            httpSession.setAttribute("userweight", successLogin.getWeight());
+            httpSession.setAttribute("useremail", successLogin.getEmail());
 
-            map.put("role",httpSession.getAttribute("userrole"));
+            map.put("role", httpSession.getAttribute("userrole"));
             map.put("userid", httpSession.getAttribute("userid"));
             map.put("nickname", httpSession.getAttribute("usernickname"));
-            map.put("sex",httpSession.getAttribute("usersex"));
-            map.put("height",httpSession.getAttribute("userheight"));
-            map.put("weight",httpSession.getAttribute("userweight"));
-            map.put("email",httpSession.getAttribute("useremail"));
+            map.put("sex", httpSession.getAttribute("usersex"));
+            map.put("height", httpSession.getAttribute("userheight"));
+            map.put("weight", httpSession.getAttribute("userweight"));
+            map.put("email", httpSession.getAttribute("useremail"));
+            System.out.println(" user 에서 세션 = " + httpSession.getId());
+            System.out.println("successLogin = " + successLogin);
+
             return map; //session 아이디 닉네임 넘겨주기
         }
     }
+
+
 
     @ResponseBody
     @DeleteMapping("/session")
@@ -256,7 +237,7 @@ public class UserController {
         String picture = userService.getPicture(userid);
         HttpHeaders headers = new HttpHeaders();
         try {
-            if (picture.equals("")) {
+            if (picture.equals(defaultSthumbnail)) {
                 logger.info("사진이 없습니다. 기본 이미지를 적용합니다.");
                 in = new FileInputStream(uploadPath + route + defaultdirectory + route + defaultSthumbnail);
             } else {
@@ -284,7 +265,7 @@ public class UserController {
         String picture = userService.getPicture(id);
         HttpHeaders headers = new HttpHeaders();
         try {
-            if (picture.equals("")) {
+            if (picture.equals(defaultSthumbnail)) {
                 logger.info("해당유저의 프로필사진이 없다. 기본이미지 적용.");
                 in = new FileInputStream(uploadPath + route + defaultdirectory + route + defaultSthumbnail);
                 logger.info(in.toString());

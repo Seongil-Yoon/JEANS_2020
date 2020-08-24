@@ -145,6 +145,7 @@ public class LookController {
             throw new UnauthorizedException(String.format("unauthorized you"));
         }
         //게시글등록
+        System.out.println(" looks에서 세션 = " +session.getId());
         boardService.insert(boardDto, files);
         //selectKey로 등록된 게시글 가져온 기본키로 등록된 게시글 정보보내줌 새롭게 추가되 댓글이없으므로 게시글만넘김
         return boardDao.view(boardDto.getLook_num());
@@ -187,7 +188,7 @@ public class LookController {
 
         HttpHeaders headers = new HttpHeaders();
         try {
-            in = new FileInputStream(uploadPath + route + datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route + picture);
+            in = new FileInputStream( datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route +datepath.get(3)+route+ picture);
             entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
         } catch (Exception e) {
             entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
