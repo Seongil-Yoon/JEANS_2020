@@ -182,7 +182,7 @@ body {
             margin-top: 10px;
             line-height: 45px;
             width: max-content;
-            font-family: 'Jua', sans-serif;
+            font-family: "Jua", sans-serif;
           }
           .right_etc {
             text-align: right;
@@ -230,12 +230,16 @@ body {
 
       //댓글목록
       ul.comment-list {
+        box-sizing: border-box;
         li.look_comment {
+          padding: 15px 0;
+          box-sizing: border-box;
+          border-top: 3px solid #ebebeb;
           list-style: none;
           .look_comment_wrap {
             width: 100%;
             display: flex;
-            flex-flow: row wrap;
+            flex-flow: row nowrap;
 
             .comment_left {
               max-width: 52px;
@@ -247,36 +251,48 @@ body {
               }
             }
             .comment_center {
-              flex-grow: 85;
+              flex-grow: 90;
               width: auto;
-              height: auto;
+              height: max-content;
+              padding-left: 2%;
               .comment_center_header {
                 span.other_people_name {
-                  font-family: 'Jua', sans-serif;
+                  font-family: "Jua", sans-serif;
                   font-weight: 400;
                 }
+                .right_etc{
+                  display: inline;
+                  float: right;
+                  img{
+                    height: 20px;
+                    width: 20px;
+                  }
+                }
+
               }
               .comment_center_textarea {
-                textarea.view_comment_textarea {
+                padding-top: 5px;
+                height: auto;
+                .view_comment_textarea {
+                  font-family: "Gothic A1", sans-serif;
+                  font-size: large;
+                  overflow: hidden;
                   max-height: max-content;
                   min-height: 20px;
+                  width: 100%;
                   resize: none;
                   border: 0;
                   background-color: white;
-                  // font-family: proxima-regular;
-                  // font-weight: 400;
                 }
               }
               .comment_center_footer {
+                padding-top: 5px;
+                width: auto;
+                height: auto;
                 span {
                   margin-right: 20px;
                 }
               }
-            }
-            .comment_right {
-              flex-grow: 5;
-              width: 5px;
-              height: 100%;
             }
           }
         }

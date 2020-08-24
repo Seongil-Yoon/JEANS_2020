@@ -33,7 +33,7 @@ function commentReady(look_num, userid, usernickname) {
 }
 
 // 댓글 html 태그 생성 하여 화면에 보여줌
-function commentHTML(result,html) {
+function commentHTML(result, html) {
 
     html += '<div class=\"other_people_img\">';
     html += '<img src=displayMthumbnail/' + result.comment_sender_id + '>';
@@ -65,9 +65,17 @@ function commentHTML(result, html) {
     html += `<div class=\"comment_center\">`;
     html += `<div class=\"comment_center_header\">`;
     html += `<span class=\"other_people_name\">${result.comment_sender_name}</span>`;
+    html += `<div class="right_etc">`;
+    html += `<input class=\"comment_id\" value="${result.comment_id}" type="hidden" />`;
+    html += `<input class=\"comment_sender_id\" value="${result.comment_sender_id}" type="hidden" />`;
+    html += `<img src="static/images/pen.png" alt="modify_img"  class="right_pen"/>`;
+    html += `<img src="static/images/delete.png" alt="delete_img" class="right_delete"/>`;
+    html += `<img src="static/images/alarm.png" alt="alarm_img" class="alarm"/>`;
+    html += `</div>`;//<div class="right_etc">
     html += `</div>`;//<div class=\"comment_center_header\">
+
     html += `<div class=\"comment_center_textarea\">`;
-    html += `<textarea disabled class=\"view_comment_textarea\" placeholder=\"${result.comment_content}\"></textarea>`;
+    html += `<span disabled class=\"view_comment_textarea\">${result.comment_content}</span>`;
     html += `</div>`; //<div class=\"comment_center_textarea\">
     html += `<div class=\"comment_center_footer\">`;
     html += `<span class=\"view_child_comment\">답글 보기</span>`;
@@ -75,8 +83,6 @@ function commentHTML(result, html) {
     html += `</div>`;//<div class=\"comment_center_footer\">
     html += `</div>`;//<div class=\"comment_center\">
 
-    html += `<div class=\"comment_right\">`;
-    html += `</div>`;//<div class=\"comment_right\">
 
     return html;
 }
@@ -87,7 +93,7 @@ function init() {
         comment_sender_id: "moomin97",
         comment_sender_name: "무민97",
         fk_look_num_Look_look_num: 55,
-        comment_content: "로렘입슘",
+        comment_content: "로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘",
         parents: 0, //대댓글 아니므로 값을 0줌
     };
 
@@ -100,6 +106,13 @@ function init() {
     html += '</li>';
     $("#js-comment-list").prepend(html); //ul태그안에 시작부분에 삽입.
 }
+init();
+init();
+init();
+init();
+init();
+init();
+init();
 
 
 
