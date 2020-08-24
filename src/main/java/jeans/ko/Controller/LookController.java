@@ -203,9 +203,11 @@ public class LookController {
         List<String> allpicture = boardDao.getallPicturename(look_num);
         HttpHeaders headers = new HttpHeaders();
         InputStream inp = null;
+
         try {
             for (int i = 0; i < allpicture.size(); i++) {
-                inp = new FileInputStream(uploadPath + route + datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route + allpicture.get(i));
+
+                inp = new FileInputStream( datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route +datepath.get(3) +route+allpicture.get(i));
                 logger.info(allpicture.get(i));
                 System.out.println("inp = " + inp);
                 in.add(IOUtils.toByteArray(inp));
