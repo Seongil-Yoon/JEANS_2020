@@ -77,6 +77,7 @@ public class FileService implements IFileService {
         }
         BufferedImage sourceImg = ImageIO.read(f);
 
+
         int length = 50;//50의 정사각형으로 썸네일을 생성한다.
         int ow = sourceImg.getWidth();
         int oh = sourceImg.getHeight();

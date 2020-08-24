@@ -1,7 +1,11 @@
 package jeans.ko.exception;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(HttpStatus.UNAUTHORIZED)
 public class UnauthorizedException extends RuntimeException {
-    // 올바르지 않은 접근 차단 하는곳
+    //권한 없는 요청 차단
     public UnauthorizedException(String message){
         super(message);
     }

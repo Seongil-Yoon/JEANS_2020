@@ -64,7 +64,7 @@ public class LookController {
         logger.info("view()진입");
         boardDao.countUpdate(look_num); //글상세보기 하면 조회수 증가
         model.addAttribute("view", boardDao.view(look_num)); //게시글정보가져오기
-        model.addAttribute("comment", commentService.list(look_num)); //게시글에 댓글정보가져오기
+
         return "look_info";
     }
 
@@ -78,10 +78,17 @@ public class LookController {
     }
 
     @ResponseBody
-    @GetMapping("/looks")  //룩 전체 리스트
-    public List<BoardDto> searchAllLook() {
+    @GetMapping("/looksList/{look_num}")  //룩 전체 리스트
+    public List<BoardDto> searchAllLook(@PathVariable int look_num) {
         logger.info("searchAllLook()진입");
-        return boardDao.list();
+
+        if (boardDao.list(look_num) == null) {
+            //게시글 이 없으면 not found 404 에러
+            throw new NotFoundException(String.format("board not found"));
+        }else {
+            return boardDao.list(look_num);
+        }
+
     }
 
     @ResponseBody
@@ -96,7 +103,6 @@ public class LookController {
             throw new NotFoundException(String.format("ID[%s] not found", id));
         }
         map.put("look", boardDto); //게시글 가져오기
-        map.put("lookCommentList", commentService.list(id)); //댓글정보 가져오기
         boardDao.countUpdate(id); //글상세보기 하면 조회수 증가
 
         return map;
@@ -206,7 +212,6 @@ public class LookController {
 
         try {
             for (int i = 0; i < allpicture.size(); i++) {
-
                 inp = new FileInputStream( datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route +datepath.get(3) +route+allpicture.get(i));
                 logger.info(allpicture.get(i));
                 System.out.println("inp = " + inp);

@@ -20,8 +20,10 @@ import java.util.Date;
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 //ResponseEntityExceptionHandler @ExceptionHandler내부  예외를 처리 하는 메소드를 제공
 
-    //모든오류가 발생되면 얘가 실행. 얘는 모든 일반적인 오류를 담당
-    //서버오류 status 보내줌   500 번에러 보내줌
+    //모든 오류가 발생 되면 얘가 실행. 얘는 모든 일반적인 오류를 담당
+    //서버 오류 status 보내줌   500 번에러 보내줌
+    // final 로 선언 한 이유는 모든 예외 처리를 여기서 해서 더이상 하위 클래스 를  파생 해서
+    // override 되지 않게 하기 위해서 함
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> handelAllExceptions(Exception ex, WebRequest request) {
         ExceptionResponse exceptionResponse=new ExceptionResponse(new Date(),ex.getMessage(),request.getDescription(false));

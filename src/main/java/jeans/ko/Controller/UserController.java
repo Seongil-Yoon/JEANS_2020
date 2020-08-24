@@ -102,6 +102,13 @@ public class UserController {
         return "changeUser";
     }
 
+    //회원탈퇴 페이지 이동
+    @RequestMapping("/deleteUser")
+    public String deleteUser() {
+        return "deleteUser";
+    }
+
+    //회원가입 시 프로필사진이 없다
     //회원가입 시 프로필사진이 있다.
     //REST 형식의 회원가입
     @ResponseBody

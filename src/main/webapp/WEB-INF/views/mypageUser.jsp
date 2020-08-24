@@ -31,6 +31,9 @@
                     <a href="changeUser">
                         <img src="static/images/gear.png" alt="gear" height="30" width="30" />
                     </a>
+                    <a href="deleteUser">
+                        <img src="static/images/delete.png" alt="gear" height="30" width="30" />
+                    </a>
                 </div>
 
                 <div class="modify_right"></div>
@@ -214,7 +217,7 @@
     </div>
     
 
-    <script src ="static/js/mypageUser.js"></script>
+    <script src ="/static/js/mypageUser/mypageUser.js"></script>
     <script
             src="https://code.jquery.com/jquery-3.5.1.min.js"
             integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
@@ -222,14 +225,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <script src="/static/js/backCashDelete.js"></script>
-    <script src="/static/js/id_nickname_session.js"></script>
-    <%--서버세션이 종료되어 자바스크립트 session 종료--%>
-    <c:set var="userid" value="${sessionScope.userid}"/>
-    <c:if test="${userid == null}">
-    <script>sessionRemove()</script>
-    </c:if>
-    <%--header 부분 초기화--%>
-    <script>headerReset()</script>
+
 
 </body>
 </html>
