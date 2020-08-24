@@ -36,5 +36,6 @@ public interface IUserDao {
     //아이디와 비밀번호를 입력하면 해당아이디의 비밀번호를 변경
     public void setPassword(String userid,String password);
 
-  
+    //해당 유저의 정보를 변경
+    public void setChangeuser(UserDto userDto);
 }

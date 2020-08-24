@@ -24,6 +24,9 @@
     <update id="setPassword">
         update user set password=(#{password}) where userid=(#{userid});
     </update>
+    <update id="setChangeuser">
+        update user set sex=(#{sex}), nickname=(#{nickname}), height=(#{height}), weight=(#{weight}) where userid=(#{userid});
+    </update>
 </mapper>
 
         <!-- resultType="jeans.ko.Dto.UserDto"-->

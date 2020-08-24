@@ -102,7 +102,12 @@ public class ChangeuserController {
     @PostMapping(value="/information")
     public ResponseEntity<Void> setUserdto(@RequestBody UserDto userDto){
         logger.info("setUserdto()메소드");
-        System.out.println("userDto = " + userDto);
+        userDto.setUserid((String)session.getAttribute("userid"));
+        userDao.setChangeuser(userDto);
+      session.setAttribute("usersex",userDto.getSex());
+      session.setAttribute("usernickname",userDto.getNickname());
+      session.setAttribute("userheight",userDto.getHeight());
+      session.setAttribute("userweight",userDto.getWeight());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
