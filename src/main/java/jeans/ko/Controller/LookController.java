@@ -137,9 +137,8 @@ public class LookController {
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/looks")
-    public BoardDto boardWrite(@RequestPart("BoardDto") String boarddto, @RequestPart("files") List<MultipartFile> files) throws Exception {
+    public BoardDto boardWrite(@RequestPart("BoardDto") BoardDto boardDto, @RequestPart("files") List<MultipartFile> files) throws Exception {
         logger.info("boardWrite()진입");
-        BoardDto boardDto = new ObjectMapper().readValue(boarddto, BoardDto.class);
         if (session.getAttribute("userid") == null) {
             //서버로 바로접근하는 경우 아이디값 없으면 클라이언트 권한없음 오류보냄
             throw new UnauthorizedException(String.format("unauthorized you"));
@@ -150,8 +149,8 @@ public class LookController {
         //selectKey로 등록된 게시글 가져온 기본키로 등록된 게시글 정보보내줌 새롭게 추가되 댓글이없으므로 게시글만넘김
         return boardDao.view(boardDto.getLook_num());
     }
-    //룩게시판 수정
 
+    //룩게시판 수정
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     @PutMapping("/looks")

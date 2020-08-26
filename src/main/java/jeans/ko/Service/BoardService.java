@@ -60,14 +60,14 @@ public class BoardService implements IBoardService {
 
         //여기서... 이제 년/월/룩번호를 뺏다
         List<String> path = iUtilService.looknumtoPath(boardDto.getLook_num());
-        System.out.println("path = " + path);
         //3.makepictureDir을 통해 ${directory}/년/월/룩번호 까지 폴더를 생성한다.
         //uploadPictures에 파일리스트, makepictureDir을 통해 만든 경로, 글의 pk looknum을 매개변수로 입력한다.
         //${directory}/년/월/looknum(pk값) 안에 이미지가 업로드 된다.
-      //  String pathPicture = iFileService.makepictureDir(path);
+        //  String pathPicture = iFileService.makepictureDir(path);
         iFileService.mkDir(path);
-    //    iFileService.uploadPictures(files, pathPicture);
+        //iFileService.uploadPictures(files, pathPicture);
         iFileService.uploadFiles(path,files);
+        iFileService.mkBoardthumbnail(path);
     }
 
     //글을 지운다.

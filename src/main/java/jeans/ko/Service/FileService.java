@@ -105,6 +105,23 @@ public class FileService implements IFileService {
         return true;
     }
 
+    @Override
+    public boolean mkBoardthumbnail(List<String> paths) throws Exception {
+        logger.info("mkBoardthumbnail메소드");
+        String path=utilService.completePath(paths);
+        int looknum=Integer.parseInt(paths.get(paths.size()-1));
+        List<String>pictures=utilService.looknumtoallPicturename(looknum);
+        for(String i:pictures){
+            File f=new File(path,i);
+            String formatName = i.substring(i.lastIndexOf(".") + 1);
+            BufferedImage sourceImage=ImageIO.read(f);
+            BufferedImage resizedImage=Scalr.resize(sourceImage,500,700);
+            ImageIO.write(resizedImage,formatName,f);
+        }
+        return true;
+    }
+
+
     //파일업로드
     @Override
     public boolean uploadFiles(List<String> paths, List<MultipartFile> files) throws Exception {

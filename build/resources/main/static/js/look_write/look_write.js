@@ -77,7 +77,7 @@ function lookWrite() {
     }
 
     let formData = new FormData();
-    formData.append("BoardDto", JSON.stringify(BoardDto));
+    formData.append("BoardDto", new Blob([JSON.stringify(BoardDto)],{type:"application/json"}));
 
     if (empty == '') {
         if (fileBuffer == undefined) {

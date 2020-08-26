@@ -11,6 +11,9 @@ public interface IFileService {
     //프로필썸네일 생성 : paths리스트에 userid에 해당되는 프로필 사진을 이용하여 그 프로필사진을 축소하여 썸네일로 만든다
     public boolean mkProfilethumbnail(List<String>paths,String userid) throws Exception;
 
+    //글에서 쓰일 썸네일 생성
+    public boolean mkBoardthumbnail(List<String>paths)throws Exception;
+
     //파일 업로드 : paths리스트 경로에 files리스트들을 업로드한다
     public boolean uploadFiles(List<String>paths,List<MultipartFile>files)throws Exception;
 
