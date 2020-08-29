@@ -17,7 +17,6 @@ public class UserDto {
     @Pattern(regexp="^[0-9a-z가-힣]{4,8}$",message="사용자 닉네임은 영어소문자,숫자,한글 조합만 가능합니다.")
     String nickname;
 
-
     @Pattern(regexp="^(?=.*[!@#$%^&*()?])[0-9ㄱ-힣a-zA-Z!@#$%^&*()?]{8,12}$",message="비밀번호는 8~10자리이며, 영어 대문자,소문자,숫자,특수문자를 하나 이상 적용시켜야합니다.")
     String password;
 
@@ -30,4 +29,8 @@ public class UserDto {
     @Email
     @NotBlank(message="email값을 입력해주세요.")
     String email;
+
+    int privacy;//0은 키,몸무게 비공개 1은 키,몸무게 공개
+
+    String memo;
 }

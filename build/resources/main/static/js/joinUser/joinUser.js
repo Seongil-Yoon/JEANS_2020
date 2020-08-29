@@ -97,6 +97,15 @@ $("input:radio[name=sex]").click(function () {
     $('#gender_check').text('');//값이 true라면 경고문을 지운다.
 });
 
+//privacy회원
+$("input:radio[name=privacy]").click(function () {
+    //라디오버튼이 눌릴 시 발생
+    //라디오버튼의 경우 한번 눌리면 다른 값을 눌러야만 이전에 눌려진값이 해제된다.
+    //그렇기때문에 한번 눌린 이후로는 경고문을 띄울필요가없다.
+    //성일아 밑에꺼에 주석해제하고 넣어줘 $('#')에 그 머냐 니가 만든 privacy 빨간색 경고문 id?,이름? 여하튼그거 찾아서 넣어줘
+    //$('#').text('');//값이 true라면 경고문을 지운다.
+});
+
 //프로필사진업로드 시 발생 handleImageFileSelect 기능을 불러온다
 $('#input_profile').on("change", handleImgFileSelect);
 
@@ -151,14 +160,17 @@ function handleImgFileSelect(e) {
 //회원가입 버튼 누를 시 발생
 function joinUser() {
     //꼭 들어가야하는 값들이 들어가있는지 확인하기 위한 배열. 기본은 false값으로 맞춰져있다. 정규식을 통과하면 true로 변한다.
-    let Arr = new Array(5).fill(false);
+    let Arr = new Array(6).fill(false);
     let msg = '';//경고메시지. false로 나온 값들을 하나씩 추가해서 swal라이브러리에서 경고문을 띄어준다.
     let userid = document.getElementsByName("userid")[0].value;//유저아이디값
     let password = document.getElementsByName("password")[0].value;//비밀번호
     let nickname = document.getElementsByName("nickname")[0].value;//닉네임
     let height = document.getElementsByName("height")[0].value;//키
     let weight = document.getElementsByName("weight")[0].value;//몸무게
+    let privacy=$("input:radio[name='privacy']:checked").val();//마이페이지에서 몸무게,키 공개설정여부
     let sex = $("input:radio[name='sex']:checked").val();//성별
+    let memo;
+    //  let memo=document.getElementsByName("memo")[0].value;//회원의 현재 개인상태를 말하는 프로필
     //라디오버튼(sex라는 이름)에서 체크된 값을 뽑는 JQuery. 아무것도 입력되지 않았으면 undefined다.
     let email = document.getElementsByName("email")[0].value;//이메일값
 
@@ -224,6 +236,22 @@ function joinUser() {
         Arr[4] = false;//정규식을 통과하지 못하면 false값
     }
 
+    if ($('input:radio[name=privacy]').is(':checked')) {
+        console.log("개인정보가 체크되었습니다");
+        //라디오버튼(privacy라는이름의)의 체크여부확인
+        Arr[5] = true;//정규식을 통과하면 true값
+    } else {
+        console.log("개인정보가 체크되지않았습니다.");
+        Arr[5] = false;//정규식을 통과하지 못하면 false값
+        msg += "몸무게,키 공개여부를 선택해주십시오\n";//swal에서 보여줄 msg.
+        //성일아 이 밑에 주석해제하고 '#' 에 그 privacy값입력안됬을때 빨갛게뜨는 경고문 쪽에 넣어줘
+        
+        //$('#').css('margin-bottom', '-4%');
+        //$('#').text('성별을 입력해주세요');
+        // $('#').css('color', 'red');
+        //정규식에 맞지 않는 다면 빨간색 경고문이뜬다.
+    }
+
     for (let i = 0; i < Arr.length; i++) {
         if (Arr[i] == false) {
             //입력된 값 중 단 하나라도 false가 있다면 백엔드로 넘겨선 안된다.
@@ -244,7 +272,9 @@ function joinUser() {
         height: height,
         weight: weight,
         sex: sex,
-        email: email
+        email: email,
+        privacy: privacy,
+        memo: memo,
     };
 
     //FormData를 이용하여 업로드를 처리한다.

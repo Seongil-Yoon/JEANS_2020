@@ -89,13 +89,6 @@ public class UserController {
         return "joinUser";
     }
 
-    //마이페이지 이동
-    @RequestMapping("/mypageUser")
-    public String mypageUser() {
-        logger.info("mypageUser메소드");
-        return "mypageUser";
-    }
-
     //회원정보수정 페이지 이동
     @RequestMapping("/changeUser")
     public String changeUser() {
@@ -214,8 +207,6 @@ public class UserController {
             return map; //session 아이디 닉네임 넘겨주기
         }
     }
-
-
 
     @ResponseBody
     @DeleteMapping("/session")

@@ -4,7 +4,7 @@
 
 <mapper namespace="jeans.ko.Dao.IUserDao">
     <insert id="insertUser">
-        insert into user values(#{role},#{userid},#{nickname},#{password},#{sex},#{height},#{weight},#{picture},#{email})
+        insert into user values(#{role},#{userid},#{nickname},#{password},#{sex},#{height},#{weight},#{picture},#{email},#{privacy},#{memo})
     </insert>
     <select id="userLogin" resultType="String">
         select password from user where userid= (#{userid})

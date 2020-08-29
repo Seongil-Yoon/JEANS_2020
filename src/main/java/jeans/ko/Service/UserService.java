@@ -28,7 +28,7 @@ public class UserService implements IUserService {
     public int joinUser(UserDto userDto){
         logger.info("joinUser메소드");
         userDto.setRole(1);
-        System.out.println("nuserService에서");
+        System.out.println("userService에서");
         System.out.println("userDto.getUserid() = " + userDto.getUserid());
         System.out.println("userDto.getEmail() = " + userDto.getEmail());
         System.out.println("userDto.getNickname = " + userDto.getNickname());

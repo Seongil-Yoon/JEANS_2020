@@ -59,11 +59,11 @@
                     <div class="container_inner_Form join_privacy">
                             <h4 class="join_title" style="margin-top: 0;">프로필 공개여부</h4>
                             <label class="selector" style="float: left;">
-                                <input type="radio" name="privacy"  value="bodyOpen"/>
+                                <input type="radio" name="privacy"  value="1"/>
                                 <span class="selector_span">공개</span>
                             </label>
                             <label class="selector" style="float: right;">
-                                <input type="radio" name="privacy" value="bodyClose"/>
+                                <input type="radio" name="privacy" value="0"/>
                                 <span class="selector_span">비공개</span>
                             </label>
                     </div>

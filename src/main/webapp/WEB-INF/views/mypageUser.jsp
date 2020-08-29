@@ -41,7 +41,7 @@
                 <div class="modify_bottom"></div>
 
                 <div class = "my_information">
-                    <span class="user_nickname"></span><span>   </span>
+                    <span class="user_nickname">${sessionScope.usernickname}</span><span>   </span>
                     <span>${sessionScope.userheight} ${sessionScope.userweight}</span><span>   </span>
                     <span>${sessionScope.usersex}</span>
                 </div>
