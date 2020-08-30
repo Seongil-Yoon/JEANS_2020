@@ -159,5 +159,6 @@
 <%--댓글 내용출력 위해 현재글에 기본키를 댓글 자바스크립트에 넘김--%>
 <script>commentReady(${view.look_num},'${sessionScope.userid}')</script>
 <script>lookReady(${view.look_num})</script>
+
 </body>
 </html>

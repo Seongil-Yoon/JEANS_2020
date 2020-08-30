@@ -115,7 +115,7 @@ public class ChangeuserController {
     //회원정보수정페이지에서 유저가 현재등록된 자신의 정보를 알수있도록하기 위한 메소드
     @GetMapping(value="/information")
     public ResponseEntity<UserDto> getUserdto(){
-        logger.info("information()메소드");
+        logger.info("getUserdto()메소드");
         UserDto userDto=new UserDto();
         userDto.setSex((int)session.getAttribute("usersex"));
         userDto.setNickname((String)session.getAttribute("usernickname"));

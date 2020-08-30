@@ -108,7 +108,7 @@ public class UserController {
     @PostMapping(value = "/user")
     public ResponseEntity<Void> join(@Valid @RequestPart("UserDto") UserDto user, @RequestPart(value = "file", required = false) MultipartFile picture, BindingResult result) throws Exception {
         logger.info("join메소드");
-
+        System.out.println("user = " + user);
         if(picture==null){
             user.setPicture(defaultSthumbnail);
         }else{

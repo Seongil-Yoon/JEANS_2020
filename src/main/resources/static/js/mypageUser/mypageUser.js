@@ -90,3 +90,21 @@ function div_show3() {
     status3 = 0;
   }
 }
+
+//컨트롤러 부분에서 넘긴 nickname 캐치
+function catchNick(nick){
+
+  $.ajax({
+    url:'/information/'+nick,
+    type:"GET",
+    success:function(result){
+      alert(JSON.stringify(result));
+      //여기서 mypageUser.jsp 부분에 값들을 채워넣어줘야한다.
+    },
+    error:function(error){
+      alert("에러뜸");
+    }
+  })
+}
+
+
