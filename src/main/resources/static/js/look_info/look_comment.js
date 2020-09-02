@@ -1,4 +1,5 @@
-// 처음 게시글 들어 갈때 최신 댓글 10개 받아 오기 위해 0을보냄 그 이후부턴 마지막 댓글 기본키 값보냄
+// 처음 게시글 들어 갈때 최신 댓글 10개 받아 오기 위해 0을보냄
+// 그 이후부턴 마지막 값에 부모키 보냄
 let comment_id=0;
 let scrollTime = true;
 let fk_look_num_Look_look_num;
@@ -13,6 +14,7 @@ function commentReady(look_num,userid,usernickname) {
     userId=userid;
     //세션 닉네임 값 가져 오기
     userNickname=usernickname;
+
     //처음 화면 들어 갔을 떄 댓글 데이터 10개 가져 오기
     commentGet();
 
@@ -48,6 +50,7 @@ function commentHTML(result,html) {
     html += '<textarea disabled class=\"view_comment_textarea\" placeholder=\"' + result.comment_content + '\"></textarea>';
     html += '</div>';
     html += '<div class="re_comment"> 답글 </div>';
+    html += '<div class="re_comment_more"> 답글 ' + result.ref_count + '개 보기 </div>';
     html += '<div class=\"comment_date\">' + result.date + '</div>';
 
     return html;
@@ -67,6 +70,7 @@ function commentWrite() {
         fk_look_num_Look_look_num: fk_look_num_Look_look_num,
         comment_content: comment_content,
         parents : 0, //대댓글 아니므로 값을 0줌
+        ref_count : 0,//dto 로 값 받을때 사용 기본값 0으로 줌
     };
 
     //데이터 json 문자열 형태로 변환
@@ -107,8 +111,10 @@ function commentConfirm(msg, title, commentDto) {
                     if (jqxHR.status == 201) {
                         swal('', '댓글을 등록하였습니다.', "success");
                         let html="";
+                        html += '<div class=\"look_comment_wrap\">';
                         html += '<div class=\"look_comment\">';
                         html = commentHTML(result,html);
+                        html += '</div>';
                         html += '</div>';
                          $("form[name=commentForm]").after(html);
                     }
@@ -133,6 +139,7 @@ function commentConfirm(msg, title, commentDto) {
 function commentGet() {
     //스크롤 이벤트 중복 실행 방지
     scrollTime = false
+    let html="";
     $.ajax({
         url: "/look_comment_list/"+fk_look_num_Look_look_num+"/"+comment_id,
         type: "get",
@@ -141,11 +148,13 @@ function commentGet() {
             //최신글 순으로  댓글 10개 받아 와서 받아온 만큼 댓글 화면에 보여줌
             for(var i=0; i<result.length; i++){
                 let data = result[i];
-                let html="";
-                html += '<div class=\"look_comment\">';
-                html = commentHTML(data,html);
-                html += '</div>';
-                $(".body_root").append(html); //body 마지막에 추가
+                    html += '<div class=\"look_comment_wrap\">';
+                    html += '<div class=\"look_comment\">';
+                    html = commentHTML(data,html);
+                    html += '</div>';
+                    html += '</div>'; //look_comment_wrap 닫기
+                    $(".body_root").append(html); //body 마지막에 추가
+                    html="";
             }
             //마지막 댓글 기본키 를 변수값 에 넣어서 다음 데이터 10개를 받아올 수 있게 준비함
             comment_id=result[result.length-1].comment_id;

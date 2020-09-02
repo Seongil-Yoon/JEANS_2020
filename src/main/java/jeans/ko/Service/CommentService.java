@@ -14,15 +14,17 @@ public class CommentService implements ICommentService {
     @Autowired
     ICommentDao commentDao;
 
-    @Override
-    public int insert(CommentDto commentDto) {
+    @Autowired
+    ICommentService commentService;
 
-       return commentDao.insert(commentDto);
-    }
 
     @Override
-    public CommentDto comment(int comment_id) {
-        return commentDao.comment(comment_id);
+    public CommentDto insert(CommentDto commentDto) {
+
+       commentDao.insert(commentDto);
+
+       //selectKey 해서 새로 등록한 댓글 기본키 값으로 새로등록된 댓글 가져오기
+        return commentDao.comment(commentDto.getComment_id());
     }
 
     @Override
@@ -41,6 +43,11 @@ public class CommentService implements ICommentService {
     @Override
     public int update(int comment_id, String comment_content) {
         return commentDao.update(comment_id,comment_content);
+    }
+
+    @Override
+    public List<CommentDto> childList(int comment_id) {
+        return commentDao.childList(comment_id);
     }
 
 }

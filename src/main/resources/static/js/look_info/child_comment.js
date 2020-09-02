@@ -1,14 +1,34 @@
 let childEvent=true; //대댓글 이벤트 중복 실행 방지 위해
-let parents;
+let parents_comment_id //대댓글 작성할 부모댓글 기본키
 
-function childWriteHtml (userid,userNickname,comment_id){
+//대댓글 출력 html 태그
+function childHTML(result,html) {
+
+    html += '<div class="child_comment_wrap">';
+    html += '<input class="child_comment_id" value="' + result.comment_sender_id + '" type="hidden"/>';
+    html += '<input class="child_comment_nickname" value="' + result.comment_sender_name + '" type="hidden"/>';
+    html += '<input class="parents_comment_id" value="' + result.comment_id + '" type="hidden"/>';
+    html += '<div class="other_people_img">';
+    html += '<img src=displayMthumbnail/' + result.comment_sender_id + '>';
+    html += '</div>';
+    html += '<div class="child_other_people_name">' + result.comment_sender_name + '</div>';
+    html += '<div class="comment_textarea_space">';
+    html += '<textarea disabled class="child_comment_content" placeholder=\"' + result.comment_content + '\"></textarea>';
+    html += '</div>';
+    html += '</div>';
+
+    return html;
+}
+
+//대댓글 입력 html 태그
+function childWriteHtml (userid,userNickname,parents_comment_id){
 
     let html="";
 
     html += '<div class=\"child_look_comment\" >';
     html += '<input class="child_comment_id" value="' + userid + '" type="hidden"/>';
     html += '<input class="child_comment_nickname" value="' + userNickname + '" type="hidden"/>';
-    html += '<input class="parents_comment_id" value="' + comment_id + '" type="hidden"/>';
+    html += '<input class="parents_comment_id" value="' + parents_comment_id + '" type="hidden"/>';
     html += '<div class="other_people_img">';
     html += '<img src=displayMthumbnail/' + userid + '>';
     html += '</div>';
@@ -26,22 +46,64 @@ function childWriteHtml (userid,userNickname,comment_id){
 
 }
 
+//답글 (숫자)개 보기 할경우 이벤트
+$(document).on("click", ".re_comment_more", function (event) {
+
+    //이벤트 부모 태그 가져 오기
+    let look_commentTag = $(event.target).parents(".look_comment");
+    //부모 댓글 기본키 값 가져 오기  find 는 후손에 값 가져옴
+    parents_comment_id=look_commentTag.find(".comment_id").val();
+
+    // $.ajax({
+    //     url: "/look_comment_list/"+fk_look_num_Look_look_num+"/"+comment_id,
+    //     type: "get",
+    //     dataType: "json", //json 형태로 받기
+    //     success: function (result) {
+    //         //최신글 순으로  댓글 10개 받아 와서 받아온 만큼 댓글 화면에 보여줌
+    //         for(var i=0; i<result.length; i++){
+    //             let data = result[i];
+    //             html += '<div class=\"look_comment_wrap\">';
+    //             html += '<div class=\"look_comment\">';
+    //             html = commentHTML(data,html);
+    //             html += '</div>';
+    //             html += '</div>'; //look_comment_wrap 닫기
+    //             $(".body_root").append(html); //body 마지막에 추가
+    //             html="";
+    //         }
+    //         //마지막 댓글 기본키 를 변수값 에 넣어서 다음 데이터 10개를 받아올 수 있게 준비함
+    //         comment_id=result[result.length-1].comment_id;
+    //
+    //         setTimeout(function () {
+    //             scrollTime = true;
+    //         }, 200);//스크롤 이벤트 0.2초뒤 실행 중복 방지 위해
+    //
+    //     },
+    //     error: function (error) {
+    //         if (error.status == 404) {
+    //             swal('찾는 자료가 없습니다', '', 'error');
+    //         }
+    //     }
+    // })
+
+});
+
 //답글 누르면 이벤트
 $(document).on("click", ".re_comment", function (event) {
 
     //이벤트 부모 태그 가져 오기
     let look_commentTag = $(event.target).parents(".look_comment");
     //부모 댓글 기본키 값 가져 오기  find 는 후손에 값 가져옴
-    parents=look_commentTag.find(".comment_id").val();
+    parents_comment_id=look_commentTag.find(".comment_id").val();
 
-    if (userId == null) {
+    if (userId == false) {
         //로그인 안할경우 로그인 해라
         swal('로그인 먼저하세요', '', 'error');
     }else if(childEvent == true) {
             childEvent=false; //이벤트 중복 실행방지
             //look_comment 아래에 추가
-            look_commentTag.after(childWriteHtml(userId,userNickname,comment_id))
+            look_commentTag.after(childWriteHtml(userId,userNickname,parents_comment_id))
     }
+
 });
 
 //취소나 저장 버튼 누를 경우 이벤트
@@ -56,7 +118,8 @@ $(document).on("click", ".child_comment_change_button", function (event) {
         comment_sender_name: userNickname,
         fk_look_num_Look_look_num: fk_look_num_Look_look_num,
         comment_content: child_comment_content,
-        parents : parents, //부모댓글 기본키 값 줌
+        parents : parents_comment_id, //부모댓글 기본키 값 줌
+        ref_count: 0
     };
 
     //데이터 json 문자열 형태로 변환
@@ -78,7 +141,6 @@ $(document).on("click", ".child_comment_change_button", function (event) {
             success: function (result, textStatus, jqxHR) {
                 //result 리턴값 textStatus
                 if (jqxHR.status == 201) {
-
                     alert("대댓글 등록 성공!!");
                     // $("form[name=commentForm]").after(html); //form태그 name이commentForm 인거 바로밑에 추가하기
                 }

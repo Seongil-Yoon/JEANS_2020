@@ -54,7 +54,7 @@ public class CommentController {
 
         logger.info("comment()진입");
 
-        CommentDto commentDto = commentService.comment(comment_id);
+        CommentDto commentDto = commentDao.comment(comment_id);
 
         if (commentDto == null) {
             //찾는 댓글이 없으면 not found 404 에러
@@ -68,8 +68,8 @@ public class CommentController {
     //댓글 10개씩 리스트로 보내주기
     @ResponseBody
     @GetMapping("/look_comment_list/{fk_look_num_Look_look_num}/{comment_id}")
-    public List<CommentDto> commentList(@PathVariable int comment_id,
-                                        @PathVariable int fk_look_num_Look_look_num) {
+    public List<CommentDto> commentList(@PathVariable int fk_look_num_Look_look_num,
+                                        @PathVariable int comment_id) {
 
         logger.info("commentList()진입");
 
@@ -78,7 +78,7 @@ public class CommentController {
             throw new NotFoundException(String.format
                     ("fk_look_num_Look_look_num[%d] not found", fk_look_num_Look_look_num));
         }
-
+        System.out.println(commentService.list(fk_look_num_Look_look_num,comment_id)+" 값");
         //게시판 에 댓글 리스트 10개를 전달
         return commentService.list(fk_look_num_Look_look_num,comment_id);
     }
@@ -89,7 +89,7 @@ public class CommentController {
         logger.info("deleteLookComment()진입");
 
         //삭제할 댓글이 있는지 확인
-        CommentDto commentDto = commentService.comment(comment_id);
+        CommentDto commentDto = commentDao.comment(comment_id);
 
         if (commentDto == null) {
             //찾는 댓글이 없으면 not found 404 에러
@@ -109,13 +109,14 @@ public class CommentController {
     @PostMapping("/look_comment")
     public CommentDto commentWrite(@RequestBody CommentDto commentDto,BindingResult result) {
         logger.info("commentWrite()진입");
-        //유효성 검사에서 -2 한 이유는 날짜와 기본키는 데이터 넣으면서 생성되기 떄문에 에러카운트가 2로 넘어와서 -2함
+        //유효성 검사에서 -2 한 이유는 날짜와 기본키는 데이터 넣으면서
+        // 생성되기 떄문에 에러카운트가 2로 넘어와서 -2함
         new BindingResultException(result.getErrorCount()-2);
 
         if (session.getAttribute("userid") != null) {
-            commentService.insert(commentDto);
-            //selectKey 해서 새로 등록한 댓글 기본키 값으로 새로등록된 댓글 가져오기
-            return commentService.comment(commentDto.getComment_id());
+
+          return  commentService.insert(commentDto);
+
         } else {
             //권한없음 오류
             throw new UnauthorizedException(String.format("unauthorized you"));
@@ -136,7 +137,7 @@ public class CommentController {
         new BindingResultException(result.getErrorCount()-5);
 
         //댓글정보 가져오기
-        CommentDto dto = commentService.comment(comment_id);
+        CommentDto dto = commentDao.comment(comment_id);
         if (dto == null) {
             //수정할 댓글이 없으면 not found 404 에러
             throw new NotFoundException(String.format("comment_id[%d] not found", comment_id));
@@ -149,6 +150,22 @@ public class CommentController {
             commentService.update(comment_id, updateDto.getComment_content());
         }
         //수정된 댓글정보 넘겨주기
-        return commentService.comment(comment_id);
+        return commentDao.comment(comment_id);
     }
+
+    @ResponseBody
+    @GetMapping("/child_comment/{comment_id}")
+    public CommentDto childList(@PathVariable int comment_id) {
+
+        CommentDto commentDto = commentDao.comment(comment_id);
+
+        if (commentDto == null) {
+            //찾는 댓글이 없으면 not found 404 에러
+            throw new NotFoundException(String.format("comment_id[%d] not found", comment_id));
+        } else {
+            return commentDto;
+        }
+
+    }
+
 }

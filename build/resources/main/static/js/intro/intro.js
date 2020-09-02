@@ -1,7 +1,6 @@
 
 function introStart() {
 
-
     new fullpage("#full-page",{
         sectionsColor: ['#FFCC66','#FF9966','#33CCFF','#FFFF66'],
         navigation:true, //옆에 화면 움직으는  . . . . 모양 생성
@@ -30,10 +29,6 @@ function introStart() {
                     height: "hide",  //1000은 1초 swing 처음은 느린데 점점빨리
                 }, 1000,"swing");
             }
-            if(origin.index==3){
-                $(".s3 h2").fadeOut(1000);
-                $(".s3 h3").fadeOut(1000);
-            }
         },
         //스크롤이 끝날때 실행
         afterLoad:function (origin,destination,direction) {
@@ -54,10 +49,6 @@ function introStart() {
                     width: "show",
                     height: "show",
                 }, 1000,"swing"); //1000은 1초 swing 처음은 느린데 점점빨리
-            }
-            if(destination.index==3){
-                $(".s3 h2").fadeIn(1000);
-                $(".s3 h3").fadeIn(3000);
             }
         },
     });
