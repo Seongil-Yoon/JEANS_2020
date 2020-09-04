@@ -39,7 +39,7 @@
 
     <!-- 대댓글 가져오기 -->
     <select id="childList" resultType="jeans.ko.Dto.CommentDto">
-     SELECT * FROM comment WHERE  parents = #{comment_id} 
+     SELECT * FROM comment WHERE  parents = #{comment_id}
     </select>
 
 </mapper>

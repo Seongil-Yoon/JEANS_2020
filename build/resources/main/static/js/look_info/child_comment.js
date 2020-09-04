@@ -53,6 +53,8 @@ $(document).on("click", ".re_comment_more", function (event) {
 
     //이벤트 부모 태그 가져 오기
     let look_comment_wrap = $(event.target).parents(".look_comment_wrap");
+    //대댓글 작성하고 대댓글 보기하면 겹처서 한번 지워줌 그리고 대댓글 숨기기할때도 사용
+    look_comment_wrap.find(".child_comment_wrap").remove();
 
     //eventDecision 이 1이면 대댓글 보여주면서 답글 숨기기로 글자변경
     if(look_comment_wrap.find(".eventDecision").val()==1){
@@ -69,7 +71,7 @@ $(document).on("click", ".re_comment_more", function (event) {
 
                 for(var i=0; i<result.length; i++){
                     let data = result[i];
-                    //댓글태그 안에 look_comment 아래에 추가
+                    //댓글태그 안에 look_comment_wrap 안에 마지막에 추가
                     look_comment_wrap.append(childHTML(data));
                 }
 
@@ -81,9 +83,9 @@ $(document).on("click", ".re_comment_more", function (event) {
             }
         })
     }else {
+        //반대경우는 대댓글 감추고 답글 더보기로 글자 바꿈
         $(event.target).text("답글 더보기");
         look_comment_wrap.find(".eventDecision").val('1');
-        look_comment_wrap.find(".child_comment_wrap").remove();
     }
 
 });
@@ -101,7 +103,7 @@ $(document).on("click", ".re_comment", function (event) {
         swal('로그인 먼저하세요', '', 'error');
     }else if(childEvent == true) {
             childEvent=false; //이벤트 중복 실행방지
-            //look_comment 아래에 추가
+            //look_comment 밖에 바로 아래에 추가 look_comment_wrap 안에 포함되어있음
             look_commentTag.after(childWriteHtml(userId,userNickname,parents_comment_id))
     }
 
@@ -113,6 +115,7 @@ $(document).on("click", ".child_comment_change_button", function (event) {
     let child_look_commentTag = $(event.target).parents(".child_look_comment");
     //대댓글 내용 가져오기
     let child_comment_content=child_look_commentTag.find(".child_comment_content").val();
+    let look_comment_wrap = child_look_commentTag.parents(".look_comment_wrap");
 
     let data = {
         comment_sender_id: userId,
@@ -142,8 +145,7 @@ $(document).on("click", ".child_comment_change_button", function (event) {
             success: function (result, textStatus, jqxHR) {
                 //result 리턴값 textStatus
                 if (jqxHR.status == 201) {
-                    alert("대댓글 등록 성공!!");
-                    // $("form[name=commentForm]").after(html); //form태그 name이commentForm 인거 바로밑에 추가하기
+                    look_comment_wrap.append(childHTML(result));
                 }
             },
             error: function (error) {
