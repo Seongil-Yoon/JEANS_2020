@@ -2,6 +2,7 @@ package jeans.ko.Service;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public interface IFileService {
@@ -17,10 +18,14 @@ public interface IFileService {
     //파일 업로드 : paths리스트 경로에 files리스트들을 업로드한다
     public boolean uploadFiles(List<String>paths,List<MultipartFile>files)throws Exception;
 
+//    public void uploadFile(List<String>paths,MultipartFile file)throws Exception;
+
     //파일삭제 paths리스트에 있는 pictures리스트들을 삭제한다.
-    public boolean rmFiles(List<String>paths,List<String>pictures);
+    public void rmFiles(List<String>paths,List<String>pictures);
 
     //폴더 삭제 : 경로의 폴더를 삭제한다.
     public boolean rmDir(List<String>pahts);
+
+
 
 }

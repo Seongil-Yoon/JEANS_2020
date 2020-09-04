@@ -9,7 +9,8 @@ let fileBuffer = [];
 
 //from JSP onClick이벤트 호출
 function modifiy() {
-
+    let look_num=document.getElementsByName("look_num")[0].value;
+    let fk_userid_user_userid=document.getElementsByName("fk_userid_user_userid")[0].value;
     let title = document.getElementsByName("title")[0].value
     let season = document.getElementsByName("season");
     let look_public = document.getElementsByName("look_public");
@@ -28,15 +29,17 @@ function modifiy() {
     }
 
     let BoardDto = {
+        look_num:look_num,
         title: title,
         season: seasonCheck,
+        fk_userid_user_userid:fk_userid_user_userid,
         look_public: look_publicCheck,
         tag: tag,
         memo: memo
     }
 
     let formData = new FormData();
-    formData.append("BoardDto", JSON.stringify(BoardDto));
+    formData.append("BoardDto", new Blob([JSON.stringify(BoardDto)],{type:"application/json"}));
 
     if (empty == '') {
         if (fileBuffer == undefined) {

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.FileNotFoundException;
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -65,9 +66,9 @@ public class BoardService implements IBoardService {
         //${directory}/년/월/looknum(pk값) 안에 이미지가 업로드 된다.
         //  String pathPicture = iFileService.makepictureDir(path);
         iFileService.mkDir(path);
-        //iFileService.uploadPictures(files, pathPicture);
+       //iFileService.uploadPictures(files, pathPicture);
         iFileService.uploadFiles(path,files);
-        iFileService.mkBoardthumbnail(path);
+        //  iFileService.mkBoardthumbnail(path);
     }
 
     //글을 지운다.
@@ -81,17 +82,29 @@ public class BoardService implements IBoardService {
         //looknumtoAllPicturename 메소드를 통해 룩번호를 매개변수로 주고 해당되는 글의 모든 사진의 이름을 반환받는다.
         List<String> files = iUtilService.looknumtoallPicturename(look_num);
         //deleteallFiles는 폴더 내의 모든 사진을 지운후 look_num에 해당되는 파일도 지운다.
-
         //deleteallFiles에 매개변수로 룩번호까지의 패스와 지울파일(해당글의 전체파일들)들을 보낸다.
         iFileService.rmFiles(path, files);
-
+        iFileService.rmDir(path);
         return boardDao.delete(look_num);
     }
 
     @Override
-    public int update(BoardDto boardDto) {
+    public int update(BoardDto boardDto,List<MultipartFile>files) throws Exception {
         logger.info("update메소드");
-        boardDto.setPicture("사진"); //사진수정 수정해야함
+        //폴더내 파일 삭제
+        List<String> path = iUtilService.looknumtoPath(boardDto.getLook_num());
+        System.out.println("path = " + path);
+
+        System.out.println(iUtilService.looknumtoallPicturename(boardDto.getLook_num()));
+        iFileService.rmFiles(path,iUtilService.looknumtoallPicturename(boardDto.getLook_num()));
+        //DB내 해당 룩 번호 관여 제거
+        boardDao.deleteAllpictures(boardDto.getLook_num());
+
+        //신규사진 picture DB내 insert
+        boardDao.insertPicturedatabase(bindingPicture(files, boardDto.getLook_num()));
+        //신규사진 업로드
+        iFileService.uploadFiles(path,files);
+
         return boardDao.update(boardDto);
     }
 
@@ -111,6 +124,7 @@ public class BoardService implements IBoardService {
             pictureDto.setPictureSize(size);
             lists.add(pictureDto);
         }
+
         return lists;
     }
 }

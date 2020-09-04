@@ -85,7 +85,7 @@ public class LookController {
         if (boardDao.list(look_num) == null) {
             //게시글 이 없으면 not found 404 에러
             throw new NotFoundException(String.format("board not found"));
-        }else {
+        } else {
             return boardDao.list(look_num);
         }
 
@@ -111,7 +111,7 @@ public class LookController {
     //삭제
     @ResponseBody
     @DeleteMapping("/looks/{id}")
-    public void deleteLook(@PathVariable int id) {
+    public void deleteLook(@PathVariable int id) throws Exception{
 
         logger.info("deleteLook()진입");
 
@@ -144,7 +144,7 @@ public class LookController {
             throw new UnauthorizedException(String.format("unauthorized you"));
         }
         //게시글등록
-        System.out.println(" looks에서 세션 = " +session.getId());
+        System.out.println(" looks에서 세션 = " + session.getId());
         boardService.insert(boardDto, files);
         //selectKey로 등록된 게시글 가져온 기본키로 등록된 게시글 정보보내줌 새롭게 추가되 댓글이없으므로 게시글만넘김
         return boardDao.view(boardDto.getLook_num());
@@ -154,18 +154,22 @@ public class LookController {
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     @PutMapping("/looks")
-    public BoardDto boardModify(BoardDto modifyBoardDto) {
+    public BoardDto boardModify(@RequestPart("BoardDto") BoardDto modifyBoardDto, @RequestPart("files") List<MultipartFile> files) throws Exception {
         logger.info("boardModify()진입");
+
+        System.out.println("modifyBoardDto = " + modifyBoardDto);
+        
         //넘어온 값에 기본키id 값으로 게시글작성자 id 와 기본키넘버값 가져오기
         String lookId = boardDao.view(modifyBoardDto.getLook_num()).getFk_userid_user_userid();
         int lookNum = boardDao.view(modifyBoardDto.getLook_num()).getLook_num();
+
         if (lookId == null) {
             //수정할 게시글이 없으므로 not found 에러 보냄
             throw new NotFoundException(String.format("lookNum[%s] not found", modifyBoardDto.getLook_num()));
         }
         if (session.getAttribute("userid").equals(lookId)) {
             //로그인한 아이디와 수정할려는 게시글 작성자 아이디 비교하여 같으면 게시글수정
-            boardService.update(modifyBoardDto);
+            boardService.update(modifyBoardDto,files);
             //수정된 게시글 정보 넘겨주기
             return boardDao.view(lookNum);
         } else {
@@ -187,7 +191,7 @@ public class LookController {
 
         HttpHeaders headers = new HttpHeaders();
         try {
-            in = new FileInputStream( datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route +datepath.get(3)+route+ picture);
+            in = new FileInputStream(datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route + datepath.get(3) + route + picture);
             entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
         } catch (Exception e) {
             entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
@@ -211,12 +215,13 @@ public class LookController {
 
         try {
             for (int i = 0; i < allpicture.size(); i++) {
-                inp = new FileInputStream( datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route +datepath.get(3) +route+allpicture.get(i));
+                inp = new FileInputStream(datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route + datepath.get(3) + route + allpicture.get(i));
                 logger.info(allpicture.get(i));
                 System.out.println("inp = " + inp);
                 in.add(IOUtils.toByteArray(inp));
             }
             entity = new ResponseEntity<ArrayList<byte[]>>(in, headers, HttpStatus.OK);
+            //물린거 풀어줘야 되는게 있나??
         } catch (Exception e) {
             entity = new ResponseEntity<ArrayList<byte[]>>(HttpStatus.BAD_REQUEST);
         } finally {

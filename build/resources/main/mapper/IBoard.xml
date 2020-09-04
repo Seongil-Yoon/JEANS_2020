@@ -63,6 +63,10 @@
         delete from look where look_num= #{look_num}
     </delete>
 
+    <delete id="deleteAllpictures">
+        delete from picture where looknum=#{look_num}
+    </delete>
+
     <update id="countUpdate">
         update look set count = count + 1 where look_num = #{look_num}
     </update>

@@ -31,6 +31,8 @@ public interface IBoardDao {
     //게시글 삭제
     public int delete(@Param("look_num") int look_num);
 
+    public void deleteAllpictures(@Param("look_num")int look_num);
+
     //게시글 조회수 증가
     public void countUpdate(@Param("look_num") int look_num);
 
