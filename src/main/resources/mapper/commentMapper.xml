@@ -26,7 +26,7 @@
 
     <!--댓글 개별 한개 데이터 갖고 오기-->
     <select id="comment" resultType="jeans.ko.Dto.CommentDto">
-        select * from comment where comment_id=#{comment_id};
+        select * from comment_view where comment_id=#{comment_id};
     </select>
 
     <delete id="delete">

@@ -2,8 +2,9 @@ let childEvent=true; //대댓글 이벤트 중복 실행 방지 위해
 let parents_comment_id //대댓글 작성할 부모댓글 기본키
 
 //대댓글 출력 html 태그
-function childHTML(result,html) {
+function childHTML(result) {
 
+    let html="";
     html += '<div class="child_comment_wrap">';
     html += '<input class="child_comment_id" value="' + result.comment_sender_id + '" type="hidden"/>';
     html += '<input class="child_comment_nickname" value="' + result.comment_sender_name + '" type="hidden"/>';
@@ -14,6 +15,8 @@ function childHTML(result,html) {
     html += '<div class="child_other_people_name">' + result.comment_sender_name + '</div>';
     html += '<div class="comment_textarea_space">';
     html += '<textarea disabled class="child_comment_content" placeholder=\"' + result.comment_content + '\"></textarea>';
+    html += '<button class="sujung_button" value="2" type="button" >수정</button>';
+    html += '<button class="delete_button" value="1" type="button" >삭제</button>';
     html += '</div>';
     html += '</div>';
 
@@ -43,47 +46,45 @@ function childWriteHtml (userid,userNickname,parents_comment_id){
     html += '</div>';
 
     return html;
-
 }
 
 //답글 (숫자)개 보기 할경우 이벤트
 $(document).on("click", ".re_comment_more", function (event) {
 
     //이벤트 부모 태그 가져 오기
-    let look_commentTag = $(event.target).parents(".look_comment");
-    //부모 댓글 기본키 값 가져 오기  find 는 후손에 값 가져옴
-    parents_comment_id=look_commentTag.find(".comment_id").val();
+    let look_comment_wrap = $(event.target).parents(".look_comment_wrap");
 
-    // $.ajax({
-    //     url: "/look_comment_list/"+fk_look_num_Look_look_num+"/"+comment_id,
-    //     type: "get",
-    //     dataType: "json", //json 형태로 받기
-    //     success: function (result) {
-    //         //최신글 순으로  댓글 10개 받아 와서 받아온 만큼 댓글 화면에 보여줌
-    //         for(var i=0; i<result.length; i++){
-    //             let data = result[i];
-    //             html += '<div class=\"look_comment_wrap\">';
-    //             html += '<div class=\"look_comment\">';
-    //             html = commentHTML(data,html);
-    //             html += '</div>';
-    //             html += '</div>'; //look_comment_wrap 닫기
-    //             $(".body_root").append(html); //body 마지막에 추가
-    //             html="";
-    //         }
-    //         //마지막 댓글 기본키 를 변수값 에 넣어서 다음 데이터 10개를 받아올 수 있게 준비함
-    //         comment_id=result[result.length-1].comment_id;
-    //
-    //         setTimeout(function () {
-    //             scrollTime = true;
-    //         }, 200);//스크롤 이벤트 0.2초뒤 실행 중복 방지 위해
-    //
-    //     },
-    //     error: function (error) {
-    //         if (error.status == 404) {
-    //             swal('찾는 자료가 없습니다', '', 'error');
-    //         }
-    //     }
-    // })
+    //eventDecision 이 1이면 대댓글 보여주면서 답글 숨기기로 글자변경
+    if(look_comment_wrap.find(".eventDecision").val()==1){
+        $(event.target).text("답글 숨기기");
+        //중복 방지 위해 eventDecision 2로 값바꿈
+        look_comment_wrap.find(".eventDecision").val('2');
+
+        $.ajax({
+            //대댓글 부모기본키 넘겨서 받아오기
+            url: "/child_comment/"+look_comment_wrap.find(".comment_id").val(),
+            type: "get",
+            dataType: "json", //json 형태로 받기
+            success: function (result) {
+
+                for(var i=0; i<result.length; i++){
+                    let data = result[i];
+                    //댓글태그 안에 look_comment 아래에 추가
+                    look_comment_wrap.append(childHTML(data));
+                }
+
+            },
+            error: function (error) {
+                if (error.status == 404) {
+                    swal('대댓글이 없습니다', '', 'error');
+                }
+            }
+        })
+    }else {
+        $(event.target).text("답글 더보기");
+        look_comment_wrap.find(".eventDecision").val('1');
+        look_comment_wrap.find(".child_comment_wrap").remove();
+    }
 
 });
 

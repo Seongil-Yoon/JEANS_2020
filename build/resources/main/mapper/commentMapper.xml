@@ -26,7 +26,7 @@
 
     <!--댓글 개별 한개 데이터 갖고 오기-->
     <select id="comment" resultType="jeans.ko.Dto.CommentDto">
-        select * from comment where comment_id=#{comment_id};
+        select * from comment_view where comment_id=#{comment_id};
     </select>
 
     <delete id="delete">
@@ -36,5 +36,10 @@
     <update id="update">
         update comment set comment_content = #{comment_content} where comment_id = #{comment_id}
     </update>
+
+    <!-- 대댓글 가져오기 -->
+    <select id="childList" resultType="jeans.ko.Dto.CommentDto">
+     SELECT * FROM comment WHERE  parents = #{comment_id} 
+    </select>
 
 </mapper>

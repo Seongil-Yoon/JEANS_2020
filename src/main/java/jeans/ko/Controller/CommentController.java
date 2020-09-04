@@ -78,7 +78,7 @@ public class CommentController {
             throw new NotFoundException(String.format
                     ("fk_look_num_Look_look_num[%d] not found", fk_look_num_Look_look_num));
         }
-        System.out.println(commentService.list(fk_look_num_Look_look_num,comment_id)+" 값");
+
         //게시판 에 댓글 리스트 10개를 전달
         return commentService.list(fk_look_num_Look_look_num,comment_id);
     }
@@ -153,9 +153,10 @@ public class CommentController {
         return commentDao.comment(comment_id);
     }
 
+    //댓글 더보기 클릭하면 대댓글 리스트 보내주기
     @ResponseBody
     @GetMapping("/child_comment/{comment_id}")
-    public CommentDto childList(@PathVariable int comment_id) {
+    public List<CommentDto> childList(@PathVariable int comment_id) {
 
         CommentDto commentDto = commentDao.comment(comment_id);
 
@@ -163,7 +164,7 @@ public class CommentController {
             //찾는 댓글이 없으면 not found 404 에러
             throw new NotFoundException(String.format("comment_id[%d] not found", comment_id));
         } else {
-            return commentDto;
+            return commentService.childList(comment_id);
         }
 
     }

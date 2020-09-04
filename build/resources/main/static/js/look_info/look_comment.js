@@ -32,9 +32,9 @@ function commentReady(look_num,userid,usernickname) {
     })
 }
 
+
 //댓글 html 태그 생성 하여 화면에 보여줌
 function commentHTML(result,html) {
-
     html += '<div class=\"other_people_img\">';
     html += '<img src=displayMthumbnail/' + result.comment_sender_id + '>';
     html += '</div>';
@@ -49,9 +49,14 @@ function commentHTML(result,html) {
     html += '<div class=\"comment_textarea_space\">';
     html += '<textarea disabled class=\"view_comment_textarea\" placeholder=\"' + result.comment_content + '\"></textarea>';
     html += '</div>';
-    html += '<div class="re_comment"> 답글 </div>';
-    html += '<div class="re_comment_more"> 답글 ' + result.ref_count + '개 보기 </div>';
     html += '<div class=\"comment_date\">' + result.date + '</div>';
+    html += '<div class="re_comment"> 답글 </div>';
+    //대댓글 있을경우 답글 더보기 태그 추가
+    if(result.ref_count>0){
+        html += '<div class="re_comment_more"> 답글 더보기 </div>';
+        //답글 더보기 이벤트 중복방지 방지용
+        html += '<input class=\"eventDecision\" value="1" type="hidden" />';
+    }
 
     return html;
 }
