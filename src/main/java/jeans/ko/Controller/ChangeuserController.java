@@ -148,14 +148,17 @@ public class ChangeuserController {
         
         //세션값을 통해 유저의 id값을 알아낸다.
         String userid = (String) session.getAttribute("userid");
+
+        //유저가 입력한 비밀번호, 세션을 통해 얻은 id를 UserDto로 만든다.
         UserDto testuserDto=new UserDto();
         testuserDto.setUserid(userid);
         testuserDto.setPassword(passwordDto.getPs());
-        String userDto=userDao.userLogin(testuserDto);
-        System.out.println("testuserDto = " + testuserDto);
-        System.out.println("userDto = " + userDto);
 
-        if(userDto.equals(passwordDto.getPs())){
+        //유저의 진짜 비밀번호.
+        String password=userDao.userLogin(testuserDto);
+
+        //유저의 진짜 비밀번호와 유저가 입력한 비밀번호가 맞다면 해당 유저를 지운다
+        if(password.equals(passwordDto.getPs())){
             session.invalidate();
             userDao.deleteUser(userid);
             return new ResponseEntity(HttpStatus.OK);
