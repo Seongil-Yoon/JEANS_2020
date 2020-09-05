@@ -109,62 +109,6 @@ $(document).on("click", ".re_comment", function (event) {
 
 });
 
-//취소나 저장 버튼 누를 경우 이벤트
-$(document).on("click", ".child_comment_change_button", function (event) {
-    //이벤트 부모태그 가져오기
-    let child_look_commentTag = $(event.target).parents(".child_look_comment");
-    //대댓글 내용 가져오기
-    let child_comment_content=child_look_commentTag.find(".child_comment_content").val();
-    let look_comment_wrap = child_look_commentTag.parents(".look_comment_wrap");
-
-    let data = {
-        comment_sender_id: userId,
-        comment_sender_name: userNickname,
-        fk_look_num_Look_look_num: fk_look_num_Look_look_num,
-        comment_content: child_comment_content,
-        parents : parents_comment_id, //부모댓글 기본키 값 줌
-        ref_count: 0
-    };
-
-    //데이터 json 문자열 형태로 변환
-    let commentDto = JSON.stringify(data);
-
-    //저장 event 값 1   취소 event 값 2
-    //저장 버튼 눌러서 이벤트 값이 1인데  대댓글 내용이 null 값일 경우 에러 발생
-    if(child_comment_content==false&&$(event.target).val()==1){
-        swal('답글 내용을 입력 하세요', '', 'error');
-         return ;
-    }else if($(event.target).val()==1) {
-        //대댓글 내용이 null 값이 아니고 저장 버튼 눌렀을 경우 ajax 로 저장
-        $.ajax({
-            url: "/look_comment",
-            type: "POST", //데이터 전달방식
-            data: commentDto, //전송객체
-            dataType: "json",//데이터 받을타입
-            contentType: "application/json", //json 형태로 댓글보내기
-            success: function (result, textStatus, jqxHR) {
-                //result 리턴값 textStatus
-                if (jqxHR.status == 201) {
-                    look_comment_wrap.append(childHTML(result));
-                }
-            },
-            error: function (error) {
-                //서버오류 500  권한없음  401
-                if (error.status == 401) {
-                    swal('접근 권한이 없습니다', '', 'error');
-                } else if (error.status == 500) {
-                    swal('서버 오류 관리자에게 문의 하세요', '', 'error');
-                }
-            }
-        })
-    }
-    // 저장 이나 취소 버튼을 눌렀 으니 대댓글 입력 화면을 지움
-    child_look_commentTag.remove();
-    //다시 대댓글 화면 나올수 있게 바꿈
-    childEvent=true;
-
-});
-
 //삭제 이벤트
 $(document).on("click", ".child_delete_button", function (event) {
     //이벤트 부모태그 가져오기
@@ -217,7 +161,7 @@ $(document).on("click", ".child_delete_button", function (event) {
 
 });
 
-//답글 수정 이벤트
+//답글 수정버튼 이벤트
 $(document).on("click", ".child_sujung_button", function (event) {
     //이벤트 부모태그 가져오기
     let child_comment_wrap = $(event.target).parents(".child_comment_wrap");
@@ -228,124 +172,94 @@ $(document).on("click", ".child_sujung_button", function (event) {
     //작성자 닉네임값 가져오기
     let child_comment_sender_name=child_comment_wrap.find(".child_comment_sender_name").val();
 
-    alert(child_comment_id+" 기본키값 가져오기");
-    alert(child_comment_sender_id+"아이디값 가져오기");
-    alert(child_comment_sender_name+"닉네임값 가져오기");
+    if(userId==child_comment_wrap.find(".child_comment_sender_id").val()){
+                //수정화면 전환위해 기존댓글 삭제
+                child_comment_wrap.children().remove();
 
-    // if(userId==child_comment_wrap.find(".child_comment_sender_id").val()){
-    //     swal({
-    //         title: "답글을 수정할까요?",
-    //         text: "",
-    //         type: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonClass: "btn-danger",
-    //         confirmButtonText: "예",
-    //         cancelButtonText: "아니오",
-    //         closeOnConfirm: false,
-    //         closeOnCancel: false
-    //     }, function (isConfirm) {
-    //         if (isConfirm) {
-    //
-    //             child_comment_wrap.children().remove();
-    //
-    //             let html = "";
-    //             html += '<input class="child_comment_id" value="' + child_comment_id + '" type="hidden"/>';
-    //             html += '<div class="other_people_img">';
-    //             html += '<img src=displayMthumbnail/' + result.comment_sender_id + '>';
-    //             html += '</div>';
-    //             html += '<div class="child_other_people_name">' + result.comment_sender_name + '</div>';
-    //             html += '<div class="comment_textarea_space">';
-    //             html += '<textarea disabled class="child_comment_content" placeholder=\"' + result.comment_content + '\"></textarea>';
-    //             html += '<button class="child_sujung_button" value="2" type="button" >수정</button>';
-    //             html += '<button class="child_delete_button" value="1" type="button" >삭제</button>';
-    //             html += '</div>';
-    //
-    //             child_comment_wrap.append(html); //child_comment_wrap 아래에 추가
-    //
-    //             $.ajax({
-    //                 //댓글과 대댓글 둘다 중복을 줄이기 위해 같은 삭제 api 사용
-    //                 url: "/look_comment/" + child_comment_id,
-    //                 type: "DELETE",
-    //                 success: function () {
-    //                     swal('', '답글을 수정하였습니다.', "success");
-    //                 },
-    //                 error: function (error) {
-    //                     //서버오류 500  권한없음 401  찾는내용없음 400
-    //                     if (error.status == 401) {
-    //                         swal('수정 권한이 없습니다', '', 'error');
-    //                     } else if (error.status == 500) {
-    //                         swal('서버 오류 관리자에게 문의 하세요', '', 'error');
-    //                     } else if (error.status == 404) {
-    //                         swal('수정할 댓글이 없습니다', '', 'error');
-    //                     }
-    //                 }
-    //             })
-    //         } else {
-    //             swal("", "답글 수정을 취소 하였습니다");
-    //         }
-    //
-    //     });
-    // }else{
-    //     swal("", "작성자만 답글을 삭제 할수 있습니다","error");
-    // }
+                let html = "";
+                html += '<input class="child_comment_id" value="' + child_comment_id + '" type="hidden"/>';
+                html += '<div class="other_people_img">';
+                html += '<img src=displayMthumbnail/' + child_comment_sender_id + '>';
+                html += '</div>';
+                html += '<div class="child_other_people_name">' + child_comment_sender_name + '</div>';
+                html += '<div class="comment_textarea_space">';
+                html += '<textarea  class="child_comment_content" placeholder="수정 내용을 입력하세요."></textarea>';
+                html += '<button class="child_comment_change_button" value="2" type="button" >취소</button>';
+                //저장은 value 값 1 번 수정은 value 값 3번
+                html += '<button class="child_comment_change_button" value="3" type="button" >저장</button>';
+                html += '</div>';
+
+                child_comment_wrap.append(html); //child_comment_wrap 아래에 추가
+    }else{
+        swal("", "작성자만 답글을 수정 할수 있습니다","error");
+    }
 
 });
 
-//수정 다하고 저장 버튼 이나 취소 버튼 누를 경우 이벤트
-$(document).on("click", ".comment_change_button", function (event) {
-    //이벤트 부모태그인 look_comment 값 가져오기
-    let look_commentTag = $(event.target).parents(".look_comment");
-    //댓글 기본키값 가져오기
-    let comment_id = look_commentTag.children('.comment_id').val();
-    //수정내용 가져오기
-    let content = look_commentTag.find(".comment_textarea").val();
-    // 값을 key value 형태로 변환
-    let contentData = {
-        comment_content: content,
+//취소나 저장 버튼 누를 경우 이벤트 여기서 답글 입력과 답글 수정 둘다 처리
+$(document).on("click", ".child_comment_change_button", function (event) {
+
+    if($(event.target).val()==3){
+        let child_look_commentTag = $(event.target).parents(".child_comment_wrap");
+        let child_comment_content=child_look_commentTag.find(".child_comment_content").val();
+
+        if(child_comment_content==false){
+            swal('수정 내용을 입력 하세요', '', 'error');
+        }else {
+            alert("수정 내용이있습니다");
+        }
+    }
+
+    //이벤트 부모태그 가져오기
+    let child_look_commentTag = $(event.target).parents(".child_look_comment");
+    //대댓글 내용 가져오기
+    let child_comment_content=child_look_commentTag.find(".child_comment_content").val();
+    let look_comment_wrap = child_look_commentTag.parents(".look_comment_wrap");
+
+    let data = {
+        comment_sender_id: userId,
+        comment_sender_name: userNickname,
+        fk_look_num_Look_look_num: fk_look_num_Look_look_num,
+        comment_content: child_comment_content,
+        parents : parents_comment_id, //부모댓글 기본키 값 줌
+        ref_count: 0
     };
 
-    //저장 버튼누르면 1  취소는 2
-    if ($(event.target).val() == 1) {
+    //데이터 json 문자열 형태로 변환
+    let commentDto = JSON.stringify(data);
+
+    //저장 event 값 1   취소 event 값 2
+    //저장 버튼 눌러서 이벤트 값이 1인데  대댓글 내용이 null 값일 경우 에러 발생
+    if(child_comment_content==false&&$(event.target).val()==1){
+        swal('답글 내용을 입력 하세요', '', 'error');
+        return ;
+    }else if($(event.target).val()==1) {
+        //대댓글 내용이 null 값이 아니고 저장 버튼 눌렀을 경우 ajax 로 저장
         $.ajax({
-            url: "/look_comment/" + comment_id,
-            type: "PATCH", //데이터 전달방식
-            data: JSON.stringify(contentData), //json 문자열로 반환 해서보냄
-            contentType: "application/json", //json 형태로 보내기
+            url: "/look_comment",
+            type: "POST", //데이터 전달방식
+            data: commentDto, //전송객체
+            dataType: "json",//데이터 받을타입
+            contentType: "application/json", //json 형태로 댓글보내기
             success: function (result, textStatus, jqxHR) {
-                look_commentTag.children().remove();
-                let html="";
-                //수정 하여 수정된 html 화면으로 돌려주기
-                look_commentTag.append(commentHTML(result,html));
-            },
-            error: function (error) {
-                //서버오류 500  권한없음 401  찾는내용없음 400
-                if (error.status == 404) {
-                    swal('수정할 댓글이 없습니다', '', 'error');
-                } else if (error.status == 500) {
-                    swal('서버 오류 관리자에게 문의 하세요', '', 'error');
-                } else if (error.status == 401) {
-                    swal('수정할 권한이 없습니다', '', 'error');
+                //result 리턴값 textStatus
+                if (jqxHR.status == 201) {
+                    look_comment_wrap.append(childHTML(result));
                 }
-            }
-        })
-    } else {
-        $.ajax({
-            url: "/look_comment/" + comment_id,
-            type: "GET", //데이터 전달방식
-            success: function (result) {
-                look_commentTag.children().remove();
-                let html="";
-                //수정취소 를 하여 원래 html 화면 으로 돌려 주기
-                look_commentTag.append(commentHTML(result,html));
             },
             error: function (error) {
-                //서버오류 500  권한없음 401  찾는내용없음 400
-                if (error.status == 404) {
-                    swal('찾는 댓글이 없습니다', '', 'error');
+                //서버오류 500  권한없음  401
+                if (error.status == 401) {
+                    swal('접근 권한이 없습니다', '', 'error');
                 } else if (error.status == 500) {
                     swal('서버 오류 관리자에게 문의 하세요', '', 'error');
                 }
             }
         })
     }
+    // 저장 이나 취소 버튼을 눌렀 으니 대댓글 입력 화면을 지움
+    child_look_commentTag.remove();
+    //다시 대댓글 화면 나올수 있게 바꿈
+    childEvent=true;
+
 });
