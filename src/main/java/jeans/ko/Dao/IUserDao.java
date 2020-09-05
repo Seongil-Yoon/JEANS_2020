@@ -41,4 +41,7 @@ public interface IUserDao {
 
     //해당 유저의 정보를 변경
     public void setChangeuser(UserDto userDto);
+
+    //해당 유저를 삭제시킵니다.
+    void deleteUser(String userid);
 }

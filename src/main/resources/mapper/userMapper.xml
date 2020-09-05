@@ -30,6 +30,9 @@
     <update id="setChangeuser">
         update user set sex=(#{sex}), nickname=(#{nickname}), height=(#{height}), weight=(#{weight}) where userid=(#{userid});
     </update>
+    <delete id="deleteUser">
+        delete from user where userid= #{userid};
+    </delete>
 </mapper>
 
         <!-- resultType="jeans.ko.Dto.UserDto"-->

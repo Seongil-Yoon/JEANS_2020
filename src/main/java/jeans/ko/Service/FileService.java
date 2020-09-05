@@ -151,7 +151,7 @@ public class FileService implements IFileService {
      //   }
     }
 
-  /*  @Override
+    @Override
     public void uploadFile(List<String> paths, MultipartFile file) throws Exception {
         logger.info("uploadFile메소드");
         String path=utilService.completePath(paths);
@@ -159,7 +159,7 @@ public class FileService implements IFileService {
         String name=file.getOriginalFilename();
         File target=new File(path,name);
         FileCopyUtils.copy(fileData,target);
-    }*/
+    }
 
 
     //파일제거

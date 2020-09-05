@@ -1,18 +1,16 @@
 function userDelete() {
+    alert("userDelete메소드실행");
+    let password = document.getElementsByName("chckPass")[0].value;
 
-    let password = document.getElementsByName("password")[0].value;
-
-    let userDto = {
-        userid: id,
-        password: password,
+    let ps={
+        ps: password
     };
 
-    if (id != false && password != false) { //자바스크립트는 null값을 false 로 인식
-
+    if (password != false) { //자바스크립트는 null값을 false 로 인식
         $.ajax({
-            url: "/session", //저장되는 위치가 session 이라 url을 rest형식에 맟춰 /session으로함
+            url: "/userinformation/deleteUser", //저장되는 위치가 session 이라 url을 rest형식에 맟춰 /session으로함
             type: "post", //데이터 전달방식
-            data: JSON.stringify(userDto), //객체를 json 문자열로 반환 해서보냄 서버와는 문자열로통신
+            data: JSON.stringify(ps), //객체를 json 문자열로 반환 해서보냄 서버와는 문자열로통신
             contentType: 'application/json', //json 으로 데이터줄떄 사용
             success: function (result, textStatus, jqxHR) {
                 if (jqxHR.status == 201) {

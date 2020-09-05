@@ -18,7 +18,7 @@ public interface IFileService {
     //파일 업로드 : paths리스트 경로에 files리스트들을 업로드한다
     public boolean uploadFiles(List<String>paths,List<MultipartFile>files)throws Exception;
 
-//    public void uploadFile(List<String>paths,MultipartFile file)throws Exception;
+    public void uploadFile(List<String>paths,MultipartFile file)throws Exception;
 
     //파일삭제 paths리스트에 있는 pictures리스트들을 삭제한다.
     public void rmFiles(List<String>paths,List<String>pictures);
