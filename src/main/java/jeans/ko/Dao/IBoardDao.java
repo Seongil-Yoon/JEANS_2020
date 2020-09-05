@@ -21,10 +21,11 @@ public interface IBoardDao {
 
     //게시글 작성
     public int insert(BoardDto boardDto);
-    //  public int insert(@Param("boardDto")BoardDto boardDto, @Param("lists")List<PictureDto>lists);
 
     //각 게시글에 저장된 사진들 내역 DB에 저장
     public int insertPicturedatabase(List<PictureDto> files);
+
+    public int insertPicture(String boardnum,String uuidname);
 
     //각 게시글에 해당되는 무드 내역 DB에 저장
     public int insertMooddatabase(List<MoodDto> moodDtos);

@@ -19,6 +19,9 @@
     </insert>
 
     <!--룩을 등록한 후 룩에 등록된 사진들의 정보를 picture테이블에 등록한다.-->
+    <!--지금은 안쓰인다. 왜냐 사진이 새로 업로드 될시 자바스크립트에서는 년월시로 동시에 올리는 데 이름이 구분이 안된다.
+    이걸 구분하기 위해서 insertPicture 라는 새로운 insert문을 작성했다.
+    두 차이는 이건 List를 받아 리스트를 foreach 문으로 데이터베이스에 insert 시킨는 반면 insertPicture는 그냥 insert문 하나다.-->
     <insert id="insertPicturedatabase" parameterType="java.util.ArrayList">
         <selectKey resultType="java.math.BigInteger" keyProperty="pictureId" order="AFTER">
             SELECT LAST_INSERT_ID()
@@ -31,6 +34,14 @@
         </foreach>
     </insert>
 
+    <insert id="insertPicture">
+        <selectKey resultType="java.math.BigInteger" keyProperty="pictureId" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into picture(looknum, name) values (#{boardnum},#{uuidname});
+    </insert>
+
+    <!--무드테이블에 해당되는 룩의 무드를 insert한다-->
     <insert id="insertMooddatabase" parameterType="java.util.ArrayList">
         insert into mood values
         <foreach collection="list" item="i" separator=",">

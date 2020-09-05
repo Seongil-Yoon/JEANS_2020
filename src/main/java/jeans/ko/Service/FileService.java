@@ -1,6 +1,7 @@
 package jeans.ko.Service;
 
 import jeans.ko.Controller.UserController;
+import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dao.IUserDao;
 import org.imgscalr.Scalr;
 import org.slf4j.Logger;
@@ -20,6 +21,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class FileService implements IFileService {
@@ -49,6 +51,9 @@ public class FileService implements IFileService {
 
     @Autowired
     IUserDao userDao;
+
+    @Autowired
+    IBoardDao boardDao;
 
     //폴더생성
     @Override
@@ -94,9 +99,6 @@ public class FileService implements IFileService {
         BufferedImage smallImg = Scalr.resize(cropImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 40);
         BufferedImage middleImg = Scalr.resize(cropImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 50);
 
-      /*  BufferedImage smallImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 40);
-        BufferedImage middleImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 50);*/
-
         String formatName = picture.substring(picture.lastIndexOf(".") + 1);
         File smallThumbnail = new File(path + route + smallHeader + picture);
         File middleThumbnail = new File(path + route + middleHeader + picture);
@@ -128,14 +130,21 @@ public class FileService implements IFileService {
     public boolean uploadFiles(List<String> paths, List<MultipartFile> files) throws Exception {
         logger.info("uploadFiles메소드()");
         String path = utilService.completePath(paths);
-   /*     if (!dirPath.exists()) {
-            logger.info("uploadFiles메소드 : 업로드 할 폴더가 없습니다!!!");
-            return false;
-        } else {*/
+        String boardnum=paths.get(paths.size()-1);//글 번호
+
             for (MultipartFile file : files) {
+                UUID uuid=UUID.randomUUID();
                 byte[] fileData=file.getBytes();
-                String name=file.getOriginalFilename();
-                File target = new File(path, name);
+                //String name=file.getOriginalFilename();
+                File target = new File(path, uuid.toString().concat(".jpg"));
+
+                /*
+                    예전에는 insertPicturedatabase를 리스트형식으로 picture데이터베이스에 넣었다면
+                    지금은 UUID때문에 다 따로 넣어야한다.
+                */
+                boardDao.insertPicture(boardnum,uuid.toString().concat(".jpg"));
+
+                /*  File target = new File(path, name);*/
                 FileCopyUtils.copy(fileData, target);
            }
             return true;

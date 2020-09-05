@@ -1,6 +1,7 @@
 package jeans.ko.Controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.geometry.HorizontalDirection;
 import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dto.BoardDto;
 import jeans.ko.Dto.MoodDto;
@@ -9,7 +10,9 @@ import jeans.ko.Service.IBoardService;
 import jeans.ko.Service.IUtilService;
 import jeans.ko.exception.NotFoundException;
 import jeans.ko.exception.UnauthorizedException;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.filefilter.AndFileFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +32,7 @@ import java.util.ArrayList;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class LookController {
@@ -138,9 +142,9 @@ public class LookController {
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/looks")
-    public BoardDto boardWrite(@RequestPart("BoardDto") BoardDto boardDto, @RequestPart(value = "MoodDto", required = false)List<MoodDto> moodDtos, @RequestPart("files") List<MultipartFile> files) throws Exception {
-        System.out.println("moodDtos = " + moodDtos);
+    public BoardDto boardWrite(@RequestPart("BoardDto") BoardDto boardDto, @RequestPart(value = "MoodDto", required = false) List<MoodDto> moodDtos, @RequestPart("files") List<MultipartFile> files) throws Exception {
         logger.info("boardWrite()진입");
+        System.out.println("테스트를 위해 남겨둔 moodDtos = " + moodDtos);
         if (session.getAttribute("userid") == null) {
             //서버로 바로접근하는 경우 아이디값 없으면 클라이언트 권한없음 오류보냄
             throw new UnauthorizedException(String.format("unauthorized you"));
@@ -228,6 +232,7 @@ public class LookController {
             entity = new ResponseEntity<ArrayList<byte[]>>(HttpStatus.BAD_REQUEST);
         } finally {
             inp.close();
+            System.gc();
         }
         return entity;
     }

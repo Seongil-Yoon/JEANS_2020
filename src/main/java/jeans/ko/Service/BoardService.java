@@ -51,19 +51,24 @@ public class BoardService implements IBoardService {
         boardDto.setLike(1); //좋아요 값넣기 수정해야함
         boardDto.setComment_count(2);//댓글수 수정해야함
 
+
         //1. 사용자가 입력한 글내역 중 파일들을 제외하고 나머지 내용들을 입력.
         //여기서 look 데이터베이스에 정보가 입력된다.
         boardDao.insert(boardDto);
 
-        //2.파일리스트들의 내용을 pictureDB에 입력. 단 1번에서 PK값을 가져온다.
-        //boardDao.insert()메소드가 실행된후, boardDto에 입력된 look_num을 받는다.
-        //그 후 pictureDB에 그 값과 함께 값을 넣는다.
-        boardDao.insertPicturedatabase(bindingPicture(files, boardDto.getLook_num()));
-
+        /*
+            더 이상 사용되지 않는다. 그전에는 이런식으로 픽쳐테이블에 bindingPicture메소드를 통해 List로 insert 시켰지만,
+            글 수정 시 이미지 명이 다 동일하게 바뀌는 문제때문에 더 이상 사용되지 않는다.
+            아까워서 남겨뒀다.
+            boardDao.insertPicturedatabase(bindingPicture(files, boardDto.getLook_num()));
+        */
+        //만약 유저가 해당 글의 무드를 선택했다면,
         if (moodDtos != null) {
             for (int i = 0; i < moodDtos.size(); i++) {
+                //무드 리스트의 경우 현재 look의 넘버, 글의 id 값이 없어서 이런식으로 다 넣어줘야한다.
                 (moodDtos.get(i)).setLook_num(boardDto.getLook_num());
             }
+            //무드데이터베이스에 해당글의 무드를 선택해야한다.
             boardDao.insertMooddatabase(moodDtos);
         }
 
@@ -126,10 +131,8 @@ public class BoardService implements IBoardService {
         for (MultipartFile i : e) {
             PictureDto pictureDto = new PictureDto();
             String name = i.getOriginalFilename();
-            long size = i.getSize();
             pictureDto.setLookNum(looknum);
             pictureDto.setPictureName(name);
-            pictureDto.setPictureSize(size);
             lists.add(pictureDto);
         }
 
