@@ -8,8 +8,8 @@
         insert into look
         values
         (
-        #{look_num},#{title},#{like},#{season},#{tag},#{look_public},#{fk_userid_user_userid}
-        ,#{memo},#{look_date},#{count},#{comment_count},#{picture},#{nickname}
+        #{look_num},#{title},#{like},#{season},#{look_privacy},#{fk_userid_user_userid}
+        ,#{memo},#{look_date},#{count},#{comment_count},#{nickname}
         )
 
         <selectKey resultType="java.lang.Integer" keyProperty="look_num" order="AFTER">
@@ -27,6 +27,15 @@
         <foreach collection="list" item="i" separator=",">
             (
             #{i.pictureId},#{i.lookNum},#{i.pictureName},#{i.pictureSize}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="insertMooddatabase" parameterType="java.util.ArrayList">
+        insert into mood values
+        <foreach collection="list" item="i" separator=",">
+            (
+            #{i.look_num},#{i.mood}
             )
         </foreach>
     </insert>

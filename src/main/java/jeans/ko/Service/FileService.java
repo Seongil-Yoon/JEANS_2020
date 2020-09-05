@@ -128,7 +128,6 @@ public class FileService implements IFileService {
     public boolean uploadFiles(List<String> paths, List<MultipartFile> files) throws Exception {
         logger.info("uploadFiles메소드()");
         String path = utilService.completePath(paths);
-        File dirPath = new File(path);
    /*     if (!dirPath.exists()) {
             logger.info("uploadFiles메소드 : 업로드 할 폴더가 없습니다!!!");
             return false;

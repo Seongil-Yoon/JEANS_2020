@@ -2,6 +2,7 @@ package jeans.ko.Dao;
 
 
 import jeans.ko.Dto.BoardDto;
+import jeans.ko.Dto.MoodDto;
 import jeans.ko.Dto.PictureDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -24,6 +25,9 @@ public interface IBoardDao {
 
     //각 게시글에 저장된 사진들 내역 DB에 저장
     public int insertPicturedatabase(List<PictureDto> files);
+
+    //각 게시글에 해당되는 무드 내역 DB에 저장
+    public int insertMooddatabase(List<MoodDto> moodDtos);
 
     //게시글 상세보기
     public BoardDto view(@Param("look_num") int look_num);

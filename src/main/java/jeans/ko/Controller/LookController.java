@@ -3,6 +3,7 @@ package jeans.ko.Controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dto.BoardDto;
+import jeans.ko.Dto.MoodDto;
 import jeans.ko.Service.CommentService;
 import jeans.ko.Service.IBoardService;
 import jeans.ko.Service.IUtilService;
@@ -111,7 +112,7 @@ public class LookController {
     //삭제
     @ResponseBody
     @DeleteMapping("/looks/{id}")
-    public void deleteLook(@PathVariable int id) throws Exception{
+    public void deleteLook(@PathVariable int id) throws Exception {
 
         logger.info("deleteLook()진입");
 
@@ -137,7 +138,8 @@ public class LookController {
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/looks")
-    public BoardDto boardWrite(@RequestPart("BoardDto") BoardDto boardDto, @RequestPart("files") List<MultipartFile> files) throws Exception {
+    public BoardDto boardWrite(@RequestPart("BoardDto") BoardDto boardDto, @RequestPart(value = "MoodDto", required = false)List<MoodDto> moodDtos, @RequestPart("files") List<MultipartFile> files) throws Exception {
+        System.out.println("moodDtos = " + moodDtos);
         logger.info("boardWrite()진입");
         if (session.getAttribute("userid") == null) {
             //서버로 바로접근하는 경우 아이디값 없으면 클라이언트 권한없음 오류보냄
@@ -145,7 +147,7 @@ public class LookController {
         }
         //게시글등록
         System.out.println(" looks에서 세션 = " + session.getId());
-        boardService.insert(boardDto, files);
+        boardService.insert(boardDto, moodDtos, files);
         //selectKey로 등록된 게시글 가져온 기본키로 등록된 게시글 정보보내줌 새롭게 추가되 댓글이없으므로 게시글만넘김
         return boardDao.view(boardDto.getLook_num());
     }
@@ -158,7 +160,7 @@ public class LookController {
         logger.info("boardModify()진입");
 
         System.out.println("modifyBoardDto = " + modifyBoardDto);
-        
+
         //넘어온 값에 기본키id 값으로 게시글작성자 id 와 기본키넘버값 가져오기
         String lookId = boardDao.view(modifyBoardDto.getLook_num()).getFk_userid_user_userid();
         int lookNum = boardDao.view(modifyBoardDto.getLook_num()).getLook_num();
@@ -169,7 +171,7 @@ public class LookController {
         }
         if (session.getAttribute("userid").equals(lookId)) {
             //로그인한 아이디와 수정할려는 게시글 작성자 아이디 비교하여 같으면 게시글수정
-            boardService.update(modifyBoardDto,files);
+            boardService.update(modifyBoardDto, files);
             //수정된 게시글 정보 넘겨주기
             return boardDao.view(lookNum);
         } else {

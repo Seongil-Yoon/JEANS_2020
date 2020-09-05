@@ -3,6 +3,7 @@ package jeans.ko.Service;
 import jeans.ko.Controller.UserController;
 import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dto.BoardDto;
+import jeans.ko.Dto.MoodDto;
 import jeans.ko.Dto.PictureDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +39,7 @@ public class BoardService implements IBoardService {
     @Autowired
     IUtilService iUtilService;
 
-    public void insert(BoardDto boardDto, List<MultipartFile> files) throws Exception {
+    public void insert(BoardDto boardDto, List<MoodDto> moodDtos, List<MultipartFile> files) throws Exception {
         logger.info("insert메소드");
         //시간을 내가 원하는 형식으로 출력
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일");
@@ -59,6 +60,13 @@ public class BoardService implements IBoardService {
         //그 후 pictureDB에 그 값과 함께 값을 넣는다.
         boardDao.insertPicturedatabase(bindingPicture(files, boardDto.getLook_num()));
 
+        if (moodDtos != null) {
+            for (int i = 0; i < moodDtos.size(); i++) {
+                (moodDtos.get(i)).setLook_num(boardDto.getLook_num());
+            }
+            boardDao.insertMooddatabase(moodDtos);
+        }
+
         //여기서... 이제 년/월/룩번호를 뺏다
         List<String> path = iUtilService.looknumtoPath(boardDto.getLook_num());
         //3.makepictureDir을 통해 ${directory}/년/월/룩번호 까지 폴더를 생성한다.
@@ -66,8 +74,8 @@ public class BoardService implements IBoardService {
         //${directory}/년/월/looknum(pk값) 안에 이미지가 업로드 된다.
         //  String pathPicture = iFileService.makepictureDir(path);
         iFileService.mkDir(path);
-       //iFileService.uploadPictures(files, pathPicture);
-        iFileService.uploadFiles(path,files);
+        //iFileService.uploadPictures(files, pathPicture);
+        iFileService.uploadFiles(path, files);
         //  iFileService.mkBoardthumbnail(path);
     }
 
@@ -89,21 +97,21 @@ public class BoardService implements IBoardService {
     }
 
     @Override
-    public int update(BoardDto boardDto,List<MultipartFile>files) throws Exception {
+    public int update(BoardDto boardDto, List<MultipartFile> files) throws Exception {
         logger.info("update메소드");
         //폴더내 파일 삭제
         List<String> path = iUtilService.looknumtoPath(boardDto.getLook_num());
         System.out.println("path = " + path);
 
         System.out.println(iUtilService.looknumtoallPicturename(boardDto.getLook_num()));
-        iFileService.rmFiles(path,iUtilService.looknumtoallPicturename(boardDto.getLook_num()));
+        iFileService.rmFiles(path, iUtilService.looknumtoallPicturename(boardDto.getLook_num()));
         //DB내 해당 룩 번호 관여 제거
         boardDao.deleteAllpictures(boardDto.getLook_num());
 
         //신규사진 picture DB내 insert
         boardDao.insertPicturedatabase(bindingPicture(files, boardDto.getLook_num()));
         //신규사진 업로드
-        iFileService.uploadFiles(path,files);
+        iFileService.uploadFiles(path, files);
 
         return boardDao.update(boardDto);
     }
