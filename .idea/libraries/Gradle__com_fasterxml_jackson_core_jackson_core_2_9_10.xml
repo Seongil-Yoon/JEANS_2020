@@ -1,17 +1,20 @@
 <component name="libraryTable">
   <library name="Gradle: com.fasterxml.jackson.core:jackson-core:2.9.10">
-    <ANNOTATIONS>
-      <root url="jar://$MAVEN_REPOSITORY$/org/jetbrains/externalAnnotations/com/fasterxml/jackson/core/jackson-core/2.9.6-an1/jackson-core-2.9.6-an1-annotations.zip!/" />
-    </ANNOTATIONS>
     <CLASSES>
+<<<<<<< HEAD
       <root url="jar://$USER_HOME$/JEANS/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.9.10/66b715dec9dd8b0f39f3296e67e05913bf422d0c/jackson-core-2.9.10.jar!/" />
       <root url="jar://$PROJECT_DIR$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.9.10/66b715dec9dd8b0f39f3296e67e05913bf422d0c/jackson-core-2.9.10.jar!/" />
+=======
+>>>>>>> 18b050bd329ad64e6f7a7381e6c3e0f305086dc1
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.9.10/66b715dec9dd8b0f39f3296e67e05913bf422d0c/jackson-core-2.9.10.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
+<<<<<<< HEAD
       <root url="jar://$USER_HOME$/JEANS/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.9.10/2bbe05a007ca22ecf0ed3d3b0b0d8cd9726271c2/jackson-core-2.9.10-sources.jar!/" />
       <root url="jar://$PROJECT_DIR$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.9.10/2bbe05a007ca22ecf0ed3d3b0b0d8cd9726271c2/jackson-core-2.9.10-sources.jar!/" />
+=======
+>>>>>>> 18b050bd329ad64e6f7a7381e6c3e0f305086dc1
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.9.10/2bbe05a007ca22ecf0ed3d3b0b0d8cd9726271c2/jackson-core-2.9.10-sources.jar!/" />
     </SOURCES>
   </library>

@@ -32,9 +32,9 @@ function commentReady(look_num,userid,usernickname) {
     })
 }
 
+
 //댓글 html 태그 생성 하여 화면에 보여줌
 function commentHTML(result,html) {
-
     html += '<div class=\"other_people_img\">';
     html += '<img src=displayMthumbnail/' + result.comment_sender_id + '>';
     html += '</div>';
@@ -49,8 +49,14 @@ function commentHTML(result,html) {
     html += '<div class=\"comment_textarea_space\">';
     html += '<textarea disabled class=\"view_comment_textarea\" placeholder=\"' + result.comment_content + '\"></textarea>';
     html += '</div>';
-    html += '<div class="re_comment"> 답글 </div>';
     html += '<div class=\"comment_date\">' + result.date + '</div>';
+    html += '<div class="re_comment"> 답글 </div>';
+    //대댓글 있을경우 답글 더보기 태그 추가
+    if(result.ref_count>0){
+        html += '<div class="re_comment_more"> 답글 더보기 </div>';
+        //답글 더보기 이벤트 중복방지 방지용
+        html += '<input class=\"eventDecision\" value="1" type="hidden" />';
+    }
 
     return html;
 }
@@ -69,6 +75,9 @@ function commentWrite() {
         fk_look_num_Look_look_num: fk_look_num_Look_look_num,
         comment_content: comment_content,
         parents : 0, //대댓글 아니므로 값을 0줌
+
+        ref_count : 0,//dto 로 값 받을때 사용 기본값 0으로 줌
+
     };
 
     //데이터 json 문자열 형태로 변환

@@ -9,7 +9,7 @@
         values
         (
         #{comment_id},#{fk_look_num_Look_look_num},#{comment_content}
-        ,#{comment_sender_name},#{comment_sender_id},CURDATE(),#{parents}
+        ,#{comment_sender_name},#{comment_sender_id},CURDATE(),#{parents},#{ref_count}
         )
         <selectKey resultType="java.lang.Integer" keyProperty="comment_id" order="AFTER">
             <!--return 값은 dto 객체로 넘어간다 get메소드로 값을 갖고와야됨 -->
@@ -19,14 +19,14 @@
 
     <!-- 부모 댓글 10개씩 불러옴  &lt;는 < 와 같다 -->
     <select id="list" resultType="jeans.ko.Dto.CommentDto">
-     SELECT * FROM comment WHERE  parents = 0 AND
+     SELECT * FROM comment_view WHERE  parents = 0 AND
          comment_id &lt; #{comment_id} AND
          fk_look_num_Look_look_num = #{fk_look_num_Look_look_num} ORDER BY comment_id DESC LIMIT 10;
     </select>
 
     <!--댓글 개별 한개 데이터 갖고 오기-->
     <select id="comment" resultType="jeans.ko.Dto.CommentDto">
-        select * from comment where comment_id=#{comment_id};
+        select * from comment_view where comment_id=#{comment_id};
     </select>
 
     <delete id="delete">
@@ -36,5 +36,10 @@
     <update id="update">
         update comment set comment_content = #{comment_content} where comment_id = #{comment_id}
     </update>
+
+    <!-- 대댓글 가져오기 -->
+    <select id="childList" resultType="jeans.ko.Dto.CommentDto">
+     SELECT * FROM comment WHERE  parents = #{comment_id}
+    </select>
 
 </mapper>

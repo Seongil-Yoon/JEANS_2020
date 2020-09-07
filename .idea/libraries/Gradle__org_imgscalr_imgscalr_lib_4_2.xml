@@ -1,14 +1,20 @@
 <component name="libraryTable">
   <library name="Gradle: org.imgscalr:imgscalr-lib:4.2">
     <CLASSES>
+<<<<<<< HEAD
       <root url="jar://$USER_HOME$/JEANS/.gradle/caches/modules-2/files-2.1/org.imgscalr/imgscalr-lib/4.2/e2838f7119361511ef7d54fe0d502bf07f3325eb/imgscalr-lib-4.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/.gradle/caches/modules-2/files-2.1/org.imgscalr/imgscalr-lib/4.2/e2838f7119361511ef7d54fe0d502bf07f3325eb/imgscalr-lib-4.2.jar!/" />
+=======
+>>>>>>> 18b050bd329ad64e6f7a7381e6c3e0f305086dc1
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.imgscalr/imgscalr-lib/4.2/e2838f7119361511ef7d54fe0d502bf07f3325eb/imgscalr-lib-4.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
+<<<<<<< HEAD
       <root url="jar://$USER_HOME$/JEANS/.gradle/caches/modules-2/files-2.1/org.imgscalr/imgscalr-lib/4.2/6f26f63bff5909d200dec424d2e7460190e4ae09/imgscalr-lib-4.2-sources.jar!/" />
       <root url="jar://$PROJECT_DIR$/.gradle/caches/modules-2/files-2.1/org.imgscalr/imgscalr-lib/4.2/6f26f63bff5909d200dec424d2e7460190e4ae09/imgscalr-lib-4.2-sources.jar!/" />
+=======
+>>>>>>> 18b050bd329ad64e6f7a7381e6c3e0f305086dc1
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.imgscalr/imgscalr-lib/4.2/6f26f63bff5909d200dec424d2e7460190e4ae09/imgscalr-lib-4.2-sources.jar!/" />
     </SOURCES>
   </library>
