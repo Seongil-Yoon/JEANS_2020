@@ -1,20 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: org.mybatis.spring.boot:mybatis-spring-boot-autoconfigure:2.1.2">
     <CLASSES>
-<<<<<<< HEAD
-      <root url="jar://$USER_HOME$/JEANS/.gradle/caches/modules-2/files-2.1/org.mybatis.spring.boot/mybatis-spring-boot-autoconfigure/2.1.2/f322930f6a0d07c78481853e6625ffb779bcdeb7/mybatis-spring-boot-autoconfigure-2.1.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/.gradle/caches/modules-2/files-2.1/org.mybatis.spring.boot/mybatis-spring-boot-autoconfigure/2.1.2/f322930f6a0d07c78481853e6625ffb779bcdeb7/mybatis-spring-boot-autoconfigure-2.1.2.jar!/" />
-=======
->>>>>>> 18b050bd329ad64e6f7a7381e6c3e0f305086dc1
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mybatis.spring.boot/mybatis-spring-boot-autoconfigure/2.1.2/f322930f6a0d07c78481853e6625ffb779bcdeb7/mybatis-spring-boot-autoconfigure-2.1.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-<<<<<<< HEAD
-      <root url="jar://$USER_HOME$/JEANS/.gradle/caches/modules-2/files-2.1/org.mybatis.spring.boot/mybatis-spring-boot-autoconfigure/2.1.2/69dc33a18a296731febfdc4e6369dad2975cde90/mybatis-spring-boot-autoconfigure-2.1.2-sources.jar!/" />
-      <root url="jar://$PROJECT_DIR$/.gradle/caches/modules-2/files-2.1/org.mybatis.spring.boot/mybatis-spring-boot-autoconfigure/2.1.2/69dc33a18a296731febfdc4e6369dad2975cde90/mybatis-spring-boot-autoconfigure-2.1.2-sources.jar!/" />
-=======
->>>>>>> 18b050bd329ad64e6f7a7381e6c3e0f305086dc1
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mybatis.spring.boot/mybatis-spring-boot-autoconfigure/2.1.2/69dc33a18a296731febfdc4e6369dad2975cde90/mybatis-spring-boot-autoconfigure-2.1.2-sources.jar!/" />
     </SOURCES>
   </library>
