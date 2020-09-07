@@ -32,5 +32,5 @@ public class UserDto {
 
     int privacy;//0은 키,몸무게 비공개 1은 키,몸무게 공개
 
-    String memo;
+    String message;
 }

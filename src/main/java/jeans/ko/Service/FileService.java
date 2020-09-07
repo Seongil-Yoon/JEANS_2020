@@ -1,6 +1,7 @@
 package jeans.ko.Service;
 
 import jeans.ko.Controller.UserController;
+import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dao.IUserDao;
 import org.imgscalr.Scalr;
 import org.slf4j.Logger;
@@ -15,11 +16,12 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
+import java.io.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class FileService implements IFileService {
@@ -49,6 +51,9 @@ public class FileService implements IFileService {
 
     @Autowired
     IUserDao userDao;
+
+    @Autowired
+    IBoardDao boardDao;
 
     //폴더생성
     @Override
@@ -81,7 +86,7 @@ public class FileService implements IFileService {
         int length = 50;//50의 정사각형으로 썸네일을 생성한다.
         int ow = sourceImg.getWidth();
         int oh = sourceImg.getHeight();
-        int nw,nh;
+        int nw, nh;
 
         if (ow < oh) {
             nw = ow;
@@ -90,12 +95,9 @@ public class FileService implements IFileService {
             nw = oh;
             nh = oh;
         }
-        BufferedImage cropImg=Scalr.crop(sourceImg,(ow-nw)/2,(oh-nh)/2,nw,nh);
+        BufferedImage cropImg = Scalr.crop(sourceImg, (ow - nw) / 2, (oh - nh) / 2, nw, nh);
         BufferedImage smallImg = Scalr.resize(cropImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 40);
         BufferedImage middleImg = Scalr.resize(cropImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 50);
-
-      /*  BufferedImage smallImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 40);
-        BufferedImage middleImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 50);*/
 
         String formatName = picture.substring(picture.lastIndexOf(".") + 1);
         File smallThumbnail = new File(path + route + smallHeader + picture);
@@ -108,15 +110,15 @@ public class FileService implements IFileService {
     @Override
     public boolean mkBoardthumbnail(List<String> paths) throws Exception {
         logger.info("mkBoardthumbnail메소드");
-        String path=utilService.completePath(paths);
-        int looknum=Integer.parseInt(paths.get(paths.size()-1));
-        List<String>pictures=utilService.looknumtoallPicturename(looknum);
-        for(String i:pictures){
-            File f=new File(path,i);
+        String path = utilService.completePath(paths);
+        int looknum = Integer.parseInt(paths.get(paths.size() - 1));
+        List<String> pictures = utilService.looknumtoallPicturename(looknum);
+        for (String i : pictures) {
+            File f = new File(path, i);
             String formatName = i.substring(i.lastIndexOf(".") + 1);
-            BufferedImage sourceImage=ImageIO.read(f);
-            BufferedImage resizedImage=Scalr.resize(sourceImage,500,700);
-            ImageIO.write(resizedImage,formatName,f);
+            BufferedImage sourceImage = ImageIO.read(f);
+            BufferedImage resizedImage = Scalr.resize(sourceImage, 500, 700);
+            ImageIO.write(resizedImage, formatName, f);
         }
         return true;
     }
@@ -127,34 +129,49 @@ public class FileService implements IFileService {
     public boolean uploadFiles(List<String> paths, List<MultipartFile> files) throws Exception {
         logger.info("uploadFiles메소드()");
         String path = utilService.completePath(paths);
-        File dirPath = new File(path);
-        if (!dirPath.exists()) {
-            logger.info("uploadFiles메소드 : 업로드 할 폴더가 없습니다!!!");
-            return false;
-        } else {
+        String boardnum=paths.get(paths.size()-1);//글 번호
+
             for (MultipartFile file : files) {
-                File target = new File(path, file.getOriginalFilename());
-                FileCopyUtils.copy(file.getBytes(), target);
-            }
+                UUID uuid=UUID.randomUUID();
+                byte[] fileData=file.getBytes();
+                //String name=file.getOriginalFilename();
+                File target = new File(path, uuid.toString().concat(".jpg"));
+
+                /*
+                    예전에는 insertPicturedatabase를 리스트형식으로 picture데이터베이스에 넣었다면
+                    지금은 UUID때문에 다 따로 넣어야한다.
+                */
+                boardDao.insertPicture(boardnum,uuid.toString().concat(".jpg"));
+                FileCopyUtils.copy(fileData, target);
+           }
             return true;
-        }
     }
 
-    //파일제거
     @Override
-    public boolean rmFiles(List<String> paths, List<String> pictures) {
-        logger.info("rmFiles메소드");
-        String path = utilService.completePath(paths);
-        File f = new File(path);
-        if (!f.exists()) {
-            logger.info("파일을 제거할 경로가 없습니다");
-            logger.info(path + "가 존재하지 않음");
-            return false;
+    public void uploadFile(List<String> paths, MultipartFile file) throws Exception {
+        logger.info("uploadFile메소드");
+        String path=utilService.completePath(paths);
+        byte[] fileData=file.getBytes();
+        String name=file.getOriginalFilename();
+        File target=new File(path,name);
+        FileCopyUtils.copy(fileData,target);
+    }
+
+    //파일 삭제
+    @Override
+    public void rmFiles(List<String> path, List<String> files) {
+        logger.info("deleteallFiles메소드");
+        String completedPath=utilService.completePath(path);
+
+        for (String i : files) {
+            File f = new File(completedPath + route + i);
+            if (!f.exists()) {
+                logger.info("파일이 존재하지 않습니다.");
+                logger.info(f.toString());
+                return;
+            }
+            f.delete();
         }
-        for (String picture : pictures) {
-            new File(path + picture).delete();
-        }
-        return true;
     }
 
     //폴더삭제

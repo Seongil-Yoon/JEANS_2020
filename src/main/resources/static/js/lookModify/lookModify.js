@@ -9,17 +9,18 @@ let fileBuffer = [];
 
 //from JSP onClick이벤트 호출
 function modifiy() {
-
+    let look_num=document.getElementsByName("look_num")[0].value;
+    let fk_userid_user_userid=document.getElementsByName("fk_userid_user_userid")[0].value;
     let title = document.getElementsByName("title")[0].value
     let season = document.getElementsByName("season");
     let look_public = document.getElementsByName("look_public");
-    let tag = document.getElementsByName("tag")[0].value
+   // let tag = document.getElementsByName("tag")[0].value
     let memo = document.getElementsByName("memo")[0].value
     let seasonCheck = season_check(season);
     let look_publicCheck = look_public_check(look_public);
     let empty = '';
     let list = ["제목", "계절", "공개여부", "태그", "메모"];
-    let formList = [title, seasonCheck, look_publicCheck, tag, memo];
+    let formList = [title, seasonCheck, look_publicCheck, /*tag,*/ memo];
 
     for (let i = 0; i < formList.length; i++) {
         if (formList[i] == false) { //자바 스크립트는 null 을 false 로인식
@@ -28,15 +29,27 @@ function modifiy() {
     }
 
     let BoardDto = {
+        look_num:look_num,
         title: title,
         season: seasonCheck,
+        fk_userid_user_userid:fk_userid_user_userid,
         look_public: look_publicCheck,
-        tag: tag,
         memo: memo
     }
 
+    //여기서 부터 성일이가 해줘야 할 부분.!!!!!.
+    var moodList=new Array();//무드Dto를 담을 moodDto 리스트
+    let MoodDto=new Object();
+    MoodDto.mood="미니멀";
+    moodList.push(MoodDto);
+    let MoodDto2=new Object();
+    MoodDto2.mood="락시클";
+    moodList.push(MoodDto2);
+    //여기까지 일성이가 해줄꺼야!!!!!!
+
     let formData = new FormData();
-    formData.append("BoardDto", JSON.stringify(BoardDto));
+    formData.append("BoardDto", new Blob([JSON.stringify(BoardDto)],{type:"application/json"}));
+    formData.append("MoodDto",new Blob([JSON.stringify(moodList)],{type:"application/json"}));
 
     if (empty == '') {
         if (fileBuffer == undefined) {
@@ -49,7 +62,6 @@ function modifiy() {
                 data: formData, //전송객체
                 dataType: false,
                 processData: false,
-                // contentType: 'multipart/form-data',
                 contentType: false,
                 success: function (result, textStatus, jqxHR) {
                     if (jqxHR.status == 201) {

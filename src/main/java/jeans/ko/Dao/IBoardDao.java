@@ -2,6 +2,7 @@ package jeans.ko.Dao;
 
 
 import jeans.ko.Dto.BoardDto;
+import jeans.ko.Dto.MoodDto;
 import jeans.ko.Dto.PictureDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -20,16 +21,22 @@ public interface IBoardDao {
 
     //게시글 작성
     public int insert(BoardDto boardDto);
-    //  public int insert(@Param("boardDto")BoardDto boardDto, @Param("lists")List<PictureDto>lists);
 
     //각 게시글에 저장된 사진들 내역 DB에 저장
     public int insertPicturedatabase(List<PictureDto> files);
+
+    public int insertPicture(String boardnum,String uuidname);
+
+    //각 게시글에 해당되는 무드 내역 DB에 저장
+    public int insertMooddatabase(List<MoodDto> moodDtos);
 
     //게시글 상세보기
     public BoardDto view(@Param("look_num") int look_num);
 
     //게시글 삭제
     public int delete(@Param("look_num") int look_num);
+
+    public void deleteAllpictures(@Param("look_num")int look_num);
 
     //게시글 조회수 증가
     public void countUpdate(@Param("look_num") int look_num);

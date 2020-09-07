@@ -39,6 +39,10 @@
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-jdbc:2.1.15.BUILD-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-web:2.1.15.BUILD-SNAPSHOT" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.apache.tomcat.embed:tomcat-embed-core:9.0.36" level="project" />
+<<<<<<< HEAD
+=======
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: mysql:mysql-connector-java:8.0.20" level="project" />
+>>>>>>> 2eadc13cac824fa107c36118901d43cc54c3c751
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.apache.tomcat.embed:tomcat-embed-el:9.0.36" level="project" />
     <orderEntry type="library" name="Gradle: org.eclipse.jdt:ecj:3.18.0" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter:2.1.15.BUILD-SNAPSHOT" level="project" />

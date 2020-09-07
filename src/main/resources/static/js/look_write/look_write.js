@@ -55,14 +55,16 @@ function lookWrite() {
     let title = document.getElementsByName("title")[0].value
     let season = document.getElementsByName("season");
     let look_public = document.getElementsByName("look_public");
-    let tag = document.getElementsByName("tag")[0].value
+
+    let tag = document.getElementsByName("tag")[0].value//DB에서 무드 테이블용으로 사용할 예정.
+
     let memo = document.getElementsByName("memo")[0].value
     let seasonCheck = season_check(season);
     let look_publicCheck = look_public_check(look_public);
 
     let empty = '';
     let list = ["제목", "계절", "공개여부", "태그", "메모"];
-    let formList = [title, seasonCheck, look_publicCheck, tag, memo];
+    let formList = [title, seasonCheck, look_publicCheck,  memo];
 
     for (let i = 0; i < formList.length; i++) {
         if (formList[i] == false) { //자바 스크립트는 null 을 false 로인식
@@ -74,13 +76,24 @@ function lookWrite() {
         title: title,
         season: seasonCheck,
         look_public: look_publicCheck,
-        tag: tag,
         memo: memo
     }
 
+    //여기서 부터 성일이가 해줘야 할 부분.!!!!!.
+    var moodList=new Array();//무드Dto를 담을 moodDto 리스트
+    let MoodDto=new Object();
+    MoodDto.mood="미니멀";
+    moodList.push(MoodDto);
+    let MoodDto2=new Object();
+    MoodDto2.mood="락시클";
+    moodList.push(MoodDto2);
+    //여기까지 일성이가 해줄꺼야!!!!!!
+
+
+
     let formData = new FormData();
     formData.append("BoardDto", new Blob([JSON.stringify(BoardDto)],{type:"application/json"}));
-
+    formData.append("MoodDto",new Blob([JSON.stringify(moodList)],{type:"application/json"}));
     if (empty == '') {
         if (fileBuffer == undefined) {
             console.log("fileBuffer == undefined");
@@ -91,11 +104,9 @@ function lookWrite() {
                 data: formData,
                 dataType: false,
                 processData: false,
-                // contentType: 'multipart/form-data',
                 contentType: false,
                 success: function (result, textStatus, jqxHR) {
                     if (jqxHR.status == 201) {
-                        alert(JSON.stringify(formData));
                         swal('', '게시글 등록을 하였습니다', 'success');
                         //등록 성공하면 내가등록한 게시글화면으로 이동
                         setTimeout(function () { location.href = "/look?look_num=" + result.look_num; }, 2000);

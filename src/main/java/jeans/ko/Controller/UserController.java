@@ -108,7 +108,7 @@ public class UserController {
     @PostMapping(value = "/user")
     public ResponseEntity<Void> join(@Valid @RequestPart("UserDto") UserDto user, @RequestPart(value = "file", required = false) MultipartFile picture, BindingResult result) throws Exception {
         logger.info("join메소드");
-
+        System.out.println("user = " + user);
         if(picture==null){
             user.setPicture(defaultSthumbnail);
         }else{
@@ -141,11 +141,7 @@ public class UserController {
         //회원가입 이벤트
         int check = userService.joinUser(user);
 
-
-
         List<String> profilethumbnailPath=utilService.usertoPath(user.getUserid());
-        List<MultipartFile>files=new ArrayList<>();
-        files.add(picture);
 
         fileService.mkDir(profilethumbnailPath);
 
@@ -155,7 +151,7 @@ public class UserController {
             //경로 : uploadPath/유저명/profile//이미지파일명
             //fileService.uploadProfile(uploadPath, user.getUserid(), user.getPicture(), picture.getBytes());
 
-            fileService.uploadFiles(profilethumbnailPath, files);
+            fileService.uploadFile(profilethumbnailPath,picture);
             //업로드된 폴더를 통해 썸네일 이미지 제작 이벤트
             //uploadPath : 업로드 될 모든 파일들의 기본 부모
             //user.getUserid : 해당유저의 파일

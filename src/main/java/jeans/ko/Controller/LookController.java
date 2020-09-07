@@ -1,14 +1,18 @@
 package jeans.ko.Controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.geometry.HorizontalDirection;
 import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dto.BoardDto;
+import jeans.ko.Dto.MoodDto;
 import jeans.ko.Service.CommentService;
 import jeans.ko.Service.IBoardService;
 import jeans.ko.Service.IUtilService;
 import jeans.ko.exception.NotFoundException;
 import jeans.ko.exception.UnauthorizedException;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.filefilter.AndFileFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +32,7 @@ import java.util.ArrayList;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class LookController {
@@ -85,7 +90,7 @@ public class LookController {
         if (boardDao.list(look_num) == null) {
             //게시글 이 없으면 not found 404 에러
             throw new NotFoundException(String.format("board not found"));
-        }else {
+        } else {
             return boardDao.list(look_num);
         }
 
@@ -111,8 +116,7 @@ public class LookController {
     //삭제
     @ResponseBody
     @DeleteMapping("/looks/{id}")
-    public void deleteLook(@PathVariable int id) {
-
+    public void deleteLook(@PathVariable int id) throws Exception {
         logger.info("deleteLook()진입");
 
         //게시글이 먼저 있는지 확인
@@ -137,15 +141,16 @@ public class LookController {
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/looks")
-    public BoardDto boardWrite(@RequestPart("BoardDto") BoardDto boardDto, @RequestPart("files") List<MultipartFile> files) throws Exception {
+    public BoardDto boardWrite(@RequestPart("BoardDto") BoardDto boardDto, @RequestPart(value = "MoodDto", required = false) List<MoodDto> moodDtos, @RequestPart("files") List<MultipartFile> files) throws Exception {
         logger.info("boardWrite()진입");
+        System.out.println("테스트를 위해 남겨둔 moodDtos = " + moodDtos);
         if (session.getAttribute("userid") == null) {
             //서버로 바로접근하는 경우 아이디값 없으면 클라이언트 권한없음 오류보냄
             throw new UnauthorizedException(String.format("unauthorized you"));
         }
         //게시글등록
-        System.out.println(" looks에서 세션 = " +session.getId());
-        boardService.insert(boardDto, files);
+        System.out.println(" looks에서 세션 = " + session.getId());
+        boardService.insert(boardDto, moodDtos, files);
         //selectKey로 등록된 게시글 가져온 기본키로 등록된 게시글 정보보내줌 새롭게 추가되 댓글이없으므로 게시글만넘김
         return boardDao.view(boardDto.getLook_num());
     }
@@ -154,8 +159,10 @@ public class LookController {
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     @PutMapping("/looks")
-    public BoardDto boardModify(BoardDto modifyBoardDto) {
+    public BoardDto boardModify(@RequestPart("BoardDto") BoardDto modifyBoardDto, @RequestPart(value = "MoodDto", required = false) List<MoodDto> moodDtos, @RequestPart("files") List<MultipartFile> files) throws Exception {
         logger.info("boardModify()진입");
+        System.out.println("modifyBoardDto = " + modifyBoardDto);
+        System.out.println("moodDtos = " + moodDtos);
         //넘어온 값에 기본키id 값으로 게시글작성자 id 와 기본키넘버값 가져오기
         String lookId = boardDao.view(modifyBoardDto.getLook_num()).getFk_userid_user_userid();
         int lookNum = boardDao.view(modifyBoardDto.getLook_num()).getLook_num();
@@ -165,7 +172,7 @@ public class LookController {
         }
         if (session.getAttribute("userid").equals(lookId)) {
             //로그인한 아이디와 수정할려는 게시글 작성자 아이디 비교하여 같으면 게시글수정
-            boardService.update(modifyBoardDto);
+            boardService.update(modifyBoardDto, files);
             //수정된 게시글 정보 넘겨주기
             return boardDao.view(lookNum);
         } else {
@@ -187,7 +194,7 @@ public class LookController {
 
         HttpHeaders headers = new HttpHeaders();
         try {
-            in = new FileInputStream( datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route +datepath.get(3)+route+ picture);
+            in = new FileInputStream(datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route + datepath.get(3) + route + picture);
             entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
         } catch (Exception e) {
             entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
@@ -211,16 +218,18 @@ public class LookController {
 
         try {
             for (int i = 0; i < allpicture.size(); i++) {
-                inp = new FileInputStream( datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route +datepath.get(3) +route+allpicture.get(i));
+                inp = new FileInputStream(datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route + datepath.get(3) + route + allpicture.get(i));
                 logger.info(allpicture.get(i));
                 System.out.println("inp = " + inp);
                 in.add(IOUtils.toByteArray(inp));
             }
             entity = new ResponseEntity<ArrayList<byte[]>>(in, headers, HttpStatus.OK);
+            //물린거 풀어줘야 되는게 있나??
         } catch (Exception e) {
             entity = new ResponseEntity<ArrayList<byte[]>>(HttpStatus.BAD_REQUEST);
         } finally {
             inp.close();
+            //글 상세보기 내에서 Ajax를 통해 사진을 요청하는 데 System.gc()가 없으면 파일이 정상적으로 삭제가 안된다.
             System.gc();
         }
         return entity;

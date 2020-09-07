@@ -33,9 +33,15 @@ public interface IUserDao {
     //아이디와 비밀번호를 입력하면 userDto 다 반환
     public UserDto getInformation(UserDto userDto);
 
+    //닉네임을 입력하면 그 유저의 모든 정보 반환
+    public UserDto getUserinformation(String nickname);
+
     //아이디와 비밀번호를 입력하면 해당아이디의 비밀번호를 변경
     public void setPassword(String userid,String password);
 
     //해당 유저의 정보를 변경
     public void setChangeuser(UserDto userDto);
+
+    //해당 유저를 삭제시킵니다.
+    void deleteUser(String userid);
 }

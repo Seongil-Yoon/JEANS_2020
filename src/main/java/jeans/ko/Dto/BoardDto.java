@@ -22,17 +22,14 @@ public class BoardDto {
     private int like;
     @NotBlank(message = " 계절을 선택하세요")
     private String season;
-    @NotBlank(message = " 태그를 입력하세요")
-    private String tag;
     @Min(value = 1, message = " 공개 비공개를 선택하세요")
-    private int look_public; //공개설정 1공개 2비공개
+    private int look_privacy; //공개설정 1공개 2비공개
     private String fk_userid_user_userid;  //회원 id
     @NotBlank(message = " 메모를 입력하세요")
     private String memo;   //null값 허용
     private String look_date;  //작성날짜
     private int count;    //조회수
     private Integer comment_count; //댓글수
-    private String picture;  //여기도 validator 사용하게 수정해야함
     private String nickname;
 
 }

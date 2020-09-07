@@ -6,8 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <title>header</title>
-    <link rel="stylesheet" href="static/css/jeans_header_.css"/>
-    <link rel="stylesheet" href="static/css/slideShow.css" />
+    <link rel="stylesheet" href="/static/css/jeans_header_.css"/>
+    <link rel="stylesheet" href="/static/css/slideShow.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -17,7 +17,7 @@
         <div class="jeans_header">
             <div class="search_left"></div>
             <div class="search_logo">
-                <img src="static/images/search.jpg" alt="search" height="30" width="30"/>
+                <img src="/static/images/search.jpg" alt="search" height="30" width="30"/>
             </div>
             <div class="search_input" style="margin-top: 20px">
                 <form class="search_input_form">
@@ -26,18 +26,18 @@
             </div>
             <div class="logo_left"></div>
             <div class="logo">
-                <a class="header_a" href="main"><img src="static/images/logo.PNG" alt="logo" height="30"
+                <a class="header_a" href="/main"><img src="/static/images/logo.PNG" alt="logo" height="30"
                                                      width="71"/></a>
             </div>
 
             <c:choose>
                 <%--로그인 한경우--%>
                 <c:when test="${sessionScope.userid != null}">
-                    <a class="header_a" href="look_write">
+                    <a class="header_a" href="/look_write">
                         <div class="logo_right"><span class="look_write">look_write</span></div>
                     </a>
 
-                    <a class="header_a" href="mypageUser">
+                    <a class="header_a" href="mypageUser/${sessionScope.usernickname}">
                         <div class="my_info">
                             <div class="my_picture"><img src="/displaySthumbnail"/></div>
                             <span class="user_nickname">${sessionScope.usernickname}</span>

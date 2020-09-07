@@ -1,6 +1,7 @@
 <component name="libraryTable">
   <library name="Gradle: org.jboss.logging:jboss-logging:3.3.3.Final">
     <CLASSES>
+<<<<<<< HEAD
       <root url="jar://$USER_HOME$/JEANS/.gradle/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging/3.3.3.Final/d3cfa8d3075fd52884fc82ded5c52b1407f18e6e/jboss-logging-3.3.3.Final.jar!/" />
       <root url="jar://$PROJECT_DIR$/.gradle/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging/3.3.3.Final/d3cfa8d3075fd52884fc82ded5c52b1407f18e6e/jboss-logging-3.3.3.Final.jar!/" />
     </CLASSES>
@@ -8,6 +9,13 @@
     <SOURCES>
       <root url="jar://$USER_HOME$/JEANS/.gradle/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging/3.3.3.Final/1437d61379855d167bf588e2fc79d6da27180bd3/jboss-logging-3.3.3.Final-sources.jar!/" />
       <root url="jar://$PROJECT_DIR$/.gradle/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging/3.3.3.Final/1437d61379855d167bf588e2fc79d6da27180bd3/jboss-logging-3.3.3.Final-sources.jar!/" />
+=======
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging/3.3.3.Final/d3cfa8d3075fd52884fc82ded5c52b1407f18e6e/jboss-logging-3.3.3.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging/3.3.3.Final/1437d61379855d167bf588e2fc79d6da27180bd3/jboss-logging-3.3.3.Final-sources.jar!/" />
+>>>>>>> 2eadc13cac824fa107c36118901d43cc54c3c751
     </SOURCES>
   </library>
 </component>
