@@ -82,7 +82,7 @@ function lookWrite() {
     let MoodDto=new Object();
     MoodDto.mood="미니멀";
     moodList.push(MoodDto);
-   let MoodDto2=new Object();
+    let MoodDto2=new Object();
     MoodDto2.mood="락시클";
     moodList.push(MoodDto2);
     //여기까지 일성이가 해줄꺼야!!!!!!

@@ -1,5 +1,4 @@
 function userDelete() {
-    alert("userDelete메소드실행");
     let password = document.getElementsByName("chckPass")[0].value;
 
     let ps = {
@@ -25,41 +24,3 @@ function userDelete() {
     }
 
 }
-
-
-// function changePassword(){
-//     let password=document.getElementsByName("password")[0].value;
-//     let checkPassword=document.getElementsByName("checkPassword")[0].value;
-
-//     let ps={
-//         ps: password
-//     };
-//     var passwordDto=JSON.stringify(ps)
-//     if(password!=checkPassword){
-//         alert("두 비밀번호가 다릅니다");
-//         swal("","두 비밀번호가 다릅니다", "error");
-//         return;
-//     }
-
-//     if(pwreg.test(password)){
-
-//     }else{
-//         alert("8~12자리 !@#$%^&*()? 중 하나이상이 들어가야합니다.");
-//         swal("에러","8~12자리 !@#$%^&*()? 중 하나이상이 들어가야합니다.","error");
-//         return;
-//     }
-
-//     $.ajax({
-//         url:"/userinformation/password",
-//         type:"post",
-//         contentType:'application/json; charset=utf-8',
-//         data: passwordDto,
-//         dataType:'text',
-//         success: function(result){
-//             alert("성공")
-//         },
-//         error: function(xhr,status,error){
-//             alert("code : "+xhr.status+"\n"+"message"+xhr.responseText+"\n"+error);
-//         }
-//     })
-// }

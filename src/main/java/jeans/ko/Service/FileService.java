@@ -119,7 +119,6 @@ public class FileService implements IFileService {
             BufferedImage sourceImage = ImageIO.read(f);
             BufferedImage resizedImage = Scalr.resize(sourceImage, 500, 700);
             ImageIO.write(resizedImage, formatName, f);
-
         }
         return true;
     }
@@ -143,12 +142,9 @@ public class FileService implements IFileService {
                     지금은 UUID때문에 다 따로 넣어야한다.
                 */
                 boardDao.insertPicture(boardnum,uuid.toString().concat(".jpg"));
-
-                /*  File target = new File(path, name);*/
                 FileCopyUtils.copy(fileData, target);
            }
             return true;
-     //   }
     }
 
     @Override
@@ -161,31 +157,6 @@ public class FileService implements IFileService {
         FileCopyUtils.copy(fileData,target);
     }
 
-
-    //파일제거
- /*   @Override
-    public boolean rmFiles(List<String> paths, List<String> pictures) {
-        logger.info("rmFiles메소드");
-        String path = utilService.completePath(paths);
-        File f = new File(path);
-        if (!f.exists()) {
-            logger.info("파일을 제거할 경로가 없습니다");
-            logger.info(path + "가 존재하지 않음");
-            return false;
-        }
-
-        for (String picture : pictures) {
-           logger.info(path+picture);
-            new File(path + picture).delete();
-        }
-
-        for(int i=0;i<pictures.size();i++){
-            new File(path+pictures.get(i)).delete();
-        }
-
-        return true;
-    }
-*/
     //파일 삭제
     @Override
     public void rmFiles(List<String> path, List<String> files) {

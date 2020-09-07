@@ -17,14 +17,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Controller
 public class MypageuserController {
-//    @Configuration
-//    public class WebMvcConfig extends WebMvcConfigurerAdapter {
-//
-//        @Override
-//        public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//            registry.addResourceHandler("/static/**").addResourceLocations("classpath:static/");
-//        }
-//    }
 
     //유저가 개인정보를 바꿀때 Controller
     private Logger logger = LoggerFactory.getLogger(ChangeuserController.class);

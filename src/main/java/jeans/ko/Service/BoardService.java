@@ -52,7 +52,7 @@ public class BoardService implements IBoardService {
         boardDto.setComment_count(2);//댓글수 수정해야함
 
 
-        //1. 사용자가 입력한 글내역 중 파일들을 제외하고 나머지 내용들을 입력.
+        //1. 사용자가 입력한 글내역 중 파일,무드를 제외한 글 내용을 입력.
         //여기서 look 데이터베이스에 정보가 입력된다.
         boardDao.insert(boardDto);
 
@@ -62,6 +62,7 @@ public class BoardService implements IBoardService {
             아까워서 남겨뒀다.
             boardDao.insertPicturedatabase(bindingPicture(files, boardDto.getLook_num()));
         */
+
         //만약 유저가 해당 글의 무드를 선택했다면,
         if (moodDtos != null) {
             for (int i = 0; i < moodDtos.size(); i++) {
@@ -72,23 +73,19 @@ public class BoardService implements IBoardService {
             boardDao.insertMooddatabase(moodDtos);
         }
 
-        //여기서... 이제 년/월/룩번호를 뺏다
+        //looknumtoPath()는 매개변수로 글번호를 받아 해당글의 경로(년/월/룩번호)를 반환한다.
         List<String> path = iUtilService.looknumtoPath(boardDto.getLook_num());
-        //3.makepictureDir을 통해 ${directory}/년/월/룩번호 까지 폴더를 생성한다.
-        //uploadPictures에 파일리스트, makepictureDir을 통해 만든 경로, 글의 pk looknum을 매개변수로 입력한다.
-        //${directory}/년/월/looknum(pk값) 안에 이미지가 업로드 된다.
-        //  String pathPicture = iFileService.makepictureDir(path);
-        iFileService.mkDir(path);
-        //iFileService.uploadPictures(files, pathPicture);
-        iFileService.uploadFiles(path, files);
-        //  iFileService.mkBoardthumbnail(path);
+
+        iFileService.mkDir(path);//폴더 생성
+        iFileService.uploadFiles(path, files);//path경로에 파일들을 업로드한다.
+        iFileService.mkBoardthumbnail(path);//해당 경로에 있는 모든 사진들을 축소한다.
     }
 
     //글을 지운다.
     @Override
     public int delete(int look_num) {
         logger.info("delete메소드");
-        //1. boardDao를 통해. 년/월/룩번호를 반환받는다.
+        //1. 년/월/룩번호를 반환받는다.
         List<String> path = iUtilService.looknumtoPath(look_num);
 
         //2. FileService의 deleteFiles를 통해 업로드되어있는 사진을 지우겠다.

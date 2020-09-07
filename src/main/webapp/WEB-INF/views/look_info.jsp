@@ -85,9 +85,10 @@
                 ${view.count}
             </div>
 
-            <div class="look_tag">
+        <%-- 무드로 교체...
+        <div class="look_tag">
                 ${view.tag}
-            </div>
+            </div>--%>
 
         </div>
 

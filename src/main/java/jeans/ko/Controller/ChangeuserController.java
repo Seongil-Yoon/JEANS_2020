@@ -58,11 +58,7 @@ public class ChangeuserController {
     @PostMapping(value = "/password")
     public ResponseEntity<Void> changePassword(@Valid @RequestBody PasswordDto passwordDto, BindingResult result) throws Exception {
         logger.info("changePassword메소드");
-        /*
-        System.out.println("passwordDto.getPs() = " + passwordDto.getPs());
-        System.out.println("result.getErrorCount() = " + result.getErrorCount());
-        System.out.println("result.hasGlobalErrors() = " + result.hasGlobalErrors());
-        */
+
         if (result.getFieldError("ps") != null) {
             System.out.println("Error! = " + result.getFieldError("ps").getDefaultMessage());
         }
@@ -99,12 +95,9 @@ public class ChangeuserController {
 
         //유저DB의 사진값을 새로 올리려는 사진으로 바꾼다.
         userDao.setPicture(id, file.getOriginalFilename());
-        //files리스트는 새로 업로드할 파일이다. 하나인데 왜 리스트로 해주냐면, 글쓰기할때도 같은 메소드를 쓰기때문이다.
-        List<MultipartFile> files = new ArrayList<MultipartFile>();
-        files.add(file);
 
         //path에 files를 업로드한다.
-        fileService.uploadFiles(path, files);
+        fileService.uploadFile(path,file);
         /*
             위 uploadfFiles는 단순히 파일만 업로드한다.
             위에서 업로드한 파일을 통해 썸네일 이미지를 따로 생성해 주어야한다.

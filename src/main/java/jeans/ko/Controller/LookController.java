@@ -117,7 +117,6 @@ public class LookController {
     @ResponseBody
     @DeleteMapping("/looks/{id}")
     public void deleteLook(@PathVariable int id) throws Exception {
-
         logger.info("deleteLook()진입");
 
         //게시글이 먼저 있는지 확인
@@ -232,6 +231,7 @@ public class LookController {
             entity = new ResponseEntity<ArrayList<byte[]>>(HttpStatus.BAD_REQUEST);
         } finally {
             inp.close();
+            //글 상세보기 내에서 Ajax를 통해 사진을 요청하는 데 System.gc()가 없으면 파일이 정상적으로 삭제가 안된다.
             System.gc();
         }
         return entity;

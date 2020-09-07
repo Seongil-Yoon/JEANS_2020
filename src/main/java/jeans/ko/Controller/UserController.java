@@ -141,10 +141,7 @@ public class UserController {
         //회원가입 이벤트
         int check = userService.joinUser(user);
 
-
-
         List<String> profilethumbnailPath=utilService.usertoPath(user.getUserid());
-
 
         fileService.mkDir(profilethumbnailPath);
 
