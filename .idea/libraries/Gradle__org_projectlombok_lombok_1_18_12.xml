@@ -1,20 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: org.projectlombok:lombok:1.18.12">
     <CLASSES>
-<<<<<<< HEAD
-      <root url="jar://$USER_HOME$/JEANS/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.12/48e4e5d60309ebd833bc528dcf77668eab3cd72c/lombok-1.18.12.jar!/" />
-      <root url="jar://$PROJECT_DIR$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.12/48e4e5d60309ebd833bc528dcf77668eab3cd72c/lombok-1.18.12.jar!/" />
-=======
->>>>>>> 18b050bd329ad64e6f7a7381e6c3e0f305086dc1
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.12/48e4e5d60309ebd833bc528dcf77668eab3cd72c/lombok-1.18.12.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-<<<<<<< HEAD
-      <root url="jar://$USER_HOME$/JEANS/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.12/3110c9b1b80ffe971becf5bd9445f096b6aa8a71/lombok-1.18.12-sources.jar!/" />
-      <root url="jar://$PROJECT_DIR$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.12/3110c9b1b80ffe971becf5bd9445f096b6aa8a71/lombok-1.18.12-sources.jar!/" />
-=======
->>>>>>> 18b050bd329ad64e6f7a7381e6c3e0f305086dc1
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.12/3110c9b1b80ffe971becf5bd9445f096b6aa8a71/lombok-1.18.12-sources.jar!/" />
     </SOURCES>
   </library>

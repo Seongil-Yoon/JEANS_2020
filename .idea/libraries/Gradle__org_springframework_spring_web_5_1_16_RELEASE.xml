@@ -1,20 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: org.springframework:spring-web:5.1.16.RELEASE">
     <CLASSES>
-<<<<<<< HEAD
-      <root url="jar://$USER_HOME$/JEANS/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.1.16.RELEASE/d63854c86de88f358841055b0d08dfc909a3c141/spring-web-5.1.16.RELEASE.jar!/" />
-      <root url="jar://$PROJECT_DIR$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.1.16.RELEASE/d63854c86de88f358841055b0d08dfc909a3c141/spring-web-5.1.16.RELEASE.jar!/" />
-=======
->>>>>>> 18b050bd329ad64e6f7a7381e6c3e0f305086dc1
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.1.16.RELEASE/d63854c86de88f358841055b0d08dfc909a3c141/spring-web-5.1.16.RELEASE.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-<<<<<<< HEAD
-      <root url="jar://$USER_HOME$/JEANS/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.1.16.RELEASE/37c62290bb569f7864ccb408b708dc148e3fe904/spring-web-5.1.16.RELEASE-sources.jar!/" />
-      <root url="jar://$PROJECT_DIR$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.1.16.RELEASE/37c62290bb569f7864ccb408b708dc148e3fe904/spring-web-5.1.16.RELEASE-sources.jar!/" />
-=======
->>>>>>> 18b050bd329ad64e6f7a7381e6c3e0f305086dc1
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.1.16.RELEASE/37c62290bb569f7864ccb408b708dc148e3fe904/spring-web-5.1.16.RELEASE-sources.jar!/" />
     </SOURCES>
   </library>

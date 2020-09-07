@@ -1,20 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: org.springframework:spring-jdbc:5.1.16.RELEASE">
     <CLASSES>
-<<<<<<< HEAD
-      <root url="jar://$USER_HOME$/JEANS/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/5.1.16.RELEASE/9958569ad31577198a5105efb8eceeaa011dc4cd/spring-jdbc-5.1.16.RELEASE.jar!/" />
-      <root url="jar://$PROJECT_DIR$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/5.1.16.RELEASE/9958569ad31577198a5105efb8eceeaa011dc4cd/spring-jdbc-5.1.16.RELEASE.jar!/" />
-=======
->>>>>>> 18b050bd329ad64e6f7a7381e6c3e0f305086dc1
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/5.1.16.RELEASE/9958569ad31577198a5105efb8eceeaa011dc4cd/spring-jdbc-5.1.16.RELEASE.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-<<<<<<< HEAD
-      <root url="jar://$USER_HOME$/JEANS/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/5.1.16.RELEASE/8ae5c693842767abbddd8453a54a22ef79efc4/spring-jdbc-5.1.16.RELEASE-sources.jar!/" />
-      <root url="jar://$PROJECT_DIR$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/5.1.16.RELEASE/8ae5c693842767abbddd8453a54a22ef79efc4/spring-jdbc-5.1.16.RELEASE-sources.jar!/" />
-=======
->>>>>>> 18b050bd329ad64e6f7a7381e6c3e0f305086dc1
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/5.1.16.RELEASE/8ae5c693842767abbddd8453a54a22ef79efc4/spring-jdbc-5.1.16.RELEASE-sources.jar!/" />
     </SOURCES>
   </library>

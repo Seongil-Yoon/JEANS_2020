@@ -1,20 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: net.bytebuddy:byte-buddy:1.9.16">
     <CLASSES>
-<<<<<<< HEAD
-      <root url="jar://$USER_HOME$/JEANS/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.9.16/e7d63009be7b87ff1f15b72e5b8c59c897a8d8bd/byte-buddy-1.9.16.jar!/" />
-      <root url="jar://$PROJECT_DIR$/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.9.16/e7d63009be7b87ff1f15b72e5b8c59c897a8d8bd/byte-buddy-1.9.16.jar!/" />
-=======
->>>>>>> 18b050bd329ad64e6f7a7381e6c3e0f305086dc1
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.9.16/e7d63009be7b87ff1f15b72e5b8c59c897a8d8bd/byte-buddy-1.9.16.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-<<<<<<< HEAD
-      <root url="jar://$USER_HOME$/JEANS/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.9.16/c295594164d74f9cfdb7453d3de0b73fd5726b0d/byte-buddy-1.9.16-sources.jar!/" />
-      <root url="jar://$PROJECT_DIR$/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.9.16/c295594164d74f9cfdb7453d3de0b73fd5726b0d/byte-buddy-1.9.16-sources.jar!/" />
-=======
->>>>>>> 18b050bd329ad64e6f7a7381e6c3e0f305086dc1
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.9.16/c295594164d74f9cfdb7453d3de0b73fd5726b0d/byte-buddy-1.9.16-sources.jar!/" />
     </SOURCES>
   </library>

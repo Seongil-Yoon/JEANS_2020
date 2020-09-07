@@ -1,20 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.9.10">
     <CLASSES>
-<<<<<<< HEAD
-      <root url="jar://$USER_HOME$/JEANS/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.9.10/53ab2f0f92e87ea4874c8c6997335c211d81e636/jackson-annotations-2.9.10.jar!/" />
-      <root url="jar://$PROJECT_DIR$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.9.10/53ab2f0f92e87ea4874c8c6997335c211d81e636/jackson-annotations-2.9.10.jar!/" />
-=======
->>>>>>> 18b050bd329ad64e6f7a7381e6c3e0f305086dc1
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.9.10/53ab2f0f92e87ea4874c8c6997335c211d81e636/jackson-annotations-2.9.10.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-<<<<<<< HEAD
-      <root url="jar://$USER_HOME$/JEANS/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.9.10/62d22990d6d2798103792f6edcd54714c2f6fbf4/jackson-annotations-2.9.10-sources.jar!/" />
-      <root url="jar://$PROJECT_DIR$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.9.10/62d22990d6d2798103792f6edcd54714c2f6fbf4/jackson-annotations-2.9.10-sources.jar!/" />
-=======
->>>>>>> 18b050bd329ad64e6f7a7381e6c3e0f305086dc1
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.9.10/62d22990d6d2798103792f6edcd54714c2f6fbf4/jackson-annotations-2.9.10-sources.jar!/" />
     </SOURCES>
   </library>
