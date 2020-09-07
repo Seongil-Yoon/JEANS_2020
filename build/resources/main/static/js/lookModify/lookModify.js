@@ -167,7 +167,7 @@ function getThumbnail(lookNumber) {
         url: `/displayInthumbnail/${lookNumber}`,
         type: "GET",
         success: function (result) {
-            filePond(result);
+            // filePond(result);
         },
         error: function (error) {
             //서버오류 500  찾는 자료없음 404  권한없음  401

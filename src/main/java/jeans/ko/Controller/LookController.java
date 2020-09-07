@@ -221,6 +221,7 @@ public class LookController {
             entity = new ResponseEntity<ArrayList<byte[]>>(HttpStatus.BAD_REQUEST);
         } finally {
             inp.close();
+            System.gc();
         }
         return entity;
     }

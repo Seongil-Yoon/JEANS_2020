@@ -162,6 +162,7 @@ public class FileService implements IFileService {
     public boolean rmDir(List<String> pahts) {
         logger.info("rmDir메소드");
         String path = utilService.completePath(pahts);
+        System.out.println("path = " + path);
         File f = new File(path);
         if (!f.exists()) {
             logger.info("삭제할 폴더가 이미 없습니다");
