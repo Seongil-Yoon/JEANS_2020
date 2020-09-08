@@ -119,35 +119,23 @@
                 </div>
             </c:if>
         </form>
+        <ul class="comment-list" id="js-comment-list">
+        <!-- <li class="comment">
+                <div class="vcard bio">
+                  <img src="images/person_1.jpg" alt="Image placeholder">
+                </div>
+                <div class="comment-body">
+                  <h3>John Doe</h3>
+                  <div class="meta">October 03, 2018 at 2:21pm</div>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                  <p><a href="#" class="reply">Reply</a></p>
+                </div>
+              </li> -->
+            <!-- "/static/js/look_info/look_comment.js" -->
+            <!-- "/static/js/look_info/child_comment.js" -->
+        </ul>
 
-        <ul id="js-comment-list" class="comment-list">
-            <li id="js-look_comment" class="look_comment">
-               <div class="look_comment_wrap">
-                  <div class="comment_left">
-                     <img id="js-profile_img" class="profile_img" src="">
-                  </div>
-                  <div class="comment_center">
-                     <div class="comment_center_header">
-                        <span id="js-other_people_name" class="other_people_name"></span>
-                        <div class="right_etc">
-                           <input id="js-comment_id" class="comment_id" value="" type="hidden" />
-                           <input id="js-comment_sender_id" class="comment_sender_id" value="" type="hidden" />
-                           <img src="/static/images/pen.png" alt="modify_img"  class="right_pen"/>
-                           <img src="/static/images/delete.png" alt="delete_img" class="right_delete"/>
-                           <img src="/static/images/alarm.png" alt="alarm_img" class="alarm"/>
-                        </div>
-                     </div>
-                     <div class="comment_center_textarea">
-                        <span id="js-view_comment_textarea" disabled clas="view_comment_textarea"></span>
-                     </div>
-                     <div class="comment_center_footer">
-                        <span class="view_child_comment">답글 보기</span>
-                        <span class="write_child_comment">답글 작성</span>
-                     </div>
-                  </div>
-               </div>
-            </li>
-         </ul>
+
     </div>
 </div>
 <!-- FileFond CDN -->

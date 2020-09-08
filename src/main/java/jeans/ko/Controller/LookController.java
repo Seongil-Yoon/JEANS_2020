@@ -62,6 +62,7 @@ public class LookController {
         logger.info("look_write()진입");
         return "look_write";
     }
+    
 
     //게시판 상세보기 model and view 웹용
     @RequestMapping("/look")
