@@ -27,8 +27,7 @@ public interface IBoardDao {
 
     public int insertPicture(String boardnum,String uuidname);
 
-    //각 게시글에 해당되는 무드 내역 DB에 저장
-    public int insertMooddatabase(List<MoodDto> moodDtos);
+
 
     //게시글 상세보기
     public BoardDto view(@Param("look_num") int look_num);

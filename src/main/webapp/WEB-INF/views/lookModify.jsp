@@ -98,9 +98,14 @@
                     <span class="Jeans_bule">*태그</span>
                 </div>
 
-<%--                <div>
-                    <textarea name="tag" class="input_tag">${view.tag}</textarea>
-                </div>--%>
+              <!--성일아 이부분 바꿔줘 무드 체크버튼 있더록-->
+             <div>
+                    <textarea name="tag" class="input_tag"><%--${view.tag}--%>
+                        <c:forEach items="${mood}" var="mood">
+                            ${mood.mood}
+                        </c:forEach>
+                    </textarea>
+             </div>
 
                 <div class="space"></div>
                 <div class="space"></div>

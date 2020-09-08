@@ -3,6 +3,7 @@ package jeans.ko.Controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.geometry.HorizontalDirection;
 import jeans.ko.Dao.IBoardDao;
+import jeans.ko.Dao.IMoodDao;
 import jeans.ko.Dto.BoardDto;
 import jeans.ko.Dto.MoodDto;
 import jeans.ko.Service.CommentService;
@@ -48,6 +49,8 @@ public class LookController {
     @Autowired
     IBoardDao boardDao;
     @Autowired
+    IMoodDao moodDao;
+    @Autowired
     IUtilService utilService;
 
     @Value("${directory}")
@@ -63,22 +66,23 @@ public class LookController {
         return "look_write";
     }
 
-    //게시판 상세보기 model and view 웹용
+    //게시판 상세보기 model and view : 웹용
     @RequestMapping("/look")
     public String view(@RequestParam("look_num") int look_num, Model model) {
         logger.info("view()진입");
         boardDao.countUpdate(look_num); //글상세보기 하면 조회수 증가
         model.addAttribute("view", boardDao.view(look_num)); //게시글정보가져오기
-
+       model.addAttribute("mood",moodDao.getMooddto(look_num));//글의 무드 타입
         return "look_info";
     }
 
-    //게시판 수정 페이지 이동
+    //게시판 수정 페이지 이동 model and view : 웹용
     @RequestMapping("/lookModify")
     public String lookModify(@RequestParam("look_num") int look_num, Model model) {
         logger.info("lookModify()진입");
         BoardDto boardDto = boardDao.view(look_num);
         model.addAttribute("view", boardDto); //게시글정보 가져오기
+        model.addAttribute("mood",moodDao.getMooddto(look_num));//글의 무드 타입
         return "lookModify";
     }
 
@@ -93,7 +97,6 @@ public class LookController {
         } else {
             return boardDao.list(look_num);
         }
-
     }
 
     @ResponseBody
@@ -103,11 +106,14 @@ public class LookController {
         HashMap<String, Object> map = new HashMap<String, Object>();
         //게시글 가져오기
         BoardDto boardDto = boardDao.view(id);
+        //찬영이랑 테스트. 무드DTO 리스트들을 넘긴다.
+        List<MoodDto>moodDtoList=moodDao.getMooddto(id);
         if (boardDto == null) {
             //게시글이 없으면 not found 에러 return
             throw new NotFoundException(String.format("ID[%s] not found", id));
         }
         map.put("look", boardDto); //게시글 가져오기
+        map.put("moodlist",moodDtoList);//해쉬맵에 무드DTO리스트 추가
         boardDao.countUpdate(id); //글상세보기 하면 조회수 증가
 
         return map;
@@ -172,7 +178,7 @@ public class LookController {
         }
         if (session.getAttribute("userid").equals(lookId)) {
             //로그인한 아이디와 수정할려는 게시글 작성자 아이디 비교하여 같으면 게시글수정
-            boardService.update(modifyBoardDto, files);
+            boardService.update(modifyBoardDto,moodDtos, files);
             //수정된 게시글 정보 넘겨주기
             return boardDao.view(lookNum);
         } else {

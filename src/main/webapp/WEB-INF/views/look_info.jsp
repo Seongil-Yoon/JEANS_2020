@@ -85,11 +85,12 @@
                 ${view.count}
             </div>
 
-        <%-- 무드로 교체...
+         <%--무드로 교체. 성일아 이부분 바꿔줘 무드 체크버튼 있더록--%>
         <div class="look_tag">
-                ${view.tag}
-            </div>--%>
-
+            <c:forEach items="${mood}" var="mood">
+                ${mood.mood}
+            </c:forEach>
+            </div>
         </div>
 
         <%--댓글입력부분--%>

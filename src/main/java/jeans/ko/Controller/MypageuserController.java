@@ -1,6 +1,7 @@
 package jeans.ko.Controller;
 
 import jeans.ko.Dao.IUserDao;
+import jeans.ko.Dto.BoardDto;
 import jeans.ko.Dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
