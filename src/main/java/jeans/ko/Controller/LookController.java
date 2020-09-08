@@ -1,7 +1,7 @@
 package jeans.ko.Controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.geometry.HorizontalDirection;
+
 import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dto.BoardDto;
 import jeans.ko.Dto.MoodDto;
