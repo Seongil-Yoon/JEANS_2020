@@ -87,11 +87,18 @@ function lookWrite() {
     moodList.push(MoodDto2);
     //여기까지 일성이가 해줄꺼야!!!!!!
 
-
+    //연동때문에 다시
+    var arr=new Array();
+    arr.push("미니멀");
+    arr.push("락시클");
+    //
+    alert(arr);
+    alert(JSON.stringify(moodList));
 
     let formData = new FormData();
     formData.append("BoardDto", new Blob([JSON.stringify(BoardDto)],{type:"application/json"}));
     formData.append("MoodDto",new Blob([JSON.stringify(moodList)],{type:"application/json"}));
+//    formData.append("MoodDto",new Blob([JSON.stringify(arr)],{type:"application/json"}));
     if (empty == '') {
         if (fileBuffer == undefined) {
             console.log("fileBuffer == undefined");

@@ -68,6 +68,10 @@
         select * from look where fk_userid_user_userid=#{fk_userid_user_userid} order by look_num desc
     </select>
 
+    <select id="getBoardnum" resultType="int">
+        select count(*) from look where nickname= #{nickname}
+    </select>
+
     <delete id="delete">
         delete from look where look_num= #{look_num}
     </delete>

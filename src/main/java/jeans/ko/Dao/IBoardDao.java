@@ -27,8 +27,6 @@ public interface IBoardDao {
 
     public int insertPicture(String boardnum,String uuidname);
 
-
-
     //게시글 상세보기
     public BoardDto view(@Param("look_num") int look_num);
 
@@ -54,4 +52,7 @@ public interface IBoardDao {
 
     //userID를 받아 그 유저가 쓴 모든 글 목록을 반환하는 메소드
     public List<BoardDto> getLooksforId(String userId);
+
+    //user 닉네임을 받아 그 유저가 쓴 글 숫자를 반환하는 메소드
+    public int getBoardnum(String nickname);
 }

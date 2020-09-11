@@ -29,11 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 public class LookController {
@@ -72,7 +68,7 @@ public class LookController {
         logger.info("view()진입");
         boardDao.countUpdate(look_num); //글상세보기 하면 조회수 증가
         model.addAttribute("view", boardDao.view(look_num)); //게시글정보가져오기
-       model.addAttribute("mood",moodDao.getMooddto(look_num));//글의 무드 타입
+        model.addAttribute("mood",moodDao.getMooddto(look_num));//글의 무드 타입
         return "look_info";
     }
 
@@ -142,12 +138,11 @@ public class LookController {
         }
     }
 
-
     //룩게시판 작성
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/looks")
-    public BoardDto boardWrite(@RequestPart("BoardDto") BoardDto boardDto, @RequestPart(value = "MoodDto", required = false) List<MoodDto> moodDtos, @RequestPart("files") List<MultipartFile> files) throws Exception {
+    public BoardDto boardWrite(@RequestPart("BoardDto") BoardDto boardDto, @RequestPart(value="MoodDto",required = false)List<MoodDto> moodDtos, @RequestPart("files") List<MultipartFile> files) throws Exception {
         logger.info("boardWrite()진입");
         System.out.println("테스트를 위해 남겨둔 moodDtos = " + moodDtos);
         if (session.getAttribute("userid") == null) {

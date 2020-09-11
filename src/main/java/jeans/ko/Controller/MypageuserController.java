@@ -1,7 +1,9 @@
 package jeans.ko.Controller;
 
+import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dao.IUserDao;
 import jeans.ko.Dto.BoardDto;
+import jeans.ko.Dto.PasswordDto;
 import jeans.ko.Dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 @Controller
 public class MypageuserController {
@@ -24,6 +29,9 @@ public class MypageuserController {
 
     @Autowired
     IUserDao userDao;
+
+    @Autowired
+    IBoardDao boardDao;
 
     //마이페이지 이동. 웹에서 모델앤뷰
     @GetMapping("/mypageUser/{nickname}")
@@ -36,17 +44,29 @@ public class MypageuserController {
 
     //마이페이지 내 회원정보 요청
     @GetMapping("/information/{nick}")
-    public ResponseEntity<UserDto>getUser(@PathVariable String nick){
+    public ResponseEntity<Map> getUser(@PathVariable String nick){
         logger.info("getUser메소드");
+        Map map=new HashMap();
+        Map countMap=new HashMap();//유저가 현재쓴글, 팔로워,팔로잉숫자등을 저장
         //닉네임을 넘기고 해당유저의 모든 정보를 받아왔다.
         UserDto userDto=userDao.getUserinformation(nick);
 
         //반환해야하는 정보를 set메소드를 통해 지정한 다음 넘기자
         UserDto returnUserdto=new UserDto();
+        returnUserdto.setNickname(userDto.getNickname());
         returnUserdto.setWeight(userDto.getWeight());
         returnUserdto.setHeight(userDto.getHeight());
         returnUserdto.setMessage(userDto.getMessage());
-        return new ResponseEntity<>(returnUserdto,HttpStatus.OK);
+        returnUserdto.setPrivacy(userDto.getPrivacy());
+        map.put("user",returnUserdto);
+
+        int boardnum=boardDao.getBoardnum(userDto.getNickname());//해당 유저가 쓴 글 총 개수
+        countMap.put("board",boardnum);
+        countMap.put("follower",0);//팔로워,팔로잉은 아직 완성되지 않아서 0으로 둔다.
+        countMap.put("following",0);//
+        map.put("count",countMap);
+
+        return new ResponseEntity<Map>(map,HttpStatus.OK);
     }
 
     //마이페이지 내 메모 회원정보 변경 ->성일이가 만들고 난 후 기능 넣기
