@@ -20,22 +20,37 @@ public class PretreatmentService implements IPretreatmentService {
 
     @Override
     public void countUp(int looknum,String userid) {
-
         List<MoodDto>moodDtoList =moodDao.getMooddto(looknum);
-        List<String>moodList=new ArrayList<String>();
         for(MoodDto moodDto:moodDtoList){
-           // moodList.add(moodDto.getMood());
+            switch(moodDto.getMood()){
+                case "미니멀":
+                    pretreatmentDao.upMinimal(userid);
+                    break;
+                case "스트리트":
+                    pretreatmentDao.upStreet(userid);
+                    break;
+                case "캐쥬얼":
+                    pretreatmentDao.upCasual(userid);
+                    break;
+                case "그런지":
+                    pretreatmentDao.upGrunge(userid);
+                    break;
+                case "시티보이":
+                    pretreatmentDao.upCityboy(userid);
+                    break;
+                case "테크웨어":
+                    pretreatmentDao.upTechwear(userid);
+                    break;
+                case "워크웨어":
+                    pretreatmentDao.upWorkwear(userid);
+                    break;
+                case "아메카지":
+                    pretreatmentDao.upAmekaji(userid);
+                    break;
+                case "밀리터리":
+                    pretreatmentDao.upMilitary(userid);
+                    break;
+            }
         }
-
-        List<MoodDto>test=new ArrayList<MoodDto>();
-        MoodDto m1=new MoodDto();
-        m1.setMood("minimal");
-        MoodDto m2=new MoodDto();
-        m2.setMood("street");
-        test.add(m1);
-        test.add(m2);
-        System.out.println("test = " + test);
-       // pretreatmentDao.countPretreatment(test,userid);
-        pretreatmentDao.upMinimal(userid);
     }
 }
