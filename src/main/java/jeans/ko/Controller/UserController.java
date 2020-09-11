@@ -1,6 +1,7 @@
 package jeans.ko.Controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jeans.ko.Dao.IPretreatmentDao;
 import jeans.ko.Dao.IUserDao;
 import jeans.ko.Dto.UserDto;
 import jeans.ko.Service.IFileService;
@@ -44,6 +45,9 @@ public class UserController {
 
     @Autowired
     IUserService userService;
+
+    @Autowired
+    IPretreatmentDao pretreatmentDao;
 
     @Autowired
     IUtilService utilService;
@@ -109,9 +113,9 @@ public class UserController {
     public ResponseEntity<Void> join(@Valid @RequestPart("UserDto") UserDto user, @RequestPart(value = "file", required = false) MultipartFile picture, BindingResult result) throws Exception {
         logger.info("join메소드");
         System.out.println("user = " + user);
-        if(picture==null){
+        if (picture == null) {
             user.setPicture(defaultSthumbnail);
-        }else{
+        } else {
             String fileOriginalname = picture.getOriginalFilename();//올린 이미지 파일의 원래이름
             user.setPicture(fileOriginalname);
         }
@@ -141,30 +145,33 @@ public class UserController {
         //회원가입 이벤트
         int check = userService.joinUser(user);
 
-        List<String> profilethumbnailPath=utilService.usertoPath(user.getUserid());
+        List<String> profilethumbnailPath = utilService.usertoPath(user.getUserid());
 
         fileService.mkDir(profilethumbnailPath);
 
-        if(!user.getPicture().equals(defaultSthumbnail)) {
+        if (!user.getPicture().equals(defaultSthumbnail)) {
             //프로필사진 업로드 이벤트
             //uploadPath 경로 밑에 유저명의 폴더를 만든 후 getBytes()를 통해 받은 사진을 저장시킨다.
             //경로 : uploadPath/유저명/profile//이미지파일명
             //fileService.uploadProfile(uploadPath, user.getUserid(), user.getPicture(), picture.getBytes());
 
-            fileService.uploadFile(profilethumbnailPath,picture);
+            fileService.uploadFile(profilethumbnailPath, picture);
             //업로드된 폴더를 통해 썸네일 이미지 제작 이벤트
             //uploadPath : 업로드 될 모든 파일들의 기본 부모
             //user.getUserid : 해당유저의 파일
             //profile : 그중에서도 개인 프로파일용사진 폴더.
-           // fileService.makeprofileThumbnail(user.getPicture(), uploadPath, user.getUserid(), profile);
-            fileService.mkProfilethumbnail(profilethumbnailPath,user.getUserid());
+            // fileService.makeprofileThumbnail(user.getPicture(), uploadPath, user.getUserid(), profile);
+            fileService.mkProfilethumbnail(profilethumbnailPath, user.getUserid());
         }
 
         //성공적으로 회원가입 시 1반환
-        if (check > 0)
+        if (check > 0) {
+            //회원아이디 값으로 전처리테이블에 삽입
+            pretreatmentDao.insertUser(user.getUserid());
             return new ResponseEntity<>(HttpStatus.OK);
-        else
+        } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @ResponseStatus(HttpStatus.CREATED)

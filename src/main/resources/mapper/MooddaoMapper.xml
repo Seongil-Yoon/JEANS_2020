@@ -21,4 +21,5 @@
     <delete id="deleteMood">
         delete from mood where look_num=#{look_num}
     </delete>
+
 </mapper>

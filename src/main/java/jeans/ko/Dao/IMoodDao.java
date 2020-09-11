@@ -16,4 +16,5 @@ public interface IMoodDao {
     public int insertMooddatabase(List<MoodDto> moodDtos);
 
     public void deleteMood(int look_num);
+
 }

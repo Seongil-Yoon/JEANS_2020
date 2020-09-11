@@ -4,10 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.geometry.HorizontalDirection;
 import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dao.IMoodDao;
+import jeans.ko.Dao.IPreferenceDao;
 import jeans.ko.Dto.BoardDto;
 import jeans.ko.Dto.MoodDto;
 import jeans.ko.Service.CommentService;
 import jeans.ko.Service.IBoardService;
+import jeans.ko.Service.IPretreatmentService;
 import jeans.ko.Service.IUtilService;
 import jeans.ko.exception.NotFoundException;
 import jeans.ko.exception.UnauthorizedException;
@@ -43,11 +45,15 @@ public class LookController {
     @Autowired
     IBoardService boardService;
     @Autowired
+    IPretreatmentService pretreatmentService;
+    @Autowired
     IBoardDao boardDao;
     @Autowired
     IMoodDao moodDao;
     @Autowired
     IUtilService utilService;
+    @Autowired
+    IPreferenceDao preferenceDao;
 
     @Value("${directory}")
     private String uploadPath;
@@ -150,8 +156,14 @@ public class LookController {
             throw new UnauthorizedException(String.format("unauthorized you"));
         }
         //게시글등록
-        System.out.println(" looks에서 세션 = " + session.getId());
         boardService.insert(boardDto, moodDtos, files);
+
+        int looknum=boardDto.getLook_num();
+        String userid=(String)session.getAttribute("userid");
+
+        preferenceDao.insertPrefer(looknum,userid);
+        pretreatmentService.countUp(looknum,userid);
+
         //selectKey로 등록된 게시글 가져온 기본키로 등록된 게시글 정보보내줌 새롭게 추가되 댓글이없으므로 게시글만넘김
         return boardDao.view(boardDto.getLook_num());
     }
