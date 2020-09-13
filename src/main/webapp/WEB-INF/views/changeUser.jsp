@@ -7,14 +7,8 @@
     <meta charset="utf-8" />
     <title>회원정보수정</title>
     <link rel="stylesheet" href="static/css/changeUser.css" />
-    <!-- <link rel="stylesheet" href="static/css/slideShow.css" /> -->
 </head>
 <body>
-<!-- <div class="leftTop"></div>
-<div class="leftBottom"></div>
-<div class="rightTop"></div>
-<div class="rightBottom"></div> -->
-
 
 <div class="webview">
     <jsp:include page="header.jsp" flush="false"/>

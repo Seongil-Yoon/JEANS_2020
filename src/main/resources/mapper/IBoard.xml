@@ -92,8 +92,8 @@
     </update>
 
     <update id="update">
-        update look set title = #{title},season = #{season},tag = #{tag},
-        look_public = #{look_public},memo = #{memo},picture = #{picture}
+        update look set title = #{title},season = #{season},
+        look_privacy = #{look_privacy},memo = #{memo}
        where look_num = #{look_num}
     </update>
 

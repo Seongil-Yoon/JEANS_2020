@@ -36,6 +36,8 @@ let slideCounter = 0;
 
 let initBuffer = 0;
 
+let pond=0;
+
 
 //
 // 전송실행
@@ -92,7 +94,6 @@ function lookWrite() {
     let formData = new FormData();
     formData.append("BoardDto", new Blob([JSON.stringify(BoardDto)],{type:"application/json"}));
     formData.append("MoodDto",new Blob([JSON.stringify(moodList)],{type:"application/json"}));
-    alert(formData.toString());
     if (empty == '') {
         if (fileBuffer == undefined) {
             console.log("fileBuffer == undefined");
@@ -103,11 +104,9 @@ function lookWrite() {
                 data: formData,
                 dataType: false,
                 processData: false,
-                // contentType: 'multipart/form-data',
                 contentType: false,
                 success: function (result, textStatus, jqxHR) {
                     if (jqxHR.status == 201) {
-                        alert(JSON.stringify(formData));
                         swal('', '게시글 등록을 하였습니다', 'success');
                         //등록 성공하면 내가등록한 게시글화면으로 이동
                         setTimeout(function () { location.href = "/look?look_num=" + result.look_num; }, 2000);
@@ -146,6 +145,7 @@ function lookWrite() {
                     if (jqxHR.status == 201) {
                         alert(JSON.stringify(formData));
                         swal('', '게시글 등록을 하였습니다', 'success');
+                        pond=0;
                         //등록 성공하면 내가등록한 게시글화면으로 이동
                         setTimeout(function () { location.href = "/look?look_num=" + result.look_num; }, 2000);
                     }
@@ -207,7 +207,7 @@ function filePond() {
         FilePondPluginFileEncode
     );
     // Create the FilePond instance
-    const pond = FilePond.create(inputElement, {
+    pond = FilePond.create(inputElement, {
         allowMultiple: true,
         allowReorder: true
     });
@@ -260,3 +260,4 @@ function init() {
 }
 
 init();
+

@@ -98,11 +98,9 @@
                     <span class="Jeans_bule">*태그</span>
                 </div>
 
-                <div>
-
+<%--                <div>
                     <textarea name="tag" class="input_tag">${view.tag}</textarea>
-
-                </div>
+                </div>--%>
 
                 <div class="space"></div>
                 <div class="space"></div>
@@ -144,7 +142,7 @@
 <script src="/static/js/id_nickname_session.js"></script>
 <script type="text/javascript" src="/static/js/lookModify/lookModify.js"></script>
 <%--수정전 내가선택한 계절 이랑 공개여부 값보내기--%>
-<script>seasonLook_publicResult('${view.season}',${view.look_public})</script>
+<script>seasonLook_publicResult('${view.season}',${view.look_privacy})</script>
 <script>lookReady(${view.look_num})</script>
 
 </body>
