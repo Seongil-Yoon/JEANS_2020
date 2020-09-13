@@ -136,7 +136,6 @@ public class LookController {
         }
     }
 
-
     //룩게시판 작성
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)

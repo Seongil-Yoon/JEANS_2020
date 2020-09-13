@@ -105,6 +105,7 @@ public class CommentController {
 
     }
 
+    //댓글 작성
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody //이거없으면 스프링은 반환형태를 뷰로 판단함
     @PostMapping("/look_comment")
@@ -125,6 +126,7 @@ public class CommentController {
 
     }
 
+    //댓글 수정
     //Patch 는 부분 수정할떄 사용 put 은 전체 수정할떄 사용
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
