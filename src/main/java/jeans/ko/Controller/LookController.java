@@ -194,6 +194,18 @@ public class LookController {
         }
     }
 
+    @ResponseBody
+    @PostMapping("/likey/looknum/{num}/user/{id}")
+    public ResponseEntity<String> likey(@PathVariable("num") String number,@PathVariable("id") String id){
+        System.out.println("likey메소드");
+        System.out.println("number+\" \"+id = " + number+" "+id);
+        int num=Integer.parseInt(number);
+        System.out.println("num+\" \"+id = " + num+" "+id);
+        preferenceDao.insertPrefer(num,id);
+        pretreatmentService.countUp(num,id);
+        return new ResponseEntity("성공", HttpStatus.OK);
+    }
+
     @GetMapping("/displayLthumbnail/{look_num}")
     public ResponseEntity<byte[]> displayLthumbnail(@PathVariable int look_num) throws Exception {
         logger.info("displayLthumbnail메소드");

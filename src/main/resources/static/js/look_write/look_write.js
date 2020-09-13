@@ -83,17 +83,10 @@ function lookWrite() {
     MoodDto.mood="미니멀";
     moodList.push(MoodDto);
     let MoodDto2=new Object();
-    MoodDto2.mood="락시클";
+    MoodDto2.mood="그런지";
     moodList.push(MoodDto2);
     //여기까지 일성이가 해줄꺼야!!!!!!
 
-    //연동때문에 다시
-    var arr=new Array();
-    arr.push("미니멀");
-    arr.push("락시클");
-    //
-    alert(arr);
-    alert(JSON.stringify(moodList));
 
     let formData = new FormData();
     formData.append("BoardDto", new Blob([JSON.stringify(BoardDto)],{type:"application/json"}));

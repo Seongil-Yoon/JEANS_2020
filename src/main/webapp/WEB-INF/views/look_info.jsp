@@ -7,9 +7,10 @@
     <title>글 상세보기</title>
     <link rel="stylesheet" href="static/css/jeans_info_body.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
-    <link rel="stylesheet" href="static/css/slideShow.css" />
+    <link rel="stylesheet" href="static/css/slideShow.css"/>
     <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+          rel="stylesheet">
 </head>
 <body>
 <div class="webview">
@@ -37,9 +38,11 @@
 
             <c:set var="viewId" value="${view.fk_userid_user_userid}"/>
 
-            <div class = "delete">
-                <img src="static/images/pen.png" alt="search" height="25" width="25" onclick="lookModify(${view.look_num},'${viewId}','${sessionScope.userid}')"/>
-                <img src="static/images/delete.png" alt="search" height="25" width="25" onclick="lookDelete(${view.look_num},'${viewId}','${sessionScope.userid}')"/>
+            <div class="delete">
+                <img src="static/images/pen.png" alt="search" height="25" width="25"
+                     onclick="lookModify(${view.look_num},'${viewId}','${sessionScope.userid}')"/>
+                <img src="static/images/delete.png" alt="search" height="25" width="25"
+                     onclick="lookDelete(${view.look_num},'${viewId}','${sessionScope.userid}')"/>
             </div>
 
             <!-- 슬라이드 쇼-->
@@ -66,14 +69,14 @@
             <div class="look_textarea_space">
                 <form class="textarea_form">
 
-                    <textarea  disabled class="view_textarea"
-                            placeholder="${view.memo}"></textarea>
+                    <textarea disabled class="view_textarea"
+                              placeholder="${view.memo}"></textarea>
                 </form>
             </div>
 
 
             <div class="like">
-                <img src="static/images/heart.png" alt="heart_image" class="heart_img"/>
+                <img src="static/images/heart.png" alt="heart_image" class="heart_img" onclick="likey(${view.look_num},'${sessionScope.userid}')"/>
                 <div class="like_number">
                     10.5K
                 </div>
@@ -85,11 +88,11 @@
                 ${view.count}
             </div>
 
-         <%--무드로 교체. 성일아 이부분 바꿔줘 무드 체크버튼 있더록--%>
-        <div class="look_tag">
-            <c:forEach items="${mood}" var="mood">
-                ${mood.mood}
-            </c:forEach>
+            <%--무드로 교체. 성일아 이부분 바꿔줘 무드 체크버튼 있더록--%>
+            <div class="look_tag">
+                <c:forEach items="${mood}" var="mood">
+                    ${mood.mood}
+                </c:forEach>
             </div>
         </div>
 
@@ -108,11 +111,12 @@
 
                     <div class="comment_textarea_space">
                         <input type="hidden" name="comment_sender_id" value="${sessionScope.userid}"/> <%--작성자 아이디--%>
-                        <input type="hidden" name="comment_sender_name" value="${sessionScope.usernickname}"/> <%--작성자 닉네임--%>
+                        <input type="hidden" name="comment_sender_name"
+                               value="${sessionScope.usernickname}"/> <%--작성자 닉네임--%>
                         <input type="hidden" name="fk_look_num_Look_look_num"
-                            value="${view.look_num}"/> <%--게시글 기본키인 게시글숫자--%>
+                               value="${view.look_num}"/> <%--게시글 기본키인 게시글숫자--%>
                         <textarea style="background-color:#F6F6F6 "
-                                class="comment_textarea" placeholder="댓글 내용을 입력하세요" name="comment_content"></textarea>
+                                  class="comment_textarea" placeholder="댓글 내용을 입력하세요" name="comment_content"></textarea>
                     </div>
                     <div class="comment_date">
                         <button class="comment_button" type="button" onclick="commentWrite()">댓글</button>
@@ -121,17 +125,17 @@
             </c:if>
         </form>
         <ul class="comment-list" id="js-comment-list">
-        <!-- <li class="comment">
-                <div class="vcard bio">
-                  <img src="images/person_1.jpg" alt="Image placeholder">
-                </div>
-                <div class="comment-body">
-                  <h3>John Doe</h3>
-                  <div class="meta">October 03, 2018 at 2:21pm</div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                  <p><a href="#" class="reply">Reply</a></p>
-                </div>
-              </li> -->
+            <!-- <li class="comment">
+                    <div class="vcard bio">
+                      <img src="images/person_1.jpg" alt="Image placeholder">
+                    </div>
+                    <div class="comment-body">
+                      <h3>John Doe</h3>
+                      <div class="meta">October 03, 2018 at 2:21pm</div>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                      <p><a href="#" class="reply">Reply</a></p>
+                    </div>
+                  </li> -->
             <!-- "/static/js/look_info/look_comment.js" -->
             <!-- "/static/js/look_info/child_comment.js" -->
         </ul>
@@ -159,7 +163,7 @@
 <script type="text/javascript" src="/static/js/look_info/look_comment.js"></script>
 
 <%--댓글 내용출력 위해 현재글에 기본키를 댓글 자바스크립트에 넘김--%>
-<script>commentReady(${view.look_num},'${sessionScope.userid}','${sessionScope.usernickname}')</script>
+<script>commentReady(${view.look_num}, '${sessionScope.userid}', '${sessionScope.usernickname}')</script>
 <script>lookReady(${view.look_num})</script>
 
 </body>
