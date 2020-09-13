@@ -289,8 +289,8 @@ $(document).on("click", ".right_pen", function (event) {
     html += `</div>`; //<div class="comment_center_textarea">
 
     html += `<div class="comment_center_footer">`;
-    html += '<button class="comment_change_button" value="2" type="button" >취소</button>';
-    html += '<button class="comment_change_button" value="1" type="button" >저장</button>';
+    html += `<button class="comment_change_button" value="2" type="button" >취소</button>`;
+    html += `<button class="comment_change_button" value="1" type="button" >저장</button>`;
     html += `</div>`;//<div class="comment_center_footer">
     html += `</div>`;//<div class="comment_center">
 
@@ -360,18 +360,18 @@ $(document).on("click", ".comment_change_button", function (event) {
 
 
 
-let result = {
-    comment_sender_id: "dbs1501189",
-    comment_sender_name: "무민zzzz97",
-    fk_look_num_Look_look_num: 55,
-    comment_content: "로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘",
-    parents: 0, //대댓글 아니므로 값을 0줌
-    date: "2020-09-08",
-    ref_count: 2
-};
-let html = "";
-html = commentHTML(result, html);
-$("#js-comment-list").prepend(html); //body 마지막에 추가
+// let result = {
+//     comment_sender_id: "dbs1501189",
+//     comment_sender_name: "무민zzzz97",
+//     fk_look_num_Look_look_num: 55,
+//     comment_content: "로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘",
+//     parents: 0, //대댓글 아니므로 값을 0줌
+//     date: "2020-09-08",
+//     ref_count: 2
+// };
+// let html = "";
+// html = commentHTML(result, html);
+// $("#js-comment-list").prepend(html); //body 마지막에 추가
 
 
 //시간차이 계산 함수

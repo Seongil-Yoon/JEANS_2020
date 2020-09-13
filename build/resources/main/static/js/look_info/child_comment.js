@@ -6,20 +6,43 @@ let parents_comment_id //대댓글 작성할 부모댓글 기본키
 function childHTML(result) {
 
     let html = "";
-    html += '<div class="child_comment_wrap">';
-    html += '<input class="child_comment_sender_id" value="' + result.comment_sender_id + '" type="hidden"/>';
-    html += '<input class="child_comment_sender_name" value="' + result.comment_sender_name + '" type="hidden"/>';
-    html += '<input class="child_comment_id" value="' + result.comment_id + '" type="hidden"/>';
-    html += '<div class="other_people_img">';
-    html += '<img src=displayMthumbnail/' + result.comment_sender_id + '>';
-    html += '</div>';
-    html += '<div class="child_other_people_name">' + result.comment_sender_name + '</div>';
-    html += '<div class="comment_textarea_space">';
-    html += '<textarea disabled class="child_comment_content" placeholder=\"' + result.comment_content + '\"></textarea>';
-    html += '<button class="child_sujung_button" value="2" type="button" >수정</button>';
-    html += '<button class="child_delete_button" value="1" type="button" >삭제</button>';
-    html += '</div>';
-    html += '</div>';
+    // html += '<div class="child_comment_wrap">';
+    // html += '<input class="child_comment_sender_id" value="' + result.comment_sender_id + '" type="hidden"/>';
+    // html += '<input class="child_comment_sender_name" value="' + result.comment_sender_name + '" type="hidden"/>';
+    // html += '<input class="child_comment_id" value="' + result.comment_id + '" type="hidden"/>';
+    // html += '<div class="other_people_img">';
+    // html += '<img src=displayMthumbnail/' + result.comment_sender_id + '>';
+    // html += '</div>';
+    // html += '<div class="child_other_people_name">' + result.comment_sender_name + '</div>';
+    // html += '<div class="comment_textarea_space">';
+    // html += '<textarea disabled class="child_comment_content" placeholder=\"' + result.comment_content + '\"></textarea>';
+    // html += '<button class="child_sujung_button" value="2" type="button" >수정</button>';
+    // html += '<button class="child_delete_button" value="1" type="button" >삭제</button>';
+    // html += '</div>';
+    // html += '</div>';
+    //////////////////////////
+    html += `<div class="child_comment_wrap">`;
+    html += `<input class="child_comment_sender_id" value=${result.comment_sender_id} type="hidden"/>`;
+    html += `<input class="child_comment_sender_name" value=${result.comment_sender_name} type="hidden"/>`;
+    html += `<input class="child_comment_id" value=${result.comment_id} type="hidden"/>`;
+    html += `<div class="comment_left">`;
+    html += `<img class="profile_img" src=displayMthumbnail/${result.comment_sender_id}>`;
+    html += `</div>`;//<div class="comment_left">
+
+    html += `<div class="comment_center">`;
+    html += `<div class="comment_center_header">`;
+    html += `<span class="child_other_people_name">${result.comment_sender_name}</span>`;
+    html += `</div>`;//<div class="comment_center_header">
+    html += `<div class="comment_center_textarea">`;
+    html += `<span disabled class="child_comment_content">${result.comment_content}</span>`;
+    html += `</div>`; //<div class="comment_center_textarea">
+
+    html += `<div class="comment_center_footer">`;
+    html += `<button class="child_sujung_button" value="2" type="button" >수정</button>`;
+    html += `<button class="child_delete_button" value="1" type="button" >삭제</button>`;
+    html += `</div>`;//<div class="comment_center_footer">
+    html += `</div>`;//<div class="comment_center">
+    html += `</div>`;//<div class="look_comment_wrap">
 
     return html;
 }
@@ -59,7 +82,7 @@ function childWriteHtml(userid, userNickname, parents_comment_id) {
     html += `<span class="child_other_people_name">${userNickname}</span>`;
     html += `</div>`;//<div class="comment_center_header">
     html += `<div class="comment_center_textarea">`;
-    html += `<textarea class="child_comment_content" placeholder="수정할 내용을 입력하세요" name="comment_content"></textarea>`;
+    html += `<textarea class="child_comment_content" placeholder="댓글 내용을 입력하세요" name="comment_content"></textarea>`;
     html += `</div>`; //<div class="comment_center_textarea">
 
     html += `<div class="comment_center_footer">`;
@@ -202,17 +225,37 @@ $(document).on("click", ".child_sujung_button", function (event) {
         child_comment_wrap.children().remove();
 
         let html = "";
-        html += '<input class="child_comment_id" value="' + child_comment_id + '" type="hidden"/>';
-        html += '<div class="other_people_img">';
-        html += '<img src=displayMthumbnail/' + child_comment_sender_id + '>';
-        html += '</div>';
-        html += '<div class="child_other_people_name">' + child_comment_sender_name + '</div>';
-        html += '<div class="comment_textarea_space">';
-        html += '<textarea  class="child_comment_content" placeholder="수정 내용을 입력하세요."></textarea>';
+        // html += '<input class="child_comment_id" value="' + child_comment_id + '" type="hidden"/>';
+        // html += '<div class="other_people_img">';
+        // html += '<img src=displayMthumbnail/' + child_comment_sender_id + '>';
+        // html += '</div>';
+        // html += '<div class="child_other_people_name">' + child_comment_sender_name + '</div>';
+        // html += '<div class="comment_textarea_space">';
+        // html += '<textarea  class="child_comment_content" placeholder="수정 내용을 입력하세요."></textarea>';
+        // //수정 취소는 4  수정 저장은 5
+        // html += '<button class="child_comment_change_button" value="4" type="button" >취소</button>';
+        // html += '<button class="child_comment_change_button" value="5" type="button" >저장</button>';
+        // html += '</div>';
+        //////////////////////
+        html += `<input class="child_comment_id" value=${child_comment_id} type="hidden"/>`;
+        html += `<div class="comment_left">`;
+        html += `<img class="profile_img" src=displayMthumbnail/${child_comment_sender_id}>`;
+        html += `</div>`;//<div class="comment_left">
+
+        html += `<div class="comment_center">`;
+        html += `<div class="comment_center_header">`;
+        html += `<span class="child_other_people_name">${child_comment_sender_name}</span>`;
+        html += `</div>`;//<div class="comment_center_header">
+        html += `<div class="comment_center_textarea">`;
+        html += `<textarea class="child_comment_content" placeholder="수정할 내용을 입력하세요"></textarea>`;
+        html += `</div>`; //<div class="comment_center_textarea">
+
+        html += `<div class="comment_center_footer">`;
         //수정 취소는 4  수정 저장은 5
         html += '<button class="child_comment_change_button" value="4" type="button" >취소</button>';
         html += '<button class="child_comment_change_button" value="5" type="button" >저장</button>';
-        html += '</div>';
+        html += `</div>`;//<div class="comment_center_footer">
+        html += `</div>`;//<div class="comment_center">
 
         child_comment_wrap.append(html); //child_comment_wrap 아래에 추가
     } else {
