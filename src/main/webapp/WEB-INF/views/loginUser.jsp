@@ -12,7 +12,6 @@
 </head>
 <body>
 
-
 <!--/*여기는 맨 위에 있는 바 부분*/ -->
 <img src="/static/images/imam-muhaimin-kHivKyO8E8U-unsplash.jpg" class="login_background"/>
 <div class="webview">
