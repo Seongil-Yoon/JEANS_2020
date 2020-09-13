@@ -3,7 +3,7 @@ let parents_comment_id //대댓글 작성할 부모댓글 기본키
 
 //대댓글 출력 html 태그
 
-function childHTML(result) {
+function childHTML(result, jqxHR_status) {
 
     let html = "";
     // html += '<div class="child_comment_wrap">';
@@ -21,7 +21,9 @@ function childHTML(result) {
     // html += '</div>';
     // html += '</div>';
     //////////////////////////
-    html += `<div class="child_comment_wrap">`;
+    if (jqxHR_status !== "success") {
+        html += `<div class="child_comment_wrap">`;
+    }//대댓글 작성시 child_comment_wrap태그가 2번 감싸져서.
     html += `<input class="child_comment_sender_id" value=${result.comment_sender_id} type="hidden"/>`;
     html += `<input class="child_comment_sender_name" value=${result.comment_sender_name} type="hidden"/>`;
     html += `<input class="child_comment_id" value=${result.comment_id} type="hidden"/>`;
@@ -32,17 +34,25 @@ function childHTML(result) {
     html += `<div class="comment_center">`;
     html += `<div class="comment_center_header">`;
     html += `<span class="child_other_people_name">${result.comment_sender_name}</span>`;
+    html += `<span class="comment_date">${timeForToday(result.date)}</span>`;
+    html += `<div class="right_etc">`;
+    html += `<input class="comment_id" value="${result.comment_id}" type="hidden" />`;
+    html += `<input class="comment_sender_id" value="${result.comment_sender_id}" type="hidden" />`;
+    html += `<img id="js-child_sujung_button" class="right_pen" value="2" src="static/images/pen.png" alt="modify_img"/>`;
+    html += `<img id="js-child_delete_button" class="right_delete" value="1" src="static/images/delete.png" alt="delete_img"/>`;
+    html += `<img src="static/images/alarm.png" alt="alarm_img" class="alarm"/>`;
+    html += `</div>`;//<div class="right_etc">
     html += `</div>`;//<div class="comment_center_header">
     html += `<div class="comment_center_textarea">`;
     html += `<span disabled class="child_comment_content">${result.comment_content}</span>`;
     html += `</div>`; //<div class="comment_center_textarea">
 
     html += `<div class="comment_center_footer">`;
-    html += `<button class="child_sujung_button" value="2" type="button" >수정</button>`;
-    html += `<button class="child_delete_button" value="1" type="button" >삭제</button>`;
     html += `</div>`;//<div class="comment_center_footer">
     html += `</div>`;//<div class="comment_center">
-    html += `</div>`;//<div class="look_comment_wrap">
+    if (jqxHR_status !== "success") {
+        html += `</div>`;//<div class="look_comment_wrap">
+    }
 
     return html;
 }
@@ -82,12 +92,12 @@ function childWriteHtml(userid, userNickname, parents_comment_id) {
     html += `<span class="child_other_people_name">${userNickname}</span>`;
     html += `</div>`;//<div class="comment_center_header">
     html += `<div class="comment_center_textarea">`;
-    html += `<textarea class="child_comment_content" placeholder="댓글 내용을 입력하세요" name="comment_content"></textarea>`;
+    html += `<textarea class="child_comment_content" placeholder="수정할 내용을 입력하세요" name="comment_content"></textarea>`;
     html += `</div>`; //<div class="comment_center_textarea">
 
     html += `<div class="comment_center_footer">`;
-    html += '<button class="comment_change_button" value="2" type="button" >취소</button>';
-    html += '<button class="comment_change_button" value="1" type="button" >저장</button>';
+    html += `<button id="js-child_comment_change_button" class="child_comment_change_button" value="2" type="button" >취소</button>`;
+    html += `<button id="js-child_comment_change_button" class="child_comment_change_button" value="1" type="button" >저장</button>`;
     html += `</div>`;//<div class="comment_center_footer">
     html += `</div>`;//<div class="comment_center">
     html += `</div>`;//<div class="look_comment_wrap">
@@ -158,7 +168,7 @@ $(document).on("click", ".re_comment", function (event) {
 });
 
 //삭제 이벤트
-$(document).on("click", ".child_delete_button", function (event) {
+$(document).on("click", "#js-child_delete_button", function (event) {
     //이벤트 부모태그 가져오기
     let child_comment_wrap = $(event.target).parents(".child_comment_wrap");
 
@@ -210,7 +220,7 @@ $(document).on("click", ".child_delete_button", function (event) {
 });
 
 //답글 수정버튼 이벤트
-$(document).on("click", ".child_sujung_button", function (event) {
+$(document).on("click", "#js-child_sujung_button", function (event) {
     //이벤트 부모태그 가져오기
     let child_comment_wrap = $(event.target).parents(".child_comment_wrap");
     //기본키값 가져오기
@@ -252,8 +262,8 @@ $(document).on("click", ".child_sujung_button", function (event) {
 
         html += `<div class="comment_center_footer">`;
         //수정 취소는 4  수정 저장은 5
-        html += '<button class="child_comment_change_button" value="4" type="button" >취소</button>';
-        html += '<button class="child_comment_change_button" value="5" type="button" >저장</button>';
+        html += `<button id="js-child_comment_change_button" class="child_comment_change_button" value="4" type="button" >취소</button>`;
+        html += `<button id="js-child_comment_change_button" class="child_comment_change_button" value="5" type="button" >저장</button>`;
         html += `</div>`;//<div class="comment_center_footer">
         html += `</div>`;//<div class="comment_center">
 
@@ -265,7 +275,7 @@ $(document).on("click", ".child_sujung_button", function (event) {
 });
 
 //취소나 저장 버튼 누를 경우 이벤트 여기서 답글 입력과 답글 수정 둘다 처리
-$(document).on("click", ".child_comment_change_button", function (event) {
+$(document).on("click", "#js-child_comment_change_button", function (event) {
 
     //이벤트 부모태그 가져오기
 
@@ -277,7 +287,7 @@ $(document).on("click", ".child_comment_change_button", function (event) {
     let look_comment_wrap = child_look_commentTag.parents(".look_comment_wrap");
     //수정 기본키 들고오기
     let child_comment_id = child_look_commentTag.find(".child_comment_id").val();
-
+    console.log(child_look_commentTag, child_comment_content, look_comment_wrap, child_comment_id);
 
     //답글 수정처리 부분
     if ($(event.target).val() == 5) {
@@ -297,11 +307,11 @@ $(document).on("click", ".child_comment_change_button", function (event) {
             type: "PATCH", //데이터 전달방식
             data: JSON.stringify(contentData),
             contentType: "application/json",
-            success: function (result) {
+            success: function (result, jqxHR) {
                 //수정입력 화면지우기
                 child_look_commentTag.children().remove();
                 //수정 하여 수정된 html 화면으로 돌려주기
-                child_look_commentTag.append(childHTML(result));
+                child_look_commentTag.append(childHTML(result, jqxHR));
             },
             error: function (error) {
                 //서버오류 500  권한없음 401  찾는내용없음 400
@@ -320,10 +330,10 @@ $(document).on("click", ".child_comment_change_button", function (event) {
         $.ajax({
             url: "/look_comment/" + child_comment_id,
             type: "GET", //데이터 전달방식
-            success: function (result) {
+            success: function (result, jqxHR) {
                 child_look_commentTag.children().remove();
                 //수정취소 를 하여 원래 html 화면 으로 돌려 주기
-                child_look_commentTag.append(childHTML(result));
+                child_look_commentTag.append(childHTML(result, jqxHR));
             },
             error: function (error) {
                 //서버오류 500  권한없음 401  찾는내용없음 400
