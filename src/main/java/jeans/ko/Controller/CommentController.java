@@ -47,7 +47,7 @@ public class CommentController {
 
     @Autowired
     ICommentDao commentDao;
-
+    //댓글 1개 정보 넘겨주기
     @ResponseBody
     @GetMapping("/look_comment/{comment_id}")
     public CommentDto comment(@PathVariable int comment_id) {
@@ -83,6 +83,7 @@ public class CommentController {
         return commentService.list(fk_look_num_Look_look_num,comment_id);
     }
 
+    //댓글 삭제
     @ResponseBody
     @DeleteMapping("look_comment/{comment_id}")
     public void deleteLookComment(@PathVariable int comment_id) {

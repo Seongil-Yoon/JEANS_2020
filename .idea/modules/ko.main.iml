@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="FacetManager">
+    <facet type="Spring" name="Spring">
+      <configuration />
+    </facet>
+    <facet type="web" name="Web">
+      <configuration>
+        <webroots />
+      </configuration>
+    </facet>
+    <facet type="web" name="Web Gradle : ko-0.0.1-SNAPSHOT.war">
+      <configuration>
+        <webroots>
+          <root url="file://$MODULE_DIR$/../../src/main/webapp" relative="/" />
+        </webroots>
+      </configuration>
+    </facet>
+  </component>
+</module>

@@ -9,11 +9,19 @@
     <link rel="stylesheet" href="static/css/changeUser.css" />
 </head>
 <body>
+<<<<<<< HEAD
+=======
+<!-- <div class="leftTop"></div>
+<div class="leftBottom"></div>
+<div class="rightTop"></div>
+<div class="rightBottom"></div> -->
+
+
+>>>>>>> cf76d19edaf5bc52decb635948e6cd1af3136e36
 <div class="webview">
     <jsp:include page="header.jsp" flush="false"/>
 
     <!-- /*여기부터가 본문*/  -->
-
     <div class="body_root">
         <div class="changePW">
             <form class="changePW_1" method="post">
