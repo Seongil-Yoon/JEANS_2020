@@ -74,7 +74,7 @@ public class LookController {
         logger.info("view()진입");
         boardDao.countUpdate(look_num); //글상세보기 하면 조회수 증가
         model.addAttribute("view", boardDao.view(look_num)); //게시글정보가져오기
-        model.addAttribute("mood",moodDao.getMooddto(look_num));//글의 무드 타입
+        model.addAttribute("mood", moodDao.getMooddto(look_num));//글의 무드 타입
         return "look_info";
     }
 
@@ -84,7 +84,7 @@ public class LookController {
         logger.info("lookModify()진입");
         BoardDto boardDto = boardDao.view(look_num);
         model.addAttribute("view", boardDto); //게시글정보 가져오기
-        model.addAttribute("mood",moodDao.getMooddto(look_num));//글의 무드 타입
+        model.addAttribute("mood", moodDao.getMooddto(look_num));//글의 무드 타입
         return "lookModify";
     }
 
@@ -109,13 +109,13 @@ public class LookController {
         //게시글 가져오기
         BoardDto boardDto = boardDao.view(id);
         //찬영이랑 테스트. 무드DTO 리스트들을 넘긴다.
-        List<MoodDto>moodDtoList=moodDao.getMooddto(id);
+        List<MoodDto> moodDtoList = moodDao.getMooddto(id);
         if (boardDto == null) {
             //게시글이 없으면 not found 에러 return
             throw new NotFoundException(String.format("ID[%s] not found", id));
         }
         map.put("look", boardDto); //게시글 가져오기
-        map.put("moodlist",moodDtoList);//해쉬맵에 무드DTO리스트 추가
+        map.put("moodlist", moodDtoList);//해쉬맵에 무드DTO리스트 추가
         boardDao.countUpdate(id); //글상세보기 하면 조회수 증가
 
         return map;
@@ -148,7 +148,7 @@ public class LookController {
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/looks")
-    public BoardDto boardWrite(@RequestPart("BoardDto") BoardDto boardDto, @RequestPart(value="MoodDto",required = false)List<MoodDto> moodDtos, @RequestPart("files") List<MultipartFile> files) throws Exception {
+    public BoardDto boardWrite(@RequestPart("BoardDto") BoardDto boardDto, @RequestPart(value = "MoodDto", required = false) List<MoodDto> moodDtos, @RequestPart("files") List<MultipartFile> files) throws Exception {
         logger.info("boardWrite()진입");
         System.out.println("테스트를 위해 남겨둔 moodDtos = " + moodDtos);
         if (session.getAttribute("userid") == null) {
@@ -158,11 +158,11 @@ public class LookController {
         //게시글등록
         boardService.insert(boardDto, moodDtos, files);
 
-        int looknum=boardDto.getLook_num();
-        String userid=(String)session.getAttribute("userid");
+        int looknum = boardDto.getLook_num();
+        String userid = (String) session.getAttribute("userid");
 
-        preferenceDao.insertPrefer(looknum,userid);
-        pretreatmentService.countUp(looknum,userid);
+        preferenceDao.insertPrefer(looknum, userid);
+        pretreatmentService.countUp(looknum, userid);
 
         //selectKey로 등록된 게시글 가져온 기본키로 등록된 게시글 정보보내줌 새롭게 추가되 댓글이없으므로 게시글만넘김
         return boardDao.view(boardDto.getLook_num());
@@ -185,7 +185,7 @@ public class LookController {
         }
         if (session.getAttribute("userid").equals(lookId)) {
             //로그인한 아이디와 수정할려는 게시글 작성자 아이디 비교하여 같으면 게시글수정
-            boardService.update(modifyBoardDto,moodDtos, files);
+            boardService.update(modifyBoardDto, moodDtos, files);
             //수정된 게시글 정보 넘겨주기
             return boardDao.view(lookNum);
         } else {
@@ -196,14 +196,17 @@ public class LookController {
 
     @ResponseBody
     @PostMapping("/likey/looknum/{num}/user/{id}")
-    public ResponseEntity<String> likey(@PathVariable("num") String number,@PathVariable("id") String id){
+    public ResponseEntity<String> likey(@PathVariable("num") String number, @PathVariable("id") String id) {
         System.out.println("likey메소드");
-        System.out.println("number+\" \"+id = " + number+" "+id);
-        int num=Integer.parseInt(number);
-        System.out.println("num+\" \"+id = " + num+" "+id);
-        preferenceDao.insertPrefer(num,id);
-        pretreatmentService.countUp(num,id);
-        return new ResponseEntity("성공", HttpStatus.OK);
+        int num = Integer.parseInt(number);
+
+        if (preferenceDao.getUser(num, id) != 0) {
+            return new ResponseEntity("이미 좋아요 처리를 하셨습니다",HttpStatus.OK);
+        } else {
+            preferenceDao.insertPrefer(num, id);
+            pretreatmentService.countUp(num, id);
+            return new ResponseEntity("좋아요!", HttpStatus.OK);
+        }
     }
 
     @GetMapping("/displayLthumbnail/{look_num}")

@@ -6,4 +6,8 @@
     <insert id="insertPrefer">
         insert into preference values(#{looknum},#{userid})
     </insert>
+
+    <select id="getUser" resultType="int">
+        select count(*) cnt from preference where look_num=#{looknum} and userid=#{userid}
+    </select>
 </mapper>

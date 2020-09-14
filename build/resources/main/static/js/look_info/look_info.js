@@ -201,7 +201,7 @@ function likey(num,id){
         url:"/likey/looknum/"+num+"/user/"+id,
         type:"post",
         success: function(result){
-            alert("성공이다"+result);
+            swal(result);
         },
         error: function(error){
             alert("error다"+error);
