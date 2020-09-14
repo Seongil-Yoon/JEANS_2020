@@ -36,8 +36,6 @@ function commentReady(look_num, userid, usernickname) {
 //댓글 html 태그 생성 하여 화면에 보여줌
 function commentHTML(result, html) {
     // `` <= 바틱을 씁시다.
-    html += `<li class="look_comment_wrap">`
-    html += `<div class="look_comment">`;
     html += `<div class="comment_left">`;
     html += `<img class="profile_img" src=displayMthumbnail/${result.comment_sender_id}>`;
     html += `</div>`;//<div class="comment_left">
@@ -49,8 +47,8 @@ function commentHTML(result, html) {
     html += `<div class="right_etc">`;
     html += `<input class="comment_id" value="${result.comment_id}" type="hidden" />`;
     html += `<input class="comment_sender_id" value="${result.comment_sender_id}" type="hidden" />`;
-    html += `<img src="static/images/pen.png" alt="modify_img"  class="right_pen"/>`;
-    html += `<img src="static/images/delete.png" alt="delete_img" class="right_delete"/>`;
+    html += `<img src="static/images/pen.png" alt="modify_img" id="js-comment_sujung_button" class="right_pen"/>`;
+    html += `<img src="static/images/delete.png" alt="delete_img" id="js-comment_delete_button" class="right_delete"/>`;
     html += `<img src="static/images/alarm.png" alt="alarm_img" class="alarm"/>`;
     html += `</div>`;//<div class="right_etc">
     html += `</div>`;//<div class="comment_center_header">
@@ -68,19 +66,17 @@ function commentHTML(result, html) {
     }
     html += `</div>`;//<div class="comment_center_footer">
     html += `</div>`;//<div class="comment_center">
-    html += `</div>`;//<div class="look_comment_wrap">
-    html += `</li>`;//<li class="look_comment">
 
     return html;
 }
 
 //댓글 입력 함수
-function commentWrite() {
+function commentWrite() { //JSP파일 호출
     //name 은중복을 허용해서 사용할때 0을 꼭붙여야함
-    var comment_sender_id = document.getElementsByName("comment_sender_id")[0].value
-    var comment_sender_name = document.getElementsByName("comment_sender_name")[0].value
-    var fk_look_num_Look_look_num = document.getElementsByName("fk_look_num_Look_look_num")[0].value
-    var comment_content = document.getElementsByName("comment_content")[0].value
+    let comment_sender_id = document.getElementsByName("comment_sender_id")[0].value
+    let comment_sender_name = document.getElementsByName("comment_sender_name")[0].value
+    let fk_look_num_Look_look_num = document.getElementsByName("fk_look_num_Look_look_num")[0].value
+    let comment_content = document.getElementsByName("comment_content")[0].value
 
     let data = {
         comment_sender_id: comment_sender_id,
@@ -96,7 +92,7 @@ function commentWrite() {
     console.log("댓글 데이터", data);
 
     //데이터 json 문자열 형태로 변환
-    var commentDto = JSON.stringify(data);
+    let commentDto = JSON.stringify(data);
 
     if (comment_content) { //자바스크립트는 null값을 false 로 인식함
         //form태그 name인 commentForm 에 내용을 한번에 가져옴 serialize 는 form태그 내용 한번에 가져옴
@@ -133,7 +129,12 @@ function commentConfirm(msg, title, commentDto) {
                     if (jqxHR.status == 201) {
                         swal('', '댓글을 등록하였습니다.', "success");
                         let html = "";
+                        html += `<li class="look_comment_wrap">`
+                        html += `<div class="look_comment">`;
                         html = commentHTML(result, html);
+                        html += `</div>`;//<div class="look_comment_wrap">
+                        html += `</li>`;//<li class="look_comment">
+
                         $("#js-comment-list").prepend(html); //body 마지막에 추가
                     }
                 },
@@ -157,7 +158,7 @@ function commentConfirm(msg, title, commentDto) {
 function commentGet() {
     //스크롤 이벤트 중복 실행 방지
     scrollTime = false
-    let html = "";
+
     $.ajax({
         url: "/look_comment_list/" + fk_look_num_Look_look_num + "/" + comment_id,
         type: "get",
@@ -166,7 +167,12 @@ function commentGet() {
             //최신글 순으로  댓글 10개 받아 와서 받아온 만큼 댓글 화면에 보여줌
             for (var i = 0; i < result.length; i++) {
                 let data = result[i];
+                let html = "";
+                html += `<li class="look_comment_wrap">`
+                html += `<div class="look_comment">`;
                 html = commentHTML(data, html);
+                html += `</div>`;//<div class="look_comment_wrap">
+                html += `</li>`;//<li class="look_comment">
                 $("#js-comment-list").prepend(html); //body 마지막에 추가
             }
             //마지막 댓글 기본키 를 변수값 에 넣어서 다음 데이터 10개를 받아올 수 있게 준비함
@@ -186,7 +192,7 @@ function commentGet() {
 }
 
 //댓글 삭제 이벤트
-$(document).on("click", ".right_delete", function (event) {
+$(document).on("click", "#js-comment_delete_button", function (event) {
     // 가져온 이벤트 객체에 부모태그 .right_etc 에 자식객체 input에 value 값 comment_id 가져오기
     let comment_id = $(event.target).parents(".right_etc").children('.comment_id').val();
 
@@ -211,7 +217,7 @@ $(document).on("click", ".right_delete", function (event) {
                     type: "DELETE", //데이터 전달방식
                     success: function () {
                         //삭제 이미지 부모 객체 look_comment 화면 에서 지우기
-                        $(event.target).parents(".look_comment").remove();
+                        $(event.target).parents(".look_comment_wrap").remove();
                         swal('', '댓글을 삭제하였습니다.', "success");
                     },
                     error: function (error) {
@@ -234,7 +240,7 @@ $(document).on("click", ".right_delete", function (event) {
 });
 
 //댓글 수정 이벤트
-$(document).on("click", ".right_pen", function (event) {
+$(document).on("click", "#js-comment_sujung_button", function (event) {
 
     //댓글 기본키값 가져오기
     let comment_id = $(event.target).parents(".right_etc").children('.comment_id').val();
@@ -244,7 +250,7 @@ $(document).on("click", ".right_pen", function (event) {
     let nickName = $(event.target).parents(".look_comment").children('.other_people_name').text();
     //이벤트 부모태그 가져오기
     let look_commentTag = $(event.target).parents(".look_comment");
-
+    console.log(look_commentTag);
 
     if (userId != comment_sender_id) {
         //작성자 아이디 와 로그인 아디가 같아야 수정 가능
@@ -254,43 +260,24 @@ $(document).on("click", ".right_pen", function (event) {
 
     //li.look_comment 밑에 태그 들 다지우기 수정화면으로 바꾸기 위해
     $(event.target).parents(".look_comment").children().remove();
-    //댓글 수정할수있게 화면변경 코드
+
     let html = "";
-    // html += '<input class="comment_id" value="' + comment_id + '" type="hidden"/>';
-    // html += '<div class="other_people_img">';
-    // html += '<img src=displayMthumbnail/' + comment_sender_id + '>';
-    // html += '</div>';
-    // html += '<div class="other_people_name">' + nickName + '</div>';
-    // html += '<div class="comment_textarea_space">';
-    // html += '<textarea class="comment_textarea" placeholder="수정할 내용을 입력하세요" name="comment_content"></textarea>';
-    // html += '</div>';
-    // html += '<div class="comment_date">';
-    // html += '<button class="comment_change_button" value="2" type="button" >취소</button>';
-    // html += '<button class="comment_change_button" value="1" type="button" >저장</button>';
-    // html += '</div>';
+    html += `<input class="comment_id" value=${comment_id} type="hidden"/>`;
     html += `<div class="comment_left">`;
-    html += `<img class="profile_img" src=displayMthumbnail/${result.comment_sender_id}>`;
+    html += `<img class="profile_img" src=displayMthumbnail/${comment_sender_id}>`;
     html += `</div>`;//<div class="comment_left">
 
     html += `<div class="comment_center">`;
     html += `<div class="comment_center_header">`;
-    html += `<span class="other_people_name">${result.comment_sender_name}</span>`;
-    html += `<span class="comment_date">${timeForToday(result.date)}</span>`;
-    html += `<div class="right_etc">`;
-    html += `<input class="comment_id" value="${result.comment_id}" type="hidden" />`;
-    html += `<input class="comment_sender_id" value="${result.comment_sender_id}" type="hidden" />`;
-    html += `<img src="static/images/pen.png" alt="modify_img"  class="right_pen"/>`;
-    html += `<img src="static/images/delete.png" alt="delete_img" class="right_delete"/>`;
-    html += `<img src="static/images/alarm.png" alt="alarm_img" class="alarm"/>`;
-    html += `</div>`;//<div class="right_etc">
+    html += `<span class="other_people_name">${nickName}</span>`;
     html += `</div>`;//<div class="comment_center_header">
     html += `<div class="comment_center_textarea">`;
-    html += `<textarea class="view_comment_textarea" placeholder="수정할 내용을 입력하세요" name="comment_content"></textarea>`;
+    html += `<textarea id="js-comment_textarea" class="view_comment_textarea" placeholder="수정할 내용을 입력하세요" name="comment_content"></textarea>`;
     html += `</div>`; //<div class="comment_center_textarea">
 
     html += `<div class="comment_center_footer">`;
-    html += '<button class="comment_change_button" value="2" type="button" >취소</button>';
-    html += '<button class="comment_change_button" value="1" type="button" >저장</button>';
+    html += `<button class="comment_change_button" value="2" type="button" >취소</button>`;
+    html += `<button class="comment_change_button" value="1" type="button" >저장</button>`;
     html += `</div>`;//<div class="comment_center_footer">
     html += `</div>`;//<div class="comment_center">
 
@@ -304,7 +291,7 @@ $(document).on("click", ".comment_change_button", function (event) {
     //댓글 기본키값 가져오기
     let comment_id = look_commentTag.children('.comment_id').val();
     //수정내용 가져오기
-    let content = look_commentTag.find(".comment_textarea").val();
+    let content = look_commentTag.find("#js-comment_textarea").val();
     // 값을 key value 형태로 변환
     let contentData = {
         comment_content: content,
@@ -357,23 +344,6 @@ $(document).on("click", ".comment_change_button", function (event) {
 });
 
 
-
-
-
-// let result = {
-//     comment_sender_id: "dbs1501189",
-//     comment_sender_name: "무민zzzz97",
-//     fk_look_num_Look_look_num: 55,
-//     comment_content: "로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘",
-//     parents: 0, //대댓글 아니므로 값을 0줌
-//     date: "2020-09-08",
-//     ref_count: 2
-// };
-// let html = "";
-// html = commentHTML(result, html);
-// $("#js-comment-list").prepend(html); //body 마지막에 추가
-
-
 //시간차이 계산 함수
 function timeForToday(value) {
     const today = new Date();
@@ -381,19 +351,22 @@ function timeForToday(value) {
 
     const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
 
-    if (betweenTime < 1) return '방금전';
-    if (betweenTime < 60) {
-        return `${betweenTime}분전`;
-    }
-
-    const betweenTimeHour = Math.floor(betweenTime / 60);
-    if (betweenTimeHour < 24) {
-        return `${betweenTimeHour}시간전`;
-    }
+    // if (betweenTime < 1) return '방금전';
+    // if (betweenTime < 60) {
+    //     return `${betweenTime}분전`;
+    // }
+    //
+    // const betweenTimeHour = Math.floor(betweenTime / 60);
+    // if (betweenTimeHour < 24) {
+    //     return `${betweenTimeHour}시간전`;
+    // }
 
     const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
     if (betweenTimeDay < 365) {
-        return `${betweenTimeDay}일전`;
+        if(betweenTimeDay==0){
+            return `오늘 작성`;
+        }
+        return `${betweenTimeDay}일전 작성`;
     }
 
     return `${Math.floor(betweenTimeDay / 365)}년전`;

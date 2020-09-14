@@ -62,7 +62,6 @@ public class LookController {
         logger.info("look_write()진입");
         return "look_write";
     }
-    
 
     //게시판 상세보기 model and view 웹용
     @RequestMapping("/look")
@@ -160,13 +159,15 @@ public class LookController {
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     @PutMapping("/looks")
-    public BoardDto boardModify(@RequestPart("BoardDto") BoardDto modifyBoardDto, @RequestPart(value = "MoodDto", required = false) List<MoodDto> moodDtos, @RequestPart("files") List<MultipartFile> files) throws Exception {
+    public BoardDto boardModify(@RequestPart("BoardDto") BoardDto modifyBoardDto, @RequestPart("files") List<MultipartFile> files) throws Exception {
         logger.info("boardModify()진입");
+
         System.out.println("modifyBoardDto = " + modifyBoardDto);
-        System.out.println("moodDtos = " + moodDtos);
+
         //넘어온 값에 기본키id 값으로 게시글작성자 id 와 기본키넘버값 가져오기
         String lookId = boardDao.view(modifyBoardDto.getLook_num()).getFk_userid_user_userid();
         int lookNum = boardDao.view(modifyBoardDto.getLook_num()).getLook_num();
+
         if (lookId == null) {
             //수정할 게시글이 없으므로 not found 에러 보냄
             throw new NotFoundException(String.format("lookNum[%s] not found", modifyBoardDto.getLook_num()));
