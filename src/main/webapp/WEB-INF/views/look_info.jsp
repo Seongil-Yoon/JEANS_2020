@@ -133,26 +133,7 @@ contentType="text/html;charset=UTF-8" language="java" %>
         <%--댓글입력부분--%>
         <form name="commentForm" class="writeComment">
           <c:if test="${sessionScope.userid != null}">
-            <%--로그인 해야 작성가능--%>
-            <!-- <div class="look_comment">
-                    <div class="other_people_img">
-                        <img src="/displayMthumbnail/${sessionScope.userid}">
-                    </div>
 
-                    <div class="other_people_name">${sessionScope.usernickname}</div>
-
-                    <div class="comment_textarea_space">
-                        <input type="hidden" name="comment_sender_id" value="${sessionScope.userid}"/> <%--작성자 아이디--%>
-                        <input type="hidden" name="comment_sender_name" value="${sessionScope.usernickname}"/> <%--작성자 닉네임--%>
-                        <input type="hidden" name="fk_look_num_Look_look_num"
-                            value="${view.look_num}"/> <%--게시글 기본키인 게시글숫자--%>
-                        <textarea style="background-color:#F6F6F6 "
-                                class="comment_textarea" placeholder="댓글 내용을 입력하세요" name="comment_content"></textarea>
-                    </div>
-                    <div class="comment_date">
-                        <button class="comment_button" type="button" onclick="commentWrite()">댓글</button>
-                    </div>
-                </div> -->
             <div class="look_comment_wrap">
                 <div class="look_comment">
                     <div class="comment_left">
@@ -179,19 +160,7 @@ contentType="text/html;charset=UTF-8" language="java" %>
           </c:if>
         </form>
         <ul class="comment-list" id="js-comment-list">
-          <!-- <li class="comment">
-                <div class="vcard bio">
-                  <img src="images/person_1.jpg" alt="Image placeholder">
-                </div>
-                <div class="comment-body">
-                  <h3>John Doe</h3>
-                  <div class="meta">October 03, 2018 at 2:21pm</div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                  <p><a href="#" class="reply">Reply</a></p>
-                </div>
-              </li> -->
-          <!-- "/static/js/look_info/look_comment.js" -->
-          <!-- "/static/js/look_info/child_comment.js" -->
+            <!-- JS 영역 -->
         </ul>
       </div>
     </div>
@@ -212,7 +181,6 @@ contentType="text/html;charset=UTF-8" language="java" %>
       href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-    <!-- <script type="text/javascript" src="/static/js/lookModify/lookModify.js"></script> -->
     <script
       type="text/javascript"
       src="/static/js/look_info/lookDelete.js"
