@@ -113,14 +113,14 @@ public class FileService implements IFileService {
         String path = utilService.completePath(paths);
         int looknum = Integer.parseInt(paths.get(paths.size() - 1));
         List<String> pictures = utilService.looknumtoallPicturename(looknum);
-        for (String i : pictures) {
+        for(String i:pictures){
             File f = new File(path, i);
             String formatName = i.substring(i.lastIndexOf(".") + 1);
             BufferedImage sourceImage = ImageIO.read(f);
-            BufferedImage resizedImage = Scalr.resize(sourceImage, 500, 700);
-            ImageIO.write(resizedImage, formatName, f);
+            BufferedImage resizedImage=Scalr.resize(sourceImage,Scalr.Method.AUTOMATIC,Scalr.Mode.FIT_TO_HEIGHT,500);
+            ImageIO.write(resizedImage,formatName,f);
         }
-        return true;
+      return true;
     }
 
 
