@@ -2,6 +2,7 @@ package jeans.ko.Dao;
 
 
 import jeans.ko.Dto.BoardDto;
+import jeans.ko.Dto.MoodDto;
 import jeans.ko.Dto.PictureDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -16,20 +17,23 @@ import java.util.Map;
 @Mapper
 public interface IBoardDao {
     //전체 게시판 리스트
-    public List<BoardDto> list();
+    public List<BoardDto> list(@Param("look_num") int look_num);
 
     //게시글 작성
     public int insert(BoardDto boardDto);
-    //  public int insert(@Param("boardDto")BoardDto boardDto, @Param("lists")List<PictureDto>lists);
 
     //각 게시글에 저장된 사진들 내역 DB에 저장
     public int insertPicturedatabase(List<PictureDto> files);
+
+    public int insertPicture(String boardnum,String uuidname);
 
     //게시글 상세보기
     public BoardDto view(@Param("look_num") int look_num);
 
     //게시글 삭제
     public int delete(@Param("look_num") int look_num);
+
+    public void deleteAllpictures(@Param("look_num")int look_num);
 
     //게시글 조회수 증가
     public void countUpdate(@Param("look_num") int look_num);
@@ -48,4 +52,7 @@ public interface IBoardDao {
 
     //userID를 받아 그 유저가 쓴 모든 글 목록을 반환하는 메소드
     public List<BoardDto> getLooksforId(String userId);
+
+    //user 닉네임을 받아 그 유저가 쓴 글 숫자를 반환하는 메소드
+    public int getBoardnum(String nickname);
 }

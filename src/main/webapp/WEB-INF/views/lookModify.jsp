@@ -8,6 +8,8 @@
     <title>글 수정</title>
     <link rel="stylesheet" href="static/css/jeans_header_.css">
     <link rel="stylesheet" href="static/css/jeans_write_body.css">
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
 </head>
 <body>
 
@@ -29,7 +31,7 @@
                 <div class="space"/>
             </div>
             <!-- /* class 이 space 인건 layout 을 위해 넣은 빈공간임*/-->
-            <div><span class="title">내 룩 등록</span></div>
+            <div><span class="title">내 룩 수정</span></div>
             <div class="space"></div>
             <%--로그인한 아이디와 작성자 아이디 비교위해 작성자 아이디 넘겨줌 --%>
             <input type="hidden"  name="fk_userid_user_userid" value="${view.fk_userid_user_userid}"/>
@@ -42,14 +44,29 @@
 
             <div class="space"></div>
 
-            <div class="upload">
-                사진첨부ㅤ
-                <input type="file" name="profile_pt" id="profile_pt" onchange="previewImage(this,'View_area')">
+            <div class="upload" id="js-uploadDiv">
             </div>
 
             <div class="space"></div>
 
-            <div id='View_area' class="img_space"></div>
+            <div class="img_space">
+                <input type="file" multiple  name="profile_pt" id="profile_pt"
+                accept=".jpg, .jpeg, .png, .svg, .gif"/>
+                <!-- <div class="look_img_container">
+                    <div class="look_img_viewport">
+                        <div class="look_flick_camera" id="View_area">
+                        </div>
+
+                        <button type="button" class="look_slide_button" id="look_slide_button_left" style="left: 0;">
+                            <img src="static/images/look_slide_icon_left.png" class="look_slide_button_icon">
+                        </button>
+                        <button type="button" class="look_slide_button" id="look_slide_button_right" style="right: 0;">
+                            <img src="static/images/look_slide_icon_right.png" class="look_slide_button_icon">
+                        </button>
+                    </div>
+
+                </div> -->
+            </div>
 
             <!--{/* 오른쪽 부분들 */} -->
             <div class="upload_right">
@@ -81,11 +98,14 @@
                     <span class="Jeans_bule">*태그</span>
                 </div>
 
-                <div>
-
-                    <textarea name="tag" class="input_tag">${view.tag}</textarea>
-
-                </div>
+              <!--성일아 이부분 바꿔줘 무드 체크버튼 있더록-->
+             <div>
+                    <textarea name="tag" class="input_tag"><%--${view.tag}--%>
+                        <c:forEach items="${mood}" var="mood">
+                            ${mood.mood}
+                        </c:forEach>
+                    </textarea>
+             </div>
 
                 <div class="space"></div>
                 <div class="space"></div>
@@ -96,8 +116,6 @@
                     <span class="Jeans_bule"  >*메모</span>
                 </div>
 
-
-
                 <div class="memo">
                     <textarea name="memo" class="input_memo">${view.memo}</textarea>
                 </div>
@@ -106,16 +124,20 @@
             <div class="space"></div>
             <div>
                 <div class="save">
-                    <%--lookWrite에 modify 넣은이유 looKWrite에서 글작성 기능도 있어 구분위해서--%>
-                    <button type="button" class="save_button" onclick="lookWrite('modify')">수정</button>
+                    <button type="button" class="save_button" onclick="modifiy()">수정</button>
                 </div>
             </div>
 
         </div>
     </form>
 </div>
-
-<script src="/static/js/lookBoardWrite.js"></script>
+<!-- FileFond CDN -->
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+<script src="https://unpkg.com/filepond-plugin-file-metadata/dist/filepond-plugin-file-metadata.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.js"></script>
+<script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
+<!-- FileFond CDN -->
 <script
         src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
@@ -123,16 +145,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="/static/js/id_nickname_session.js"></script>
-<script type="text/javascript" src="/static/js/lookModify.js"></script>
+<script type="text/javascript" src="/static/js/lookModify/lookModify.js"></script>
 <%--수정전 내가선택한 계절 이랑 공개여부 값보내기--%>
-<script>seasonLook_publicResult('${view.season}',${view.look_public})</script>
-<%--서버세션이 종료되어 자바스크립트 session 종료--%>
-<c:set var="userid" value="${sessionScope.userid}"/>
-<c:if test="${userid == null}">
-    <script>sessionRemove()</script>
-</c:if>
-<%--header 부분 초기화--%>
-<script>headerReset()</script>
+<script>seasonLook_publicResult('${view.season}',${view.look_privacy})</script>
+<script>lookReady(${view.look_num})</script>
 
 </body>
 </html>

@@ -2,28 +2,31 @@ package jeans.ko.Service;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public interface IFileService {
+    //폴더생성 : String 리스트로 받은 항목을 폴더로 만든다.
+    public void mkDir(List<String>paths);
 
-    /*
-        프로필사진용 썸네일 생성메소드
-        기본이미지를 가지고 m_이미지명, s_이미지명 두개를 만든다.
-        s_이미지명은 헤더부분에 작게 들어갈 썸네일이고 m_이미지명 은 글목록 등 좀 크게 들어할 썸네일이다.
-        첫번째 매개변수 path는 업로드 될 폴더, file 업로드할 프로필 썸네일 이미지
-    */
-    public void makeprofileThumbnail(List<String>path, MultipartFile file) throws Exception;
+    //프로필썸네일 생성 : paths리스트에 userid에 해당되는 프로필 사진을 이용하여 그 프로필사진을 축소하여 썸네일로 만든다
+    public boolean mkProfilethumbnail(List<String>paths,String userid) throws Exception;
 
-    // 폴더생성 : 매개변수 path 리스트로 받은 경로에 폴더를 생성한다.
-    public String mkDir(List<String> path);
+    //글에서 쓰일 썸네일 생성
+    public boolean mkBoardthumbnail(List<String>paths)throws Exception;
 
-    // 파일업로드 : 첫번째 매개변수 path리스트 경로에 두번째 매개변수 files리스트를 업로드한다.
-    public boolean uploadFiles(List<String> path, List<MultipartFile> files) throws Exception;
+    //파일 업로드 : paths리스트 경로에 files리스트들을 업로드한다
+    public boolean uploadFiles(List<String>paths,List<MultipartFile>files)throws Exception;
 
-    // 폴더삭제 : 매개변수 path리스트에 폴더를 삭제한다.
-    public boolean rmDir(List<String> path);
+    //이전에 객체지향화를 하면서 파일업로드 메소드를 uploadFiles로 통일 시켰는데, 글 같은 경우에는 모든 업로드에 대해 랜덤한 이름 값을 줘야되서 수정함.
+    public void uploadFile(List<String>paths,MultipartFile file)throws Exception;
 
-    // 파일삭제 : 첫번째매개변수 path 리스트는 경로, 두번째매개변수리스트는 삭제할 파일들이다.
-     public void deleteFiles(List<String> path, List<String> files);
+    //파일삭제 paths리스트에 있는 pictures리스트들을 삭제한다.
+    public void rmFiles(List<String>paths,List<String>pictures);
+
+    //폴더 삭제 : 경로의 폴더를 삭제한다.
+    public boolean rmDir(List<String>pahts);
+
+
 
 }

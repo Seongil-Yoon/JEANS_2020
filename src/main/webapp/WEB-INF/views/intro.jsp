@@ -9,7 +9,6 @@ contentType="text/html;charset=UTF-8" language="java" %>
     <title>인트로</title>
     <link rel="stylesheet" href="static/css/fullpage.min.css" />
     <link rel="stylesheet" href="static/css/intro.css" />
-    <link rel="stylesheet" href="static/css/slideShow.css" />
   </head>
   <body>
     <div class="header">
@@ -54,21 +53,9 @@ contentType="text/html;charset=UTF-8" language="java" %>
         <h1>박찬영 , 최찬호</h1>
       </div>
 
-      <div
-        class="section s3"
-        style="
-          background-size: cover;
-          background-image: url('static/images/JeansModel.jpg');
-        "
-      >
-        <h2 style="margin-right: 50%;">J e a n s</h2>
-        <h3 style="margin-right: 40%;">Share your style</h3>
-        <div style="padding: 150px;"></div>
-      </div>
-    </div>
 
-    <script src="/static/js/fullpage.min.js"></script>
-    <script src="/static/js/intro.js"></script>
+    <script src="/static/js/intro/fullpage.min.js"></script>
+    <script src="/static/js/intro/intro.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.min.js"
       integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="

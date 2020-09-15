@@ -16,6 +16,8 @@ public class UtilService implements IUtilService {
     @Autowired
     IBoardDao iBoardDao;
 
+    private Logger logger = LoggerFactory.getLogger(UtilService.class);
+
     @Value("${directory}")
     String directory;
 
@@ -35,16 +37,14 @@ public class UtilService implements IUtilService {
     @Value("${route}")
     String route;
 
-    private Logger logger = LoggerFactory.getLogger(UtilService.class);
-
-    /*looknum을 받아서 looknum폴더까지의 패스를 List형식으로 반환하다.
-    이때 list에 년,월,룩번호가 담겨서 보내진다.*/
+    //looknum을 받아서 looknum폴더까지의 패스를 List형식으로 반환하다.
+    //이때 list에 년,월,룩번호가 담겨서 보내진다.
     @Override
     public List<String> looknumtoPath(int looknum) {
-        logger.info("looknumtoPath 메소드");
+        logger.info("looknumtoPath 메소드 : 월까지 패스 반환");
         List<String> path = new ArrayList<String>();
-        //Look테이블에 날짜에관한게 0000년 00월 00일 이런 식으로 저장되있어서 이런 식으로 뽑아 낼수밖에 없었다.
         path.add(directory);
+        //Look테이블에 날짜에관한게 0000년 00월 00일 이런 식으로 저장되있어서 이런 식으로 뽑아 낼수밖에 없었다.
         String date = iBoardDao.getLook_date(looknum);
         String year = date.substring(0, 4);
         path.add(year);//년
@@ -62,27 +62,23 @@ public class UtilService implements IUtilService {
         return e;
     }
 
-
-    /*
-        path리스트는 구분자를 제외한 프로필사진 폴더까지의 경로모음 리스트다.
-        첫번째로 기본경로까지, 두번째로 해당사용자의 아이디 마지막으로 profile폴더.
-     */
+    //유저의 id를 매개변수로 받은 뒤  나머지 값들과 함께 list에 합쳐 유저의 썸네일 이미지가 저장된 폴더까지의 경로를 반환한다
     @Override
-    public ArrayList<String> getProfilepath(String userid) {
-        ArrayList<String> path = new ArrayList<String>();
-        path.add(directory);
-        path.add(userid);
-        path.add(profile);
-        return path;
+    public List<String> usertoPath(String userid) {
+        List<String>paths=new ArrayList<String>();
+        paths.add(directory);
+        paths.add(userid);
+        paths.add(profile);
+        return paths;
     }
 
+    //String 리스트를 받아 다 합쳐서 하나의 path로 반환한다.
     @Override
-    public String plusPath(List<String> paths) {
-        logger.info("plusPath메소드");
-        String completedPath="";
+    public String completePath(List<String> paths) {
+        String path="";
         for(String i:paths){
-            completedPath+=i+route;
+            path+=i+route;
         }
-        return completedPath;
+        return path;
     }
 }

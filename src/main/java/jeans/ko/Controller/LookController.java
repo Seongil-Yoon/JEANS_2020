@@ -1,14 +1,21 @@
 package jeans.ko.Controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.geometry.HorizontalDirection;
 import jeans.ko.Dao.IBoardDao;
+import jeans.ko.Dao.IMoodDao;
+import jeans.ko.Dao.IPreferenceDao;
 import jeans.ko.Dto.BoardDto;
+import jeans.ko.Dto.MoodDto;
 import jeans.ko.Service.CommentService;
 import jeans.ko.Service.IBoardService;
+import jeans.ko.Service.IPretreatmentService;
 import jeans.ko.Service.IUtilService;
 import jeans.ko.exception.NotFoundException;
 import jeans.ko.exception.UnauthorizedException;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.filefilter.AndFileFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class LookController {
@@ -41,9 +45,15 @@ public class LookController {
     @Autowired
     IBoardService boardService;
     @Autowired
+    IPretreatmentService pretreatmentService;
+    @Autowired
     IBoardDao boardDao;
     @Autowired
+    IMoodDao moodDao;
+    @Autowired
     IUtilService utilService;
+    @Autowired
+    IPreferenceDao preferenceDao;
 
     @Value("${directory}")
     private String uploadPath;
@@ -58,30 +68,37 @@ public class LookController {
         return "look_write";
     }
 
-    //게시판 상세보기 model and view 웹용
+    //게시판 상세보기 model and view : 웹용
     @RequestMapping("/look")
     public String view(@RequestParam("look_num") int look_num, Model model) {
         logger.info("view()진입");
         boardDao.countUpdate(look_num); //글상세보기 하면 조회수 증가
         model.addAttribute("view", boardDao.view(look_num)); //게시글정보가져오기
-        model.addAttribute("comment", commentService.list(look_num)); //게시글에 댓글정보가져오기
+        model.addAttribute("mood", moodDao.getMooddto(look_num));//글의 무드 타입
         return "look_info";
     }
 
-    //게시판 수정 페이지 이동
+    //게시판 수정 페이지 이동 model and view : 웹용
     @RequestMapping("/lookModify")
     public String lookModify(@RequestParam("look_num") int look_num, Model model) {
         logger.info("lookModify()진입");
         BoardDto boardDto = boardDao.view(look_num);
         model.addAttribute("view", boardDto); //게시글정보 가져오기
+        model.addAttribute("mood", moodDao.getMooddto(look_num));//글의 무드 타입
         return "lookModify";
     }
 
     @ResponseBody
-    @GetMapping("/looks")  //룩 전체 리스트
-    public List<BoardDto> searchAllLook() {
+    @GetMapping("/looksList/{look_num}")  //룩 전체 리스트
+    public List<BoardDto> searchAllLook(@PathVariable int look_num) {
         logger.info("searchAllLook()진입");
-        return boardDao.list();
+
+        if (boardDao.list(look_num) == null) {
+            //게시글 이 없으면 not found 404 에러
+            throw new NotFoundException(String.format("board not found"));
+        } else {
+            return boardDao.list(look_num);
+        }
     }
 
     @ResponseBody
@@ -91,12 +108,14 @@ public class LookController {
         HashMap<String, Object> map = new HashMap<String, Object>();
         //게시글 가져오기
         BoardDto boardDto = boardDao.view(id);
+        //찬영이랑 테스트. 무드DTO 리스트들을 넘긴다.
+        List<MoodDto> moodDtoList = moodDao.getMooddto(id);
         if (boardDto == null) {
             //게시글이 없으면 not found 에러 return
             throw new NotFoundException(String.format("ID[%s] not found", id));
         }
         map.put("look", boardDto); //게시글 가져오기
-        map.put("lookCommentList", commentService.list(id)); //댓글정보 가져오기
+        map.put("moodlist", moodDtoList);//해쉬맵에 무드DTO리스트 추가
         boardDao.countUpdate(id); //글상세보기 하면 조회수 증가
 
         return map;
@@ -105,8 +124,7 @@ public class LookController {
     //삭제
     @ResponseBody
     @DeleteMapping("/looks/{id}")
-    public void deleteLook(@PathVariable int id) {
-
+    public void deleteLook(@PathVariable int id) throws Exception {
         logger.info("deleteLook()진입");
 
         //게시글이 먼저 있는지 확인
@@ -126,31 +144,38 @@ public class LookController {
         }
     }
 
-
     //룩게시판 작성
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/looks")
-    public BoardDto boardWrite(@RequestPart("BoardDto") String boarddto, @RequestPart("files") List<MultipartFile> files) throws Exception {
-        logger.info("boardWrite()메소드");
-        BoardDto boardDto = new ObjectMapper().readValue(boarddto, BoardDto.class);
+    public BoardDto boardWrite(@RequestPart("BoardDto") BoardDto boardDto, @RequestPart(value = "MoodDto", required = false) List<MoodDto> moodDtos, @RequestPart("files") List<MultipartFile> files) throws Exception {
+        logger.info("boardWrite()진입");
+        System.out.println("테스트를 위해 남겨둔 moodDtos = " + moodDtos);
         if (session.getAttribute("userid") == null) {
             //서버로 바로접근하는 경우 아이디값 없으면 클라이언트 권한없음 오류보냄
             throw new UnauthorizedException(String.format("unauthorized you"));
         }
         //게시글등록
-        boardService.insert(boardDto, files);
+        boardService.insert(boardDto, moodDtos, files);
+
+        int looknum = boardDto.getLook_num();
+        String userid = (String) session.getAttribute("userid");
+
+        preferenceDao.insertPrefer(looknum, userid);
+        pretreatmentService.countUp(looknum, userid);
 
         //selectKey로 등록된 게시글 가져온 기본키로 등록된 게시글 정보보내줌 새롭게 추가되 댓글이없으므로 게시글만넘김
         return boardDao.view(boardDto.getLook_num());
     }
-    //룩게시판 수정
 
+    //룩게시판 수정
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     @PutMapping("/looks")
-    public BoardDto boardModify(BoardDto modifyBoardDto) {
+    public BoardDto boardModify(@RequestPart("BoardDto") BoardDto modifyBoardDto, @RequestPart(value = "MoodDto", required = false) List<MoodDto> moodDtos, @RequestPart("files") List<MultipartFile> files) throws Exception {
         logger.info("boardModify()진입");
+        System.out.println("modifyBoardDto = " + modifyBoardDto);
+        System.out.println("moodDtos = " + moodDtos);
         //넘어온 값에 기본키id 값으로 게시글작성자 id 와 기본키넘버값 가져오기
         String lookId = boardDao.view(modifyBoardDto.getLook_num()).getFk_userid_user_userid();
         int lookNum = boardDao.view(modifyBoardDto.getLook_num()).getLook_num();
@@ -160,12 +185,27 @@ public class LookController {
         }
         if (session.getAttribute("userid").equals(lookId)) {
             //로그인한 아이디와 수정할려는 게시글 작성자 아이디 비교하여 같으면 게시글수정
-            boardService.update(modifyBoardDto);
+            boardService.update(modifyBoardDto, moodDtos, files);
             //수정된 게시글 정보 넘겨주기
             return boardDao.view(lookNum);
         } else {
             //게시글 작성자 아디이와 로그인한 아이디가 다르면 권한없음 오류 보냄
             throw new UnauthorizedException(String.format("unauthorized you"));
+        }
+    }
+
+    @ResponseBody
+    @PostMapping("/likey/looknum/{num}/user/{id}")
+    public ResponseEntity<String> likey(@PathVariable("num") String number, @PathVariable("id") String id) {
+        System.out.println("likey메소드");
+        int num = Integer.parseInt(number);
+
+        if (preferenceDao.getUser(num, id) != 0) {
+            return new ResponseEntity("이미 좋아요 처리를 하셨습니다",HttpStatus.OK);
+        } else {
+            preferenceDao.insertPrefer(num, id);
+            pretreatmentService.countUp(num, id);
+            return new ResponseEntity("좋아요!", HttpStatus.OK);
         }
     }
 
@@ -182,7 +222,7 @@ public class LookController {
 
         HttpHeaders headers = new HttpHeaders();
         try {
-            in = new FileInputStream(datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route +datepath.get(3)+route+ picture);
+            in = new FileInputStream(datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route + datepath.get(3) + route + picture);
             entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
         } catch (Exception e) {
             entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
@@ -203,23 +243,24 @@ public class LookController {
         List<String> allpicture = boardDao.getallPicturename(look_num);
         HttpHeaders headers = new HttpHeaders();
         InputStream inp = null;
+
         try {
             for (int i = 0; i < allpicture.size(); i++) {
-                inp = new FileInputStream(datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route +datepath.get(3) +route+allpicture.get(i));
+                inp = new FileInputStream(datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route + datepath.get(3) + route + allpicture.get(i));
                 logger.info(allpicture.get(i));
                 System.out.println("inp = " + inp);
                 in.add(IOUtils.toByteArray(inp));
             }
             entity = new ResponseEntity<ArrayList<byte[]>>(in, headers, HttpStatus.OK);
+            //물린거 풀어줘야 되는게 있나??
         } catch (Exception e) {
             entity = new ResponseEntity<ArrayList<byte[]>>(HttpStatus.BAD_REQUEST);
         } finally {
             inp.close();
+            //글 상세보기 내에서 Ajax를 통해 사진을 요청하는 데 System.gc()가 없으면 파일이 정상적으로 삭제가 안된다.
+            System.gc();
         }
         return entity;
     }
 
 }
-
-
-

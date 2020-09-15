@@ -14,20 +14,25 @@ public class CommentService implements ICommentService {
     @Autowired
     ICommentDao commentDao;
 
-    @Override
-    public int insert(CommentDto commentDto) {
+    @Autowired
+    ICommentService commentService;
 
-       return commentDao.insert(commentDto);
+
+    @Override
+    public CommentDto insert(CommentDto commentDto) {
+
+       commentDao.insert(commentDto);
+
+       //selectKey 해서 새로 등록한 댓글 기본키 값으로 새로등록된 댓글 가져오기
+        return commentDao.comment(commentDto.getComment_id());
     }
 
     @Override
-    public CommentDto comment(int comment_id) {
-        return commentDao.comment(comment_id);
-    }
+    public List<CommentDto> list(int fk_look_num_Look_look_num,int comment_id) {
+        //comment_id가 0이면 처음 게시글 들어간 초기값이여서 자바 최대값으로 최신 댓글 10개 가져옴
+        if(comment_id==0){ comment_id=Integer.MAX_VALUE; }
 
-    @Override
-    public List<CommentDto> list(int look_num) {
-        return commentDao.list(look_num);
+        return commentDao.list(fk_look_num_Look_look_num,comment_id);
     }
 
     @Override
@@ -38,6 +43,11 @@ public class CommentService implements ICommentService {
     @Override
     public int update(int comment_id, String comment_content) {
         return commentDao.update(comment_id,comment_content);
+    }
+
+    @Override
+    public List<CommentDto> childList(int comment_id) {
+        return commentDao.childList(comment_id);
     }
 
 }

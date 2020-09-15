@@ -11,5 +11,4 @@ public class PictureDto {
     private BigInteger pictureId;
     private int lookNum;
     private String pictureName;
-    private long pictureSize;
 }

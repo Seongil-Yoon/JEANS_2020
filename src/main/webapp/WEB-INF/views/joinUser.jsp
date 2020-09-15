@@ -7,8 +7,8 @@
 <head>
     <meta charset="UTF-8"/>
     <title>회원가입</title>
-    <link rel="stylesheet" href="static/css/joinUser.css"/>
-    <link rel="stylesheet" href="static/css/jeans_header_.css"/>
+    <link rel="stylesheet" href="/static/css/joinUser.css"/>
+    <link rel="stylesheet" href="/static/css/jeans_header_.css"/>
 </head>
 <body>
 
@@ -59,11 +59,11 @@
                     <div class="container_inner_Form join_privacy">
                             <h4 class="join_title" style="margin-top: 0;">프로필 공개여부</h4>
                             <label class="selector" style="float: left;">
-                                <input type="radio" name="privacy"  value="bodyOpen"/>
+                                <input type="radio" name="privacy"  value="1"/>
                                 <span class="selector_span">공개</span>
                             </label>
                             <label class="selector" style="float: right;">
-                                <input type="radio" name="privacy" value="bodyClose"/>
+                                <input type="radio" name="privacy" value="0"/>
                                 <span class="selector_span">비공개</span>
                             </label>
                     </div>
@@ -106,15 +106,7 @@
         crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script src="/static/js/joinUser.js"/>
-<script src="/static/js/id_nickname_session.js"></script>
-<%--서버세션이 종료되어 자바스크립트 session 종료--%>
-<c:set var="userid" value="${sessionScope.userid}"/>
-<c:if test="${userid == null}">
-    <script>sessionRemove()</script>
-</c:if>
-<%--header 부분 초기화--%>
-<script>headerReset()</script>
-<script src="static/js/ex1.js"></script>
+<script src="/static/js/joinUser/joinUser.js"></script>
+<script src="/static/js/joinUser/ex1.js"></script>
 </body>
 </html>

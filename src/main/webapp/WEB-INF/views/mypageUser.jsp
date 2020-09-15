@@ -1,15 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
     <title>프로필</title>
-    <link rel="stylesheet" href="static/css/mypageUser_top.css">
-    <link rel="stylesheet" href="static/css/mypageUser_bottom.css">
-    <link rel="stylesheet" href="static/css/slideShow.css" />
+    <link rel="stylesheet" href="/static/css/mypageUser_top.css">
+    <link rel="stylesheet" href="/static/css/mypageUser_bottom.css">
+    <link rel="stylesheet" href="/static/css/slideShow.css" />
 </head>
 <body>
 <!--/*여기는 맨 위에 있는 바 부분*/ -->
@@ -23,13 +22,16 @@
             <div class ="my_page_body_top">
 
                 <div class = "my_img">
-                    <img src="static/images/mypicture.png" alt="big_my_picture" height="110" width="140" />
+                    <img src="/static/images/mypicture.png" alt="big_my_picture" height="110" width="140" />
                 </div>
 
                 <div class = "modify_top">
-                    <img src="static/images/pen.png" alt="pen" height="30" width="30" />
-                    <a href="changeUser">
-                        <img src="static/images/gear.png" alt="gear" height="30" width="30" />
+                    <img src="/static/images/pen.png" alt="pen" height="30" width="30" />
+                    <a href="/changeUser">
+                        <img src="/static/images/gear.png" alt="gear" height="30" width="30" />
+                    </a>
+                    <a href="/deleteUser">
+                        <img src="/static/images/delete.png" alt="gear" height="30" width="30" />
                     </a>
                 </div>
 
@@ -38,7 +40,7 @@
                 <div class="modify_bottom"></div>
 
                 <div class = "my_information">
-                    <span class="user_nickname"></span><span>   </span>
+                    <span class="user_nickname">${view}</span><span>   </span>
                     <span>${sessionScope.userheight} ${sessionScope.userweight}</span><span>   </span>
                     <span>${sessionScope.usersex}</span>
                 </div>
@@ -118,19 +120,19 @@
                 <div class="content">
                     <div class="content-1">
                         <div>
-                            <img src="static/images/1.jpg" alt="" height="350" width="300"><br>
+                            <img src="/static/images/1.jpg" alt="" height="350" width="300"><br>
                             후드티
                         </div>
                         <div>
-                            <img src="static/images/1.jpg" alt="" height="350" width="300"><br>
+                            <img src="/static/images/1.jpg" alt="" height="350" width="300"><br>
                             후드티
                         </div>
                         <div>
-                            <img src="static/images/1.jpg" alt="" height="350" width="300"><br>
+                            <img src="/static/images/1.jpg" alt="" height="350" width="300"><br>
                             후드티
                         </div>
                         <div>
-                            <img src="static/images/1.jpg" alt="" height="350" width="300"><br>
+                            <img src="/static/images/1.jpg" alt="" height="350" width="300"><br>
                             후드티
                         </div>
                     </div>
@@ -142,19 +144,19 @@
 
                         <div class="closet1" id="closet1">
                             <div>
-                                <img src="static/images/1.jpg" alt="" height="350" width="300"><br>
+                                <img src="/static/images/1.jpg" alt="" height="350" width="300"><br>
                                 후드티
                             </div>
                             <div>
-                                <img src="static/images/1.jpg" alt="" height="350" width="300"><br>
+                                <img src="/static/images/1.jpg" alt="" height="350" width="300"><br>
                                 후드티
                             </div>
                             <div>
-                                <img src="static/images/1.jpg" alt="" height="350" width="300"><br>
+                                <img src="/static/images/1.jpg" alt="" height="350" width="300"><br>
                                 후드티
                             </div>
                             <div>
-                                <img src="static/images/1.jpg" alt="" height="350" width="300"><br>
+                                <img src="/static/images/1.jpg" alt="" height="350" width="300"><br>
                                 후드티
                             </div>
                         </div>
@@ -166,19 +168,19 @@
 
                         <div class="closet2" id="closet2">
                             <div>
-                                <img src="static/images/1.jpg" alt="" height="350" width="300"><br>
+                                <img src="/static/images/1.jpg" alt="" height="350" width="300"><br>
                                 후드티
                             </div>
                             <div>
-                                <img src="static/images/1.jpg" alt="" height="350" width="300"><br>
+                                <img src="/static/images/1.jpg" alt="" height="350" width="300"><br>
                                 후드티
                             </div>
                             <div>
-                                <img src="static/images/1.jpg" alt="" height="350" width="300"><br>
+                                <img src="/static/images/1.jpg" alt="" height="350" width="300"><br>
                                 후드티
                             </div>
                             <div>
-                                <img src="static/images/1.jpg" alt="" height="350" width="300"><br>
+                                <img src="/static/images/1.jpg" alt="" height="350" width="300"><br>
                                 후드티
                             </div>
                         </div>
@@ -189,19 +191,19 @@
 
                         <div class="closet3" id="closet3">
                             <div>
-                                <img src="static/images/1.jpg" alt="" height="350" width="300"><br>
+                                <img src="/static/images/1.jpg" alt="" height="350" width="300"><br>
                                 후드티
                             </div>
                             <div>
-                                <img src="static/images/1.jpg" alt="" height="350" width="300"><br>
+                                <img src="/static/images/1.jpg" alt="" height="350" width="300"><br>
                                 후드티
                             </div>
                             <div>
-                                <img src="static/images/1.jpg" alt="" height="350" width="300"><br>
+                                <img src="/static/images/1.jpg" alt="" height="350" width="300"><br>
                                 후드티
                             </div>
                             <div>
-                                <img src="static/images/1.jpg" alt="" height="350" width="300"><br>
+                                <img src="/static/images/1.jpg" alt="" height="350" width="300"><br>
                                 후드티
                             </div>
                         </div>
@@ -212,9 +214,9 @@
         </div>
         </div>
     </div>
-    
 
-    <script src ="static/js/mypageUser.js"></script>
+
+    <script src ="/static/js/mypageUser/mypageUser.js"></script>
     <script
             src="https://code.jquery.com/jquery-3.5.1.min.js"
             integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
@@ -222,14 +224,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <script src="/static/js/backCashDelete.js"></script>
-    <script src="/static/js/id_nickname_session.js"></script>
-    <%--서버세션이 종료되어 자바스크립트 session 종료--%>
-    <c:set var="userid" value="${sessionScope.userid}"/>
-    <c:if test="${userid == null}">
-    <script>sessionRemove()</script>
-    </c:if>
-    <%--header 부분 초기화--%>
-    <script>headerReset()</script>
+    <script>catchNick('${nick}')</script>
+
 
 </body>
 </html>

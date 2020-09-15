@@ -27,12 +27,21 @@ public interface IUserDao {
     //유저 아이디로 프로필사진유무확인
     public String getPicture(String userid);
 
+    //해당 유저의 사진이름을 교체
+    public void setPicture(String userid,String picture);
+
     //아이디와 비밀번호를 입력하면 userDto 다 반환
     public UserDto getInformation(UserDto userDto);
 
-    //아이디와 비밀번호를 받아서 해당 아이디의 비밀번호를 교체
-    public void changePassword(@Param("id")String id,@Param("ps")String ps);
+    //닉네임을 입력하면 그 유저의 모든 정보 반환
+    public UserDto getUserinformation(String nickname);
 
-    //아이디와 픽쳐를 받아서 해당 아이디의 픽쳐명을 교체
-    public void changeprofileThumbnail(@Param("id")String id,@Param("picture")String picture);
+    //아이디와 비밀번호를 입력하면 해당아이디의 비밀번호를 변경
+    public void setPassword(String userid,String password);
+
+    //해당 유저의 정보를 변경
+    public void setChangeuser(UserDto userDto);
+
+    //해당 유저를 삭제시킵니다.
+    void deleteUser(String userid);
 }
