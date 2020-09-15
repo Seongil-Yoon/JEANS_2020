@@ -75,11 +75,11 @@
                     <div class="changeOther_1_1_3">프로필 열람설정</div>
                     <div class="changeOther_1_1_4">성별</div>
                     <div class="changeOther_1_1_5">
-                        <input type="radio" value="bodyOpen"/>
+                        <input type="radio" name="privacy" value="bodyOpen"/>
                     </div>
                     <div class="changeOther_1_1_6">공개</div>
                     <div class="changeOther_1_1_7">
-                        <input type="radio"  value="bodyClose"/>
+                        <input type="radio" name="privacy" value="bodyClose"/>
                     </div>
                     <div class="changeOther_1_1_8">비공개</div>
                     <!-- -->
@@ -110,7 +110,7 @@
             </form>
         </div>
         <div class="changePict">
-            <form class="changePict_1" action="/loginRequest" method="post">
+            <form class="changePict_1" method="post">
                 <div class="changePict_1_1"> <!-- changeEmail의 손자 태그-->
                     <div class="changePict_1_1_1">프로필 사진 수정</div>
                     <div class="changePict_1_1_2" id="View_area"></div>
@@ -119,9 +119,8 @@
                         <input type="file" name="profile_pt" id="profile_pt" onchange="previewImage(this,'View_area')">
                     </div>
                     <div class="changePict_1_1_4">
-                        <button class="register_save" type="submit" onclick="y" value="확인">확인</button>
+                        <button class="register_save" type="submit" onclick="changeprofileThumbnail()" value="확인">확인</button>
                     </div>
-
                 </div>
             </form>
         </div>

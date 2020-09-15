@@ -132,15 +132,15 @@ public class LookController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/looks")
     public BoardDto boardWrite(@RequestPart("BoardDto") String boarddto, @RequestPart("files") List<MultipartFile> files) throws Exception {
-        logger.info("boardWrite()진입");
+        logger.info("boardWrite()메소드");
         BoardDto boardDto = new ObjectMapper().readValue(boarddto, BoardDto.class);
         if (session.getAttribute("userid") == null) {
             //서버로 바로접근하는 경우 아이디값 없으면 클라이언트 권한없음 오류보냄
             throw new UnauthorizedException(String.format("unauthorized you"));
         }
         //게시글등록
-        System.out.println(" looks에서 세션 = " +session.getId());
         boardService.insert(boardDto, files);
+
         //selectKey로 등록된 게시글 가져온 기본키로 등록된 게시글 정보보내줌 새롭게 추가되 댓글이없으므로 게시글만넘김
         return boardDao.view(boardDto.getLook_num());
     }
@@ -182,7 +182,7 @@ public class LookController {
 
         HttpHeaders headers = new HttpHeaders();
         try {
-            in = new FileInputStream(uploadPath + route + datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route + picture);
+            in = new FileInputStream(datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route +datepath.get(3)+route+ picture);
             entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
         } catch (Exception e) {
             entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
@@ -205,7 +205,7 @@ public class LookController {
         InputStream inp = null;
         try {
             for (int i = 0; i < allpicture.size(); i++) {
-                inp = new FileInputStream(uploadPath + route + datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route + allpicture.get(i));
+                inp = new FileInputStream(datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route +datepath.get(3) +route+allpicture.get(i));
                 logger.info(allpicture.get(i));
                 System.out.println("inp = " + inp);
                 in.add(IOUtils.toByteArray(inp));

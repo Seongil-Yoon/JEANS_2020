@@ -1,6 +1,7 @@
 package jeans.ko.Service;
 
 import jeans.ko.Controller.UserController;
+import jeans.ko.Dao.IUserDao;
 import org.imgscalr.Scalr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,152 +44,92 @@ public class FileService implements IFileService {
     @Value("${route}")
     String route;
 
-    @Override
-    public void uploadProfile(String uploadPath, String id, String originalName, byte[] fileData) throws Exception {
-        logger.info("uploadProfile메소드");
-        //uploadPath : application.properties에 지정된 기본 이미지 저장경로
-        //id : 유저의 id 각각유저의 폴더
-        //originalName : 이미지파일 원본 명
-        //fileData : 파일 byte
-        //makeDir은 폴더명들을 매개변수로 받아 폴더를 만든다.
-        //여기서 makeDir에 매개변수로, uploadPath,id,profile을 준다.
-        //그러면 makeDir은 uploadPath파일 밑에 받은 id로 폴더를 만들고 또 profile이라는 폴더를 만든다.
-        String profilePath = makeDir(uploadPath, id, profile);
-        //makeDir은 그후 /uploadPath/유저의id/profile이라는 path를 반환한다.
+    @Autowired
+    IUserDao userDao;
 
-        File target = new File(profilePath, originalName);
-        FileCopyUtils.copy(fileData, target);
-    }
-
-    //makeDir은 uploadPath를 받고 ...을 통해 여러 path들을 받는다.
-    //makeDir은 받은 path를 가지고 폴더를 만든다.
-    @Override
-    public String makeDir(String uploadPath, String... paths) {
-        logger.info("makeDir메소드");
-        //폴더가 이미 만들어져있을때가 작동을 안한다... 찜찜하긴 하지만 일단 넘어가자
- /*       if (new File(paths[paths.length - 1]).exists()) {
-            logger.info("사진이 업로드 될 폴더가 이미 만들어져있습니다.");
-            for (String path : paths) {
-                uploadPath += "\\" + path;
-            }
-            logger.info("사진이 업로드될 위치 : " + uploadPath);
-            return uploadPath;
-        }*/
-
-        for (String path : paths) {
-            //uploadPath 뒤로 매개변수로 입력받은 path들을 다 붙여준다.
-            File dirPath = new File(uploadPath += route + path);
-            if (!dirPath.exists()) {
-                //만약 폴더가 존재하지 않는다면 경로에 해당되는 폴더를 만든다.
-                dirPath.mkdir();
-            }
-        }
-        logger.info("폴더를 새로 만들었습니다 : " + uploadPath);
-        return uploadPath;
-    }
+    @Autowired
+    IUtilService utilService;
 
     //썸네일을 만드는 메소드
-    //입력된 매개변수로 유저가 올린 이미지 파일을 찾는다.
     @Override
-    public void makeprofileThumbnail(String filename, String uploadPath, String... paths) throws Exception {
+    public void makeprofileThumbnail(List<String> path, MultipartFile file) throws Exception {
         logger.info("makeprofileThumbnail메소드");
+
         //유저가 입력한 path를 통해 해당유저의 profile폴더까지 찾아간다.
-        for (String path : paths) {
-            uploadPath += route + path;
-        }
+        String completedPath =utilService.plusPath(path) ;
+        String filename = file.getOriginalFilename();
 
-        //이미지를 읽기 위한 버퍼
-        logger.info("썸네일 이미지 읽어들이는 중");
-        //위에서 찾은 해당유저의 profile경로와 filename 즉 이미지 파일명을 통해
-        File f = new File(uploadPath, filename);
+        File t = new File(completedPath + route + filename);
+        BufferedImage sourceImg = ImageIO.read(t);
 
-        BufferedImage sourceImg = ImageIO.read(f);
         BufferedImage smallImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 40);
-
         BufferedImage middleImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_WIDTH, 50);
 
-
         String formatName = filename.substring(filename.lastIndexOf(".") + 1);
-        File smallThumbnail = new File(uploadPath + route + smallHeader + filename);
-        File middleThumbnail = new File(uploadPath + route + middleHeader + filename);
+        File smallThumbnail = new File(completedPath + route + smallHeader + filename);
+        File middleThumbnail = new File(completedPath + route + middleHeader + filename);
         ImageIO.write(smallImg, formatName.toUpperCase(), smallThumbnail);
         ImageIO.write(middleImg, formatName.toUpperCase(), middleThumbnail);
         return;
     }
 
-    //이미지 폴더의 기본 경로를 생성한다. ${directory}/년/월 파일을 만든다.
+    //폴더생성 : 매개변수 path 리스트로 받은 경로에 폴더를 생성한다.
     @Override
-    public String makepictureDir(List<String> lists) {
-        logger.info("makepictureDir 메소드 : ${directory}/년/월파일을 만든다.");
-        String tempPath = directory;
+    public String mkDir(List<String> path) {
+        logger.info("mkDir메소드");
 
-        //배열 안에 있는 년/월을 뽑아내서 폴더 존재 여부 확인 후 폴더 생성
-        for (int i = 0; i < lists.size(); i++) {
-            File dirPath = new File(tempPath += route + lists.get(i));
-            if (!dirPath.exists()) {
+        String completedPath="";
+       //폴더를 만들어줘야하기때문에 utilservice에 있는 pathplus메소드는 사용하지 않는다
+        for(String i:path){
+            completedPath+=i+route;
+            File dirPath=new File(completedPath);
+            if(!dirPath.exists()){
                 dirPath.mkdir();
+                logger.info(completedPath+"폴더가 만들어졌습니다.");
             }
         }
-        //${directory}년/월 까지 기본경로로 반환한다.
-        return tempPath;
+        return completedPath;
     }
 
-    //이미지 파일들을 업로드한다.
+    // 파일업로드 : 첫번째 매개변수 path리스트 경로에 두번째 매개변수 files리스트의 파일들을 업로드한다.
     @Override
-    public void uploadPictures(List<MultipartFile> files, String path) throws Exception {
-      logger.info("uploadPictures메소드");
-        //경로에 보드의 pk 값을 더해줘야해서 String으로 변환.
-        File dirPath = new File(path);
-        if (!dirPath.exists()) {
-            dirPath.mkdir();
-        }
+    public boolean uploadFiles(List<String> path, List<MultipartFile> files) throws Exception {
+        logger.info("uploadFiles메소드");
+        String completedPath = utilService.plusPath(path);
 
-        //파일을 업로드한다.
-        for (int i = 0; i < files.size(); i++) {
-            File target = new File(path, files.get(i).getOriginalFilename());
-            FileCopyUtils.copy(files.get(i).getBytes(), target);
+        for (MultipartFile i : files) {
+            byte[] fileData = i.getBytes();
+            String name = i.getOriginalFilename();
+            File target = new File(completedPath, name);
+            FileCopyUtils.copy(fileData, target);
         }
+        return true;
     }
 
+    //폴더삭제 : 매개변수 path리스트에 폴더를 삭제한다.
     @Override
-    public void deleteallFiles(List<String> path, List<String> files) {
-        logger.info("deleteallFiles메소드");
-        String parentPath = directory;
+    public boolean rmDir(List<String> path) {
+        logger.info("rmDir 메소드");
 
-        //1. 보드넘까지 받아서 보드넘경로까지 들어간다
-        //2. 테이블에서 보드넘을 검색한 리스트를 받아온다. boardDao로 해서 부모를 looknum으로 하는 애들의
-        //이름을 다 뽑아온다.
-
-        //parentPath에 path리스트로부터 받은 path들을 다 더함으로 look번호 까지 온전한 path를 설정
-        for (String i : path) {
-           parentPath += route+ i;
-        }
-
-        //파일 내 모든 사진 파일 삭제
-        for (String i : files) {
-            new File(parentPath + route + i).delete();
-
-        }
-        //룩번호 폴더 삭제
-        new File(parentPath).delete();
+        String completedPath=utilService.plusPath(path);
+        new File(completedPath).delete();
+        return true;
     }
 
+    //파일 삭제
     @Override
     public void deleteFiles(List<String> path, List<String> files) {
-        logger.info("deleteFiles메소드");
-        String parentPath = directory;
-        //1. 보드넘까지 받아서 보드넘경로까지 들어간다
-        //2. 테이블에서 보드넘을 검색한 리스트를 받아온다. boardDao로 해서 부모를 looknum으로 하는 애들의
-        //이름을 다 뽑아온다.
+        logger.info("deleteallFiles메소드");
+        String completedPath=utilService.plusPath(path);
 
-        //parentPath에 path리스트로부터 받은 path들을 다 더함으로 look번호 까지 온전한 path를 설정
-        for (String i : path) {
-            parentPath += route + i;
-        }
-
-        //파일 내 모든 사진 파일 삭제
         for (String i : files) {
-            new File(parentPath + route + i).delete();
+            File f = new File(completedPath + route + i);
+            if (!f.exists()) {
+                logger.info("파일이 존재하지 않습니다.");
+                logger.info(f.toString());
+                return;
+            }
+            f.delete();
         }
     }
 }

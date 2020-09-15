@@ -100,7 +100,7 @@ $("input:radio[name=sex]").click(function () {
 //프로필사진업로드 시 발생 handleImageFileSelect 기능을 불러온다
 $('#input_profile').on("change", handleImgFileSelect);
 
-//파일형식을 통해 파일을 선택한후 선택된 이미지가 보이도록하는 기능.
+//파일형식을 통해 파일을 선택한 후 선택된 이미지가 보이도록하는 기능.
 //파일의 크기가 10MB가 넘거나 확장자가 jpg,jpeg,png가 아닐 시 경고
 function handleImgFileSelect(e) {
     let files = e.target.files;
@@ -252,10 +252,10 @@ function joinUser() {
     //JSON 데이터가 있는 다중 요청의 형태인데 혼합 멀티파트라고 한다.
     let formData = new FormData();
     let userDto = JSON.stringify(UserDto);
-    alert(userDto);
     formData.append('UserDto',new Blob([JSON.stringify(UserDto)],{type:"application/json"}));
-//    formData.append('UserDto',userDto);
-    if (file == undefined) {
+    if(file!=undefined) {
+        formData.append('file', file);
+    }
 
         //JQuery 옵션
         //data : 서버로 보낼 데이터
@@ -265,59 +265,17 @@ function joinUser() {
         $.ajax({
             url: "/user",
             type: "post",
-            data: userDto,
-            dataType: 'json',
-            processData: false,
-            contentType:false,
-           // contentType: false,
-            success: function () {
-                alert(JSON.stringify(formData));//성공 시 출력 나중에 지울것!
-                location.href = "/loginUser";
-            },
-            error: function (request, status, error) {
-                alert("code :" + request.status + "\n" + "message : " + request.responseText + "\n" + "error : " + error);
-            }
-        });
-        // $.ajax({
-        //     url: "/user",
-        //     type: "post",
-        //     data: formData,
-        //     dataType: "text",
-        //     processData: false,
-        //     contentType:false,
-        //     success: function () {
-        //         alert(JSON.stringify(formData));//성공 시 출력 나중에 지울것!
-        //         location.href = "/loginUser";
-        //     },
-        //     error: function (request, status, error) {
-        //         alert("code :" + request.status + "\n" + "message : " + request.responseText + "\n" + "error : " + error);
-        //     }
-        // });
-    } else {
-        formData.append('file', file);
-
-        //JQuery 옵션
-        //data : 서버로 보낼 데이터
-        //dataType : 서버에서 반환되는 데이터 형식을 지정
-        //processData : 데이터를 querystring형태로 보내지 않고 DOMDocument 또는 다른 형태로 보내려면 false로 설정
-        //contentType : 서버에 데이터를 보낼 때 사용 content-type 헤더의 값.
-        $.ajax({
-            url: "/userfile",
-            type: "post",
             data: formData,
             processData: false,
             contentType: false,
             mimeType:'multipart/form-data',
             success: function () {
-                alert(JSON.stringify(formData));//성공 시 출력 나중에 지울것!
                 location.href = "/loginUser";
             },
             error: function (request, status, error) {
                 alert("code :" + request.status + "\n" + "message : " + request.responseText + "\n" + "error : " + error);
             }
         });
-
-    }
 }
 
 //익스플로러 판별

@@ -17,14 +17,22 @@ import java.util.List;
 public interface IUserDao {
     //회원가입을 위해 유저정보 기입
     public int insertUser(UserDto userDto);
+
     //유저 로그인
     public String userLogin(UserDto userDto);
+
     //유저 닉네임
     public String getNickname(String userid);
+
     //유저 아이디로 프로필사진유무확인
     public String getPicture(String userid);
-    public void list();
 
     //아이디와 비밀번호를 입력하면 userDto 다 반환
     public UserDto getInformation(UserDto userDto);
+
+    //아이디와 비밀번호를 받아서 해당 아이디의 비밀번호를 교체
+    public void changePassword(@Param("id")String id,@Param("ps")String ps);
+
+    //아이디와 픽쳐를 받아서 해당 아이디의 픽쳐명을 교체
+    public void changeprofileThumbnail(@Param("id")String id,@Param("picture")String picture);
 }
