@@ -38,8 +38,8 @@ function childHTML(result, jqxHR_status) {
     html += `<div class="right_etc">`;
     html += `<input class="comment_id" value="${result.comment_id}" type="hidden" />`;
     html += `<input class="comment_sender_id" value="${result.comment_sender_id}" type="hidden" />`;
-    html += `<img id="js-child_sujung_button" class="right_pen" value="2" src="static/images/pen.png" alt="modify_img"/>`;
-    html += `<img id="js-child_delete_button" class="right_delete" value="1" src="static/images/delete.png" alt="delete_img"/>`;
+    html += `<img id="js-child_sujung_button" class="right_pen" value="2" src="static/images/pen.png" alt="modify_img" type="button"/>`;
+    html += `<img id="js-child_delete_button" class="right_delete" value="1" src="static/images/delete.png" alt="delete_img" type="button"/>`;
     html += `<img src="static/images/alarm.png" alt="alarm_img" class="alarm"/>`;
     html += `</div>`;//<div class="right_etc">
     html += `</div>`;//<div class="comment_center_header">
@@ -92,7 +92,7 @@ function childWriteHtml(userid, userNickname, parents_comment_id) {
     html += `<span class="child_other_people_name">${userNickname}</span>`;
     html += `</div>`;//<div class="comment_center_header">
     html += `<div class="comment_center_textarea">`;
-    html += `<textarea class="child_comment_content" placeholder="수정할 내용을 입력하세요" name="comment_content"></textarea>`;
+    html += `<textarea class="child_comment_content" placeholder="댓글 내용을 입력하세요" name="comment_content"></textarea>`;
     html += `</div>`; //<div class="comment_center_textarea">
 
     html += `<div class="comment_center_footer">`;
@@ -108,7 +108,7 @@ function childWriteHtml(userid, userNickname, parents_comment_id) {
 
 //답글 (숫자)개 보기 할경우 이벤트
 $(document).on("click", ".re_comment_more", function (event) {
-
+    childEvent=true;
     //이벤트 부모 태그 가져 오기
     let look_comment_wrap = $(event.target).parents(".look_comment_wrap");
     //대댓글 작성하고 대댓글 보기하면 겹처서 한번 지워줌 그리고 대댓글 숨기기할때도 사용
@@ -144,6 +144,8 @@ $(document).on("click", ".re_comment_more", function (event) {
         //반대경우는 대댓글 감추고 답글 더보기로 글자 바꿈
         $(event.target).text("답글 더보기");
         look_comment_wrap.find(".eventDecision").val('1');
+        //답글작성 화면 켜놓고 담글숨기기로 전체지우면 작성 이벤트가 안바껴 여기서 바꿔줌.
+        childEvent=true;
     }
 
 });
@@ -169,6 +171,7 @@ $(document).on("click", ".re_comment", function (event) {
 
 //삭제 이벤트
 $(document).on("click", "#js-child_delete_button", function (event) {
+    console.log("대댓글삭제 이벤트");
     //이벤트 부모태그 가져오기
     let child_comment_wrap = $(event.target).parents(".child_comment_wrap");
 

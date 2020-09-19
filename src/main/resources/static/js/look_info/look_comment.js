@@ -18,18 +18,18 @@ function commentReady(look_num, userid, usernickname) {
     //처음 화면 들어 갔을 떄 댓글 데이터 10개 가져 오기
     commentGet();
 
-    // $(window).scroll(function () {   //스크롤 감지 이벤트
-    //     let scroll = $(document).scrollTop(); //현재 스크롤 값
-    //     let documentHeight = $(document).height();//문서 전체높이
-    //     let windowHeight = window.innerHeight; //윈도우 높이
-    //     //윈도우 높이에 스크롤값을 계속더해서 문서 전체 길이에서 50 px 앞에 스크롤이 왔을때 데이터 불러옴
-    //     if ((windowHeight + scroll) >= documentHeight - 50) {
-    //         if (scrollTime == true) {
-    //             //다음 댓글 10개 가져옴
-    //             commentGet();
-    //         }
-    //     }
-    // })
+    $(window).scroll(function () {   //스크롤 감지 이벤트
+        let scroll = $(document).scrollTop(); //현재 스크롤 값
+        let documentHeight = $(document).height();//문서 전체높이
+        let windowHeight = window.innerHeight; //윈도우 높이
+        //윈도우 높이에 스크롤값을 계속더해서 문서 전체 길이에서 50 px 앞에 스크롤이 왔을때 데이터 불러옴
+        if ((windowHeight + scroll) >= documentHeight - 50) {
+            if (scrollTime == true) {
+                //다음 댓글 10개 가져옴
+                commentGet();
+            }
+        }
+    })
 }
 
 
@@ -158,7 +158,6 @@ function commentConfirm(msg, title, commentDto) {
 function commentGet() {
     //스크롤 이벤트 중복 실행 방지
     scrollTime = false
-    let html = "";
     $.ajax({
         url: "/look_comment_list/" + fk_look_num_Look_look_num + "/" + comment_id,
         type: "get",
@@ -167,12 +166,15 @@ function commentGet() {
             //최신글 순으로  댓글 10개 받아 와서 받아온 만큼 댓글 화면에 보여줌
             for (var i = 0; i < result.length; i++) {
                 let data = result[i];
+                console.log("데이터",data);
+                let html = "";
                 html += `<li class="look_comment_wrap">`
                 html += `<div class="look_comment">`;
                 html = commentHTML(data, html);
                 html += `</div>`;//<div class="look_comment_wrap">
                 html += `</li>`;//<li class="look_comment">
-                $("#js-comment-list").prepend(html); //body 마지막에 추가
+                // $("#js-comment-list").prepend(html); //body 마지막에 추가
+                $("#js-comment-list").append(html); //body 마지막에 추가
             }
             //마지막 댓글 기본키 를 변수값 에 넣어서 다음 데이터 10개를 받아올 수 있게 준비함
             comment_id = result[result.length - 1].comment_id;
@@ -357,28 +359,14 @@ $(document).on("click", ".comment_change_button", function (event) {
 });
 
 
-
-
-
-// let result = {
-//     comment_sender_id: "dbs1501189",
-//     comment_sender_name: "무민zzzz97",
-//     fk_look_num_Look_look_num: 55,
-//     comment_content: "로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘로렘입슘",
-//     parents: 0, //대댓글 아니므로 값을 0줌
-//     date: "2020-09-08",
-//     ref_count: 2
-// };
-// let html = "";
-// html = commentHTML(result, html);
-// $("#js-comment-list").prepend(html); //body 마지막에 추가
-
-
 //시간차이 계산 함수
 function timeForToday(value) {
     const today = new Date();
     const timeValue = new Date(value);
 
+    console.log("현재", today.getTime());
+    console.log("올린시각", timeValue.getTime());
+    //시간은 1970-01-01을 기준으로 한 에포크시간.
     const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
 
     if (betweenTime < 1) return '방금전';
