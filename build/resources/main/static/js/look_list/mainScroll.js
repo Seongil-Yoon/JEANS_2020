@@ -66,7 +66,7 @@ function start() {
                 html += ' </div>';
                 html += '<div class=\"look_textarea_space\">';
                 html += '<form class=\"textarea_form\" >';
-                html += '<textarea  class = \"view_look_textarea\" placeholder=\"' + result[i].tag + '\"></textarea>';
+                html += '<textarea  class = \"view_look_textarea\" placeholder=\"' + result[i].memo + '\"></textarea>';
                 html += '</form>';
                 html += ' </div>';
                 html += '<!-- 푸터-->';
