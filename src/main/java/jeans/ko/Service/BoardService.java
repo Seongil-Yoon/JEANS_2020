@@ -2,6 +2,7 @@ package jeans.ko.Service;
 
 import jeans.ko.Controller.UserController;
 import jeans.ko.Dao.IBoardDao;
+import jeans.ko.Dao.IMoodDao;
 import jeans.ko.Dto.BoardDto;
 import jeans.ko.Dto.MoodDto;
 import jeans.ko.Dto.PictureDto;
@@ -26,6 +27,9 @@ public class BoardService implements IBoardService {
 
     @Autowired
     private IBoardDao boardDao;
+
+    @Autowired
+    private IMoodDao moodDao;
 
     @Autowired
     private PictureDto pictureDto;
@@ -70,7 +74,7 @@ public class BoardService implements IBoardService {
                 (moodDtos.get(i)).setLook_num(boardDto.getLook_num());
             }
             //무드데이터베이스에 해당글의 무드를 선택해야한다.
-            boardDao.insertMooddatabase(moodDtos);
+            moodDao.insertMooddatabase(moodDtos);
         }
 
         //looknumtoPath()는 매개변수로 글번호를 받아 해당글의 경로(년/월/룩번호)를 반환한다.
@@ -99,11 +103,23 @@ public class BoardService implements IBoardService {
     }
 
     @Override
-    public int update(BoardDto boardDto, List<MultipartFile> files) throws Exception {
+    public int update(BoardDto boardDto,List<MoodDto> moodDtos, List<MultipartFile> files) throws Exception {
         logger.info("update메소드");
         //폴더내 파일 삭제
         List<String> path = iUtilService.looknumtoPath(boardDto.getLook_num());
-        System.out.println("path = " + path);
+        int look_num=boardDto.getLook_num();
+
+        moodDao.deleteMood(look_num);
+
+        //만약 유저가 해당 글의 무드를 선택했다면,
+        if (moodDtos != null) {
+            for (int i = 0; i < moodDtos.size(); i++) {
+                //무드 리스트의 경우 현재 look의 넘버, 글의 id 값이 없어서 이런식으로 다 넣어줘야한다.
+                (moodDtos.get(i)).setLook_num(boardDto.getLook_num());
+            }
+            //무드데이터베이스에 해당글의 무드를 선택해야한다.
+            moodDao.insertMooddatabase(moodDtos);
+        }
 
         System.out.println(iUtilService.looknumtoallPicturename(boardDto.getLook_num()));
         iFileService.rmFiles(path, iUtilService.looknumtoallPicturename(boardDto.getLook_num()));
@@ -135,4 +151,5 @@ public class BoardService implements IBoardService {
 
         return lists;
     }
+
 }

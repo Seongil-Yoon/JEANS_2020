@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6c08dae6-03a2-4410-bbaa-3f0ad92c6cb0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Gradle___Jeans___ko_0_0_1_SNAPSHOT_war.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Gradle___Jeans___ko_0_0_1_SNAPSHOT_war__exploded_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_classic_1_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_core_1_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_classmate_1_4_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_annotations_2_9_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_9_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_9_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_module_jackson_module_parameter_names_2_9_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jayway_jsonpath_json_path_2_4_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_vaadin_external_google_android_json_0_0_20131108_vaadin1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_zaxxer_HikariCP_3_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_io_commons_io_2_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_annotation_javax_annotation_api_1_3_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_servlet_jstl_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_validation_validation_api_2_0_1_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__mysql_mysql_connector_java_8_0_20.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_1_9_16.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_agent_1_9_16.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_minidev_accessors_smart_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_minidev_json_smart_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_logging_log4j_log4j_api_2_11_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_logging_log4j_log4j_to_slf4j_2_11_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_tomcat_embed_tomcat_embed_core_9_0_36.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_tomcat_embed_tomcat_embed_el_9_0_36.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_tomcat_embed_tomcat_embed_jasper_9_0_36.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_tomcat_embed_tomcat_embed_websocket_9_0_36.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_tomcat_tomcat_annotations_api_9_0_36.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_assertj_assertj_core_3_11_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_jdt_ecj_3_18_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_library_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hibernate_validator_hibernate_validator_6_0_20_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_imgscalr_imgscalr_lib_4_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jboss_logging_jboss_logging_3_3_3_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mockito_mockito_core_2_23_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mybatis_mybatis_3_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mybatis_mybatis_spring_2_0_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mybatis_spring_boot_mybatis_spring_boot_autoconfigure_2_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mybatis_spring_boot_mybatis_spring_boot_starter_2_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_objenesis_objenesis_2_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_ow2_asm_asm_5_0_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_projectlombok_lombok_1_18_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_skyscreamer_jsonassert_1_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_slf4j_jul_to_slf4j_1_7_30.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_slf4j_slf4j_api_1_7_30.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_boot_spring_boot_2_1_15_BUILD_SNAPSHOT.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_boot_spring_boot_autoconfigure_2_1_15_BUILD_SNAPSHOT.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_boot_spring_boot_devtools_2_1_15_BUILD_SNAPSHOT.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_2_1_15_BUILD_SNAPSHOT.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_jdbc_2_1_15_BUILD_SNAPSHOT.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_json_2_1_15_BUILD_SNAPSHOT.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_logging_2_1_15_BUILD_SNAPSHOT.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_test_2_1_15_BUILD_SNAPSHOT.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_tomcat_2_1_15_BUILD_SNAPSHOT.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_web_2_1_15_BUILD_SNAPSHOT.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_boot_spring_boot_test_2_1_15_BUILD_SNAPSHOT.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_boot_spring_boot_test_autoconfigure_2_1_15_BUILD_SNAPSHOT.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_aop_5_1_16_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_beans_5_1_16_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_context_5_1_16_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_core_5_1_16_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_expression_5_1_16_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_jcl_5_1_16_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_jdbc_5_1_16_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_test_5_1_16_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_tx_5_1_16_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_web_5_1_16_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_webmvc_5_1_16_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_xmlunit_xmlunit_core_2_6_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_yaml_snakeyaml_1_23.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dao/IMoodDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dao/IPreferenceDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dao/IPretreatmentDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Service/IPretreatmentService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Service/PretreatmentService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/test/jeans/ko/KoApplicationTests.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/resources/main/mapper/MooddaoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/resources/main/mapper/preferenceMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/resources/main/mapper/pretreatmentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Dao/IMoodDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Dao/IPreferenceDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Dao/IPretreatmentDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Service/IPretreatmentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Service/PretreatmentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/MooddaoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/preferenceMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/pretreatmentMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/ChangeuserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/ChangeuserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/CommentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/LookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/LookController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/MypageuserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/MypageuserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dao/IBoardDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dao/IBoardDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Service/BoardService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Service/BoardService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Service/FileService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Service/FileService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Service/IBoardService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Service/IBoardService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/mapper/IBoard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/mapper/IBoard.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/changeUser/changeUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/changeUser/changeUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/lookModify/lookModify.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/lookModify/lookModify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/look_info/child_comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/look_info/child_comment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/look_info/look_comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/look_info/look_comment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/look_info/look_info.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/look_info/look_info.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/look_write/look_write.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/look_write/look_write.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/mypageUser/mypageUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/mypageUser/mypageUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/ChangeuserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/ChangeuserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/LookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/LookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/MypageuserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/MypageuserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Dao/IBoardDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Dao/IBoardDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Service/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Service/BoardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Service/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Service/FileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Service/IBoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Service/IBoardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/IBoard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/IBoard.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/changeUser/changeUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/changeUser/changeUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/lookModify/lookModify.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/lookModify/lookModify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/look_info/child_comment old.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/look_info/child_comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/look_info/child_comment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/look_info/look_comment copy 2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/look_info/look_comment copy 3.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/look_info/look_comment copy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/look_info/look_comment old.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/look_info/look_comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/look_info/look_comment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/look_info/look_comment_origin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/look_info/look_info.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/look_info/look_info.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/look_write/look_write.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/look_write/look_write.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/mypageUser/mypageUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/mypageUser/mypageUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/lookModify.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/lookModify.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/look_info.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/look_info.jsp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ko" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1gm3YEOPUtf3T7VBi2p0mAgCWyJ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RunManager">
+    <configuration name="KoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="ko.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="jeans.ko.KoApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateResources" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateResources" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6c08dae6-03a2-4410-bbaa-3f0ad92c6cb0" name="Default Changelist" comment="" />
+      <created>1598705987957</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1598705987957</updated>
+      <workItem from="1598705993745" duration="4145000" />
+      <workItem from="1599055567495" duration="1176000" />
+      <workItem from="1599205160036" duration="9281000" />
+      <workItem from="1599490003767" duration="367000" />
+      <workItem from="1599490384961" duration="105000" />
+      <workItem from="1599490515585" duration="45000" />
+      <workItem from="1599490580354" duration="82000" />
+      <workItem from="1599491711279" duration="7085000" />
+      <workItem from="1599542503416" duration="9091000" />
+      <workItem from="1599899836494" duration="9906000" />
+      <workItem from="1600067150157" duration="4727000" />
+      <workItem from="1600494268527" duration="425000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="415" y="0" width="719" height="824" key="#KoApplication" timestamp="1599491910480">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="415" y="0" width="719" height="824" key="#KoApplication/0.0.1536.824@0.0.1536.824" timestamp="1599491910480" />
+    <state x="249" y="0" key="#Project_Structure" timestamp="1599207630397">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1599207630397" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600072000072">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="-1641" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1600014900043" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1600072000072" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1599492112329" />
+    <state x="505" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1599491817272">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="505" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1599491817272" />
+    <state x="548" y="153" key="FileChooserDialogImpl" timestamp="1599490472963">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="548" y="153" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1599490472963" />
+    <state width="1493" height="186" key="GridCell.Tab.0.bottom" timestamp="1600073821947">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1877" height="253" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1600015340243" />
+    <state width="1493" height="186" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1600073821947" />
+    <state width="1493" height="254" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1599552096910" />
+    <state width="1493" height="186" key="GridCell.Tab.0.center" timestamp="1600073821946">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1877" height="253" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1600015340243" />
+    <state width="1493" height="186" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1600073821946" />
+    <state width="1493" height="254" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1599552096910" />
+    <state width="1493" height="186" key="GridCell.Tab.0.left" timestamp="1600073821946">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1877" height="253" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1600015340243" />
+    <state width="1493" height="186" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1600073821946" />
+    <state width="1493" height="254" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1599552096910" />
+    <state width="1493" height="186" key="GridCell.Tab.0.right" timestamp="1600073821947">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1877" height="253" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1600015340243" />
+    <state width="1493" height="186" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1600073821947" />
+    <state width="1493" height="254" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1599552096910" />
+    <state width="1493" height="186" key="GridCell.Tab.1.bottom" timestamp="1600073821947">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1877" height="253" key="GridCell.Tab.1.bottom/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1600015340243" />
+    <state width="1493" height="186" key="GridCell.Tab.1.bottom/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1600073821947" />
+    <state width="1493" height="254" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1599552096910" />
+    <state width="1493" height="186" key="GridCell.Tab.1.center" timestamp="1600073821947">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1877" height="253" key="GridCell.Tab.1.center/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1600015340243" />
+    <state width="1493" height="186" key="GridCell.Tab.1.center/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1600073821947" />
+    <state width="1493" height="254" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1599552096910" />
+    <state width="1493" height="186" key="GridCell.Tab.1.left" timestamp="1600073821947">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1877" height="253" key="GridCell.Tab.1.left/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1600015340243" />
+    <state width="1493" height="186" key="GridCell.Tab.1.left/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1600073821947" />
+    <state width="1493" height="254" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1599552096910" />
+    <state width="1493" height="186" key="GridCell.Tab.1.right" timestamp="1600073821947">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1877" height="253" key="GridCell.Tab.1.right/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1600015340243" />
+    <state width="1493" height="186" key="GridCell.Tab.1.right/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1600073821947" />
+    <state width="1493" height="254" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1599552096910" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1599543862820">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1599543862820" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1599056586650" />
+  </component>
+</project>

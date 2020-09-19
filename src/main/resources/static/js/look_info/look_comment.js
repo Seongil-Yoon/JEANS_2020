@@ -47,8 +47,8 @@ function commentHTML(result, html) {
     html += `<div class="right_etc">`;
     html += `<input class="comment_id" value="${result.comment_id}" type="hidden" />`;
     html += `<input class="comment_sender_id" value="${result.comment_sender_id}" type="hidden" />`;
-    html += `<img src="static/images/pen.png" alt="modify_img"  class="right_pen"/>`;
-    html += `<img src="static/images/delete.png" alt="delete_img" class="right_delete"/>`;
+    html += `<img src="static/images/pen.png" alt="modify_img" id="js-comment_sujung_button" class="right_pen"/>`;
+    html += `<img src="static/images/delete.png" alt="delete_img" id="js-comment_delete_button" class="right_delete"/>`;
     html += `<img src="static/images/alarm.png" alt="alarm_img" class="alarm"/>`;
     html += `</div>`;//<div class="right_etc">
     html += `</div>`;//<div class="comment_center_header">
@@ -158,6 +158,7 @@ function commentConfirm(msg, title, commentDto) {
 function commentGet() {
     //스크롤 이벤트 중복 실행 방지
     scrollTime = false
+
     $.ajax({
         url: "/look_comment_list/" + fk_look_num_Look_look_num + "/" + comment_id,
         type: "get",
@@ -166,15 +167,13 @@ function commentGet() {
             //최신글 순으로  댓글 10개 받아 와서 받아온 만큼 댓글 화면에 보여줌
             for (var i = 0; i < result.length; i++) {
                 let data = result[i];
-                console.log("데이터",data);
                 let html = "";
                 html += `<li class="look_comment_wrap">`
                 html += `<div class="look_comment">`;
                 html = commentHTML(data, html);
                 html += `</div>`;//<div class="look_comment_wrap">
                 html += `</li>`;//<li class="look_comment">
-                // $("#js-comment-list").prepend(html); //body 마지막에 추가
-                $("#js-comment-list").append(html); //body 마지막에 추가
+                $("#js-comment-list").append(html);
             }
             //마지막 댓글 기본키 를 변수값 에 넣어서 다음 데이터 10개를 받아올 수 있게 준비함
             comment_id = result[result.length - 1].comment_id;
@@ -193,7 +192,7 @@ function commentGet() {
 }
 
 //댓글 삭제 이벤트
-$(document).on("click", ".right_delete", function (event) {
+$(document).on("click", "#js-comment_delete_button", function (event) {
     // 가져온 이벤트 객체에 부모태그 .right_etc 에 자식객체 input에 value 값 comment_id 가져오기
     let comment_id = $(event.target).parents(".right_etc").children('.comment_id').val();
 
@@ -241,7 +240,7 @@ $(document).on("click", ".right_delete", function (event) {
 });
 
 //댓글 수정 이벤트
-$(document).on("click", ".right_pen", function (event) {
+$(document).on("click", "#js-comment_sujung_button", function (event) {
 
     //댓글 기본키값 가져오기
     let comment_id = $(event.target).parents(".right_etc").children('.comment_id').val();
@@ -261,21 +260,7 @@ $(document).on("click", ".right_pen", function (event) {
 
     //li.look_comment 밑에 태그 들 다지우기 수정화면으로 바꾸기 위해
     $(event.target).parents(".look_comment").children().remove();
-    //댓글 수정할수있게 화면변경 코드
-    // let html = "";
-    // html += '<input class="comment_id" value="' + comment_id + '" type="hidden"/>';
-    // html += '<div class="other_people_img">';
-    // html += '<img src=displayMthumbnail/' + comment_sender_id + '>';
-    // html += '</div>';
-    // html += '<div class="other_people_name">' + nickName + '</div>';
-    // html += '<div class="comment_textarea_space">';
-    // html += '<textarea class="comment_textarea" placeholder="수정할 내용을 입력하세요" name="comment_content"></textarea>';
-    // html += '</div>';
-    // html += '<div class="comment_date">';
-    // html += '<button class="comment_change_button" value="2" type="button" >취소</button>';
-    // html += '<button class="comment_change_button" value="1" type="button" >저장</button>';
-    // html += '</div>';
-    //////////////////////////////
+
     let html = "";
     html += `<input class="comment_id" value=${comment_id} type="hidden"/>`;
     html += `<div class="comment_left">`;
@@ -291,8 +276,8 @@ $(document).on("click", ".right_pen", function (event) {
     html += `</div>`; //<div class="comment_center_textarea">
 
     html += `<div class="comment_center_footer">`;
-    html += `<button class="comment_change_button" value="2" type="button" >취소</button>`;
-    html += `<button class="comment_change_button" value="1" type="button" >저장</button>`;
+    html += '<button class="comment_change_button" value="2" type="button" >취소</button>';
+    html += '<button class="comment_change_button" value="1" type="button" >저장</button>';
     html += `</div>`;//<div class="comment_center_footer">
     html += `</div>`;//<div class="comment_center">
 
@@ -369,19 +354,22 @@ function timeForToday(value) {
     //시간은 1970-01-01을 기준으로 한 에포크시간.
     const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
 
-    if (betweenTime < 1) return '방금전';
-    if (betweenTime < 60) {
-        return `${betweenTime}분전`;
-    }
-
-    const betweenTimeHour = Math.floor(betweenTime / 60);
-    if (betweenTimeHour < 24) {
-        return `${betweenTimeHour}시간전`;
-    }
+    // if (betweenTime < 1) return '방금전';
+    // if (betweenTime < 60) {
+    //     return `${betweenTime}분전`;
+    // }
+    //
+    // const betweenTimeHour = Math.floor(betweenTime / 60);
+    // if (betweenTimeHour < 24) {
+    //     return `${betweenTimeHour}시간전`;
+    // }
 
     const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
     if (betweenTimeDay < 365) {
-        return `${betweenTimeDay}일전`;
+        if(betweenTimeDay==0){
+            return `오늘 작성`;
+        }
+        return `${betweenTimeDay}일전 작성`;
     }
 
     return `${Math.floor(betweenTimeDay / 365)}년전`;
