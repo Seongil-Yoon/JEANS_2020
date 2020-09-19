@@ -121,13 +121,10 @@ public class BoardService implements IBoardService {
             moodDao.insertMooddatabase(moodDtos);
         }
 
-        System.out.println(iUtilService.looknumtoallPicturename(boardDto.getLook_num()));
         iFileService.rmFiles(path, iUtilService.looknumtoallPicturename(boardDto.getLook_num()));
         //DB내 해당 룩 번호 관여 제거
         boardDao.deleteAllpictures(boardDto.getLook_num());
 
-        //신규사진 picture DB내 insert
-        boardDao.insertPicturedatabase(bindingPicture(files, boardDto.getLook_num()));
         //신규사진 업로드
         iFileService.uploadFiles(path, files);
 
