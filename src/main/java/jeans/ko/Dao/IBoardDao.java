@@ -18,6 +18,8 @@ import java.util.Map;
 public interface IBoardDao {
     //전체 게시판 리스트
     public List<BoardDto> list(@Param("look_num") int look_num);
+    //글 검색
+    public List<BoardDto> searchList(@Param("option")String option, @Param("keyword")String keyword);
 
     //게시글 작성
     public int insert(BoardDto boardDto);

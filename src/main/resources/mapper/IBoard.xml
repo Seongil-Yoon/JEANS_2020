@@ -45,6 +45,12 @@
         SELECT * FROM look WHERE look_num &lt; #{look_num} ORDER BY look_num DESC LIMIT 6;
     </select>
 
+    <select id="searchList" resultType="jeans.ko.Dto.BoardDto">
+        select *
+        from look
+        <include refid="search"></include>
+    </select>
+
     <select id="view" resultType="jeans.ko.Dto.BoardDto">
         select * from look where look_num = #{look_num}
     </select>
@@ -90,5 +96,17 @@
        where look_num = #{look_num}
     </update>
 
+    <sql id="search">
+        <choose>
+            <when test="option=='all'">
+                WHERE nickname like CONCAT('%',#{keyword},'%')
+                OR memo like CONCAT('%',#{keyword},'%')
+                OR title like CONCAT('%',#{keyword},'%') LIMIT 6
+            </when>
+            <otherwise>
+                WHERE ${option} like CONCAT('%',#{keyword},'%')
+            </otherwise>
+        </choose>
+    </sql>
 
 </mapper>

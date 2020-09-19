@@ -102,6 +102,15 @@ public class LookController {
     }
 
     @ResponseBody
+    @GetMapping("/search/{searchOption}/{keyword}")
+    public List<BoardDto> search(@PathVariable String searchOption,@PathVariable String keyword){
+        logger.info("search 메소드");
+        List<BoardDto>search=boardDao.searchList(searchOption,keyword);
+        System.out.println("search = " + search);
+        return search;
+    }
+
+    @ResponseBody
     @GetMapping("/looks/{id}") //룩상세보기 안드로이드에 값주게 json 데이터만 넘기는용
     public HashMap<String, Object> searchLook(@PathVariable int id) {   //looks/1   looks/3  -->String으로 오는데 int id 해서 int 로 변환해서 받음
         logger.info("searchLook()진입");
@@ -194,7 +203,9 @@ public class LookController {
         }
     }
 
-    @ResponseBody
+    //룩게시판 조회회
+
+   @ResponseBody
     @PostMapping("/likey/looknum/{num}/user/{id}")
     public ResponseEntity<String> likey(@PathVariable("num") String number, @PathVariable("id") String id) {
         System.out.println("likey메소드");
