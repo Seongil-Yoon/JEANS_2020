@@ -109,7 +109,6 @@ function changeUserinformation() {
         dataType: 'text',
         contentType: 'application/json; charset=utf-8',
         success: function(data){
-            alert(data);
             alert("성공");
         },
         error: function (xhr, status, error) {

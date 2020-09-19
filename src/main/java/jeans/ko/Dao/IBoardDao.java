@@ -18,6 +18,8 @@ import java.util.Map;
 public interface IBoardDao {
     //전체 게시판 리스트
     public List<BoardDto> list(@Param("look_num") int look_num);
+    //글 검색
+    public List<BoardDto> searchList(@Param("option")String option, @Param("keyword")String keyword);
 
     //게시글 작성
     public int insert(BoardDto boardDto);
@@ -26,9 +28,6 @@ public interface IBoardDao {
     public int insertPicturedatabase(List<PictureDto> files);
 
     public int insertPicture(String boardnum,String uuidname);
-
-    //각 게시글에 해당되는 무드 내역 DB에 저장
-    public int insertMooddatabase(List<MoodDto> moodDtos);
 
     //게시글 상세보기
     public BoardDto view(@Param("look_num") int look_num);
@@ -55,4 +54,7 @@ public interface IBoardDao {
 
     //userID를 받아 그 유저가 쓴 모든 글 목록을 반환하는 메소드
     public List<BoardDto> getLooksforId(String userId);
+
+    //user 닉네임을 받아 그 유저가 쓴 글 숫자를 반환하는 메소드
+    public int getBoardnum(String nickname);
 }

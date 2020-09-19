@@ -40,10 +40,10 @@ function modifiy() {
     //여기서 부터 성일이가 해줘야 할 부분.!!!!!.
     var moodList=new Array();//무드Dto를 담을 moodDto 리스트
     let MoodDto=new Object();
-    MoodDto.mood="미니멀";
+    MoodDto.mood="시티보이";
     moodList.push(MoodDto);
     let MoodDto2=new Object();
-    MoodDto2.mood="락시클";
+    MoodDto2.mood="아메카지";
     moodList.push(MoodDto2);
     //여기까지 일성이가 해줄꺼야!!!!!!
 

@@ -197,6 +197,20 @@ function startAjax(lookNumber) {
     })
 }
 
+function likey(num,id){
+
+    $.ajax({
+        url:"/likey/looknum/"+num+"/user/"+id,
+        type:"post",
+        success: function(result){
+            swal(result);
+        },
+        error: function(error){
+            alert("error다"+error);
+        }
+    })
+}
+
 //JSP파일 서버변수 호출함수
 function lookReady(lookNum) {
     startAjax(lookNum);
