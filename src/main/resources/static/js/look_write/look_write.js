@@ -56,8 +56,6 @@ function lookWrite() {
     let season = document.getElementsByName("season");
     let look_public = document.getElementsByName("look_public");
 
-    let tag = document.getElementsByName("tag")[0].value//DB에서 무드 테이블용으로 사용할 예정.
-
     let memo = document.getElementsByName("memo")[0].value
     let seasonCheck = season_check(season);
     let look_publicCheck = look_public_check(look_public);

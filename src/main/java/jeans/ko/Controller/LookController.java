@@ -183,13 +183,11 @@ public class LookController {
     @PutMapping("/looks")
     public BoardDto boardModify(@RequestPart("BoardDto") BoardDto modifyBoardDto, @RequestPart(value = "MoodDto", required = false) List<MoodDto> moodDtos, @RequestPart("files") List<MultipartFile> files) throws Exception {
         logger.info("boardModify()진입");
-
         System.out.println("modifyBoardDto = " + modifyBoardDto);
-
+        System.out.println("moodDtos = " + moodDtos);
         //넘어온 값에 기본키id 값으로 게시글작성자 id 와 기본키넘버값 가져오기
         String lookId = boardDao.view(modifyBoardDto.getLook_num()).getFk_userid_user_userid();
         int lookNum = boardDao.view(modifyBoardDto.getLook_num()).getLook_num();
-
         if (lookId == null) {
             //수정할 게시글이 없으므로 not found 에러 보냄
             throw new NotFoundException(String.format("lookNum[%s] not found", modifyBoardDto.getLook_num()));
@@ -207,7 +205,7 @@ public class LookController {
 
     //룩게시판 조회회
 
-   @ResponseBody
+    @ResponseBody
     @PostMapping("/likey/looknum/{num}/user/{id}")
     public ResponseEntity<String> likey(@PathVariable("num") String number, @PathVariable("id") String id) {
         System.out.println("likey메소드");
