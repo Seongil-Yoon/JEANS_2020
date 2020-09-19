@@ -29,7 +29,7 @@
         insert into picture values
         <foreach collection="list" item="i" separator=",">
             (
-            #{i.pictureId},#{i.lookNum},#{i.pictureName},#{i.pictureSize}
+            #{i.pictureId},#{i.lookNum},#{i.pictureName}
             )
         </foreach>
     </insert>
