@@ -25,6 +25,7 @@ function setUserId (Id){
 
 }
 
+
 //on load html 이미지나 자바스크립트 링크가 다오고 실행됨
 $(window).on('load', function() {
     start(); //처음 4개 출력
