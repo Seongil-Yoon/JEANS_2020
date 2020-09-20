@@ -138,7 +138,7 @@ public class ChangeuserController {
         if (result.getFieldError("ps") != null) {
             System.out.println("Error! = " + result.getFieldError("ps").getDefaultMessage());
         }
-        
+
         //세션값을 통해 유저의 id값을 알아낸다.
         String userid = (String) session.getAttribute("userid");
 
@@ -153,7 +153,20 @@ public class ChangeuserController {
         //유저의 진짜 비밀번호와 유저가 입력한 비밀번호가 맞다면 해당 유저를 지운다
         if(password.equals(passwordDto.getPs())){
             session.invalidate();
+
+            List<String> path = utilService.usertoPath(userid);
+            String picture = userDao.getPicture(userid);
+            List<String> pictures = new ArrayList<>();
+            pictures.add(picture);
+            pictures.add(smallHeader + picture);
+            pictures.add(middleHeader + picture);
+
             userDao.deleteUser(userid);
+            fileService.rmFiles(path,pictures);
+            fileService.rmDir(path);
+            //path의 마지막은 profile이기 때문에 profile을 제거해줘야한다.
+            path.remove(path.size()-1);
+            fileService.rmDir(path);
             return new ResponseEntity(HttpStatus.OK);
         }else{
             return new ResponseEntity(HttpStatus.BAD_GATEWAY);

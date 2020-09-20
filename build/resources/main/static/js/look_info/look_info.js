@@ -20,6 +20,7 @@ let img = 0;
 let files = 0;
 let fileBuffer = 0;  //formdData에 날릴 배열, input태그의 배열에 들어간 파일을 보내지 않음.
 
+
 ///////////  전역 변수  //////////////////
 //////////////////////////////////////////
 //////////////////////////////////////////
@@ -27,35 +28,35 @@ let fileBuffer = 0;  //formdData에 날릴 배열, input태그의 배열에 들�
 
 //게시글에서 수정 pen 버튼 누를경우 이벤트
 //look_modify 리다이렉트
-function lookModify(lookNum,lookUserId,userid){
+function lookModify(lookNum, lookUserId, userid) {
 
-    var lookNum=lookNum;
-    var lookUserId=lookUserId;
+    var lookNum = lookNum;
+    var lookUserId = lookUserId;
 
-    if(userid==lookUserId){
+    if (userid == lookUserId) {
         //로그인 한 아이디 와 작성자 아이디 가 같으면 글수정
-        modifyConfirm('', '게시글을 수정할까요?',lookNum);
+        modifyConfirm('', '게시글을 수정할까요?', lookNum);
     } else {
-        swal("","게시글 작성자만 수정 할수있습니다");
+        swal("", "게시글 작성자만 수정 할수있습니다");
     }
 
 }
 
-function modifyConfirm(msg,title,lookNum) {
+function modifyConfirm(msg, title, lookNum) {
     swal({
-        title : title,
-        text : msg,
-        type : "warning",
-        showCancelButton : true,
-        confirmButtonClass : "btn-danger",
-        confirmButtonText : "예",
-        cancelButtonText : "아니오",
-        closeOnConfirm : false,
-        closeOnCancel : false
-    }, function(isConfirm) {
+        title: title,
+        text: msg,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "예",
+        cancelButtonText: "아니오",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    }, function (isConfirm) {
         if (isConfirm) {
-            location.href="/lookModify?look_num="+lookNum;
-        }else{
+            location.href = "/lookModify?look_num=" + lookNum;
+        } else {
             swal('', '게시글 수정을 취소 하였습니다.');
         }
 
@@ -175,6 +176,7 @@ function excuteSlide() {
 }
 
 function startAjax(lookNumber) {
+    console.log(lookNumber);
     $.ajax({
         url: `/displayInthumbnail/${lookNumber}`,
         type: "GET",
@@ -195,15 +197,22 @@ function startAjax(lookNumber) {
     })
 }
 
+function likey(num,id){
+
+    $.ajax({
+        url:"/likey/looknum/"+num+"/user/"+id,
+        type:"post",
+        success: function(result){
+            swal(result);
+        },
+        error: function(error){
+            alert("error다"+error);
+        }
+    })
+}
+
 //JSP파일 서버변수 호출함수
 function lookReady(lookNum) {
-    let lookNumber = lookNum;
-    init(lookNumber);
+    startAjax(lookNum);
 }
 
-function init(lookNumber) {
-    startAjax(lookNumber);
-}
-
-
-init();

@@ -98,7 +98,8 @@ function catchNick(nick){
     url:'/information/'+nick,
     type:"GET",
     success:function(result){
-      alert(JSON.stringify(result));
+      alert(JSON.stringify(result.user));
+      alert(JSON.stringify(result.count));
       //여기서 mypageUser.jsp 부분에 값들을 채워넣어줘야한다.
     },
     error:function(error){

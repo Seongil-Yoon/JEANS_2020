@@ -29,7 +29,7 @@
         insert into picture values
         <foreach collection="list" item="i" separator=",">
             (
-            #{i.pictureId},#{i.lookNum},#{i.pictureName},#{i.pictureSize}
+            #{i.pictureId},#{i.lookNum},#{i.pictureName}
             )
         </foreach>
     </insert>
@@ -40,20 +40,15 @@
         </selectKey>
         insert into picture(looknum, name) values (#{boardnum},#{uuidname});
     </insert>
-
-    <!--무드테이블에 해당되는 룩의 무드를 insert한다-->
-    <insert id="insertMooddatabase" parameterType="java.util.ArrayList">
-        insert into mood values
-        <foreach collection="list" item="i" separator=",">
-            (
-            #{i.look_num},#{i.mood}
-            )
-        </foreach>
-    </insert>
-
     <!-- &lt;는 < 와 같다 게시글 6개씩 불러옴 -->
     <select id="list" resultType="jeans.ko.Dto.BoardDto">
         SELECT * FROM look WHERE look_num &lt; #{look_num} ORDER BY look_num DESC LIMIT 6;
+    </select>
+
+    <select id="searchList" resultType="jeans.ko.Dto.BoardDto">
+        select *
+        from look
+        <include refid="search"></include>
     </select>
 
     <select id="view" resultType="jeans.ko.Dto.BoardDto">
@@ -79,6 +74,10 @@
         select * from look where fk_userid_user_userid=#{fk_userid_user_userid} order by look_num desc
     </select>
 
+    <select id="getBoardnum" resultType="int">
+        select count(*) from look where nickname= #{nickname}
+    </select>
+
     <delete id="delete">
         delete from look where look_num= #{look_num}
     </delete>
@@ -92,10 +91,22 @@
     </update>
 
     <update id="update">
-        update look set title = #{title},season = #{season},tag = #{tag},
-        look_public = #{look_public},memo = #{memo},picture = #{picture}
+        update look set title = #{title},season = #{season},
+        look_privacy = #{look_privacy},memo = #{memo}
        where look_num = #{look_num}
     </update>
 
+    <sql id="search">
+        <choose>
+            <when test="option=='all'">
+                WHERE nickname like CONCAT('%',#{keyword},'%')
+                OR memo like CONCAT('%',#{keyword},'%')
+                OR title like CONCAT('%',#{keyword},'%') LIMIT 6
+            </when>
+            <otherwise>
+                WHERE ${option} like CONCAT('%',#{keyword},'%')
+            </otherwise>
+        </choose>
+    </sql>
 
 </mapper>
