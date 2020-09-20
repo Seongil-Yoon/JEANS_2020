@@ -30,6 +30,9 @@ contentType="text/html;charset=UTF-8" language="java" %>
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <script src="/static/js/backCashDelete.js"></script>
-    <script src="/static/js/id_nickname_session.js"></script>
+    <script>
+      <%--파이썬에 데이터 받아오기위해 아이디 넘겨주기--%>
+      setUserId('${sessionScope.userid}');
+    </script>
   </body>
 </html>
