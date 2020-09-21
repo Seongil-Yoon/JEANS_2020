@@ -75,6 +75,7 @@ public class LookController {
         boardDao.countUpdate(look_num); //글상세보기 하면 조회수 증가
         model.addAttribute("view", boardDao.view(look_num)); //게시글정보가져오기
         model.addAttribute("mood", moodDao.getMooddto(look_num));//글의 무드 타입
+
         return "look_info";
     }
 
@@ -85,6 +86,7 @@ public class LookController {
         BoardDto boardDto = boardDao.view(look_num);
         model.addAttribute("view", boardDto); //게시글정보 가져오기
         model.addAttribute("mood", moodDao.getMooddto(look_num));//글의 무드 타입
+
         return "lookModify";
     }
 
@@ -102,6 +104,17 @@ public class LookController {
     }
 
     @ResponseBody
+    @GetMapping("/search/{searchOption}/{keyword}")
+    public List<BoardDto> search(@PathVariable String searchOption,@PathVariable String keyword){
+        logger.info("search 메소드");
+        if(searchOption.equals("mood")){
+
+        }
+        List<BoardDto>search=boardDao.searchList(searchOption,keyword);
+        return search;
+    }
+
+    @ResponseBody
     @GetMapping("/looks/{id}") //룩상세보기 안드로이드에 값주게 json 데이터만 넘기는용
     public HashMap<String, Object> searchLook(@PathVariable int id) {   //looks/1   looks/3  -->String으로 오는데 int id 해서 int 로 변환해서 받음
         logger.info("searchLook()진입");
@@ -115,7 +128,14 @@ public class LookController {
             throw new NotFoundException(String.format("ID[%s] not found", id));
         }
         map.put("look", boardDto); //게시글 가져오기
-        map.put("moodlist", moodDtoList);//해쉬맵에 무드DTO리스트 추가
+
+        //찬영이 용으로 테스트
+        List<MoodDto> l=moodDao.getMooddto(id);
+        for(MoodDto m:l){
+            map.put(m.getMood(),m.getMood());
+        }
+ //       map.put("moodlist", moodDtoList);//해쉬맵에 무드DTO리스트 추가
+
         boardDao.countUpdate(id); //글상세보기 하면 조회수 증가
 
         return map;
@@ -193,6 +213,8 @@ public class LookController {
             throw new UnauthorizedException(String.format("unauthorized you"));
         }
     }
+
+    //룩게시판 조회회
 
     @ResponseBody
     @PostMapping("/likey/looknum/{num}/user/{id}")

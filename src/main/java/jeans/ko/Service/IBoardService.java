@@ -22,4 +22,5 @@ public interface IBoardService {
     //멀티파트 형식으로 들어온 이미지 파일리스트를 PictureDto 리스트로 반환하는 메소드.
     //picture테이블에 값을 입력하기 위해 멀티파트리스트를 String,biginterger 만 사용하는 PictureDto 리스트로변환
     public List<PictureDto> bindingPicture(List<MultipartFile> e, int looknum);
+
 }

@@ -28,5 +28,4 @@ public interface IFileService {
     public boolean rmDir(List<String>pahts);
 
 
-
 }

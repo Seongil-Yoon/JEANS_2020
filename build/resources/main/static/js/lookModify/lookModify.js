@@ -14,7 +14,7 @@ function modifiy() {
     let title = document.getElementsByName("title")[0].value
     let season = document.getElementsByName("season");
     let look_public = document.getElementsByName("look_public");
-   // let tag = document.getElementsByName("tag")[0].value
+    // let tag = document.getElementsByName("tag")[0].value
     let memo = document.getElementsByName("memo")[0].value
     let seasonCheck = season_check(season);
     let look_publicCheck = look_public_check(look_public);
