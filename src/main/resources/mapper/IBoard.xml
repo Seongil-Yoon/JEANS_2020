@@ -99,12 +99,10 @@
     <sql id="search">
         <choose>
             <when test="option=='all'">
-                WHERE nickname like CONCAT('%',#{keyword},'%')
-                OR memo like CONCAT('%',#{keyword},'%')
-                OR title like CONCAT('%',#{keyword},'%') LIMIT 6
+                WHERE nickname like CONCAT('%',#{keyword},'%') OR memo like CONCAT('%',#{keyword},'%') OR title like CONCAT('%',#{keyword},'%') order by look_num desc LIMIT 3;
             </when>
             <otherwise>
-                WHERE ${option} like CONCAT('%',#{keyword},'%')
+                WHERE ${option} like CONCAT('%',#{keyword},'%') order by look_num desc LIMIT 3;
             </otherwise>
         </choose>
     </sql>
