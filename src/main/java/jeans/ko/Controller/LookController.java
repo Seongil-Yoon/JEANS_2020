@@ -133,6 +133,7 @@ public class LookController {
         List<MoodDto> l=moodDao.getMooddto(id);
         for(MoodDto m:l){
             map.put(m.getMood(),m.getMood());
+            System.out.println("m.getMood() = " + m.getMood());
         }
  //       map.put("moodlist", moodDtoList);//해쉬맵에 무드DTO리스트 추가
 
