@@ -11,6 +11,7 @@
       </configuration>
     </facet>
   </component>
+<<<<<<< HEAD
   <component name="NewModuleRootManager">
     <output-test url="file://$MODULE_DIR$/../../build/classes/java/test" />
     <exclude-output />
@@ -92,4 +93,6 @@
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.yaml:snakeyaml:1.23" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="ko.main" />
+=======
+>>>>>>> ffac636c83abbb3a990ca9bff0e2f0c7eb5b2055
 </module>

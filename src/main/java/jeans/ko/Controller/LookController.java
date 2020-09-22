@@ -1,7 +1,7 @@
 package jeans.ko.Controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.geometry.HorizontalDirection;
+
+
 import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dao.IMoodDao;
 import jeans.ko.Dao.IPreferenceDao;
@@ -13,9 +13,9 @@ import jeans.ko.Service.IPretreatmentService;
 import jeans.ko.Service.IUtilService;
 import jeans.ko.exception.NotFoundException;
 import jeans.ko.exception.UnauthorizedException;
-import org.apache.commons.io.FilenameUtils;
+
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.filefilter.AndFileFilter;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

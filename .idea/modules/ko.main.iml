@@ -9,6 +9,7 @@
         <webroots />
       </configuration>
     </facet>
+<<<<<<< HEAD
     <facet type="web" name="Web Gradle : ko-0.0.1-SNAPSHOT.war">
       <configuration>
         <webroots>
@@ -82,5 +83,7 @@
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.springframework.boot:spring-boot-devtools:2.1.15.BUILD-SNAPSHOT" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: mysql:mysql-connector-java:8.0.20" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.yaml:snakeyaml:1.23" level="project" />
+=======
+>>>>>>> ffac636c83abbb3a990ca9bff0e2f0c7eb5b2055
   </component>
 </module>
