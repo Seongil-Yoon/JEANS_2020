@@ -1,4 +1,6 @@
 
+
+
 function lookDelete(lookNum,lookUserId,userid){
 
     var lookNum=lookNum;

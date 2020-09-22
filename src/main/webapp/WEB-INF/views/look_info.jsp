@@ -206,6 +206,7 @@
 <script
         type="text/javascript"
         src="/static/js/look_info/lookDelete.js"
+        charset="UTF-8"
 ></script>
 <script
         type="text/javascript"
