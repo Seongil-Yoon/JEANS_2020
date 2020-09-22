@@ -26,13 +26,20 @@
                 </div>
 
                 <div class = "modify_top">
-                    <img src="/static/images/pen.png" alt="pen" height="30" width="30" />
-                    <a href="/changeUser">
-                        <img src="/static/images/gear.png" alt="gear" height="30" width="30" />
-                    </a>
-                    <a href="/deleteUser">
-                        <img src="/static/images/delete.png" alt="gear" height="30" width="30" />
-                    </a>
+                    <%--로그인 한경우--%>
+                <c:choose>
+                    <c:when test="${sessionScope.userid != null}">
+                        <button class="messageBtn" id="js-messagePen" >
+                            <img src="/static/images/pen.png" alt="pen" height="30" width="30"/>
+                        </button>
+                        <a href="/changeUser" id="js-changeUser">
+                            <img src="/static/images/gear.png" alt="gear" height="30" width="30" />
+                        </a>
+                        <a href="/deleteUser" id="js-deleteUser">
+                            <img src="/static/images/delete.png" alt="gear" height="30" width="30" />
+                        </a>
+                    </c:when>
+                </c:choose>
                 </div>
 
                 <div class="modify_right"></div>
@@ -69,8 +76,8 @@
                     <div class="div_space"></div>
                 </div>
 
-                <div class ="my_memo">
-                    팔로우 좀
+                <div class ="my_memo" id="js-message">
+                    <span class="my_message">${view.message}</span>
                 </div>
 
                 <div class = "space_middle"></div>
@@ -216,7 +223,8 @@
     </div>
 
 
-    <script src ="/static/js/mypageUser/mypageUser.js"></script>
+    <script type="text/javascript" src ="/static/js/mypageUser/mypageUser_bottom.js"></script>
+    <script type="text/javascript" src ="/static/js/mypageUser/mypageUser.js"></script>
     <script
             src="https://code.jquery.com/jquery-3.5.1.min.js"
             integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
@@ -225,7 +233,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <script src="/static/js/backCashDelete.js"></script>
     <script>catchNick('${nick}')</script>
-
-
+    <script>myUsernickname('${sessionScope.usernickname}')</script>
 </body>
 </html>

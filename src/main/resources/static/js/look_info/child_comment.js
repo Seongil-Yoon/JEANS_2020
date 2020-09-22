@@ -15,7 +15,9 @@ function childHTML(result, jqxHR_status) {
     html += `<input class="child_comment_sender_name" value=${result.comment_sender_name} type="hidden"/>`;
     html += `<input class="child_comment_id" value=${result.comment_id} type="hidden"/>`;
     html += `<div class="comment_left">`;
+    html += `<a class="mypageLink" href="mypageUser/${result.comment_sender_name}">`;
     html += `<img class="profile_img" src=displayMthumbnail/${result.comment_sender_id}>`;
+    html += `</a>`;
     html += `</div>`;//<div class="comment_left">
 
     html += `<div class="comment_center">`;
@@ -56,7 +58,9 @@ function childWriteHtml(userid, userNickname, parents_comment_id) {
     html += `<input class="child_comment_nickname" value=${userNickname} type="hidden"/>`;
     html += `<input class="parents_comment_id" value=${parents_comment_id} type="hidden"/>`;
     html += `<div class="comment_left">`;
+    html += `<a class="mypageLink" href="mypageUser/${userNickname}">`;
     html += `<img class="profile_img" src=displayMthumbnail/${userid}>`;
+    html += `</a>`;
     html += `</div>`;//<div class="comment_left">
 
     html += `<div class="comment_center">`;
@@ -217,7 +221,9 @@ $(document).on("click", "#js-child_sujung_button", function (event) {
 
         html += `<input class="child_comment_id" value=${child_comment_id} type="hidden"/>`;
         html += `<div class="comment_left">`;
+        html += `<a class="mypageLink" href="mypageUser/${child_comment_sender_name}">`;
         html += `<img class="profile_img" src=displayMthumbnail/${child_comment_sender_id}>`;
+        html += `</a>`;
         html += `</div>`;//<div class="comment_left">
 
         html += `<div class="comment_center">`;

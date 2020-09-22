@@ -37,7 +37,9 @@ function commentReady(look_num, userid, usernickname) {
 function commentHTML(result, html) {
     // `` <= 바틱을 씁시다.
     html += `<div class="comment_left">`;
+    html += `<a class="mypageLink" href="mypageUser/${result.comment_sender_name}">`;
     html += `<img class="profile_img" src=displayMthumbnail/${result.comment_sender_id}>`;
+    html += `</a>`;
     html += `</div>`;//<div class="comment_left">
 
     html += `<div class="comment_center">`;
@@ -264,7 +266,9 @@ $(document).on("click", "#js-comment_sujung_button", function (event) {
     let html = "";
     html += `<input class="comment_id" value=${comment_id} type="hidden"/>`;
     html += `<div class="comment_left">`;
+    html += `<a class="mypageLink" href="mypageUser/${nickName}">`;
     html += `<img class="profile_img" src=displayMthumbnail/${comment_sender_id}>`;
+    html += `</a>`;
     html += `</div>`;//<div class="comment_left">
 
     html += `<div class="comment_center">`;

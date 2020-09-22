@@ -27,7 +27,7 @@
                 <div class="space"/>
             </div>
             <!-- /* class 이 space 인건 layout 을 위해 넣은 빈공간임*/-->
-            <div><span class="title">내 룩 등록</span></div>
+            <span class="boardTitle">내 룩 등록</span>
             <div class="space"></div>
 
 
@@ -68,11 +68,23 @@
 
                 <div><span class="Jeans_bule">*계절</span></div>
 
-                <div>
-                    <input type="checkbox" value="봄" name="season"/>&nbsp;봄 &nbsp;
-                    <input type="checkbox" value="여름" name="season"/>&nbsp;여름 &nbsp;
-                    <input type="checkbox" value="가을" name="season"/>&nbsp;가을 &nbsp;
-                    <input type="checkbox" value="겨울" name="season"/>겨울
+                <div class="look_season">
+                    <label>
+                        <input type="checkbox" value="봄" name="season"/>
+                        <span>봄</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" value="여름" name="season"/>
+                        <span>여름</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" value="가을" name="season"/>
+                        <span>가을</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" value="겨울" name="season"/>
+                        <span>겨울</span>
+                    </label>
                 </div>
                 <div class="space"></div>
 
@@ -82,9 +94,14 @@
                 </div>
 
                 <div>
-                    <input type="radio" name="look_public" value="1">공개
-                    <input type="radio" name="look_public" value="2">비공개
-
+                    <label>
+                        <input type="radio" name="look_public" value="1">
+                        <span>공개</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="look_public" value="2">
+                        <span>비공개</span>
+                    </label>
                 </div>
 
                 <div class="space"></div>
@@ -94,42 +111,42 @@
                 </div>
 
                 <div class="mood_wrap" id="js-mood_wrap">
-                    <div class="mood_label">
+                    <label class="mood_label">
                         <input type="checkbox" value="스트리트" name="mood"/>
                         <span>스트리트</span>
-                    </div>
-                    <div class="mood_label">
+                    </label>
+                    <label class="mood_label">
                         <input type="checkbox" value="캐쥬얼" name="mood"/>
                         <span>캐쥬얼</span>
-                    </div>
-                    <div class="mood_label">
+                    </label>
+                    <label class="mood_label">
                         <input type="checkbox" value="미니멀" name="mood"/>
                         <span>미니멀</span>
-                    </div>
-                    <div class="mood_label">
+                    </label>
+                    <label class="mood_label">
                         <input type="checkbox" value="그런지" name="mood"/>
                         <span>그런지</span>
-                    </div>
-                    <div class="mood_label">
+                    </label>
+                    <label class="mood_label">
                         <input type="checkbox" value="시티보이" name="mood"/>
                         <span>시티보이</span>
-                    </div>
-                    <div class="mood_label">
+                    </label>
+                    <label class="mood_label">
                         <input type="checkbox" value="테크웨어" name="mood"/>
                         <span>테크웨어</span>
-                    </div>
-                    <div class="mood_label">
+                    </label>
+                    <label class="mood_label">
                         <input type="checkbox" value="워크웨어" name="mood"/>
                         <span>워크웨어</span>
-                    </div>
-                    <div class="mood_label">
+                    </label>
+                    <label class="mood_label">
                         <input type="checkbox" value="아메카지" name="mood"/>
                         <span>아메카지</span>
-                    </div>
-                    <div class="mood_label">
+                    </label>
+                    <label class="mood_label">
                         <input type="checkbox" value="밀리터리" name="mood"/>
                         <span>밀리터리</span>
-                    </div>
+                    </label>
                     <!-- <textarea name="tag" class="input_tag"></textarea> -->
                 </div>
 
