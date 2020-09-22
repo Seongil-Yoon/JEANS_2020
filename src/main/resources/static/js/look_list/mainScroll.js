@@ -1,6 +1,7 @@
 let look_num = 20000; //게시글 6개씩 불러 오기 위해 look_num 값넣는 변수 초기값 은  2000000000
 let mainScrollTime = true; //스크롤 중복 방지 변수
 let end=true //게시글 없을 경우 데이터 가져오지 않는 변수
+let jsp_nickname=``;
 
 $(document).ready(function () {
     start(); //처음 4개 출력
@@ -21,6 +22,12 @@ $(document).ready(function () {
         }
     })
 });
+
+//JSP파일 서버변수 호출함수
+function myUsernickname(usernickname){
+    console.log(usernickname);
+    jsp_nickname = usernickname;
+}
 
 function start() {
     //무한 스크롤 중복 방지
@@ -43,7 +50,9 @@ function start() {
                 html += '<div class=\"is_body\" >';
                 html += '<!-- 헤더-->';
                 html += '<div class=\"my_img\">';
+                html += `<a class="mypageLink" href="mypageUser/${jsp_nickname}">`;
                 html += '<img src=displayMthumbnail/' + result[i].fk_userid_user_userid + '>';
+                html += `</a>`;
                 html += ' </div>';
                 html += '<div class=\"name\">';
                 html += ' <ul class=\"look_header_ul\">';

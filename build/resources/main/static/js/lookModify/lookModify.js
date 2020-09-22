@@ -7,15 +7,29 @@ const uploadDiv = document.querySelector("#js-uploadDiv"),
 
 let fileBuffer = [];
 
+//현재 게시글 번호
+let look_number = 0;
+
+//무드의 갯수
+let moodMany = 9;
+
+let moodList = [];
+
+//JSP파일 서버변수 호출함수
+function getLooknum(lookNum) {
+    console.log("글번호", lookNum);
+    look_number = lookNum;
+}
+
 //from JSP onClick이벤트 호출
 function modifiy() {
-    let look_num=document.getElementsByName("look_num")[0].value;
-    let fk_userid_user_userid=document.getElementsByName("fk_userid_user_userid")[0].value;
+    let look_num = document.getElementsByName("look_num")[0].value;
+    let fk_userid_user_userid = document.getElementsByName("fk_userid_user_userid")[0].value;
     let title = document.getElementsByName("title")[0].value
     let season = document.getElementsByName("season");
     let look_public = document.getElementsByName("look_public");
-    // let tag = document.getElementsByName("tag")[0].value
     let memo = document.getElementsByName("memo")[0].value
+    let moodTag = document.getElementsByName("mood");
     let seasonCheck = season_check(season);
     let look_publicCheck = look_public_check(look_public);
     let empty = '';
@@ -29,27 +43,36 @@ function modifiy() {
     }
 
     let BoardDto = {
-        look_num:look_num,
+        look_num: look_num,
         title: title,
         season: seasonCheck,
-        fk_userid_user_userid:fk_userid_user_userid,
+        fk_userid_user_userid: fk_userid_user_userid,
         look_public: look_publicCheck,
         memo: memo
     }
 
-    //여기서 부터 성일이가 해줘야 할 부분.!!!!!.
-    var moodList=new Array();//무드Dto를 담을 moodDto 리스트
-    let MoodDto=new Object();
-    MoodDto.mood="시티보이";
-    moodList.push(MoodDto);
-    let MoodDto2=new Object();
-    MoodDto2.mood="아메카지";
-    moodList.push(MoodDto2);
-    //여기까지 일성이가 해줄꺼야!!!!!!
+    //무드
+    let moodList = [];
+    let mood_value = () => {
+        for (let i = 0; i < moodTag.length; i++) {
+            if (document.getElementsByName("mood")[i].checked === true) {
+                //check 박스 체크된것만 배열안으로 객체넣고
+                moodList.push(
+                    {
+                        look_num: look_number,
+                        mood: document.getElementsByName("mood")[i].value
+                    }
+                    //push(new MoodDto(look_num,mood)), 푸쉬할떄마다 새로운 객체
+                );
+            }
+        }
+    }
+    mood_value();
+    console.log("무드배열 푸시 후", moodList);
 
     let formData = new FormData();
-    formData.append("BoardDto", new Blob([JSON.stringify(BoardDto)],{type:"application/json"}));
-    formData.append("MoodDto",new Blob([JSON.stringify(moodList)],{type:"application/json"}));
+    formData.append("BoardDto", new Blob([JSON.stringify(BoardDto)], { type: "application/json" }));
+    formData.append("MoodDto", new Blob([JSON.stringify(moodList)], { type: "application/json" }));
 
     if (empty == '') {
         if (fileBuffer == undefined) {
@@ -171,6 +194,22 @@ function seasonLook_publicResult(season, look_public) {
         document.getElementsByName("look_public")[1].checked = true;
     }
 }
+//JSP
+function moodLook_Result(mood) {
+    moodList.push(mood)
+}
+function setMood() {
+    console.log(moodList);
+    for (let i = 0; i < moodList.length; i++) {
+        for (moodMany = 0; moodMany < 9; moodMany++) { //const타입 불가
+            if (moodList[i] === document.getElementsByName("mood")[moodMany].value) {
+                console.log("무드일치")
+                document.getElementsByName("mood")[moodMany].checked = true;
+            }
+        }
+
+    }
+}
 //end of from JSP onClick이벤트 호출
 
 //게시글에 있는 썸네일이미지 GET으로 받아오기.
@@ -264,6 +303,7 @@ function lookReady(lookNum) {
 
 function init(lookNumber) {
     getThumbnail(lookNumber);
+    setMood();
 
 }
 

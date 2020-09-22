@@ -98,14 +98,45 @@
                     <span class="Jeans_bule">*태그</span>
                 </div>
 
-              <!--성일아 이부분 바꿔줘 무드 체크버튼 있더록-->
-             <div>
-                    <textarea name="tag" class="input_tag"><%--${view.tag}--%>
-                        <c:forEach items="${mood}" var="mood">
-                            ${mood.mood}
-                        </c:forEach>
-                    </textarea>
-             </div>
+                <div class="mood_wrap" id="js-mood_wrap">
+                    <div class="mood_label">
+                        <input type="checkbox" value="스트리트" name="mood"/>
+                        <span>스트리트</span>
+                    </div>
+                    <div class="mood_label">
+                        <input type="checkbox" value="캐쥬얼" name="mood"/>
+                        <span>캐쥬얼</span>
+                    </div>
+                    <div class="mood_label">
+                        <input type="checkbox" value="미니멀" name="mood"/>
+                        <span>미니멀</span>
+                    </div>
+                    <div class="mood_label">
+                        <input type="checkbox" value="그런지" name="mood"/>
+                        <span>그런지</span>
+                    </div>
+                    <div class="mood_label">
+                        <input type="checkbox" value="시티보이" name="mood"/>
+                        <span>시티보이</span>
+                    </div>
+                    <div class="mood_label">
+                        <input type="checkbox" value="테크웨어" name="mood"/>
+                        <span>테크웨어</span>
+                    </div>
+                    <div class="mood_label">
+                        <input type="checkbox" value="워크웨어" name="mood"/>
+                        <span>워크웨어</span>
+                    </div>
+                    <div class="mood_label">
+                        <input type="checkbox" value="아메카지" name="mood"/>
+                        <span>아메카지</span>
+                    </div>
+                    <div class="mood_label">
+                        <input type="checkbox" value="밀리터리" name="mood"/>
+                        <span>밀리터리</span>
+                    </div>
+                    <!-- <textarea name="tag" class="input_tag"></textarea> -->
+                </div>
 
                 <div class="space"></div>
                 <div class="space"></div>
@@ -144,12 +175,18 @@
         crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script src="/static/js/id_nickname_session.js"></script>
 <script type="text/javascript" src="/static/js/lookModify/lookModify.js"></script>
 <%--수정전 내가선택한 계절 이랑 공개여부 값보내기--%>
 <script>seasonLook_publicResult('${view.season}',${view.look_privacy})</script>
-<script>lookReady(${view.look_num})</script>
 
+<c:forEach items="${mood}" var="mood">
+    <script>moodLook_Result('${mood.mood}')</script>
+</c:forEach>
+
+<script>lookReady(${view.look_num})</script>
+<script>
+    getLooknum(${view.look_num})
+</script>
 </body>
 </html>
 

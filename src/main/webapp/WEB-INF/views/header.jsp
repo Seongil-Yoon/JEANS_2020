@@ -90,7 +90,6 @@
 <script src="/static/js/backCashDelete.js"></script>
 <script src="/static/js/logout.js"></script>
 
-
 </body>
 
 </html>

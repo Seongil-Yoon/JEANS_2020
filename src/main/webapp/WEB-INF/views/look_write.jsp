@@ -93,10 +93,44 @@
                     <span class="Jeans_bule">*태그</span>
                 </div>
 
-                <div>
-
-                    <textarea name="tag" class="input_tag"></textarea>
-
+                <div class="mood_wrap" id="js-mood_wrap">
+                    <div class="mood_label">
+                        <input type="checkbox" value="스트리트" name="mood"/>
+                        <span>스트리트</span>
+                    </div>
+                    <div class="mood_label">
+                        <input type="checkbox" value="캐쥬얼" name="mood"/>
+                        <span>캐쥬얼</span>
+                    </div>
+                    <div class="mood_label">
+                        <input type="checkbox" value="미니멀" name="mood"/>
+                        <span>미니멀</span>
+                    </div>
+                    <div class="mood_label">
+                        <input type="checkbox" value="그런지" name="mood"/>
+                        <span>그런지</span>
+                    </div>
+                    <div class="mood_label">
+                        <input type="checkbox" value="시티보이" name="mood"/>
+                        <span>시티보이</span>
+                    </div>
+                    <div class="mood_label">
+                        <input type="checkbox" value="테크웨어" name="mood"/>
+                        <span>테크웨어</span>
+                    </div>
+                    <div class="mood_label">
+                        <input type="checkbox" value="워크웨어" name="mood"/>
+                        <span>워크웨어</span>
+                    </div>
+                    <div class="mood_label">
+                        <input type="checkbox" value="아메카지" name="mood"/>
+                        <span>아메카지</span>
+                    </div>
+                    <div class="mood_label">
+                        <input type="checkbox" value="밀리터리" name="mood"/>
+                        <span>밀리터리</span>
+                    </div>
+                    <!-- <textarea name="tag" class="input_tag"></textarea> -->
                 </div>
 
                 <div class="space"></div>
@@ -135,13 +169,15 @@
 <script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
 <!-- FileFond CDN -->
 
-<script   src="/static/js/look_write/look_write.js"></script>
+<script  type="text/javascript" src="/static/js/look_write/look_write.js"></script>
 <script
         src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
         crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-
+<script>
+    getLooknum(${view.look_num})
+</script>
 </body>
 </html>
