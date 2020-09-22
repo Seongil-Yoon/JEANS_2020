@@ -36,8 +36,6 @@ let slideCounter = 0;
 
 let initBuffer = 0;
 
-let pond = 0;
-
 //현재 게시글 번호
 let look_number = 0;
 
@@ -114,7 +112,9 @@ function lookWrite() {
 
     let formData = new FormData();
     formData.append("BoardDto", new Blob([JSON.stringify(BoardDto)], { type: "application/json" }));
-    formData.append("MoodDto", new Blob([JSON.stringify(moodList)], { type: "application/json" }));
+    if (moodList.length > 0) {
+        formData.append("MoodDto", new Blob([JSON.stringify(moodList)], { type: "application/json" }));
+    }
 
     if (empty == '') {
         if (fileBuffer == undefined) {
@@ -229,17 +229,11 @@ function filePond() {
         FilePondPluginFileEncode
     );
     // Create the FilePond instance
-    pond = FilePond.create(inputElement, {
+    const pond = FilePond.create(inputElement, {
         allowMultiple: true,
         allowReorder: true
     });
-    // pond.on('addfile', (error, file) => {
-    //     if (error) {
-    //         console.log('Oh no');
-    //         return;
-    //     }
-    //     console.log('File added', file);
-    // });
+
 
     const filepondRoot = document.querySelector('.filepond--root');
 

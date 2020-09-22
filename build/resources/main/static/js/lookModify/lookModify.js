@@ -6,7 +6,7 @@ const uploadDiv = document.querySelector("#js-uploadDiv"),
     inputElement = document.querySelector('input[type="file"]');
 
 let fileBuffer = [];
-
+let pond = 0;
 //현재 게시글 번호
 let look_number = 0;
 
@@ -51,8 +51,8 @@ function modifiy() {
         memo: memo
     }
 
-    //무드
-    let moodList = [];
+    //서버에서 받아왔던 무드, 배열 비우고 새로 체크된것 넣음.
+    moodList.splice(0, moodList.length);
     let mood_value = () => {
         for (let i = 0; i < moodTag.length; i++) {
             if (document.getElementsByName("mood")[i].checked === true) {
@@ -72,7 +72,9 @@ function modifiy() {
 
     let formData = new FormData();
     formData.append("BoardDto", new Blob([JSON.stringify(BoardDto)], { type: "application/json" }));
-    formData.append("MoodDto", new Blob([JSON.stringify(moodList)], { type: "application/json" }));
+    if (moodList.length > 0) {
+        formData.append("MoodDto", new Blob([JSON.stringify(moodList)], { type: "application/json" }));
+    }
 
     if (empty == '') {
         if (fileBuffer == undefined) {
@@ -218,7 +220,14 @@ function getThumbnail(lookNumber) {
         url: `/displayInthumbnail/${lookNumber}`,
         type: "GET",
         success: function (result) {
-            filePond(result);
+            if (result.length > 0) {
+                createFilePond();
+                putImage(result);
+                filePondListner();
+            } else {
+                createFilePond();
+                filePondListner();
+            }
         },
         error: function (error) {
             //서버오류 500  찾는 자료없음 404  권한없음  401
@@ -227,6 +236,8 @@ function getThumbnail(lookNumber) {
             } else if (error.status == 401) {
                 swal('접근 권한이 없습니다', '', 'error');
             } else if (error.status == 500) {
+                createFilePond();
+                filePondListner();
                 swal('서버 오류 관리자에게 문의 하세요', '', 'error');
             }
         }
@@ -234,34 +245,29 @@ function getThumbnail(lookNumber) {
 }
 
 // Register the plugin with FilePond
-function filePond(result) {
-
-
+function createFilePond() {
     FilePond.registerPlugin(
         // FilePondPluginFileMetadata,
         // FilePondPluginImageCrop,
         FilePondPluginImagePreview,
         FilePondPluginFileEncode
     );
-
     // Create the FilePond instance
-    const pond = FilePond.create(inputElement, {
+    pond = FilePond.create(inputElement, {
         allowMultiple: true,
         allowReorder: true
     });
+}
 
-    console.log("result name" + result[0]);
-
-    let putImage = (result) => {
-        for (let i = 0; i < result.length; i++) {
-            pond.addFile(`data:image/jpg;base64, ${result[i]}`);
-            // e.detail.items[i].filename = result[i].name;
-            console.log(result[i].name);
-        }
+let putImage = (result) => {
+    for (let i = 0; i < result.length; i++) {
+        pond.addFile(`data:image/jpg;base64, ${result[i]}`);
+        // e.detail.items[i].filename = result[i].name;
+        console.log(result[i].name);
     }
-    putImage(result);
+}
 
-
+function filePondListner() {
     const filepondRoot = document.querySelector('.filepond--root');
 
     filepondRoot.addEventListener('FilePond:updatefiles', e => {
@@ -277,6 +283,7 @@ function filePond(result) {
 
     });
 }
+//end of 파일폰드
 
 //base64 to File객체
 const dataURLtoFile = (dataurl, fileName) => {
