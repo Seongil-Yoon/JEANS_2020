@@ -104,8 +104,9 @@ public class LookController {
     }
 
     @ResponseBody
-    @GetMapping("/search/{searchOption}/{keyword}")
-    public List<BoardDto> search(@PathVariable String searchOption,@PathVariable String keyword){
+    @GetMapping("/search/{searchOption}/{keyword}/{looknum}")
+    public List<BoardDto> search(@PathVariable String searchOption,@PathVariable String keyword,@PathVariable(required=false)int looknum){
+        System.out.println("looknum = " + looknum);
         logger.info("search 메소드");
         if(searchOption.equals("mood")){
 
@@ -130,12 +131,12 @@ public class LookController {
         map.put("look", boardDto); //게시글 가져오기
 
         //찬영이 용으로 테스트
-        List<MoodDto> l=moodDao.getMooddto(id);
+   /*     List<MoodDto> l=moodDao.getMooddto(id);
         for(MoodDto m:l){
             map.put(m.getMood(),m.getMood());
             System.out.println("m.getMood() = " + m.getMood());
-        }
- //       map.put("moodlist", moodDtoList);//해쉬맵에 무드DTO리스트 추가
+        }*/
+       map.put("moodlist", moodDtoList);//해쉬맵에 무드DTO리스트 추가
 
         boardDao.countUpdate(id); //글상세보기 하면 조회수 증가
 
