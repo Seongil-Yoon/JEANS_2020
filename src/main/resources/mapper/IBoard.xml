@@ -51,6 +51,12 @@
         <include refid="search"></include>
     </select>
 
+    <select id="preferenceList" resultType="jeans.ko.Dto.BoardDto">
+        select *
+        from look
+        WHERE userid=#{userid1} or userid=#{userid2} or userid=#{userid3} AND look_num &lt; #{looknum} order by look_num desc LIMIT 6;
+    </select>
+
     <select id="view" resultType="jeans.ko.Dto.BoardDto">
         select * from look where look_num = #{look_num}
     </select>

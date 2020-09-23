@@ -126,6 +126,18 @@ public class LookController {
         return search;
     }
 
+    @GetMapping("/preferencelist")
+    public String preferencePage(){
+//첫번째 매개변수 userid들을 어떻게 받을까.
+        return "preference_list";
+    }
+
+  /*  @ResponseBody
+    @GetMapping("/preference/{userid1}/{userid2}/{userid3}/{looknum}")
+    public List<BoardDto> preference(@PathVariable String userid1,@PathVariable String userid2,@PathVariable String userid3,@PathVariable(required = false) int looknum){
+        List<BoardDto>preference;
+    }*/
+
     @ResponseBody
     @GetMapping("/looks/{id}") //룩상세보기 안드로이드에 값주게 json 데이터만 넘기는용
     public HashMap<String, Object> searchLook(@PathVariable int id) {   //looks/1   looks/3  -->String으로 오는데 int id 해서 int 로 변환해서 받음
