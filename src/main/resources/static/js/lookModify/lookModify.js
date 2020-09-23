@@ -6,16 +6,30 @@ const uploadDiv = document.querySelector("#js-uploadDiv"),
     inputElement = document.querySelector('input[type="file"]');
 
 let fileBuffer = [];
+let pond = 0;
+//현재 게시글 번호
+let look_number = 0;
+
+//무드의 갯수
+let moodMany = 9;
+
+let moodList = [];
+
+//JSP파일 서버변수 호출함수
+function getLooknum(lookNum) {
+    console.log("글번호", lookNum);
+    look_number = lookNum;
+}
 
 //from JSP onClick이벤트 호출
 function modifiy() {
-    let look_num=document.getElementsByName("look_num")[0].value;
-    let fk_userid_user_userid=document.getElementsByName("fk_userid_user_userid")[0].value;
+    let look_num = document.getElementsByName("look_num")[0].value;
+    let fk_userid_user_userid = document.getElementsByName("fk_userid_user_userid")[0].value;
     let title = document.getElementsByName("title")[0].value
     let season = document.getElementsByName("season");
     let look_public = document.getElementsByName("look_public");
-    // let tag = document.getElementsByName("tag")[0].value
     let memo = document.getElementsByName("memo")[0].value
+    let moodTag = document.getElementsByName("mood");
     let seasonCheck = season_check(season);
     let look_publicCheck = look_public_check(look_public);
     let empty = '';
@@ -29,27 +43,38 @@ function modifiy() {
     }
 
     let BoardDto = {
-        look_num:look_num,
+        look_num: look_num,
         title: title,
         season: seasonCheck,
-        fk_userid_user_userid:fk_userid_user_userid,
+        fk_userid_user_userid: fk_userid_user_userid,
         look_public: look_publicCheck,
         memo: memo
     }
 
-    //여기서 부터 성일이가 해줘야 할 부분.!!!!!.
-    var moodList=new Array();//무드Dto를 담을 moodDto 리스트
-    let MoodDto=new Object();
-    MoodDto.mood="시티보이";
-    moodList.push(MoodDto);
-    let MoodDto2=new Object();
-    MoodDto2.mood="아메카지";
-    moodList.push(MoodDto2);
-    //여기까지 일성이가 해줄꺼야!!!!!!
+    //서버에서 받아왔던 무드, 배열 비우고 새로 체크된것 넣음.
+    moodList.splice(0, moodList.length);
+    let mood_value = () => {
+        for (let i = 0; i < moodTag.length; i++) {
+            if (document.getElementsByName("mood")[i].checked === true) {
+                //check 박스 체크된것만 배열안으로 객체넣고
+                moodList.push(
+                    {
+                        look_num: look_number,
+                        mood: document.getElementsByName("mood")[i].value
+                    }
+                    //push(new MoodDto(look_num,mood)), 푸쉬할떄마다 새로운 객체
+                );
+            }
+        }
+    }
+    mood_value();
+    console.log("무드배열 푸시 후", moodList);
 
     let formData = new FormData();
-    formData.append("BoardDto", new Blob([JSON.stringify(BoardDto)],{type:"application/json"}));
-    formData.append("MoodDto",new Blob([JSON.stringify(moodList)],{type:"application/json"}));
+    formData.append("BoardDto", new Blob([JSON.stringify(BoardDto)], { type: "application/json" }));
+    if (moodList.length > 0) {
+        formData.append("MoodDto", new Blob([JSON.stringify(moodList)], { type: "application/json" }));
+    }
 
     if (empty == '') {
         if (fileBuffer == undefined) {
@@ -171,6 +196,22 @@ function seasonLook_publicResult(season, look_public) {
         document.getElementsByName("look_public")[1].checked = true;
     }
 }
+//JSP
+function moodLook_Result(mood) {
+    moodList.push(mood)
+}
+function setMood() {
+    console.log(moodList);
+    for (let i = 0; i < moodList.length; i++) {
+        for (moodMany = 0; moodMany < 9; moodMany++) { //const타입 불가
+            if (moodList[i] === document.getElementsByName("mood")[moodMany].value) {
+                console.log("무드일치")
+                document.getElementsByName("mood")[moodMany].checked = true;
+            }
+        }
+
+    }
+}
 //end of from JSP onClick이벤트 호출
 
 //게시글에 있는 썸네일이미지 GET으로 받아오기.
@@ -179,7 +220,14 @@ function getThumbnail(lookNumber) {
         url: `/displayInthumbnail/${lookNumber}`,
         type: "GET",
         success: function (result) {
-            filePond(result);
+            if (result.length > 0) {
+                createFilePond();
+                putImage(result);
+                filePondListner();
+            } else {
+                createFilePond();
+                filePondListner();
+            }
         },
         error: function (error) {
             //서버오류 500  찾는 자료없음 404  권한없음  401
@@ -188,6 +236,8 @@ function getThumbnail(lookNumber) {
             } else if (error.status == 401) {
                 swal('접근 권한이 없습니다', '', 'error');
             } else if (error.status == 500) {
+                createFilePond();
+                filePondListner();
                 swal('서버 오류 관리자에게 문의 하세요', '', 'error');
             }
         }
@@ -195,34 +245,29 @@ function getThumbnail(lookNumber) {
 }
 
 // Register the plugin with FilePond
-function filePond(result) {
-
-
+function createFilePond() {
     FilePond.registerPlugin(
         // FilePondPluginFileMetadata,
         // FilePondPluginImageCrop,
         FilePondPluginImagePreview,
         FilePondPluginFileEncode
     );
-
     // Create the FilePond instance
-    const pond = FilePond.create(inputElement, {
+    pond = FilePond.create(inputElement, {
         allowMultiple: true,
         allowReorder: true
     });
+}
 
-    console.log("result name" + result[0]);
-
-    let putImage = (result) => {
-        for (let i = 0; i < result.length; i++) {
-            pond.addFile(`data:image/jpg;base64, ${result[i]}`);
-            // e.detail.items[i].filename = result[i].name;
-            console.log(result[i].name);
-        }
+let putImage = (result) => {
+    for (let i = 0; i < result.length; i++) {
+        pond.addFile(`data:image/jpg;base64, ${result[i]}`);
+        // e.detail.items[i].filename = result[i].name;
+        console.log(result[i].name);
     }
-    putImage(result);
+}
 
-
+function filePondListner() {
     const filepondRoot = document.querySelector('.filepond--root');
 
     filepondRoot.addEventListener('FilePond:updatefiles', e => {
@@ -238,6 +283,7 @@ function filePond(result) {
 
     });
 }
+//end of 파일폰드
 
 //base64 to File객체
 const dataURLtoFile = (dataurl, fileName) => {
@@ -264,6 +310,7 @@ function lookReady(lookNum) {
 
 function init(lookNumber) {
     getThumbnail(lookNumber);
+    setMood();
 
 }
 

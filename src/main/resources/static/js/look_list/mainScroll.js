@@ -35,7 +35,7 @@ $(window).on('load', function() {
         let windowHeight = window.innerHeight; //윈도우 높이
         //윈도우 높이에 스크롤값을 계속더해서 문서 전체 길이에서 100 px 앞에 스크롤이 왔을때 데이터 불러옴
         if ((windowHeight + scroll) >= documentHeight - 100) {
-            if (mainScrollTime == true && end==true) {
+            if (mainScrollTime == true && end == true) {
                 console.log("현재 스크롤 값", scroll);
                 console.log("전체높이", documentHeight);
                 console.log("윈도우 높이", windowHeight);
@@ -46,44 +46,41 @@ $(window).on('load', function() {
     })
 });
 
+
 function start() {
     //무한 스크롤 중복 방지
     mainScrollTime = false;
 
     $.ajax({
-        url: "/looksList/"+look_num,
+        url: "/looksList/" + look_num,
         type: "GET",
         dataType: "json", //json 으로 받기
         success: function (result) {
 
-            for (var i = 0; i < result.length ; i++) {
-
+            for (var i = 0; i < result.length; i++) {
                 let html = "";
-                // html += '<a class=\"look_view_a\"  href=\"look?look_num=' + result[i].look_num + '\">';
-                html += `<a class=\"look_view_a\"  href=\"look?look_num=${result[i].look_num}\">`;
-                html += '<div class=\"main\">';
+                html += `<div class=\"main\">`;
                 html += '<div claas=\"main_container\">';
                 html += '<ul class=\"main_look_item\">';
                 html += '<li id=1>';
                 html += '<div class=\"is_body\" >';
                 html += '<!-- 헤더-->';
-                html += '<div class=\"my_img\">';
-                html += '<img src=displayMthumbnail/' + result[i].fk_userid_user_userid + '>';
+                html += `<div class="my_img" id="js-my_img">`;
+                html += `<a class="mypageLink" href="mypageUser/${result[i].nickname}">`;
+                html += `<img src=displayMthumbnail/${result[i].fk_userid_user_userid}>`;
+                html += `</img>`;
+                html += `</a>`;
                 html += ' </div>';
+
                 html += '<div class=\"name\">';
-                html += ' <ul class=\"look_header_ul\">';
-                html += ' <li class=\"look_header_li\" style=\"width: auto\">';
                 html += '<span class=\"user_name\" style=\"width: auto\">' + result[i].nickname + '</span>';
-                html += ' </li>';
-                html += ' <li class=\"look_header_li\" style=\"width: auto; \"></li>';
-                html += '<li class=\"look_header_li\"\n" style=\"width: fit-content; text-align: right; float: right; font-size: 15px; font-weight: bold\">';
-                html += '<span id=\"look_date\">' + result[i].look_date + '</span>';
-                html += ' </li>';
-                html += ' </ul>';
-                html += ' </div>';
+                html += '<span class="look_date" id=\"look_date\">' + result[i].look_date + '</span>';
+                html += ' </div>';//<div class=\"name\">
+
                 html += '<div class=\"title\" >' + result[i].title + '</div>';
                 html += '<!-- 본문-->';
                 html += ' <div class=\"look_img\">';
+                html += `<a class="look_view_a"  href="look?look_num=${result[i].look_num}">`;
                 html += '<div class=\"look_img_in\">';
                 // html += '<img src=\"static/images/1.JPG\" alt=\"look_image\" class= \"look_img_file\"/>';
                 html += '<img class= \"look_img_file\" src=\"displayLthumbnail/' + result[i].look_num + '\">';
@@ -117,19 +114,19 @@ function start() {
                 html += '<span>' + result[i].count + '</span>';
                 html += ' </div>';
                 html += '</ul>';
+                html += ' </a>';//<a class="look_view_a"
                 html += ' <div class=\"space_end\"></div>';
                 html += ' </div>';
                 html += ' </li>';
                 html += '</ul>';
                 html += ' </div>';
                 html += ' </div>';
-                html += ' </a>';
 
                 $(".body_root").append(html);
             }
 
             //다음 게시글 6개 가져 오기 위해 마지막 게시글 기본키 값 넘겨줌
-            look_num=result[result.length-1].look_num;
+            look_num = result[result.length - 1].look_num;
 
             setTimeout(function () {
                 mainScrollTime = true;
@@ -141,7 +138,7 @@ function start() {
             if (error.status == 500) {
                 swal('서버오류', '', 'error');
             } else if (error.status == 404) {
-                end=false;
+                end = false;
                 //가져올 게시글이 없어서 더이상 데이터를 가져오지 않게 바꿈
             }
         }
