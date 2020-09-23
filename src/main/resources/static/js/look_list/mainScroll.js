@@ -8,10 +8,10 @@ function setUserId (Id){
     userId=Id;
 
     $.ajax({
-        url: "http://13.125.21.192:5000/id/1",
+        url: "http://13.125.21.192:5000/id/ogt6590",
         type: "GET", //데이터 전달방식
         success: function (result) {
-            console.log("아이디 " +userId+ " 과 유사도 높은 아이디들  " +result.near_user);
+            console.log(result.near_user)
         },
         error: function (error) {
             //서버오류 500  권한없음  401
@@ -24,7 +24,6 @@ function setUserId (Id){
     })
 
 }
-
 
 //on load html 이미지나 자바스크립트 링크가 다오고 실행됨
 $(window).on('load', function() {
