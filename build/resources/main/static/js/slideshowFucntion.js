@@ -1,16 +1,16 @@
-const slideList = document.querySelector('.look_flick_camera');  // Slide parent dom
-const slideContents = document.querySelectorAll('.flick_panel');  // each slide dom
-const slideBtnNext = document.querySelector('#look_slide_button_right'); // next button
-const slideBtnPrev = document.querySelector('#look_slide_button_left'); // prev button
-const slideLen = slideContents.length;  // slide length
-const slideWidth = 300; // slide width
-const slideSpeed = 300; // slide speed
-const startNum = 0; // initial slide index (0 ~ 4)
 
-function slide() {
+export function slideShow(paraSlideWidth) {
+    let slideList = document.querySelector('.look_flick_camera');  // Slide parent dom
+    let slideContents = document.querySelectorAll('.flick_panel');  // each slide dom
+    let slideBtnNext = document.querySelector('#look_slide_button_right'); // next button
+    let slideBtnPrev = document.querySelector('#look_slide_button_left'); // prev button
+    let slideLen = slideContents.length;  // slide length
+    let slideWidth = paraSlideWidth; // slide width
+    let slideSpeed = 300; // slide speed
+    let startNum = 0; // initial slide index (0 ~ 4)
 
-    slideList.style.width = slideWidth * (slideLen + 2) + "px";
     console.log(slideLen);
+    slideList.style.width = slideWidth * (slideLen + 2) + "px";
 
     // Copy first and last slide
     let firstChild = slideList.firstElementChild;
@@ -30,13 +30,16 @@ function slide() {
 
 
     /** Next Button Event */
-    slideBtnNext.addEventListener('click', function() {
+    slideBtnNext.addEventListener('click', function () {
         if (curIndex <= slideLen - 1) {
             slideList.style.transition = slideSpeed + "ms";
             slideList.style.transform = "translate3d(-" + (slideWidth * (curIndex + 2)) + "px, 0px, 0px)";
+            console.log("slideWidth", slideWidth);
+            console.log("curIndex", curIndex);
+            console.log("slideList.style.transform", slideList.style.transform);
         }
         if (curIndex === slideLen - 1) {
-            setTimeout(function() {
+            setTimeout(function () {
                 slideList.style.transition = "0ms";
                 slideList.style.transform = "translate3d(-" + slideWidth + "px, 0px, 0px)";
             }, slideSpeed);
@@ -48,13 +51,13 @@ function slide() {
     });
 
     /** Prev Button Event */
-    slideBtnPrev.addEventListener('click', function() {
+    slideBtnPrev.addEventListener('click', function () {
         if (curIndex >= 0) {
             slideList.style.transition = slideSpeed + "ms";
             slideList.style.transform = "translate3d(-" + (slideWidth * curIndex) + "px, 0px, 0px)";
         }
         if (curIndex === 0) {
-            setTimeout(function() {
+            setTimeout(function () {
                 slideList.style.transition = "0ms";
                 slideList.style.transform = "translate3d(-" + (slideWidth * slideLen) + "px, 0px, 0px)";
             }, slideSpeed);
@@ -65,11 +68,4 @@ function slide() {
         curSlide.classList.add('slide_active');
     });
 
-
 }
-
-function init(){
-    slide();
-}
-
-init();
