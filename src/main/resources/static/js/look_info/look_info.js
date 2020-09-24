@@ -213,6 +213,7 @@ function likey(num,id){
 
 //JSP파일 서버변수 호출함수
 function lookReady(lookNum) {
+    console.log("글번호", lookNum);
     startAjax(lookNum);
 }
 

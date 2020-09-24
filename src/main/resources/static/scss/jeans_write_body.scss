@@ -23,6 +23,9 @@ body {
         row-gap: 2px;
         background-color: rgb(224, 224, 224);
 
+        .boardTitle{
+          margin-left: 20px;
+        }
         .name {
           margin-left: 20px;
           display: flex;
@@ -80,6 +83,23 @@ body {
           grid-template-rows: 40px 40px 40px 40px 75px 75px;
           row-gap: 10px;
           line-height: 40px;
+          .mood_wrap {
+            display: flex;
+            flex-flow: row wrap;
+            width: 300px;
+            height: 70px;
+            .mood_label {
+              width: 90px;
+              height: max-content;
+              margin-right: 3%;
+            }
+          }
+          .tag {
+            margin-top: 34px;
+          }
+          .memo {
+            margin-top: 34px;
+          }
         }
       }
     }
@@ -111,16 +131,16 @@ body {
   width: 300px;
   height: 30px;
 }
-.input_tag {
-  border: none;
-  width: 300px;
-  height: 70px;
-  resize: none;
-}
+// .input_tag {
+//   border: none;
+//   width: 300px;
+//   height: 70px;
+//   resize: none;
+// }
 .input_memo {
   border: none;
   width: 300px;
-  height: 150px;
+  height: 130px;
   resize: none;
 }
 .save {

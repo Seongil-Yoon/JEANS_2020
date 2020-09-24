@@ -245,7 +245,7 @@ function joinUser() {
         Arr[5] = false;//정규식을 통과하지 못하면 false값
         msg += "몸무게,키 공개여부를 선택해주십시오\n";//swal에서 보여줄 msg.
         //성일아 이 밑에 주석해제하고 '#' 에 그 privacy값입력안됬을때 빨갛게뜨는 경고문 쪽에 넣어줘
-        
+
         //$('#').css('margin-bottom', '-4%');
         //$('#').text('성별을 입력해주세요');
         // $('#').css('color', 'red');
@@ -284,27 +284,27 @@ function joinUser() {
     formData.append('UserDto',new Blob([JSON.stringify(UserDto)],{type:"application/json"}));
     formData.append('file', file);
 
-        //JQuery 옵션
-        //data : 서버로 보낼 데이터
-        //dataType : 서버에서 반환되는 데이터 형식을 지정
-        //processData : 데이터를 querystring형태로 보내지 않고 DOMDocument 또는 다른 형태로 보내려면 false로 설정
-        //contentType : 서버에 데이터를 보낼 때 사용 content-type 헤더의 값.
-        $.ajax({
-            url: "/user",
-            type: "post",
-            data: formData,
-            processData: false,
-            contentType: false,
-            mimeType:'multipart/form-data',
-            success: function () {
-                location.href = "/loginUser";
-            },
-            error: function (request, status, error) {
-                alert("code :" + request.status + "\n" + "message : " + request.responseText + "\n" + "error : " + error);
-            }
-        });
+    //JQuery 옵션
+    //data : 서버로 보낼 데이터
+    //dataType : 서버에서 반환되는 데이터 형식을 지정
+    //processData : 데이터를 querystring형태로 보내지 않고 DOMDocument 또는 다른 형태로 보내려면 false로 설정
+    //contentType : 서버에 데이터를 보낼 때 사용 content-type 헤더의 값.
+    $.ajax({
+        url: "/user",
+        type: "post",
+        data: formData,
+        processData: false,
+        contentType: false,
+        mimeType:'multipart/form-data',
+        success: function () {
+            location.href = "/loginUser";
+        },
+        error: function (request, status, error) {
+            alert("code :" + request.status + "\n" + "message : " + request.responseText + "\n" + "error : " + error);
+        }
+    });
 
-  //  }
+    //  }
 }
 
 //익스플로러 판별
@@ -317,4 +317,3 @@ jQuery.browser = {};
         jQuery.browser.version = RegExp.$1;
     }
 })();
-

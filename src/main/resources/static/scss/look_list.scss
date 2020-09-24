@@ -5,7 +5,7 @@ ul {
   margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-  padding-inline-start: 40px;
+  padding-inline-start: -40px;
   list-style: none;
   margin-top: 0px;
 }
@@ -33,6 +33,7 @@ li {
   text-decoration: none;
   color: #000000;
 }
+
 .main {
   width: 1200px;
   margin: 0 auto 0;
@@ -53,7 +54,10 @@ li {
   margin-left: auto;
   margin-right: auto;
 }
-
+.mypageLink{
+  width: max-content;
+  height: max-content;
+}
 .my_img {
   margin-left: 10px;
   padding-top: 10px;
@@ -64,22 +68,31 @@ li {
   margin-top: 10px;
   margin-left: -20px;
 }
-.look_header_ul {
-  border-style: none;
-  margin-top: 0px;
-  position: relative;
+// .look_header_ul {
+//   border-style: none;
+//   margin-top: 0px;
+//   position: relative;
+//   float: left;
+//   // margin-left: -40px;
+//   width: 500px;
+//   height: 40px;
+// }
+// .look_header_li {
+//   border-style: none;
+//   position: relative;
+//   float: left;
+//   margin-left: 0px;
+//   width: 40px;
+//   height: 40px;
+// }
+.user_name{
   float: left;
-  margin-left: -40px;
-  width: 500px;
-  height: 40px;
 }
-.look_header_li {
-  border-style: none;
-  position: relative;
-  float: left;
-  margin-left: 0px;
-  width: 40px;
-  height: 40px;
+.look_date{
+  float: right;
+  font-weight: 700;
+  padding-right: 10px;
+  text-align: right;
 }
 .title {
   font-weight: bold;

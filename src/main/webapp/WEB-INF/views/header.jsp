@@ -8,7 +8,7 @@
     <title>header</title>
     <link rel="stylesheet" href="/static/css/jeans_header_.css"/>
     <link rel="stylesheet" href="/static/css/slideShow.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.7">
 </head>
 <body>
 
@@ -89,7 +89,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="/static/js/backCashDelete.js"></script>
 <script src="/static/js/logout.js"></script>
-
 
 </body>
 

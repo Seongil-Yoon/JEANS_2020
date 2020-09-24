@@ -19,8 +19,9 @@ public interface IBoardDao {
     //전체 게시판 리스트
     public List<BoardDto> list(@Param("look_num") int look_num);
     //글 검색
-    public List<BoardDto> searchList(@Param("option")String option, @Param("keyword")String keyword);
-
+    public List<BoardDto> searchList(@Param("option")String option, @Param("keyword")String keyword,@Param("looknum")int looknum);
+    //추천글 반환
+    public List<BoardDto> preferenceList(String userid1,String userid2,String userid3,String userid4,String userid5,int looknum);
     //게시글 작성
     public int insert(BoardDto boardDto);
 
