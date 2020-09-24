@@ -89,6 +89,7 @@ function changeUserinformation() {
     let sex = $("input:radio[name='sex']:checked").val();
     let height = document.getElementsByName("height")[0].value;
     let weight = document.getElementsByName("weight")[0].value;
+    let privacy = document.getElementsByName("privacy")[0].value;
 
     let User = {
         userrole:"",

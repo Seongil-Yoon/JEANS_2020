@@ -56,11 +56,13 @@ public class MypageuserController {
 
         //반환해야하는 정보를 set메소드를 통해 지정한 다음 넘기자
         UserDto returnUserdto=new UserDto();
+        returnUserdto.setUserid(userDto.getUserid());
         returnUserdto.setNickname(userDto.getNickname());
         returnUserdto.setWeight(userDto.getWeight());
         returnUserdto.setHeight(userDto.getHeight());
         returnUserdto.setMessage(userDto.getMessage());
         returnUserdto.setPrivacy(userDto.getPrivacy());
+        returnUserdto.setEmail(userDto.getEmail());
         map.put("user",returnUserdto);
 
         int boardnum=boardDao.getBoardnum(userDto.getNickname());//해당 유저가 쓴 글 총 개수
