@@ -128,15 +128,16 @@ public class LookController {
 
     @GetMapping("/preferencelist")
     public String preferencePage(){
-//첫번째 매개변수 userid들을 어떻게 받을까.
+        //첫번째 매개변수 userid들을 어떻게 받을까.
         return "preference_list";
     }
 
-  /*  @ResponseBody
-    @GetMapping("/preference/{userid1}/{userid2}/{userid3}/{looknum}")
-    public List<BoardDto> preference(@PathVariable String userid1,@PathVariable String userid2,@PathVariable String userid3,@PathVariable(required = false) int looknum){
-        List<BoardDto>preference;
-    }*/
+    @ResponseBody
+    @GetMapping("/preference/{userid1}/{userid2}/{userid3}/{userid4}/{userid5}/{looknum}")
+    public List<BoardDto> preference(@PathVariable String userid1,@PathVariable String userid2,@PathVariable String userid3,@PathVariable String userid4,@PathVariable String userid5,@PathVariable(required = false) int looknum){
+        List<BoardDto>preference=boardDao.preferenceList(userid1,userid2,userid3,userid4,userid5,looknum);
+        return preference;
+    }
 
     @ResponseBody
     @GetMapping("/looks/{id}") //룩상세보기 안드로이드에 값주게 json 데이터만 넘기는용

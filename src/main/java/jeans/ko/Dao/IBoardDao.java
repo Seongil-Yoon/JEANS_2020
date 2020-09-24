@@ -21,7 +21,7 @@ public interface IBoardDao {
     //글 검색
     public List<BoardDto> searchList(@Param("option")String option, @Param("keyword")String keyword,@Param("looknum")int looknum);
     //추천글 반환
-    public List<BoardDto> preferenceList(@Param("userid1")String userid1,@Param("userid2")String userid2,@Param("userid3")String userid3,@Param("looknum")int looknum);
+    public List<BoardDto> preferenceList(String userid1,String userid2,String userid3,String userid4,String userid5,int looknum);
     //게시글 작성
     public int insert(BoardDto boardDto);
 

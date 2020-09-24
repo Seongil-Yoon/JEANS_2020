@@ -68,5 +68,8 @@ public class MypageuserController {
     }
 
     //마이페이지 내 메모 회원정보 변경 ->성일이가 만들고 난 후 기능 넣기
+    @PutMapping("/information/{message}")
+    public ResponseEntity<> changeMemo(){
 
+    }
 }
