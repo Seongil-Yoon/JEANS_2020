@@ -1,5 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -46,12 +44,11 @@
 
             <div class="img_space">
                 <input type="file" multiple  name="profile_pt" id="profile_pt"
-                accept=".jpg, .jpeg, .png, .svg, .gif"/>
+                       accept=".jpg, .jpeg, .png, .svg, .gif"/>
                 <!-- <div class="look_img_container">
                     <div class="look_img_viewport">
                         <div class="look_flick_camera" id="View_area">
                         </div>
-
                         <button type="button" class="look_slide_button" id="look_slide_button_left" style="left: 0;">
                             <img src="static/images/look_slide_icon_left.png" class="look_slide_button_icon">
                         </button>
@@ -59,7 +56,6 @@
                             <img src="static/images/look_slide_icon_right.png" class="look_slide_button_icon">
                         </button>
                     </div>
-
                 </div> -->
             </div>
 
@@ -197,4 +193,5 @@
     getLooknum(${view.look_num})
 </script>
 </body>
+
 </html>

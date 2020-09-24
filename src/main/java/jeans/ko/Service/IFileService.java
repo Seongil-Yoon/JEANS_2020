@@ -27,4 +27,5 @@ public interface IFileService {
     //폴더 삭제 : 경로의 폴더를 삭제한다.
     public boolean rmDir(List<String>pahts);
 
+
 }

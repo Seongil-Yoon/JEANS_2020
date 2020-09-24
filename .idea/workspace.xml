@@ -1,20 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="ChangeListManager">
     <list default="true" id="9c7765a8-a06c-45f4-b92f-2ab9f9a5c814" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+=======
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="93533322-5534-419b-a9f4-82a3490d9d91" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/LookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/LookController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/MypageuserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/MypageuserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dao/IUserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dao/IUserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/mapper/userMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/mapper/userMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/mypageUser/mypageUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/mypageUser/mypageUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/MypageuserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/MypageuserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Dao/IUserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Dao/IUserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/userMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/userMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/mypageUser/mypageUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/mypageUser/mypageUser.js" afterDir="false" />
+>>>>>>> 59e5f0603ecc3f2577969198d6a163784339687b
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
+=======
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+>>>>>>> 59e5f0603ecc3f2577969198d6a163784339687b
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
   </component>
+<<<<<<< HEAD
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -31,6 +82,72 @@
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
   <component name="RunManager">
+=======
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1huSmwSqeCl2s7VG3qK6HF36l0e" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="js.buildTools.grunt.grunt-cli.package" value="" />
+    <property name="js.buildTools.gulp.gulp_package_dir" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/js/look_list" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs.jest.jest_package" value="" />
+    <property name="nodejs.mocha.mocha_node_package_dir" value="" />
+    <property name="nodejs.protractor.protractor_package" value="" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gogyu\IdeaProjects\JEANS\src\main\resources\static\js\look_list" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Application" factoryName="Application">
+      <module name="JEANS" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+>>>>>>> 59e5f0603ecc3f2577969198d6a163784339687b
     <configuration name="KoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="ko.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="jeans.ko.KoApplication" />
@@ -38,12 +155,42 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
+=======
+    <configuration default="true" type="js.build_tools.grunt">
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+>>>>>>> 59e5f0603ecc3f2577969198d6a163784339687b
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< HEAD
       <changelist id="9c7765a8-a06c-45f4-b92f-2ab9f9a5c814" name="Default Changelist" comment="" />
       <created>1600944433259</created>
       <option name="number" value="Default" />
@@ -53,4 +200,83 @@
     </task>
     <servers />
   </component>
+=======
+      <changelist id="93533322-5534-419b-a9f4-82a3490d9d91" name="Default Changelist" comment="" />
+      <created>1600859647487</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600859647487</updated>
+      <workItem from="1600859651667" duration="1748000" />
+      <workItem from="1600909000248" duration="3457000" />
+      <workItem from="1600916827815" duration="810000" />
+      <workItem from="1600917655445" duration="9326000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="202" y="0" width="797" height="1040" key="#KoApplication" timestamp="1600916807041">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="202" y="0" width="797" height="1040" key="#KoApplication/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600916807041" />
+    <state x="414" y="44" width="1148" height="996" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600917715326">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="44" width="1148" height="996" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600917715326" />
+    <state x="627" y="266" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1600916889617">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="627" y="266" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600916889617" />
+    <state x="786" y="406" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1600914333260">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="786" y="406" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600914333260" />
+    <state x="690" y="222" key="FileChooserDialogImpl" timestamp="1600916877499">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="222" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600916877499" />
+    <state width="1865" height="207" key="GridCell.Tab.0.bottom" timestamp="1600944002536">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1865" height="207" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600944002536" />
+    <state width="1865" height="207" key="GridCell.Tab.0.center" timestamp="1600944002536">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1865" height="207" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600944002536" />
+    <state width="1865" height="207" key="GridCell.Tab.0.left" timestamp="1600944002536">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1865" height="207" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600944002536" />
+    <state width="1865" height="207" key="GridCell.Tab.0.right" timestamp="1600944002536">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1865" height="207" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600944002536" />
+    <state width="1865" height="207" key="GridCell.Tab.1.bottom" timestamp="1600944002536">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1865" height="207" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600944002536" />
+    <state width="1865" height="207" key="GridCell.Tab.1.center" timestamp="1600944002536">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1865" height="207" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600944002536" />
+    <state width="1865" height="207" key="GridCell.Tab.1.left" timestamp="1600944002536">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1865" height="207" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600944002536" />
+    <state width="1865" height="207" key="GridCell.Tab.1.right" timestamp="1600944002536">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1865" height="207" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600944002536" />
+    <state x="312" y="0" key="SettingsEditor" timestamp="1600917683589">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="312" y="0" key="SettingsEditor/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600917683589" />
+    <state x="603" y="307" key="com.intellij.ide.util.TipDialog" timestamp="1600917661983">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="603" y="307" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600917661983" />
+  </component>
+>>>>>>> 59e5f0603ecc3f2577969198d6a163784339687b
 </project>

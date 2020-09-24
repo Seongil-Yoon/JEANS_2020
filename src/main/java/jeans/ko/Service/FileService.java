@@ -120,7 +120,7 @@ public class FileService implements IFileService {
             BufferedImage resizedImage=Scalr.resize(sourceImage,Scalr.Method.AUTOMATIC,Scalr.Mode.FIT_TO_HEIGHT,500);
             ImageIO.write(resizedImage,formatName,f);
         }
-      return true;
+        return true;
     }
 
 
@@ -131,20 +131,20 @@ public class FileService implements IFileService {
         String path = utilService.completePath(paths);
         String boardnum=paths.get(paths.size()-1);//글 번호
 
-            for (MultipartFile file : files) {
-                UUID uuid=UUID.randomUUID();
-                byte[] fileData=file.getBytes();
-                //String name=file.getOriginalFilename();
-                File target = new File(path, uuid.toString().concat(".jpg"));
+        for (MultipartFile file : files) {
+            UUID uuid=UUID.randomUUID();
+            byte[] fileData=file.getBytes();
+            //String name=file.getOriginalFilename();
+            File target = new File(path, uuid.toString().concat(".jpg"));
 
                 /*
                     예전에는 insertPicturedatabase를 리스트형식으로 picture데이터베이스에 넣었다면
                     지금은 UUID때문에 다 따로 넣어야한다.
                 */
-                boardDao.insertPicture(boardnum,uuid.toString().concat(".jpg"));
-                FileCopyUtils.copy(fileData, target);
-           }
-            return true;
+            boardDao.insertPicture(boardnum,uuid.toString().concat(".jpg"));
+            FileCopyUtils.copy(fileData, target);
+        }
+        return true;
     }
 
     @Override
