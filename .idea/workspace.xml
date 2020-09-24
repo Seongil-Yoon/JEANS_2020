@@ -22,12 +22,14 @@
     <list default="true" id="93533322-5534-419b-a9f4-82a3490d9d91" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/LookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/LookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dao/IBoardDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dao/IBoardDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/mapper/IBoard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/mapper/IBoard.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/LookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/LookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/MypageuserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/MypageuserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dao/IUserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dao/IUserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/mapper/userMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/mapper/userMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/mypageUser/mypageUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/mypageUser/mypageUser.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/MypageuserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/MypageuserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Dao/IBoardDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Dao/IBoardDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/IBoard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/IBoard.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Dao/IUserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Dao/IUserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/userMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/userMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/mypageUser/mypageUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/mypageUser/mypageUser.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +166,7 @@
       <workItem from="1600859651667" duration="1748000" />
       <workItem from="1600909000248" duration="3457000" />
       <workItem from="1600916827815" duration="810000" />
-      <workItem from="1600917655445" duration="6251000" />
+      <workItem from="1600917655445" duration="9326000" />
     </task>
     <servers />
   </component>
@@ -192,38 +194,38 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="222" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600916877499" />
-    <state width="1865" height="268" key="GridCell.Tab.0.bottom" timestamp="1600926420129">
+    <state width="1865" height="207" key="GridCell.Tab.0.bottom" timestamp="1600944002536">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1865" height="268" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600926420129" />
-    <state width="1865" height="268" key="GridCell.Tab.0.center" timestamp="1600926420128">
+    <state width="1865" height="207" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600944002536" />
+    <state width="1865" height="207" key="GridCell.Tab.0.center" timestamp="1600944002536">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1865" height="268" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600926420128" />
-    <state width="1865" height="268" key="GridCell.Tab.0.left" timestamp="1600926420128">
+    <state width="1865" height="207" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600944002536" />
+    <state width="1865" height="207" key="GridCell.Tab.0.left" timestamp="1600944002536">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1865" height="268" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600926420128" />
-    <state width="1865" height="268" key="GridCell.Tab.0.right" timestamp="1600926420129">
+    <state width="1865" height="207" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600944002536" />
+    <state width="1865" height="207" key="GridCell.Tab.0.right" timestamp="1600944002536">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1865" height="268" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600926420129" />
-    <state width="1865" height="268" key="GridCell.Tab.1.bottom" timestamp="1600926420129">
+    <state width="1865" height="207" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600944002536" />
+    <state width="1865" height="207" key="GridCell.Tab.1.bottom" timestamp="1600944002536">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1865" height="268" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600926420129" />
-    <state width="1865" height="268" key="GridCell.Tab.1.center" timestamp="1600926420129">
+    <state width="1865" height="207" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600944002536" />
+    <state width="1865" height="207" key="GridCell.Tab.1.center" timestamp="1600944002536">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1865" height="268" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600926420129" />
-    <state width="1865" height="268" key="GridCell.Tab.1.left" timestamp="1600926420129">
+    <state width="1865" height="207" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600944002536" />
+    <state width="1865" height="207" key="GridCell.Tab.1.left" timestamp="1600944002536">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1865" height="268" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600926420129" />
-    <state width="1865" height="268" key="GridCell.Tab.1.right" timestamp="1600926420129">
+    <state width="1865" height="207" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600944002536" />
+    <state width="1865" height="207" key="GridCell.Tab.1.right" timestamp="1600944002536">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1865" height="268" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600926420129" />
+    <state width="1865" height="207" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600944002536" />
     <state x="312" y="0" key="SettingsEditor" timestamp="1600917683589">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

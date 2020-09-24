@@ -20,28 +20,27 @@ function startMessage(event) {
 
 function ajaxMessage() {
     let content = messageWrap.querySelector("#js-message_textarea").value;
-
+/*
     console.log(content);
     let User = {
         message: content
     };
     let UserDto = JSON.stringify(User);
     alert(UserDto);
-
+*/
     $.ajax({
-        url: "/userinformation/information",
-        type: "post", //데이터 전달방식
-        data: UserDto, //전송객체
-        contentType: "application/json; charset=utf-8", //json 형태로 댓글보내기
+        url: "/information/"+content,
+        type: "put", //데이터 전달방식
+        contentType: "charset=utf-8", //json 형태로 댓글보내기
         success: function (result, textStatus, jqxHR) {
-            if (jqxHR.status == 201) {
+           // if (jqxHR.status == 201) {
                 console.log(result);
                 $("#js-message").children().remove();
-                swal('', '상태메세지를 등록하였습니다.', "success");
+               // swal('', result);
                 let html = "";
                 html += `<span class="my_message">${result}</span>`
                 $("#js-message").append(html);
-            }
+          //  }
         },
         error: function (error) {
             //서버오류 500  권한없음  401

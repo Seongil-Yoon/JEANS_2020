@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.http.HttpSession;
+import javax.xml.ws.Response;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,6 +32,9 @@ public class MypageuserController {
 
     @Autowired
     IBoardDao boardDao;
+
+    @Autowired
+    HttpSession session;
 
     //마이페이지 이동. 웹에서 모델앤뷰
     @GetMapping("/mypageUser/{nickname}")
@@ -68,8 +73,14 @@ public class MypageuserController {
     }
 
     //마이페이지 내 메모 회원정보 변경 ->성일이가 만들고 난 후 기능 넣기
-    @PutMapping("/information/{message}")
-    public ResponseEntity<> changeMemo(){
-
+    @PutMapping("/information/{memo}")
+    public ResponseEntity<String> changeMemo(@PathVariable String memo){
+        String userid=(String)session.getAttribute("userid");
+        if(userid!=null) {
+            userDao.setMessage(userid, memo);
+            return new ResponseEntity<>(memo,HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("요청이 올바르지 않습니다",HttpStatus.BAD_REQUEST);
+        }
     }
 }
