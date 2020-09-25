@@ -59,7 +59,7 @@ public class UtilService implements IUtilService {
     public List<String> looknumtoallPicturename(int look_num) {
         logger.info("looknumtoallPicturename 메소드 : 전체사진이름리스트반환");
         List<String> e = iBoardDao.getallPicturename(look_num);
-         return e;
+        return e;
     }
 
     //유저의 id를 매개변수로 받은 뒤  나머지 값들과 함께 list에 합쳐 유저의 썸네일 이미지가 저장된 폴더까지의 경로를 반환한다

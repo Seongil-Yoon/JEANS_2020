@@ -51,6 +51,12 @@
         <include refid="search"></include>
     </select>
 
+    <select id="preferenceList" resultType="jeans.ko.Dto.BoardDto">
+        select *
+        from look
+        WHERE (fk_userid_user_userid=#{userid1} or fk_userid_user_userid=#{userid2} or fk_userid_user_userid=#{userid3} or fk_userid_user_userid=#{userid4} or fk_userid_user_userid=#{userid5}) AND look_num &lt; #{looknum} order by look_num desc LIMIT 6;
+    </select>
+
     <select id="view" resultType="jeans.ko.Dto.BoardDto">
         select * from look where look_num = #{look_num}
     </select>
@@ -99,12 +105,10 @@
     <sql id="search">
         <choose>
             <when test="option=='all'">
-                WHERE nickname like CONCAT('%',#{keyword},'%')
-                OR memo like CONCAT('%',#{keyword},'%')
-                OR title like CONCAT('%',#{keyword},'%') LIMIT 6
+                WHERE nickname like CONCAT('%',#{keyword},'%') OR memo like CONCAT('%',#{keyword},'%') OR title like CONCAT('%',#{keyword},'%') AND look_num &lt; #{looknum} order by look_num desc LIMIT 6;
             </when>
             <otherwise>
-                WHERE ${option} like CONCAT('%',#{keyword},'%')
+                WHERE ${option} like CONCAT('%',#{keyword},'%') AND look_num &lt; #{looknum} order by look_num desc LIMIT 6;
             </otherwise>
         </choose>
     </sql>

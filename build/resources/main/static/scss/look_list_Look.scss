@@ -18,26 +18,30 @@ body {
     .body_root {
       // width: 100%;
       margin-top: -1em;
-      .look_view_a {
-        .main {
-          .main_container {
-            .main_look_item {
-              //ul
-              li {
-                .is_body {
-                  .my_img {
+      .main {
+        .main_container {
+          .main_look_item {
+            //ul
+            li {
+              .is_body {
+                .my_img {
+                  .mypageLink {
                   }
-                  .name {
-                    .look_header_ul {
-                      .look_header_li {
-                        .user_name {
-                        }
-                      }
-                    }
+                }
+                .name {
+                  .user_name {
                   }
-                  .title {
+                  // .look_header_ul {
+                  //   .look_header_li {
+                  //   }
+                  // }
+                  .look_date {
                   }
-                  .look_img {
+                }
+                .title {
+                }
+                .look_img {
+                  .look_view_a {
                     .look_img_in {
                       .look_img_file {
                       }

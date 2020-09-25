@@ -134,7 +134,7 @@ public class ChangeuserController {
 
     @PostMapping(value = "/deleteUser")
     public ResponseEntity deleteUser(@Valid @RequestBody PasswordDto passwordDto, BindingResult result) {
-       logger.info("deleteUser메소드");
+        logger.info("deleteUser메소드");
         if (result.getFieldError("ps") != null) {
             System.out.println("Error! = " + result.getFieldError("ps").getDefaultMessage());
         }

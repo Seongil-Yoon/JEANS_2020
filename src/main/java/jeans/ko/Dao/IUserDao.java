@@ -44,4 +44,7 @@ public interface IUserDao {
 
     //해당 유저를 삭제시킵니다.
     void deleteUser(String userid);
+
+    //유저의 메시지 내역을 변경
+    public void setMessage(String userid,String message);
 }

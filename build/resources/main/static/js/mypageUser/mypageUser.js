@@ -1,111 +1,84 @@
-var page_status = 0;
-var status1 = 0;
-var status2 = 0;
-var status3 = 0;
+let changeUser = document.querySelector("#js-changeUser");
+let deleteUser = document.querySelector("#js-deleteUser");
+let messagePen = document.querySelector("#js-messagePen");
+let messageWrap = document.querySelector("#js-message"),
+    messageSpan = messageWrap.querySelector("span");
+
+let jsp_nickname = ``;
 
 
-function page_select1() {
-  page_status = 0;
+//JSP파일 서버변수 호출함수
+function myUsernickname(usernickname) {
+    console.log(usernickname);
+    jsp_nickname = usernickname;
 }
 
-function page_select2() {
-  page_status = 1;
-
-  document.getElementById("closet1").style.display = "none";
-  document.getElementById("closet2").style.display = "none";
-  document.getElementById("closet3").style.display = "none";
-
+function startMessage(event) {
+    modifyMessage();
+    // ajaxMessage();
 }
 
-function page_move() {
-  if (page_status == 1) {
-    location.href = "exdiv1.html";
-  }
-  else {
-    location.href = "exdiv.html";
-  }
+function ajaxMessage() {
+    let content = messageWrap.querySelector("#js-message_textarea").value;
+/*
+    console.log(content);
+    let User = {
+        message: content
+    };
+    let UserDto = JSON.stringify(User);
+    alert(UserDto);
+*/
+    $.ajax({
+        url: "/information/"+content,
+        type: "put", //데이터 전달방식
+        contentType: "charset=utf-8", //json 형태로 댓글보내기
+        success: function (result, textStatus, jqxHR) {
+           // if (jqxHR.status == 201) {
+                console.log(result);
+                $("#js-message").children().remove();
+               // swal('', result);
+                let html = "";
+                html += `<span class="my_message">${result}</span>`
+                $("#js-message").append(html);
+          //  }
+        },
+        error: function (error) {
+            //서버오류 500  권한없음  401
+            if (error.status == 401) {
+                $("#js-message").children().remove();
+                swal('접근 권한이 없습니다', '', 'error');
+            } else if (error.status == 500) {
+                $("#js-message").children().remove();
+                swal('서버 오류 관리자에게 문의 하세요', '', 'error');
+            }
+        }
+    })
 }
 
-//보이기
-function div_show1() {
-  if (status1 == 0) {
-    document.getElementById("closet1").style.display = "block";
-    document.getElementById("closet2").style.display = "none";
-    document.getElementById("closet3").style.display = "none";
-    status1 = 1;
+function modifyMessage() {
+    messageWrap.removeChild(messageSpan);
 
-    status2 = 0;
-    status3 = 0;
+    let html = "";
+    html += `<div class="comment_center">`;
+    html += `<div class="comment_center_textarea">`;
+    html += `<textarea id="js-message_textarea" class="view_comment_textarea" placeholder="수정할 내용을 입력하세요" name="comment_content"></textarea>`;
+    html += `</div>`; //<div class="comment_center_textarea">
 
-  }
-  else {
-    document.getElementById("closet1").style.display = "none";
-    document.getElementById("closet2").style.display = "none";
-    document.getElementById("closet3").style.display = "none";
-    status1 = 0;
-    status2 = 0;
-    status3 = 0;
-  }
+    html += `<div id="js-message_chg_btn" class="comment_center_footer">`;
+    html += '<button  class="comment_change_button" value="2" type="button" >취소</button>';
+    html += '<button  class="comment_change_button" value="1" type="button" >저장</button>';
+    html += `</div>`;//<div class="comment_center_footer">
+    html += `</div>`;//<div class="comment_center">
+
+    $("#js-message").append(html);
+
+    let changeBtn = messageWrap.querySelector("#js-message_chg_btn");
+    //부모태그로 이벤트하면 여러개 자식버튼 바인딩가능
+    changeBtn.addEventListener("click", ajaxMessage);
 }
 
-//보이기
-function div_show2() {
-  if (status2 == 0) {
-    document.getElementById("closet1").style.display = "none";
-    document.getElementById("closet2").style.display = "block";
-    document.getElementById("closet3").style.display = "none";
-    status2 = 1;
-
-    status1 = 0;
-    status3 = 0;
-  }
-  else {
-
-    document.getElementById("closet1").style.display = "none";
-    document.getElementById("closet2").style.display = "none";
-    document.getElementById("closet3").style.display = "none";
-    status1 = 0;
-    status2 = 0;
-    status3 = 0;
-  }
+function init() {
+    messagePen.addEventListener("click", startMessage);
 }
 
-//보이기
-function div_show3() {
-  if (status3 == 0) {
-    document.getElementById("closet1").style.display = "none";
-    document.getElementById("closet2").style.display = "none";
-    document.getElementById("closet3").style.display = "block";
-    status3 = 1;
-
-    status1 = 0;
-    status2 = 0;
-  }
-  else {
-    document.getElementById("closet1").style.display = "none";
-    document.getElementById("closet2").style.display = "none";
-    document.getElementById("closet3").style.display = "none";
-    status1 = 0;
-    status2 = 0;
-    status3 = 0;
-  }
-}
-
-//컨트롤러 부분에서 넘긴 nickname 캐치
-function catchNick(nick){
-
-  $.ajax({
-    url:'/information/'+nick,
-    type:"GET",
-    success:function(result){
-      alert(JSON.stringify(result.user));
-      alert(JSON.stringify(result.count));
-      //여기서 mypageUser.jsp 부분에 값들을 채워넣어줘야한다.
-    },
-    error:function(error){
-      alert("에러뜸");
-    }
-  })
-}
-
-
+init();

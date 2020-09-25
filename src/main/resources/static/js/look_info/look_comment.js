@@ -37,7 +37,9 @@ function commentReady(look_num, userid, usernickname) {
 function commentHTML(result, html) {
     // `` <= 바틱을 씁시다.
     html += `<div class="comment_left">`;
+    html += `<a class="mypageLink" href="mypageUser/${result.comment_sender_name}">`;
     html += `<img class="profile_img" src=displayMthumbnail/${result.comment_sender_id}>`;
+    html += `</a>`;
     html += `</div>`;//<div class="comment_left">
 
     html += `<div class="comment_center">`;
@@ -168,7 +170,6 @@ function commentGet() {
             for (var i = 0; i < result.length; i++) {
                 let data = result[i];
                 let html = "";
-
                 html += `<li class="look_comment_wrap">`
                 html += `<div class="look_comment">`;
                 html = commentHTML(data, html);
@@ -265,7 +266,9 @@ $(document).on("click", "#js-comment_sujung_button", function (event) {
     let html = "";
     html += `<input class="comment_id" value=${comment_id} type="hidden"/>`;
     html += `<div class="comment_left">`;
+    html += `<a class="mypageLink" href="mypageUser/${nickName}">`;
     html += `<img class="profile_img" src=displayMthumbnail/${comment_sender_id}>`;
+    html += `</a>`;
     html += `</div>`;//<div class="comment_left">
 
     html += `<div class="comment_center">`;
@@ -350,6 +353,9 @@ function timeForToday(value) {
     const today = new Date();
     const timeValue = new Date(value);
 
+    console.log("현재", today.getTime());
+    console.log("올린시각", timeValue.getTime());
+    //시간은 1970-01-01을 기준으로 한 에포크시간.
     const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
 
     // if (betweenTime < 1) return '방금전';

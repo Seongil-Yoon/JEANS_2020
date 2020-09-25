@@ -1,7 +1,6 @@
 package jeans.ko.Controller;
 
 
-
 import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dao.IMoodDao;
 import jeans.ko.Dao.IPreferenceDao;
@@ -20,9 +19,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -75,6 +76,7 @@ public class LookController {
         boardDao.countUpdate(look_num); //글상세보기 하면 조회수 증가
         model.addAttribute("view", boardDao.view(look_num)); //게시글정보가져오기
         model.addAttribute("mood", moodDao.getMooddto(look_num));//글의 무드 타입
+
         return "look_info";
     }
 
@@ -85,6 +87,7 @@ public class LookController {
         BoardDto boardDto = boardDao.view(look_num);
         model.addAttribute("view", boardDto); //게시글정보 가져오기
         model.addAttribute("mood", moodDao.getMooddto(look_num));//글의 무드 타입
+
         return "lookModify";
     }
 
@@ -101,13 +104,39 @@ public class LookController {
         }
     }
 
+    @GetMapping("/searchlist")
+    public String searchPage(@RequestParam(value="searchOption") String searchOption,@RequestParam(value="keyword") String keyword,Model model){
+        logger.info("searchList로");
+        System.out.println("searchOption + keyword = " + searchOption + keyword);
+        model.addAttribute("searchOption",searchOption);
+        model.addAttribute("keyword",keyword);
+        System.out.println("model = " + model);
+        return "search_list";
+    }
+
     @ResponseBody
-    @GetMapping("/search/{searchOption}/{keyword}")
-    public List<BoardDto> search(@PathVariable String searchOption,@PathVariable String keyword){
+    @GetMapping("/search/{searchOption}/{keyword}/{looknum}")
+    public List<BoardDto> search(@PathVariable String searchOption, @PathVariable String keyword, @PathVariable(required = false) int looknum) {
+        System.out.println("searchOption, keyword, looknum = "+searchOption+keyword + looknum);
         logger.info("search 메소드");
-        List<BoardDto>search=boardDao.searchList(searchOption,keyword);
-        System.out.println("search = " + search);
+        if (searchOption.equals("mood")) {
+
+        }
+        List<BoardDto> search = boardDao.searchList(searchOption, keyword,looknum);
         return search;
+    }
+
+    @GetMapping("/preferencelist")
+    public String preferencePage(){
+        //첫번째 매개변수 userid들을 어떻게 받을까.
+        return "preference_list";
+    }
+
+    @ResponseBody
+    @GetMapping("/preference/{userid1}/{userid2}/{userid3}/{userid4}/{userid5}/{looknum}")
+    public List<BoardDto> preference(@PathVariable String userid1,@PathVariable String userid2,@PathVariable String userid3,@PathVariable String userid4,@PathVariable String userid5,@PathVariable(required = false) int looknum){
+        List<BoardDto>preference=boardDao.preferenceList(userid1,userid2,userid3,userid4,userid5,looknum);
+        return preference;
     }
 
     @ResponseBody
@@ -125,6 +154,7 @@ public class LookController {
         }
         map.put("look", boardDto); //게시글 가져오기
         map.put("moodlist", moodDtoList);//해쉬맵에 무드DTO리스트 추가
+
         boardDao.countUpdate(id); //글상세보기 하면 조회수 증가
 
         return map;
@@ -212,7 +242,7 @@ public class LookController {
         int num = Integer.parseInt(number);
 
         if (preferenceDao.getUser(num, id) != 0) {
-            return new ResponseEntity("이미 좋아요 처리를 하셨습니다",HttpStatus.OK);
+            return new ResponseEntity("이미 좋아요 처리를 하셨습니다", HttpStatus.OK);
         } else {
             preferenceDao.insertPrefer(num, id);
             pretreatmentService.countUp(num, id);
@@ -275,6 +305,3 @@ public class LookController {
     }
 
 }
-
-
-

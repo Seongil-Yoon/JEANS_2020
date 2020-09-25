@@ -36,8 +36,14 @@ let slideCounter = 0;
 
 let initBuffer = 0;
 
-let pond=0;
+//현재 게시글 번호
+let look_number = 0;
 
+//JSP파일 서버변수 호출함수
+function getLooknum(lookNum) {
+    console.log("글번호", lookNum);
+    look_number = lookNum;
+}
 
 //
 // 전송실행
@@ -54,6 +60,7 @@ function lookWrite() {
     }
     let title = document.getElementsByName("title")[0].value
     let season = document.getElementsByName("season");
+    let moodTag = document.getElementsByName("mood");
     let look_public = document.getElementsByName("look_public");
 
     let memo = document.getElementsByName("memo")[0].value
@@ -62,7 +69,7 @@ function lookWrite() {
 
     let empty = '';
     let list = ["제목", "계절", "공개여부", "태그", "메모"];
-    let formList = [title, seasonCheck, look_publicCheck,  memo];
+    let formList = [title, seasonCheck, look_publicCheck, memo];
 
     for (let i = 0; i < formList.length; i++) {
         if (formList[i] == false) { //자바 스크립트는 null 을 false 로인식
@@ -77,21 +84,38 @@ function lookWrite() {
         memo: memo
     }
 
-    //여기서 부터 성일이가 해줘야 할 부분.!!!!!.
-    var moodList=new Array();//무드Dto를 담을 moodDto 리스트
-    let MoodDto=new Object();
-    MoodDto.mood="미니멀";
-    moodList.push(MoodDto);
-    let MoodDto2=new Object();
-    MoodDto2.mood="그런지";
-    moodList.push(MoodDto2);
-    //여기까지 일성이가 해줄꺼야!!!!!!
+    //무드객체
+    //객체 하나 생성한거라 배열에 넣으면 포인터효과, 사용 할려면 속성넣을때 별도변수선언
+    // let MoodDto = {
+    //     look_num: 0,
+    //     mood: ''
+    // }
 
+    //무드
+    let moodList = [];
+    let mood_value = () => {
+        for (let i = 0; i < moodTag.length; i++) {
+            if (document.getElementsByName("mood")[i].checked === true) {
+                //check 박스 체크된것만 배열안으로 객체넣고
+                moodList.push(
+                    {
+                        look_num: look_number,
+                        mood: document.getElementsByName("mood")[i].value
+                    }
+                    //push(new MoodDto(look_num,mood)), 푸쉬할떄마다 새로운 객체
+                );
+            }
+        }
+    }
+    mood_value();
+    console.log("무드배열 푸시 후", moodList);
 
     let formData = new FormData();
-    formData.append("BoardDto", new Blob([JSON.stringify(BoardDto)],{type:"application/json"}));
-    formData.append("MoodDto",new Blob([JSON.stringify(moodList)],{type:"application/json"}));
-//    formData.append("MoodDto",new Blob([JSON.stringify(arr)],{type:"application/json"}));
+    formData.append("BoardDto", new Blob([JSON.stringify(BoardDto)], { type: "application/json" }));
+    if (moodList.length > 0) {
+        formData.append("MoodDto", new Blob([JSON.stringify(moodList)], { type: "application/json" }));
+    }
+
     if (empty == '') {
         if (fileBuffer == undefined) {
             console.log("fileBuffer == undefined");
@@ -143,7 +167,7 @@ function lookWrite() {
                     if (jqxHR.status == 201) {
                         alert(JSON.stringify(formData));
                         swal('', '게시글 등록을 하였습니다', 'success');
-                        pond=0;
+                        pond = 0;
                         //등록 성공하면 내가등록한 게시글화면으로 이동
                         setTimeout(function () { location.href = "/look?look_num=" + result.look_num; }, 2000);
                     }
@@ -205,17 +229,11 @@ function filePond() {
         FilePondPluginFileEncode
     );
     // Create the FilePond instance
-    pond = FilePond.create(inputElement, {
+    const pond = FilePond.create(inputElement, {
         allowMultiple: true,
         allowReorder: true
     });
-    // pond.on('addfile', (error, file) => {
-    //     if (error) {
-    //         console.log('Oh no');
-    //         return;
-    //     }
-    //     console.log('File added', file);
-    // });
+
 
     const filepondRoot = document.querySelector('.filepond--root');
 
@@ -224,7 +242,7 @@ function filePond() {
 
         for (let i = 0; i < e.detail.items.length; i++) {
             console.log('File updatefiles e.detail.items[i]', e.detail.items[i]);
-            fileBuffer[i] = dataURLtoFile(e.detail.items[i].getFileEncodeDataURL(),e.detail.items[i].filename);
+            fileBuffer[i] = dataURLtoFile(e.detail.items[i].getFileEncodeDataURL(), e.detail.items[i].filename);
             console.log(fileBuffer);
         }
         console.log('File updatefiles' + e.detail);

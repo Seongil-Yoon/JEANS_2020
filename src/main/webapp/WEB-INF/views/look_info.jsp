@@ -28,10 +28,9 @@
     <div class="body_root">
         <div class="body_look">
             <div class="my_img">
-                <!-- <%--
-                            <img src="static/images/mypicture.png" alt="search" height="50" width="60"/>
-                --%> -->
-                <img src="displayMthumbnail/${view.fk_userid_user_userid}" />
+                <a class="mypageLink" href="mypageUser/${view.nickname}">
+                    <img src="displayMthumbnail/${view.fk_userid_user_userid}" />
+                </a>
             </div>
 
             <div class="name">${view.nickname}</div>
@@ -206,6 +205,7 @@
 <script
         type="text/javascript"
         src="/static/js/look_info/lookDelete.js"
+        charset="UTF-8"
 ></script>
 <script
         type="text/javascript"
