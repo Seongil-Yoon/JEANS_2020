@@ -1,8 +1,33 @@
 let look_num = 20000; //게시글 6개씩 불러 오기 위해 look_num 값넣는 변수 초기값 은  2000000000
 let mainScrollTime = true; //스크롤 중복 방지 변수
 let end = true //게시글 없을 경우 데이터 가져오지 않는 변수
-let option;
-let word
+var nearuser = new Array();
+
+function setUserId (id){
+    //로그인한 아이디 저장
+    userId=id;
+
+    $.ajax({
+        url: "http://13.125.21.192:5000/id/"+userId,
+        type: "GET", //데이터 전달방식
+        success: function (result) {
+            for(var i=0;i<result.near_user.length;i++){
+             nearuser[i]=result.near_user[i];
+            }
+            //아이디 5개 받아서 배열에 넣음
+            start(nearuser);
+        },
+        error: function (error) {
+            //서버오류 500  권한없음  401
+            if (error.status == 401) {
+                swal('접근 권한이 없습니다', '', 'error');
+            } else if (error.status == 500) {
+                swal('서버 오류 관리자에게 문의 하세요', '', 'error');
+            }
+        }
+    })
+
+}
 
 //on load html 이미지나 자바스크립트 링크가 다오고 실행됨
 $(window).on('load', function() {
@@ -19,21 +44,19 @@ $(window).on('load', function() {
                 console.log("전체높이", documentHeight);
                 console.log("윈도우 높이", windowHeight);
                 console.log("윈도우높이 + 스크롤 >= 문서높이 -100px");
-                searchStart(option, word);
+                start(nearuser);
             }
         }
     })
 });
 
-function searchStart(searchOption, keyword) {
-    //무한 스크롤 중복 방지
-    option = searchOption;
-    word = keyword;
+function start(nearuser) {
 
+    //무한 스크롤 중복 방지
     mainScrollTime = false;
 
     $.ajax({
-        url: "/search/" + searchOption + "/" + keyword + "/" + look_num,
+        url: "/preference/" + nearuser[0] + "/" +  nearuser[1] + "/" + nearuser[2]+ "/" + nearuser[3]+ "/" + nearuser[4]+ "/" +look_num,
         type: "GET",
         dataType: "json", //json 으로 받기
         success: function(result) {
