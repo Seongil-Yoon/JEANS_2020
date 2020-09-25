@@ -5,103 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f784feb7-0fb1-4498-bec4-1ad0a9c5f27f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/build/resources/main/static/css/jeans_write_body_copy.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/resources/main/static/js/look_info_copy.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/resources/main/static/js/look_list/preferenceScroll.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/resources/main/static/js/look_list/searchScroll.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/resources/main/static/js/look_write_copy.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/resources/main/static/js/mypageUser/mypageUser_bottom.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hs_err_pid20776.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/replay_pid20776.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/jeans_write_body_copy.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/look_info_copy.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/look_list/preferenceScroll.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/look_list/searchScroll.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/look_write_copy.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/mypageUser/mypageUser_bottom.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/look_info_copy.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/look_write_copy.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/preference_list.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/search_list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___Jeans___ko_0_0_1_SNAPSHOT_war.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___Jeans___ko_0_0_1_SNAPSHOT_war__exploded_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Gradle___Jeans___ko_0_0_1_SNAPSHOT_war__exploded_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/CommentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/LookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/LookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dao/IBoardDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dao/IBoardDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/jeans/ko/KoApplicationTests.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/mapper/IBoard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/mapper/IBoard.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/css/jeans_header_.css" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/css/jeans_header_.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/css/jeans_info_body.css" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/css/jeans_info_body.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/css/jeans_write_body.css" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/css/jeans_write_body.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/css/look_list.css" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/css/look_list.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/css/look_list_Look.css" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/css/look_list_Look.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/css/mypageUser_top.css" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/css/mypageUser_top.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/joinUser/joinUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/joinUser/joinUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/lookModify/lookModify.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/lookModify/lookModify.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/look_info/child_comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/look_info/child_comment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/look_info/look_comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/look_info/look_comment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/look_info/look_info copy.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/look_info/look_info copy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/look_info/look_info.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/look_info/look_info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/look_list/mainScroll.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/look_list/mainScroll.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/look_write/look_write.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/look_write/look_write.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/mypageUser/mypageUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/mypageUser/mypageUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/jeans_header_.scss" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/scss/jeans_header_.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/jeans_info_body.scss" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/scss/jeans_info_body.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/jeans_write_body.scss" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/scss/jeans_write_body.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/look_list.scss" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/scss/look_list.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/look_list_Look.scss" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/scss/look_list_Look.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/mypageUser_top.scss" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/scss/mypageUser_top.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/ChangeuserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/ChangeuserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/LookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/LookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/MypageuserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/MypageuserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Dao/IBoardDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Dao/IBoardDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Dao/IUserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Dao/IUserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Service/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Service/FileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Service/IFileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Service/IFileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Service/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Service/IUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Service/IUtilService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Service/IUtilService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Service/UtilService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Service/UtilService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/IBoard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/IBoard.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/jeans_header_.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/jeans_header_.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/jeans_info_body.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/jeans_info_body.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/jeans_write_body.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/jeans_write_body.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/look_list.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/look_list.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/look_list_Look.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/look_list_Look.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/mypageUser_top.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/mypageUser_top.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/joinUser/joinUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/joinUser/joinUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/lookModify/lookModify.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/lookModify/lookModify.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/look_info/child_comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/look_info/child_comment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/look_info/look_comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/look_info/look_comment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/look_info/look_info copy.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/look_info/look_info copy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/look_info/look_info.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/look_info/look_info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/look_list/mainScroll.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/look_list/mainScroll.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/look_write/look_write.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/look_write/look_write.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/mypageUser/mypageUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/mypageUser/mypageUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scss/jeans_header_.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scss/jeans_header_.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scss/jeans_info_body.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scss/jeans_info_body.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scss/jeans_write_body.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scss/jeans_write_body.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scss/look_list.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scss/look_list.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scss/look_list_Look.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scss/look_list_Look.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scss/mypageUser_top.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scss/mypageUser_top.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/changeUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/changeUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/lookModify.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/lookModify.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/look_info.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/look_info.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/look_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/look_list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/look_write.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/look_write.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/mypageUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/mypageUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,11 +42,23 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProjectId" id="1hwssoB6t3lUpr9KwaGEcLdxjIg" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
   </component>
   <component name="RunManager">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
@@ -148,8 +69,21 @@
       </method>
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f784feb7-0fb1-4498-bec4-1ad0a9c5f27f" name="Default Changelist" comment="" />
+      <created>1600933702032</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600933702032</updated>
+      <workItem from="1600933703826" duration="1225000" />
+      <workItem from="1600996595415" duration="828000" />
+    </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="67" width="1089" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600929324286">
@@ -160,37 +94,41 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="498" y="214" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1600929317965" />
-    <state width="1493" height="147" key="GridCell.Tab.0.bottom" timestamp="1600929390433">
+    <state width="1493" height="234" key="GridCell.Tab.0.bottom" timestamp="1600943100564">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="147" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600929390433" />
-    <state width="1493" height="147" key="GridCell.Tab.0.center" timestamp="1600929390432">
+    <state width="1493" height="234" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600943100564" />
+    <state width="1493" height="234" key="GridCell.Tab.0.center" timestamp="1600943100564">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="147" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600929390432" />
-    <state width="1493" height="147" key="GridCell.Tab.0.left" timestamp="1600929390431">
+    <state width="1493" height="234" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600943100564" />
+    <state width="1493" height="234" key="GridCell.Tab.0.left" timestamp="1600943100564">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="147" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600929390431" />
-    <state width="1493" height="147" key="GridCell.Tab.0.right" timestamp="1600929390432">
+    <state width="1493" height="234" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600943100564" />
+    <state width="1493" height="234" key="GridCell.Tab.0.right" timestamp="1600943100564">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="147" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600929390432" />
-    <state width="1493" height="147" key="GridCell.Tab.1.bottom" timestamp="1600929390038">
+    <state width="1493" height="234" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600943100564" />
+    <state width="1493" height="234" key="GridCell.Tab.1.bottom" timestamp="1600943100564">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="147" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600929390038" />
-    <state width="1493" height="147" key="GridCell.Tab.1.center" timestamp="1600929390037">
+    <state width="1493" height="234" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600943100564" />
+    <state width="1493" height="234" key="GridCell.Tab.1.center" timestamp="1600943100564">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="147" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1600929390037" />
-    <state width="1493" height="147" key="GridCell.Tab.1.left" timestamp="1600929390037">
+    <state width="1493" height="234" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1600943100564" />
+    <state width="1493" height="234" key="GridCell.Tab.1.left" timestamp="1600943100564">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="147" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1600929390037" />
-    <state width="1493" height="147" key="GridCell.Tab.1.right" timestamp="1600929390038">
+    <state width="1493" height="234" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1600943100564" />
+    <state width="1493" height="234" key="GridCell.Tab.1.right" timestamp="1600943100564">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="147" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1600929390037" />
+    <state width="1493" height="234" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1600943100564" />
+    <state x="277" y="57" key="SettingsEditor" timestamp="1600933720179">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1600933720179" />
   </component>
 </project>
