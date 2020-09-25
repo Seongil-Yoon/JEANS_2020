@@ -30,8 +30,6 @@
 />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="/static/js/backCashDelete.js"></script>
-<script>
-    searchStart('${searchOption}','${keyword}');
-</script>
+<script>setUserId('${sessionScope.userid}');</script>
 </body>
 </html>

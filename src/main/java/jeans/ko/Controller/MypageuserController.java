@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.http.HttpSession;
+import javax.xml.ws.Response;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,6 +32,9 @@ public class MypageuserController {
 
     @Autowired
     IBoardDao boardDao;
+
+    @Autowired
+    HttpSession session;
 
     //마이페이지 이동. 웹에서 모델앤뷰
     @GetMapping("/mypageUser/{nickname}")
@@ -51,25 +56,29 @@ public class MypageuserController {
 
         //반환해야하는 정보를 set메소드를 통해 지정한 다음 넘기자
         UserDto returnUserdto=new UserDto();
+        returnUserdto.setSex(userDto.getSex());
         returnUserdto.setNickname(userDto.getNickname());
         returnUserdto.setWeight(userDto.getWeight());
         returnUserdto.setHeight(userDto.getHeight());
         returnUserdto.setMessage(userDto.getMessage());
         returnUserdto.setPrivacy(userDto.getPrivacy());
         map.put("user",returnUserdto);
-
         int boardnum=boardDao.getBoardnum(userDto.getNickname());//해당 유저가 쓴 글 총 개수
         countMap.put("board",boardnum);
-        countMap.put("follower",0);//팔로워,팔로잉은 아직 완성되지 않아서 0으로 둔다.
-        countMap.put("following",0);//
         map.put("count",countMap);
-
         return new ResponseEntity<Map>(map,HttpStatus.OK);
     }
 
-//    //마이페이지 내 메모 회원정보 변경 ->성일이가 만들고 난 후 기능 넣기
-//    @PutMapping("/information/{message}")
-//    public ResponseEntity<> changeMemo(){
-//
-//    }
+
+    @PutMapping("/information/{memo}")
+    public ResponseEntity<String> changeMemo(@PathVariable String memo){
+        String userid=(String)session.getAttribute("userid");
+        if(userid!=null) {
+            userDao.setMessage(userid, memo);
+            return new ResponseEntity<>(memo,HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("요청이 올바르지 않습니다",HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }
