@@ -1,5 +1,5 @@
 /*구글웹폰트 가져다쓰기*/
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap");
 @import "look_list.scss";
 //속성은 다른 파일로 따로정의해서 import시킨다.
 //무한스크롤때문에 여기서는 틀만 잡아야 됨.
@@ -20,9 +20,9 @@ body {
       margin-top: -1em;
       .main {
         .main_container {
-          .main_look_item {
+          ul.main_look_item {
             //ul
-            li {
+            #1 {
               .is_body {
                 .my_img {
                   .mypageLink {
@@ -57,8 +57,8 @@ body {
                       }
                     }
                   }
-                  .look_footer_ul {
-                    .look_footer_li {
+                  ul.look_footer_ul {
+                    li.look_footer_li {
                       .like_img_box {
                         .like_img {
                         }

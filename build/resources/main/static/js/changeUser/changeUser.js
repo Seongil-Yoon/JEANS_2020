@@ -92,7 +92,6 @@ function changeUserinformation() {
     let privacy = document.getElementsByName("privacy")[0].value;
 
     let User = {
-        privacy:privacy,
         userrole:"",
         userid: "",
         password: "",
