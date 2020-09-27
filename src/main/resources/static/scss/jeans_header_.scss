@@ -157,3 +157,9 @@ body {
 .header_space {
   height: 80px;
 }
+
+@media screen and (min-width: 0px) and (max-width: 800px ) {
+  .webview{
+    width: 90%;
+  }
+}
