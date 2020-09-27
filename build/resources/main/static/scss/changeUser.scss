@@ -32,9 +32,15 @@ form{
   width: 100%;
 }
 
-
 body {
   .webview {
+    width: 70%;
+    @media screen and (min-width: 0px) and (max-width: 600px ) {
+      width: 100%;
+    }
+    @media screen and (min-width: 600px) and (max-width: 1200px ) {
+      width: 90%;
+    }
     // display: flex;
     // flex-flow: column nowrap;
     margin: 0 auto;

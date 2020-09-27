@@ -131,7 +131,11 @@ body {
       }
       li.menu {
         width: 45%;
+        display: flex;
+        justify-content: flex-end;
         .header_a {
+          margin-right: 5%;
+          width: max-content;
         }
       }
     }
@@ -149,7 +153,7 @@ body {
 }
 .look_write {
   margin-top: 100px;
-  margin-left: 200px;
+  // margin-left: 200px;
   font-family: "Anton", sans-serif;
   font-size: large;
 }
