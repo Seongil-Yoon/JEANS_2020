@@ -97,15 +97,14 @@ function previewImage(result) { //(this,'View_area')
         img.classList.add(LOOK_IMG_FILE);
         img.id = "prev_" + View_area;
         img.src = `data:image/jpg;base64, ${file}`
-        img.style.width = '100%';
-        img.style.height = '100%';
+        // img.style.width = '100%';
+        // img.style.height = '100%';
         //태그 속성 적용 부분
         console.log(flick_panel);
 
         console.log("반복횟수", i);
     }
 }
-
 
 function excuteSlide() {
 

@@ -136,6 +136,7 @@ public class LookController {
     @GetMapping("/preference/{userid1}/{userid2}/{userid3}/{userid4}/{userid5}/{looknum}")
     public List<BoardDto> preference(@PathVariable String userid1,@PathVariable String userid2,@PathVariable String userid3,@PathVariable String userid4,@PathVariable String userid5,@PathVariable(required = false) int looknum){
         List<BoardDto>preference=boardDao.preferenceList(userid1,userid2,userid3,userid4,userid5,looknum);
+        System.out.println("preference = " + preference);
         return preference;
     }
 

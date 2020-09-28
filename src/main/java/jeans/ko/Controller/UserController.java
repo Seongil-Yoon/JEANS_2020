@@ -276,4 +276,32 @@ public class UserController {
         }
         return entity;
     }
+
+
+    //대형크기의 썸네일 이미지를 반환. 유저가 작성한 글의 썸네일이미지
+    // /displaySthumbnail과 똑같다. 단지 이미지 크기만 다를 뿐이다.
+    @GetMapping("/displayGthumbnail/{id}")
+    public ResponseEntity<byte[]> displayGthumbnail(@PathVariable String id) throws Exception {
+        InputStream in = null;
+        ResponseEntity<byte[]> entity = null;
+        String picture = userService.getPicture(id);
+        HttpHeaders headers = new HttpHeaders();
+        try {
+            if (picture.equals(defaultSthumbnail)) {
+                logger.info("해당유저의 프로필사진이 없다. 기본이미지 적용.");
+                in = new FileInputStream(uploadPath + route + defaultdirectory + route + defaultSthumbnail);
+                logger.info(in.toString());
+            } else {
+                logger.info("사진이 있다.");
+                in = new FileInputStream(uploadPath + route + id + route + profile + route + picture);
+            }
+            //headers.setContentType(MediaType.IMAGE_JPEG);
+            entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+        } finally {
+            in.close();
+        }
+        return entity;
+    }
 }
