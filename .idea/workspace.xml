@@ -21,9 +21,164 @@
   <component name="ChangeListManager">
     <list default="true" id="93533322-5534-419b-a9f4-82a3490d9d91" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/ChangeuserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/ChangeuserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/ChangeuserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jeans/ko/Controller/ChangeuserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/IBoard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/IBoard.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/ChangeuserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/CommentController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/LookController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/MainController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/MypageuserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Controller/UserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dao/IBoardDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dao/ICommentDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dao/IMoodDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dao/IPreferenceDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dao/IPretreatmentDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dao/IUserDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dto/BoardDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dto/CommentDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dto/MoodDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dto/PasswordDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dto/PictureDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Dto/UserDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/KoApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Service/BoardService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Service/CommentService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Service/FileService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Service/IBoardService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Service/ICommentService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Service/IFileService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Service/IPretreatmentService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Service/IUserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Service/IUtilService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Service/PretreatmentService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Service/UserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/Service/UtilService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/ServletInitializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/exception/BadRequestException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/exception/BindingResultException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/exception/CustomizedResponseEntityExceptionHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/exception/ExceptionResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/exception/NotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jeans/ko/exception/UnauthorizedException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/.babelrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/gulpfile.babel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/mapper/IBoard.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/mapper/MooddaoMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/mapper/commentMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/mapper/preferenceMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/mapper/pretreatmentMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/mapper/userMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/css/changeUser.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/css/deleteUser.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/css/fullpage.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/css/intro.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/css/jeans_header_.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/css/jeans_info_body.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/css/jeans_look_body.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/css/jeans_write_body.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/css/joinUser.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/css/login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/css/look_list.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/css/look_list_Look.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/css/mypageUser_top.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/css/slideShow.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/1.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/100.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/101.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/102.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/2.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/201.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/202.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/20200522_160802-01.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/203.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/Android.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/JeansModel.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/ajax.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/alarm.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/board_view_icon.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/bul_txtList_01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/delete.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/gear.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/gradle.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/heart.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/heart.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/html.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/imam-muhaimin-kHivKyO8E8U-unsplash.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/jquary.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/jsp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/ko1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/logo.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/look_slide_icon_left.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/look_slide_icon_right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/mybatis.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/mypicture.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/mysql.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/pen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/recomend_button.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/search.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/search.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/images/springboot.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/backCashDelete.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/changeUser/changeUser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/changeUser/ex2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/deleteUser/deleteUser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/intro/fullpage.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/intro/intro.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/joinUser/ex1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/joinUser/joinUser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/loginUser/login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/logout.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/lookModify/lookModify.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/look_info/child_comment.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/look_info/lookDelete.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/look_info/look_comment.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/look_info/look_info.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/look_list/mainScroll.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/look_list/preferenceScroll.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/look_list/searchScroll.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/look_write/look_write.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/mypageUser/mypageUser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/previewImageClass.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/previewImageFunction.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/slideshowClass.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/slideshowFucntion.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/sweetalert.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/libs/filepond-plugin-file-encode.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/libs/filepond-plugin-file-metadata.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/libs/filepond-plugin-image-crop.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/libs/filepond-plugin-image-preview.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/libs/filepond-plugin-image-preview.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/libs/filepond.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/libs/filepond.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/libs/jquery-3.5.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/libs/libs.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/libs/sweetalert.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/libs/sweetalert.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/changeUser.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/deleteUser.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/fullpage.min.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/intro.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/jeans_header_ copy.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/jeans_header_.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/jeans_info_body.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/jeans_look_body.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/jeans_write_body.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/joinUser.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/login.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/look_list.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/look_list_Look.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/mypageUser_top.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/scss/slideShow.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/노드설치하고 npm install 하고 npm run dev.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/bootWar/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/war/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/libsScript.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/libsScript.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/libsStyles.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/libsStyles.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +226,6 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -80,6 +234,7 @@
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -138,18 +293,6 @@
       <method v="2" />
     </configuration>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -168,20 +311,22 @@
       <workItem from="1601017801194" duration="5700000" />
       <workItem from="1601034041668" duration="120000" />
       <workItem from="1601252783312" duration="9590000" />
+      <workItem from="1601311240148" duration="1933000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="202" y="0" width="797" height="1040" key="#KoApplication" timestamp="1600916807041">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="202" y="0" width="797" height="1040" key="#KoApplication/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600916807041" />
-    <state x="414" y="44" width="1148" height="996" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601254005290">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-1506" y="44" width="1148" height="996" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601311295320">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
+    <state x="-1506" y="44" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1601311295320" />
     <state x="414" y="44" width="1148" height="996" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600917715326" />
     <state x="414" y="44" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601254005290" />
     <state x="627" y="266" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1600916889617">
@@ -196,44 +341,52 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="222" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1600916877499" />
-    <state width="1865" height="203" key="GridCell.Tab.0.bottom" timestamp="1601262884706">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1464" height="175" key="GridCell.Tab.0.bottom" timestamp="1601312668009">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
+    <state width="1464" height="175" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1601312668009" />
     <state width="1859" height="64" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1601033982867" />
     <state width="1865" height="203" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601262884706" />
-    <state width="1865" height="203" key="GridCell.Tab.0.center" timestamp="1601262884705">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1464" height="175" key="GridCell.Tab.0.center" timestamp="1601312668009">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
+    <state width="1464" height="175" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1601312668009" />
     <state width="1859" height="64" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1601033982867" />
     <state width="1865" height="203" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601262884705" />
-    <state width="1865" height="203" key="GridCell.Tab.0.left" timestamp="1601262884705">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1464" height="175" key="GridCell.Tab.0.left" timestamp="1601312668009">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
+    <state width="1464" height="175" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1601312668009" />
     <state width="1859" height="64" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1601033982867" />
     <state width="1865" height="203" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601262884705" />
-    <state width="1865" height="203" key="GridCell.Tab.0.right" timestamp="1601262884706">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1464" height="175" key="GridCell.Tab.0.right" timestamp="1601312668009">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
+    <state width="1464" height="175" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1601312668009" />
     <state width="1859" height="64" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1601033982867" />
     <state width="1865" height="203" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601262884706" />
-    <state width="1865" height="203" key="GridCell.Tab.1.bottom" timestamp="1601262884706">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1464" height="175" key="GridCell.Tab.1.bottom" timestamp="1601312668010">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
+    <state width="1464" height="175" key="GridCell.Tab.1.bottom/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1601312668010" />
     <state width="1859" height="64" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1601033982868" />
     <state width="1865" height="203" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601262884706" />
-    <state width="1865" height="203" key="GridCell.Tab.1.center" timestamp="1601262884706">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1464" height="175" key="GridCell.Tab.1.center" timestamp="1601312668009">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
+    <state width="1464" height="175" key="GridCell.Tab.1.center/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1601312668009" />
     <state width="1859" height="64" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1601033982868" />
     <state width="1865" height="203" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601262884706" />
-    <state width="1865" height="203" key="GridCell.Tab.1.left" timestamp="1601262884706">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1464" height="175" key="GridCell.Tab.1.left" timestamp="1601312668009">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
+    <state width="1464" height="175" key="GridCell.Tab.1.left/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1601312668009" />
     <state width="1859" height="64" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1601033982867" />
     <state width="1865" height="203" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601262884706" />
-    <state width="1865" height="203" key="GridCell.Tab.1.right" timestamp="1601262884706">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1464" height="175" key="GridCell.Tab.1.right" timestamp="1601312668009">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
+    <state width="1464" height="175" key="GridCell.Tab.1.right/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1601312668009" />
     <state width="1859" height="64" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1280.680@0.0.1920.1040" timestamp="1601033982868" />
     <state width="1865" height="203" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601262884706" />
     <state width="1865" height="333" key="GridCell.Tab.2.bottom" timestamp="1601002169871">
