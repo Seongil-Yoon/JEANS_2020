@@ -231,8 +231,7 @@ function filePond() {
     // Create the FilePond instance
     const pond = FilePond.create(inputElement, {
         allowMultiple: true,
-        allowReorder: true,
-        dropOnPage: true
+        allowReorder: true
     });
 
 
