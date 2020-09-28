@@ -23,7 +23,7 @@ body {
         row-gap: 2px;
         background-color: rgb(224, 224, 224);
 
-        .boardTitle{
+        .boardTitle {
           margin-left: 20px;
         }
         .name {
@@ -70,11 +70,16 @@ body {
           width: 90%;
           height: 400px;
           margin-left: 20px;
-          margin-top: -7%;
-          // grid-row: ;
-          // grid-column: ;
-          //slideshow.scss
+          margin-top: -4%;
+          & > :nth-child(1){
+            max-height: 400px;
+          }
+          .filepond--list-scroller{
+            height: 400px;
+            overflow: auto;
+          }
         }
+
         .upload_right {
           width: 440px;
           height: 350px;

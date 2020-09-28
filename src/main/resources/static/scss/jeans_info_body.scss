@@ -17,8 +17,9 @@ input {
 
 body {
   .webview {
-    width: 61.8%;
-    // width: 100%;
+    @media screen and (min-width: 800px) and (orientation: landscape) {
+      width: 61.8%;
+    }
     .jeans_root {
       .jeans_header {
       }
@@ -468,4 +469,10 @@ textarea:-ms-input-placeholder,
 textarea::-ms-input-placeholder {
   font-family: "Gothic A1", sans-serif;
   font-size: large;
+}
+
+@media screen and (min-width: 0px) and (max-width: 800px) {
+  .webview {
+    width: 90%;
+  }
 }

@@ -21,7 +21,6 @@ const routes = {
       "static/scss/login.scss",
       "static/scss/look_list.scss",
       "static/scss/look_list_Look.scss",
-      "static/scss/mypageUser_bottom.scss",
       "static/scss/mypageUser_top.scss",
       "static/scss/joinUser.scss",
       "static/scss/slideShow.scss",
