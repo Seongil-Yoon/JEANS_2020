@@ -112,16 +112,8 @@ public class ChangeuserController {
     public ResponseEntity<UserDto> getUserdto() {
         logger.info("getUserdto()메소드");
         UserDto userDto = new UserDto();
-
-        UserDto re=new UserDto();
-        re=userDao.getUserinformation((String)session.getAttribute("usernickname"));
-
-        userDto.setSex((int) session.getAttribute("usersex"));
-        userDto.setNickname((String) session.getAttribute("usernickname"));
-        userDto.setHeight((Integer) session.getAttribute("userheight"));
-        userDto.setWeight((Integer) session.getAttribute("userweight"));
-
-        return new ResponseEntity<>(re, HttpStatus.OK);
+        userDto=userDao.getUserinformation((String)session.getAttribute("usernickname"));
+        return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
     //회원정보수정페이지에서 회원정보를 변경
