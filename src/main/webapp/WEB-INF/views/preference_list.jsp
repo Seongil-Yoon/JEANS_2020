@@ -18,9 +18,8 @@
 </div>
 
 <jsp:include page="libsScript.jsp" flush="false"/>
+<script src="/static/js/look_list/preferenceScroll.js" charset="utf-8"></script>
 <script src="/static/js/backCashDelete.js"></script>
-<script>
-    searchStart('${searchOption}','${keyword}');
-</script>
+<script>setUserId('${sessionScope.userid}');</script>
 </body>
 </html>

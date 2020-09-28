@@ -3,27 +3,7 @@ let mainScrollTime = true; //스크롤 중복 방지 변수
 let end=true //게시글 없을 경우 데이터 가져오지 않는 변수
 let userId;
 
-function setUserId (Id){
-    //로그인한 아이디 저장
-    userId=Id;
 
-    $.ajax({
-        url: "http://13.125.21.192:5000/id/ogt6590",
-        type: "GET", //데이터 전달방식
-        success: function (result) {
-            console.log(result.near_user)
-        },
-        error: function (error) {
-            //서버오류 500  권한없음  401
-            if (error.status == 401) {
-                swal('접근 권한이 없습니다', '', 'error');
-            } else if (error.status == 500) {
-                swal('서버 오류 관리자에게 문의 하세요', '', 'error');
-            }
-        }
-    })
-
-}
 
 //on load html 이미지나 자바스크립트 링크가 다오고 실행됨
 $(window).on('load', function() {

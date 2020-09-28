@@ -16,6 +16,11 @@ $(document).ready(function () {
             } else {
                 $('#female').prop('checked', true);
             }
+            if(userDto.privacy==1){
+                $('#open').prop('checked',true);
+            }else{
+                $('#close').prop('checked',true);
+            }
 
             $('#height').val(userDto.height);
             $('#weight').val(userDto.weight);
@@ -89,7 +94,7 @@ function changeUserinformation() {
     let sex = $("input:radio[name='sex']:checked").val();
     let height = document.getElementsByName("height")[0].value;
     let weight = document.getElementsByName("weight")[0].value;
-    let privacy = document.getElementsByName("privacy")[0].value;
+    let privacy =$("input:radio[name='privacy']:checked").val();
 
     let User = {
         userrole:"",
@@ -99,7 +104,8 @@ function changeUserinformation() {
         height: height,
         weight: weight,
         sex: sex,
-        email: ""
+        email: "",
+        privacy: privacy
     };
     let UserDto=JSON.stringify(User);
     alert(UserDto);

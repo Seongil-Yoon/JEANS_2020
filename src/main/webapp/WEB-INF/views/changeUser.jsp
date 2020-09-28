@@ -69,12 +69,13 @@
                     <!-- -->
                     <div class="changeOther_1_1_3">프로필 열람설정</div>
                     <div class="changeOther_1_1_4">성별</div>
+
                     <div class="changeOther_1_1_5">
-                        <input type="radio" name="privacy" value="1"/>
+                        <input type="radio" id="open" name="privacy" value="1"/>
                     </div>
                     <div class="changeOther_1_1_6">공개</div>
                     <div class="changeOther_1_1_7">
-                        <input type="radio" name="privacy" value="0"/>
+                        <input type="radio" id="close" name="privacy" value="0"/>
                     </div>
                     <div class="changeOther_1_1_8">비공개</div>
                     <!-- -->
