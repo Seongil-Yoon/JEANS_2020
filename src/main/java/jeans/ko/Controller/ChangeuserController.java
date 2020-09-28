@@ -112,10 +112,7 @@ public class ChangeuserController {
     public ResponseEntity<UserDto> getUserdto() {
         logger.info("getUserdto()메소드");
         UserDto userDto = new UserDto();
-        userDto.setSex((int) session.getAttribute("usersex"));
-        userDto.setNickname((String) session.getAttribute("usernickname"));
-        userDto.setHeight((Integer) session.getAttribute("userheight"));
-        userDto.setWeight((Integer) session.getAttribute("userweight"));
+        userDto=userDao.getUserinformation((String)session.getAttribute("usernickname"));
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 

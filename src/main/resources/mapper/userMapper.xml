@@ -28,7 +28,7 @@
         update user set password=(#{password}) where userid=(#{userid});
     </update>
     <update id="setChangeuser">
-        update user set sex=(#{sex}), nickname=(#{nickname}), height=(#{height}), weight=(#{weight}) where userid=(#{userid});
+        update user set sex=(#{sex}), nickname=(#{nickname}), height=(#{height}), weight=(#{weight}),privacy=(#{privacy}) where userid=(#{userid});
     </update>
     <update id="setMessage">
         update user set message=(#{message}) where userid=(#{userid});
