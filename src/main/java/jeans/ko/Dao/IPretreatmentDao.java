@@ -11,8 +11,6 @@ import java.util.List;
 public interface IPretreatmentDao {
     public void insertUser(String userid);
 
-    public void countPretreatment(List<MoodDto> moodList, String userid);
-
     public void upMinimal(String userid);
 
     public void upStreet(String userid);

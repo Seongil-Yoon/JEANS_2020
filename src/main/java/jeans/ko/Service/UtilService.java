@@ -41,7 +41,7 @@ public class UtilService implements IUtilService {
     //이때 list에 년,월,룩번호가 담겨서 보내진다.
     @Override
     public List<String> looknumtoPath(int looknum) {
-        logger.info("looknumtoPath 메소드 : 월까지 패스 반환");
+
         List<String> path = new ArrayList<String>();
         path.add(directory);
         //Look테이블에 날짜에관한게 0000년 00월 00일 이런 식으로 저장되있어서 이런 식으로 뽑아 낼수밖에 없었다.
@@ -57,7 +57,7 @@ public class UtilService implements IUtilService {
     //룩번호를 매개변수로 받음으로 해당 글에 있는 모든 사진들의 이름을 반환한다.
     @Override
     public List<String> looknumtoallPicturename(int look_num) {
-        logger.info("looknumtoallPicturename 메소드 : 전체사진이름리스트반환");
+
         List<String> e = iBoardDao.getallPicturename(look_num);
         return e;
     }

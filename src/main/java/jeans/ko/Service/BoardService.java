@@ -44,7 +44,6 @@ public class BoardService implements IBoardService {
     IUtilService iUtilService;
 
     public void insert(BoardDto boardDto, List<MoodDto> moodDtos, List<MultipartFile> files) throws Exception {
-        logger.info("insert메소드");
         //시간을 내가 원하는 형식으로 출력
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일");
         String look_date = formatter.format(new Date());
@@ -88,7 +87,7 @@ public class BoardService implements IBoardService {
     //글을 지운다.
     @Override
     public int delete(int look_num) {
-        logger.info("delete메소드");
+
         //1. 년/월/룩번호를 반환받는다.
         List<String> path = iUtilService.looknumtoPath(look_num);
 
@@ -104,7 +103,7 @@ public class BoardService implements IBoardService {
 
     @Override
     public int update(BoardDto boardDto,List<MoodDto> moodDtos, List<MultipartFile> files) throws Exception {
-        logger.info("update메소드");
+
         //폴더내 파일 삭제
         List<String> path = iUtilService.looknumtoPath(boardDto.getLook_num());
         int look_num=boardDto.getLook_num();
@@ -135,7 +134,7 @@ public class BoardService implements IBoardService {
     //매개변수 looknum은 외래키로 사용할
     @Override
     public ArrayList<PictureDto> bindingPicture(List<MultipartFile> e, int looknum) {
-        logger.info("bindingPicture메소드");
+
         ArrayList<PictureDto> lists = new ArrayList<PictureDto>();
         int j = 0;
         for (MultipartFile i : e) {

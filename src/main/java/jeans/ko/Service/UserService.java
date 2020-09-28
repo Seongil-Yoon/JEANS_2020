@@ -26,19 +26,8 @@ public class UserService implements IUserService {
 
 
     public int joinUser(UserDto userDto){
-        logger.info("joinUser메소드");
         userDto.setRole(1);
-        System.out.println("userService에서");
-        System.out.println("userDto.getUserid() = " + userDto.getUserid());
-        System.out.println("userDto.getEmail() = " + userDto.getEmail());
-        System.out.println("userDto.getNickname = " + userDto.getNickname());
-        System.out.println("userDto.getPassword() = " + userDto.getPassword());
-        System.out.println("userDto.getPicture() = " + userDto.getPicture());
-        System.out.println("userDto.getHeight() = " + userDto.getHeight());
-        System.out.println("userDto.getWeight() = " + userDto.getWeight());
-        System.out.println("userDto.getRole() = " + userDto.getRole());
-        System.out.println("userDto.getSex() = " + userDto.getSex());
-        System.out.println("userDto = " + userDto);
+
         int insert_count= userDao.insertUser(userDto);
         //dao에서 db에 넣는게 성공했는지 안했는지 확인
         //이게 userDao 가 성공했는지 안했는지 확인하고 if 문으로 가랄져야한다
@@ -46,7 +35,7 @@ public class UserService implements IUserService {
     }
 
     public UserDto userLogin(UserDto userDto){
-        logger.info("userLogin메소드");
+
         UserDto successLogin=null;
 
         String id=userDto.getUserid();
@@ -62,7 +51,7 @@ public class UserService implements IUserService {
     }
 
     public String getPicture(String userid){
-        logger.info("getPicture메소드");
+
         String picture=userDao.getPicture(userid);
         return picture;
     }

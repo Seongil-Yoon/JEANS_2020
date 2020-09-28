@@ -7,10 +7,6 @@
         insert into pretreatment(userid) values(#{userid});
     </insert>
 
-    <update id=" countPretreatment">
-        update pretreatment set <foreach collection="list" item="i" separator=",">(${i.mood}=${i.mood}+1)</foreach> where userid=#{userid}
-    </update>
-    
     <update id="upMinimal">
         update pretreatment set minimal=minimal+1 where userid=#{userid}
     </update>
