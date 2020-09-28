@@ -156,49 +156,14 @@
         </ul>
     </div>
 </div>
-<<<<<<< HEAD
-<!-- FileFond CDN -->
-<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
-<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
-<script src="https://unpkg.com/filepond-plugin-file-metadata/dist/filepond-plugin-file-metadata.js"></script>
-<script src="https://unpkg.com/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.js"></script>
-<script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
-<!-- FileFond CDN -->
-<script
-        src="https://code.jquery.com/jquery-3.5.1.min.js"
-        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-        crossorigin="anonymous"
-></script>
-<link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"
-/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script
-        type="text/javascript"
-        src="/static/js/look_info/lookDelete.js"
-        charset="UTF-8"
-></script>
-<script
-        type="text/javascript"
-        src="/static/js/look_info/look_info.js"
-></script>
-<script
-        type="text/javascript"
-        src="/static/js/look_info/child_comment.js"
-></script>
-<script
-        type="text/javascript"
-        src="/static/js/look_info/look_comment.js"
-></script>
-=======
+
 
 <jsp:include page="libsScript.jsp" flush="false"/>
 <script type="text/javascript" src="/static/js/look_info/lookDelete.js"></script>
 <script type="text/javascript" src="/static/js/look_info/look_info.js"></script>
 <script type="text/javascript" src="/static/js/look_info/child_comment.js"></script>
 <script type="text/javascript" src="/static/js/look_info/look_comment.js"></script>
->>>>>>> 630932e65453b0b9213c8182c46a193456bae15d
+
 
 <%--댓글 내용출력 위해 현재글에 기본키를 댓글 자바스크립트에 넘김--%>
 <script>
