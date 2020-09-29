@@ -91,7 +91,6 @@ function commentWrite() { //JSP파일 호출
 
     };
 
-    console.log("댓글 데이터", data);
 
     //데이터 json 문자열 형태로 변환
     let commentDto = JSON.stringify(data);
@@ -252,7 +251,6 @@ $(document).on("click", "#js-comment_sujung_button", function (event) {
     let nickName = $(event.target).parents(".look_comment").children('.other_people_name').text();
     //이벤트 부모태그 가져오기
     let look_commentTag = $(event.target).parents(".look_comment");
-    console.log(look_commentTag);
 
     if (userId != comment_sender_id) {
         //작성자 아이디 와 로그인 아디가 같아야 수정 가능
@@ -353,8 +351,6 @@ function timeForToday(value) {
     const today = new Date();
     const timeValue = new Date(value);
 
-    console.log("현재", today.getTime());
-    console.log("올린시각", timeValue.getTime());
     //시간은 1970-01-01을 기준으로 한 에포크시간.
     const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
 

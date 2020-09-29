@@ -17,7 +17,6 @@ let moodList = [];
 
 //JSP파일 서버변수 호출함수
 function getLooknum(lookNum) {
-    console.log("글번호", lookNum);
     look_number = lookNum;
 }
 
@@ -68,7 +67,6 @@ function modifiy() {
         }
     }
     mood_value();
-    console.log("무드배열 푸시 후", moodList);
 
     let formData = new FormData();
     formData.append("BoardDto", new Blob([JSON.stringify(BoardDto)], { type: "application/json" }));
@@ -78,7 +76,6 @@ function modifiy() {
 
     if (empty == '') {
         if (fileBuffer == undefined) {
-            console.log("fileBuffer == undefined");
             let data = $('[name=writeForm]').serialize();
             //글수정하기
             $.ajax({
@@ -201,11 +198,9 @@ function moodLook_Result(mood) {
     moodList.push(mood)
 }
 function setMood() {
-    console.log(moodList);
     for (let i = 0; i < moodList.length; i++) {
         for (moodMany = 0; moodMany < 9; moodMany++) { //const타입 불가
             if (moodList[i] === document.getElementsByName("mood")[moodMany].value) {
-                console.log("무드일치")
                 document.getElementsByName("mood")[moodMany].checked = true;
             }
         }
@@ -263,7 +258,6 @@ let putImage = (result) => {
     for (let i = 0; i < result.length; i++) {
         pond.addFile(`data:image/jpg;base64, ${result[i]}`);
         // e.detail.items[i].filename = result[i].name;
-        console.log(result[i].name);
     }
 }
 
@@ -274,12 +268,8 @@ function filePondListner() {
         fileBuffer.splice(0, fileBuffer.length);
 
         for (let i = 0; i < e.detail.items.length; i++) {
-            console.log('File updatefiles e.detail.items[i]', e.detail.items[i]);
             fileBuffer[i] = dataURLtoFile(e.detail.items[i].getFileEncodeDataURL(), e.detail.items[i].filename);
-            console.log(fileBuffer);
         }
-        console.log('File updatefiles' + e.detail);
-        console.log('File updatefiles  e.detail.items', e.detail.items);
 
     });
 }

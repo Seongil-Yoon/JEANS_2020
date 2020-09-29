@@ -17,7 +17,7 @@ contentType="text/html;charset=UTF-8" language="java" %>
         </div>
         <button class="recomendBtn" id="js-recomendBtn">
           <a href="/preferencelist">
-          <img src="/static/images/recomend_button.png" alt="logo" />
+            <img src="/static/images/recomend_button.png" alt="logo" />
           </a>
         </button>
       </li>

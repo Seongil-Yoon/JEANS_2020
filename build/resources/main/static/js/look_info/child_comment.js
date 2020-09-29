@@ -151,7 +151,6 @@ $(document).on("click", ".re_comment", function (event) {
 
 //삭제 이벤트
 $(document).on("click", "#js-child_delete_button", function (event) {
-    console.log("대댓글삭제 이벤트");
     //이벤트 부모태그 가져오기
     let child_comment_wrap = $(event.target).parents(".child_comment_wrap");
 
@@ -263,7 +262,6 @@ $(document).on("click", "#js-child_comment_change_button", function (event) {
     let look_comment_wrap = child_look_commentTag.parents(".look_comment_wrap");
     //수정 기본키 들고오기
     let child_comment_id = child_look_commentTag.find(".child_comment_id").val();
-    console.log(child_look_commentTag, child_comment_content, look_comment_wrap, child_comment_id);
 
     //답글 수정처리 부분
     if ($(event.target).val() == 5) {
