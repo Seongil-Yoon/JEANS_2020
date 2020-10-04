@@ -7,7 +7,7 @@ contentType="text/html;charset=UTF-8" language="java" %>
   <nav class="jeans_header">
     <ul class="gnb" style="margin: 0; padding: 0">
       <li class="gnb_list search">
-        <form class="search_input_form a" action="searchlist?" method="GET">
+        <form class="search_input_form a" action="/searchlist?" method="GET">
           <select class="searchOption a" id="js-searchOption" name="searchOption">
             <option value="title">제목</option>
             <option value="nickname">글쓴이</option>
