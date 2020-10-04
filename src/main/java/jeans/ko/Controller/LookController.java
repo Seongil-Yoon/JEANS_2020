@@ -65,14 +65,14 @@ public class LookController {
     //게시판 작성페이지 이동
     @RequestMapping("/look_write")
     public String look_write() {
-        logger.info("look_write()진입");
+
         return "look_write";
     }
 
     //게시판 상세보기 model and view : 웹용
     @RequestMapping("/look")
     public String view(@RequestParam("look_num") int look_num, Model model) {
-        logger.info("view()진입");
+
         boardDao.countUpdate(look_num); //글상세보기 하면 조회수 증가
         model.addAttribute("view", boardDao.view(look_num)); //게시글정보가져오기
         model.addAttribute("mood", moodDao.getMooddto(look_num));//글의 무드 타입
@@ -83,7 +83,7 @@ public class LookController {
     //게시판 수정 페이지 이동 model and view : 웹용
     @RequestMapping("/lookModify")
     public String lookModify(@RequestParam("look_num") int look_num, Model model) {
-        logger.info("lookModify()진입");
+
         BoardDto boardDto = boardDao.view(look_num);
         model.addAttribute("view", boardDto); //게시글정보 가져오기
         model.addAttribute("mood", moodDao.getMooddto(look_num));//글의 무드 타입
@@ -94,7 +94,6 @@ public class LookController {
     @ResponseBody
     @GetMapping("/looksList/{look_num}")  //룩 전체 리스트
     public List<BoardDto> searchAllLook(@PathVariable int look_num) {
-        logger.info("searchAllLook()진입");
 
         if (boardDao.list(look_num) == null) {
             //게시글 이 없으면 not found 404 에러
@@ -106,22 +105,14 @@ public class LookController {
 
     @GetMapping("/searchlist")
     public String searchPage(@RequestParam(value="searchOption") String searchOption,@RequestParam(value="keyword") String keyword,Model model){
-        logger.info("searchList로");
-        System.out.println("searchOption + keyword = " + searchOption + keyword);
         model.addAttribute("searchOption",searchOption);
         model.addAttribute("keyword",keyword);
-        System.out.println("model = " + model);
         return "search_list";
     }
 
     @ResponseBody
     @GetMapping("/search/{searchOption}/{keyword}/{looknum}")
     public List<BoardDto> search(@PathVariable String searchOption, @PathVariable String keyword, @PathVariable(required = false) int looknum) {
-        System.out.println("searchOption, keyword, looknum = "+searchOption+keyword + looknum);
-        logger.info("search 메소드");
-        if (searchOption.equals("mood")) {
-
-        }
         List<BoardDto> search = boardDao.searchList(searchOption, keyword,looknum);
         return search;
     }
@@ -136,14 +127,12 @@ public class LookController {
     @GetMapping("/preference/{userid1}/{userid2}/{userid3}/{userid4}/{userid5}/{looknum}")
     public List<BoardDto> preference(@PathVariable String userid1,@PathVariable String userid2,@PathVariable String userid3,@PathVariable String userid4,@PathVariable String userid5,@PathVariable(required = false) int looknum){
         List<BoardDto>preference=boardDao.preferenceList(userid1,userid2,userid3,userid4,userid5,looknum);
-        System.out.println("preference = " + preference);
         return preference;
     }
 
     @ResponseBody
     @GetMapping("/looks/{id}") //룩상세보기 안드로이드에 값주게 json 데이터만 넘기는용
     public HashMap<String, Object> searchLook(@PathVariable int id) {   //looks/1   looks/3  -->String으로 오는데 int id 해서 int 로 변환해서 받음
-        logger.info("searchLook()진입");
         HashMap<String, Object> map = new HashMap<String, Object>();
         //게시글 가져오기
         BoardDto boardDto = boardDao.view(id);
@@ -165,7 +154,6 @@ public class LookController {
     @ResponseBody
     @DeleteMapping("/looks/{id}")
     public void deleteLook(@PathVariable int id) throws Exception {
-        logger.info("deleteLook()진입");
 
         //게시글이 먼저 있는지 확인
         BoardDto boardDto = boardDao.view(id);
@@ -189,8 +177,6 @@ public class LookController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/looks")
     public BoardDto boardWrite(@RequestPart("BoardDto") BoardDto boardDto, @RequestPart(value = "MoodDto", required = false) List<MoodDto> moodDtos, @RequestPart("files") List<MultipartFile> files) throws Exception {
-        logger.info("boardWrite()진입");
-        System.out.println("테스트를 위해 남겨둔 moodDtos = " + moodDtos);
         if (session.getAttribute("userid") == null) {
             //서버로 바로접근하는 경우 아이디값 없으면 클라이언트 권한없음 오류보냄
             throw new UnauthorizedException(String.format("unauthorized you"));
@@ -213,9 +199,7 @@ public class LookController {
     @ResponseStatus(HttpStatus.CREATED)
     @PutMapping("/looks")
     public BoardDto boardModify(@RequestPart("BoardDto") BoardDto modifyBoardDto, @RequestPart(value = "MoodDto", required = false) List<MoodDto> moodDtos, @RequestPart("files") List<MultipartFile> files) throws Exception {
-        logger.info("boardModify()진입");
-        System.out.println("modifyBoardDto = " + modifyBoardDto);
-        System.out.println("moodDtos = " + moodDtos);
+
         //넘어온 값에 기본키id 값으로 게시글작성자 id 와 기본키넘버값 가져오기
         String lookId = boardDao.view(modifyBoardDto.getLook_num()).getFk_userid_user_userid();
         int lookNum = boardDao.view(modifyBoardDto.getLook_num()).getLook_num();
@@ -239,7 +223,6 @@ public class LookController {
     @ResponseBody
     @PostMapping("/likey/looknum/{num}/user/{id}")
     public ResponseEntity<String> likey(@PathVariable("num") String number, @PathVariable("id") String id) {
-        System.out.println("likey메소드");
         int num = Integer.parseInt(number);
 
         if (preferenceDao.getUser(num, id) != 0) {
@@ -253,7 +236,6 @@ public class LookController {
 
     @GetMapping("/displayLthumbnail/{look_num}")
     public ResponseEntity<byte[]> displayLthumbnail(@PathVariable int look_num) throws Exception {
-        logger.info("displayLthumbnail메소드");
         InputStream in = null;
         ResponseEntity<byte[]> entity = null;
         entity = null;
@@ -276,7 +258,6 @@ public class LookController {
 
     @GetMapping("/displayInthumbnail/{look_num}")
     public ResponseEntity<ArrayList<byte[]>> displayInthumbnail(@PathVariable int look_num) throws Exception {
-        logger.info("displayInthumbnail메소드");
         //InputStream in =null;
         ArrayList<byte[]> in = new ArrayList<>();
 
@@ -289,8 +270,6 @@ public class LookController {
         try {
             for (int i = 0; i < allpicture.size(); i++) {
                 inp = new FileInputStream(datepath.get(0) + route + datepath.get(1) + route + datepath.get(2) + route + datepath.get(3) + route + allpicture.get(i));
-                logger.info(allpicture.get(i));
-                System.out.println("inp = " + inp);
                 in.add(IOUtils.toByteArray(inp));
             }
             entity = new ResponseEntity<ArrayList<byte[]>>(in, headers, HttpStatus.OK);

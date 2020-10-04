@@ -39,16 +39,14 @@ public class MypageuserController {
     //마이페이지 이동. 웹에서 모델앤뷰
     @GetMapping("/mypageUser/{nickname}")
     public String mypageUser(@PathVariable String nickname, Model model) {
-        logger.info("mypageUser메소드");
         model.addAttribute("nick",nickname);
-        System.out.println("nickname = " + nickname);
         return "mypageUser";
     }
 
     //마이페이지 내 회원정보 요청
     @GetMapping("/information/{nick}")
     public ResponseEntity<Map> getUser(@PathVariable String nick){
-        logger.info("getUser메소드");
+
         Map map=new HashMap();
         Map countMap=new HashMap();//유저가 현재쓴글, 팔로워,팔로잉숫자등을 저장
         //닉네임을 넘기고 해당유저의 모든 정보를 받아왔다.
@@ -71,6 +69,7 @@ public class MypageuserController {
         return new ResponseEntity<Map>(map,HttpStatus.OK);
     }
 
+
     @PutMapping("/information/{memo}")
     public ResponseEntity<String> changeMemo(@PathVariable String memo){
         String userid=(String)session.getAttribute("userid");
@@ -81,4 +80,5 @@ public class MypageuserController {
             return new ResponseEntity<>("요청이 올바르지 않습니다",HttpStatus.BAD_REQUEST);
         }
     }
+
 }
