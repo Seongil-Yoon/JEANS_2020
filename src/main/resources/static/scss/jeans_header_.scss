@@ -88,19 +88,30 @@ body {
       li.search {
         width: 45%;
         .search_input_form {
+          width: 80%;
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
+          .a{
+            margin-left: 5px;
+          }
+          .searchOption{
+            width: 20%;
+          }
           .search_input {
-            width: 61.8%;
+            width: 40%;
             display: block;
-            .search_text {
+            .keyword {
               border: none;
               width: 100%;
               height: 30px;
             }
           }
-          .search_logo {
+          button.search_logo {
+            background-color: #92cef4;
+            border: none;
             width: max-content;
-            // margin-top: 5px;
-            // margin-left: 2%;
+            height: auto;
             img {
               width: 30px;
               height: 30px;
@@ -112,6 +123,7 @@ body {
           border: none;
           width: max-content;
           height: auto;
+          margin-left: -15%;
           img {
             width: 50px;
             height: 50px;

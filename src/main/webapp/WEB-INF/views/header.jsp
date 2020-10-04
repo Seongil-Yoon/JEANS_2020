@@ -7,15 +7,20 @@ contentType="text/html;charset=UTF-8" language="java" %>
   <nav class="jeans_header">
     <ul class="gnb" style="margin: 0; padding: 0">
       <li class="gnb_list search">
-        <form class="search_input_form">
-          <div class="search_input">
-            <input type="text" class="search_text" />
+        <form class="search_input_form a" action="searchlist?" method="GET">
+          <select class="searchOption a" id="js-searchOption" name="searchOption">
+            <option value="title">제목</option>
+            <option value="nickname">글쓴이</option>
+            <option value="season">계절</option>
+            <option value="memo">메모내용</option>
+          </select>
+          <div class="search_input a">
+            <input type="text" class="keyword" name="keyword" value="" />
           </div>
-          <div class="search_logo">
+          <button class="search_logo">
             <img src="/static/images/search.jpg" alt="search" />
-          </div>
+          </button>
         </form>
-
         <button class="recomendBtn" id="js-recomendBtn">
           <a href="/preferencelist">
             <img src="/static/images/recomend_button.png" alt="logo" />
