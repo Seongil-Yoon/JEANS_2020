@@ -71,7 +71,6 @@ function previewImage(result) { //(this,'View_area')
 
     for (let i = 0; i < result.length; i++) {
         let file = result[i];
-        console.log("파일", file);
         // let imageType = /image.*/; //이미지 파일일경우만.. 뿌려준다.
         // if (!file.type.match(imageType))
         //     continue;
@@ -79,9 +78,6 @@ function previewImage(result) { //(this,'View_area')
         flick_panel = document.createElement('div');
         img = document.createElement("img");
         //태그 생성 부분
-
-        console.log("View_area", preview);
-        console.log("flick_panel", flick_panel);
 
         preview.appendChild(flick_panel);
         flick_panel.appendChild(img); //flick_panel의자식으로 img태그를 연결
@@ -100,9 +96,6 @@ function previewImage(result) { //(this,'View_area')
         // img.style.width = '100%';
         // img.style.height = '100%';
         //태그 속성 적용 부분
-        console.log(flick_panel);
-
-        console.log("반복횟수", i);
     }
 }
 
@@ -117,7 +110,6 @@ function excuteSlide() {
     slideSpeed = 280; // slide speed
     startNum = 0; // initial slide index (0 ~ 4)
 
-    console.log(slideLen);
     slideList.style.width = slideWidth * (slideLen + 2) + "px";
 
     // Copy first and last slide
@@ -175,7 +167,6 @@ function excuteSlide() {
 }
 
 function startAjax(lookNumber) {
-    console.log(lookNumber);
     $.ajax({
         url: `/displayInthumbnail/${lookNumber}`,
         type: "GET",
@@ -212,7 +203,6 @@ function likey(num,id){
 
 //JSP파일 서버변수 호출함수
 function lookReady(lookNum) {
-    console.log("글번호", lookNum);
     startAjax(lookNum);
 }
 

@@ -25,7 +25,6 @@ public class MainController {
 
     @RequestMapping("/main")
     public String main(Model model) {
-        logger.info("main진입");
 
         return "/look_list";
     }
@@ -33,13 +32,13 @@ public class MainController {
     //처음 들어오면 메인 화면
     @RequestMapping("/")
     public String index(Model model) {
-        logger.info("index()진입");
+
         return "/intro";
     }
 
     @RequestMapping("/loginUser")
     public String loginUser() {
-        logger.info("loginUser()진입");
+
         return "loginUser";
     }
 

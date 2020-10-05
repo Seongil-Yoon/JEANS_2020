@@ -15,10 +15,6 @@ $(window).on('load', function() {
         //윈도우 높이에 스크롤값을 계속더해서 문서 전체 길이에서 100 px 앞에 스크롤이 왔을때 데이터 불러옴
         if ((windowHeight + scroll) >= documentHeight - 100) {
             if (mainScrollTime == true && end == true) {
-                console.log("현재 스크롤 값", scroll);
-                console.log("전체높이", documentHeight);
-                console.log("윈도우 높이", windowHeight);
-                console.log("윈도우높이 + 스크롤 >= 문서높이 -100px");
                 searchStart(option, word);
             }
         }
@@ -33,7 +29,7 @@ function searchStart(searchOption, keyword) {
     mainScrollTime = false;
 
     $.ajax({
-        url: "/search/" + searchOption + "/" + keyword + "/" + look_num,
+        url: "/search/" + option + "/" + word + "/" + look_num,
         type: "GET",
         dataType: "json", //json 으로 받기
         success: function(result) {

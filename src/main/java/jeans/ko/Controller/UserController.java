@@ -111,8 +111,6 @@ public class UserController {
     @ResponseBody
     @PostMapping(value = "/user")
     public ResponseEntity<Void> join(@Valid @RequestPart("UserDto") UserDto user, @RequestPart(value = "file", required = false) MultipartFile picture, BindingResult result) throws Exception {
-        logger.info("join메소드");
-        System.out.println("user = " + user);
         if (picture == null) {
             user.setPicture(defaultSthumbnail);
         } else {
@@ -120,23 +118,7 @@ public class UserController {
             user.setPicture(fileOriginalname);
         }
 
-        System.out.println("result.getErrorCount() = " + result.getErrorCount());
-        System.out.println("result.hasGlobalErrors() = " + result.getFieldError());
-        if (result.getFieldError("userid") != null) {
-            System.out.println("Error! " + result.getFieldError("userid").getDefaultMessage());
-        }
-        if (result.getFieldError("nickname") != null) {
-            System.out.println("Error! = " + result.getFieldError("nickname").getDefaultMessage());
-        }
-        if (result.getFieldError("password") != null) {
-            System.out.println("Error! = " + result.getFieldError("password").getDefaultMessage());
-        }
-        if (result.getFieldError("sex") != null) {
-            System.out.println("Error! = " + result.getFieldError("sex").getDefaultMessage());
-        }
-        if (result.getFieldError("email") != null) {
-            System.out.println("Error! = " + result.getFieldError("email").getDefaultMessage());
-        }
+
         if (result.getErrorCount() > 0) {
             //Validation 검사 결과 에러가 있다.
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -232,10 +214,8 @@ public class UserController {
         HttpHeaders headers = new HttpHeaders();
         try {
             if (picture.equals(defaultSthumbnail)) {
-                logger.info("사진이 없습니다. 기본 이미지를 적용합니다.");
                 in = new FileInputStream(uploadPath + route + defaultdirectory + route + defaultSthumbnail);
             } else {
-                logger.info("유저의 프로필 사진이 있습니다. 유저의 프로필 사진을 적용합니다.");
                 in = new FileInputStream(uploadPath + route + userid + route + profile + route + smallHeader + picture);
             }
             //   headers.setContentType(MediaType.IMAGE_JPEG);//카피한 소스코드에서는 이게 있었는데 이렇게 주석처리해도 돌아가더라
@@ -260,11 +240,8 @@ public class UserController {
         HttpHeaders headers = new HttpHeaders();
         try {
             if (picture.equals(defaultSthumbnail)) {
-                logger.info("해당유저의 프로필사진이 없다. 기본이미지 적용.");
                 in = new FileInputStream(uploadPath + route + defaultdirectory + route + defaultSthumbnail);
-                logger.info(in.toString());
             } else {
-                logger.info("사진이 있다.");
                 in = new FileInputStream(uploadPath + route + id + route + profile + route + middleHeader + picture);
             }
             //headers.setContentType(MediaType.IMAGE_JPEG);
@@ -288,11 +265,8 @@ public class UserController {
         HttpHeaders headers = new HttpHeaders();
         try {
             if (picture.equals(defaultSthumbnail)) {
-                logger.info("해당유저의 프로필사진이 없다. 기본이미지 적용.");
                 in = new FileInputStream(uploadPath + route + defaultdirectory + route + defaultSthumbnail);
-                logger.info(in.toString());
             } else {
-                logger.info("사진이 있다.");
                 in = new FileInputStream(uploadPath + route + id + route + profile + route + picture);
             }
             //headers.setContentType(MediaType.IMAGE_JPEG);

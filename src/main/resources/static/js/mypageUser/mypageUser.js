@@ -18,7 +18,6 @@ let mypageInfo = "";//요청한 유저정보 담는변수
 //JSP파일 서버변수 호출함수
 function myUsernickname(usernickname) {
     jsp_nickname = usernickname;
-    console.log(jsp_nickname);
 
     init();
 }
@@ -29,7 +28,6 @@ function startMessage() {
 
 function putMessage() {
     content = messageWrap.querySelector("#js-message_textarea").value;
-    console.log(content)
     if (content === "") {
         content = "NULL";
     }
@@ -39,7 +37,6 @@ function putMessage() {
         type: "put", //데이터 전달방식
         contentType: "charset=utf-8", //json 형태로 댓글보내기
         success: function (result, textStatus, jqxHR) {
-            console.log(result);
             $("#js-message").children().remove();
 
             let html = "";
@@ -65,7 +62,6 @@ function getMypageinfo() {
         type: "get", //데이터 전달방식
         // dataType: "json", //json 형태로 받기
         success: function (result, textStatus, jqxHR) {
-            console.log(result);
             mypageInfo = result;
 
             gender();

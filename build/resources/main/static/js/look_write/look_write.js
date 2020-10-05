@@ -41,7 +41,6 @@ let look_number = 0;
 
 //JSP파일 서버변수 호출함수
 function getLooknum(lookNum) {
-    console.log("글번호", lookNum);
     look_number = lookNum;
 }
 
@@ -108,7 +107,6 @@ function lookWrite() {
         }
     }
     mood_value();
-    console.log("무드배열 푸시 후", moodList);
 
     let formData = new FormData();
     formData.append("BoardDto", new Blob([JSON.stringify(BoardDto)], { type: "application/json" }));
@@ -118,7 +116,6 @@ function lookWrite() {
 
     if (empty == '') {
         if (fileBuffer == undefined) {
-            console.log("fileBuffer == undefined");
             let data = $('[name=writeForm]').serialize();
             $.ajax({
                 url: "/looks",
@@ -146,7 +143,6 @@ function lookWrite() {
                 }
             })
         } else {
-            console.log("fileBuffer == defined");
             function appendFile() {
                 for (i = 0; i < fileBuffer.length; i++) {
                     formData.append("files", fileBuffer[i]);
@@ -241,12 +237,8 @@ function filePond() {
         fileBuffer.splice(0, fileBuffer.length);
 
         for (let i = 0; i < e.detail.items.length; i++) {
-            console.log('File updatefiles e.detail.items[i]', e.detail.items[i]);
             fileBuffer[i] = dataURLtoFile(e.detail.items[i].getFileEncodeDataURL(), e.detail.items[i].filename);
-            console.log(fileBuffer);
         }
-        console.log('File updatefiles' + e.detail);
-        console.log('File updatefiles  e.detail.items', e.detail.items);
 
     });
 }

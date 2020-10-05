@@ -58,7 +58,7 @@ public class FileService implements IFileService {
     //폴더생성
     @Override
     public void mkDir(List<String> paths) {
-        logger.info("mkDir메소드()");
+
         String completePath = "";
         for (String path : paths) {
             File dirPath = new File(completePath += path + route);
@@ -72,12 +72,12 @@ public class FileService implements IFileService {
     //프로필썸네일이미지 생성
     @Override
     public boolean mkProfilethumbnail(List<String> paths, String userid) throws Exception {
-        logger.info("mkProfilethumbnail메소드");
+
         String path = utilService.completePath(paths);
         String picture = userDao.getPicture(userid);
         File f = new File(path, picture);
         if (!f.exists()) {
-            logger.info("썸네일이 없습니다");
+
             return false;
         }
         BufferedImage sourceImg = ImageIO.read(f);
@@ -109,7 +109,7 @@ public class FileService implements IFileService {
 
     @Override
     public boolean mkBoardthumbnail(List<String> paths) throws Exception {
-        logger.info("mkBoardthumbnail메소드");
+
         String path = utilService.completePath(paths);
         int looknum = Integer.parseInt(paths.get(paths.size() - 1));
         List<String> pictures = utilService.looknumtoallPicturename(looknum);
@@ -127,7 +127,7 @@ public class FileService implements IFileService {
     //파일업로드
     @Override
     public boolean uploadFiles(List<String> paths, List<MultipartFile> files) throws Exception {
-        logger.info("uploadFiles메소드()");
+
         String path = utilService.completePath(paths);
         String boardnum=paths.get(paths.size()-1);//글 번호
 
@@ -149,7 +149,7 @@ public class FileService implements IFileService {
 
     @Override
     public void uploadFile(List<String> paths, MultipartFile file) throws Exception {
-        logger.info("uploadFile메소드");
+
         String path=utilService.completePath(paths);
         byte[] fileData=file.getBytes();
         String name=file.getOriginalFilename();
@@ -160,14 +160,13 @@ public class FileService implements IFileService {
     //파일 삭제
     @Override
     public void rmFiles(List<String> path, List<String> files) {
-        logger.info("deleteallFiles메소드");
+
         String completedPath=utilService.completePath(path);
 
         for (String i : files) {
             File f = new File(completedPath + route + i);
             if (!f.exists()) {
-                logger.info("파일이 존재하지 않습니다.");
-                logger.info(f.toString());
+
                 return;
             }
             f.delete();
@@ -177,11 +176,11 @@ public class FileService implements IFileService {
     //폴더삭제
     @Override
     public boolean rmDir(List<String> pahts) {
-        logger.info("rmDir메소드");
+
         String path = utilService.completePath(pahts);
         File f = new File(path);
         if (!f.exists()) {
-            logger.info("삭제할 폴더가 이미 없습니다");
+
             return true;
         }
         f.delete();

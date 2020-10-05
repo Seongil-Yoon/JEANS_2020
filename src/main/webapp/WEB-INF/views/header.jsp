@@ -7,24 +7,30 @@ contentType="text/html;charset=UTF-8" language="java" %>
   <nav class="jeans_header">
     <ul class="gnb" style="margin: 0; padding: 0">
       <li class="gnb_list search">
-        <div class="search_logo">
-          <img src="/static/images/search.jpg" alt="search" />
-        </div>
-        <div class="search_input">
-          <form class="search_input_form">
-            <input type="text" class="search_text" />
-          </form>
-        </div>
+        <form class="search_input_form a" action="/searchlist?" method="GET">
+          <select class="searchOption a" id="js-searchOption" name="searchOption">
+            <option value="all">전체</option>
+            <option value="title">제목</option>
+            <option value="nickname">글쓴이</option>
+            <option value="season">계절</option>
+            <option value="memo">메모내용</option>
+          </select>
+          <div class="search_input a">
+            <input type="text" class="keyword" name="keyword" value="" />
+          </div>
+          <button class="search_logo">
+            <img src="/static/images/search.jpg" alt="search" />
+          </button>
+        </form>
         <button class="recomendBtn" id="js-recomendBtn">
           <a href="/preferencelist">
-          <img src="/static/images/recomend_button.png" alt="logo" />
+            <img src="/static/images/recomend_button.png" alt="logo" />
           </a>
         </button>
       </li>
       <li class="gnb_list logo">
         <a class="header_a" href="/main">
           <img src="/static/images/logo.PNG" alt="logo" />
-          <!-- <img src="/static/images/recomend_button.png" alt="logo" /> -->
         </a>
       </li>
       <li class="gnb_list menu">

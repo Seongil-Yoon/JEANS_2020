@@ -1,30 +1,27 @@
 package jeans.ko.Controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 import jeans.ko.Dao.IUserDao;
 import jeans.ko.Dto.PasswordDto;
 import jeans.ko.Dto.UserDto;
 import jeans.ko.Service.IFileService;
 import jeans.ko.Service.IUtilService;
-import lombok.Data;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import javax.xml.ws.Response;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +54,6 @@ public class ChangeuserController {
     //비밀번호 변경
     @PostMapping(value = "/password")
     public ResponseEntity<Void> changePassword(@Valid @RequestBody PasswordDto passwordDto, BindingResult result) throws Exception {
-        logger.info("changePassword메소드");
 
         if (result.getFieldError("ps") != null) {
             System.out.println("Error! = " + result.getFieldError("ps").getDefaultMessage());
@@ -73,7 +69,6 @@ public class ChangeuserController {
     //프로필썸네일 이미지 변경
     @PostMapping(value = "/profilethumbnail")
     public ResponseEntity<Void> changeprofileThumbnail(MultipartFile file) throws Exception {
-        logger.info("changeprofileThumbnail메소드");
         //세션값을 통해 유저의 id값을 알아낸다.
         String id = (String) session.getAttribute("userid");
         //usertoPath는 유저의 id 를 통해 유저의 profile 폴더까지의 경로를 List<String>으로 반환한다.
@@ -110,7 +105,6 @@ public class ChangeuserController {
     //회원정보수정페이지에서 유저가 현재등록된 자신의 정보를 알수있도록하기 위한 메소드
     @GetMapping(value = "/information")
     public ResponseEntity<UserDto> getUserdto() {
-        logger.info("getUserdto()메소드");
         UserDto userDto = new UserDto();
         userDto=userDao.getUserinformation((String)session.getAttribute("usernickname"));
         return new ResponseEntity<>(userDto, HttpStatus.OK);
@@ -119,7 +113,6 @@ public class ChangeuserController {
     //회원정보수정페이지에서 회원정보를 변경
     @PostMapping(value = "/information")
     public ResponseEntity<Void> setUserdto(@RequestBody UserDto userDto) {
-        logger.info("setUserdto()메소드");
         userDto.setUserid((String) session.getAttribute("userid"));
         userDao.setChangeuser(userDto);
         session.setAttribute("usersex", userDto.getSex());
@@ -131,7 +124,6 @@ public class ChangeuserController {
 
     @PostMapping(value = "/deleteUser")
     public ResponseEntity deleteUser(@Valid @RequestBody PasswordDto passwordDto, BindingResult result) {
-        logger.info("deleteUser메소드");
         if (result.getFieldError("ps") != null) {
             System.out.println("Error! = " + result.getFieldError("ps").getDefaultMessage());
         }

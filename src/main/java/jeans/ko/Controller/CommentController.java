@@ -3,11 +3,8 @@ package jeans.ko.Controller;
 
 import jeans.ko.Dao.IBoardDao;
 import jeans.ko.Dao.ICommentDao;
-import jeans.ko.Dto.BoardDto;
 import jeans.ko.Dto.CommentDto;
-import jeans.ko.Service.IBoardService;
 import jeans.ko.Service.ICommentService;
-import jeans.ko.exception.BadRequestException;
 import jeans.ko.exception.BindingResultException;
 import jeans.ko.exception.NotFoundException;
 import jeans.ko.exception.UnauthorizedException;
@@ -18,15 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.xml.stream.events.Comment;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 
 //테스트 확인 주석
 @Controller
@@ -52,8 +42,6 @@ public class CommentController {
     @GetMapping("/look_comment/{comment_id}")
     public CommentDto comment(@PathVariable int comment_id) {
 
-        logger.info("comment()진입");
-
         CommentDto commentDto = commentDao.comment(comment_id);
 
         if (commentDto == null) {
@@ -71,8 +59,6 @@ public class CommentController {
     public List<CommentDto> commentList(@PathVariable int fk_look_num_Look_look_num,
                                         @PathVariable int comment_id) {
 
-        logger.info("commentList()진입");
-
         if (boardDao.view(fk_look_num_Look_look_num) == null) {
             //게시글 이 없으면 not found 404 에러
             throw new NotFoundException(String.format
@@ -86,7 +72,6 @@ public class CommentController {
     @ResponseBody
     @DeleteMapping("look_comment/{comment_id}")
     public void deleteLookComment(@PathVariable int comment_id) {
-        logger.info("deleteLookComment()진입");
 
         //삭제할 댓글이 있는지 확인
         CommentDto commentDto = commentDao.comment(comment_id);
@@ -109,7 +94,6 @@ public class CommentController {
     @ResponseBody //이거없으면 스프링은 반환형태를 뷰로 판단함
     @PostMapping("/look_comment")
     public CommentDto commentWrite(@RequestBody CommentDto commentDto,BindingResult result) {
-        logger.info("commentWrite()진입");
         //유효성 검사에서 -2 한 이유는 날짜와 기본키는 데이터 넣으면서
         // 생성되기 떄문에 에러카운트가 2로 넘어와서 -2함
         new BindingResultException(result.getErrorCount()-2);
@@ -133,7 +117,6 @@ public class CommentController {
     public CommentDto updateLookComment(@PathVariable int comment_id,
                                         @RequestBody CommentDto updateDto,
                                         BindingResult result) {
-        logger.info("updateLookComment()진입");
 
         //유효성 검사 에서 -5 한 이유는 수정은 content 만 넘어 와서 기본적 으로 -5가 되어 있음
         new BindingResultException(result.getErrorCount()-5);
