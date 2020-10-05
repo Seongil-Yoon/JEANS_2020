@@ -150,7 +150,6 @@ public class ChangeuserController {
         //유저의 진짜 비밀번호와 유저가 입력한 비밀번호가 맞다면 해당 유저를 지운다
         if(password.equals(passwordDto.getPs())){
             session.invalidate();
-
             List<String> path = utilService.usertoPath(userid);
             String picture = userDao.getPicture(userid);
             List<String> pictures = new ArrayList<>();
