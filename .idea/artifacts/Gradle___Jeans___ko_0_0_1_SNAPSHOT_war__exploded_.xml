@@ -1,9 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="Gradle : Jeans : ko-0.0.1-SNAPSHOT.war (exploded)">
     <output-path>$PROJECT_DIR$/build/libs/exploded/ko-0.0.1-SNAPSHOT.war</output-path>
-    <properties id="gradle-properties">
-      <options external-project-path="$PROJECT_DIR$" />
-    </properties>
     <root id="root">
       <element id="javaee-facet-resources" facet="ko.main/web/Web Gradle : ko-0.0.1-SNAPSHOT.war" />
       <element id="directory" name="WEB-INF">

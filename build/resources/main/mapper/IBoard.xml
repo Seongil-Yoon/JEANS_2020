@@ -8,7 +8,7 @@
         insert into look
         values
         (
-        #{look_num},#{title},#{like},#{season},#{look_privacy},#{fk_userid_user_userid}
+        #{look_num},#{title},#{good},#{season},#{look_privacy},#{fk_userid_user_userid}
         ,#{memo},#{look_date},#{count},#{comment_count},#{nickname}
         )
 
@@ -75,6 +75,10 @@
         update look set count = count + 1 where look_num = #{look_num}
     </update>
 
+    <update id="likeUpdate">
+        update look set good = good + 1 where look_num = #{num}
+    </update>
+
     <update id="update">
         update look set title = #{title},season = #{season},
         look_privacy = #{look_privacy},memo = #{memo}
@@ -84,7 +88,7 @@
     <sql id="search">
         <choose>
             <when test="option=='all'">
-                WHERE (nickname like CONCAT('%',#{keyword},'%') OR memo like CONCAT('%',#{keyword},'%') OR title like CONCAT('%',#{keyword},'%')) AND look_num &lt; #{looknum} order by look_num desc LIMIT 6;
+                WHERE (nickname like CONCAT('%',#{keyword},'%') OR memo like CONCAT('%',#{keyword},'%') or season like concat('%',#{keyword},'%') OR title like CONCAT('%',#{keyword},'%')) AND look_num &lt; #{looknum} order by look_num desc LIMIT 6;
             </when>
             <otherwise>
                 WHERE ${option} like CONCAT('%',#{keyword},'%') AND look_num &lt; #{looknum} order by look_num desc LIMIT 6;
