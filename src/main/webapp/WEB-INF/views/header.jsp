@@ -9,6 +9,7 @@ contentType="text/html;charset=UTF-8" language="java" %>
       <li class="gnb_list search">
         <form class="search_input_form a" action="/searchlist?" method="GET">
           <select class="searchOption a" id="js-searchOption" name="searchOption">
+            <option value="all">전체</option>
             <option value="title">제목</option>
             <option value="nickname">글쓴이</option>
             <option value="season">계절</option>
