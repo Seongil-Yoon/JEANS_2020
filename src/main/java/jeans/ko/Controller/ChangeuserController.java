@@ -98,6 +98,7 @@ public class ChangeuserController {
             위에서 업로드한 파일을 통해 썸네일 이미지를 따로 생성해 주어야한다.
          */
         fileService.mkProfilethumbnail(path, id);
+        System.gc();
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
